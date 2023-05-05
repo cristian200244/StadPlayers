@@ -1,6 +1,5 @@
 <?php
 include_once(__DIR__ . "/config/rutas.php");
-
 ?>
 
 <!DOCTYPE html>
@@ -60,22 +59,16 @@ include_once(__DIR__ . "/config/rutas.php");
                             <input type="password" id="typePasswordX-2" class="form-control form-control-lg" />
                             <label class="form-label" for="typePasswordX-2" style="font-family:Russo One; color:#9bdaff;">Contraseña</label>
                         </div>
-
-                        <!-- Checkbox -->
                         <div class="form-check d-flex justify-content-start mb-4">
                             <input class="form-check-input" type="checkbox" value="" id="form1Example3" />
                             <label class="form-check-label" for="form1Example3" style="font-family:Russo One; color: #9bdaff; padding-left: 2%;"> Recuperar
                                 Contraseña
                             </label>
                         </div>
-
-
-
-
                         <div class="iniciarSesion">
                             <form>
 
-                                <a href="<?= BASE_URL ?>/Views/PaginaPrincipal.php">
+                                <a href="<?= BASE_URL ?>/Views/partials/MenuPrincipal.php">
                                     <span></span>
                                     <span></span>
                                     <span></span>
@@ -84,19 +77,12 @@ include_once(__DIR__ . "/config/rutas.php");
                                 </a>
                             </form>
                         </div>
-
-
-
                         <hr class="my-4">
-
                         <button class="btn btn-lg btn-block btn-primary" style="background-color: #dd4b39;font-family:Russo One;" type="submit"><i class="fab fa-google me-2"></i> Iniciar Sesión con Google </button>
                         <br>
                         <br>
-
                         <button class="btn btn-lg btn-block btn-primary" style="background-color: #17c27a;font-family:Russo One;" type="submit"> Crear Usuario
                         </button>
-
-
                     </div>
                 </div>
             </div>

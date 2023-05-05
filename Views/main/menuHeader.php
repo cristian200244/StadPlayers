@@ -3,7 +3,7 @@
         <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
             <li>
-                <a class="dropdown-item" href="<?= BASE_URL ?>../index.php">
+                <a class="dropdown-item" href="<?= BASE_URL ?>/Views/botonExtra/index.php">
                     <i class="fa-solid fa-hand fa-shake" style="color: rgb(250, 241, 254); padding-left: 2%; padding-right:2%;">
                     </i>
                     Botón extra

@@ -1,7 +1,8 @@
 <?php
-include_once(__DIR__ . "../../config/rutas.php");
-include_once(BASE_DIR . "../../Views/main/header.php");
 
+include_once(__DIR__ . "../../../config/rutas.php");
+include_once(BASE_DIR . "../../Views/main/header.php");
+include_once(BASE_DIR . "../../Views/partials/aside.php");
 ?>
 <main>
     <table class="table">
@@ -34,7 +35,8 @@ include_once(BASE_DIR . "../../Views/main/header.php");
         </tbody>
     </table>
 </main>
+ 
 <?php
-include_once(BASE_DIR . "../../Views/partials/aside.php");
-include_once(BASE_DIR . "../../Views/main/footer.php");
-?>
+       
+       include_once(BASE_DIR . "../../Views/main/footer.php");
+       ?>

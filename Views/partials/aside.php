@@ -26,7 +26,7 @@
 
                 <div class="collapse" id="jugadores" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                     <nav class="sb-sidenav-menu-nested nav">
-                        <a class="nav-link" href="<?= BASE_URL ?>../Views/CrearJugador.php">
+                        <a class="nav-link" href="<?= BASE_URL ?>/Views/jugadores/CrearJugador.php">
                             <i class="fa-solid fa-address-book fa-bounce" style="
                                          color: rgb(255, 244, 31);
                                          font-size: 14px;
@@ -68,7 +68,7 @@
                     <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
 
                         <div class="sb-sidenav-collapse-arrow">
-                            <a class="nav-link" href="<?= BASE_URL ?>../Views/IngresarEstadisticas.php">
+                            <a class="nav-link" href="<?= BASE_URL ?>/Views/Estadisticas/index.php">
                                 <i class="fa-solid fa-file-pen fa-bounce" style="
                                            color: rgb(255, 244, 31);
                                            font-size: 14px;
@@ -160,7 +160,7 @@
                 <div class="collapse" id="config" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
 
                     <nav class="sb-sidenav-menu-nested nav">
-                        <a class="nav-link" href="crear_jugador.html">
+                        <a class="nav-link" href="<?= BASE_URL ?>/Views/Configuraciones/index.php">
                             <i class="fa-solid fa-gears fa-spin-pulse" style="color: rgb(251, 255, 4);
                                      font-size: 14px;  
                                      padding: 5%;">
@@ -169,7 +169,7 @@
                         </a>
 
 
-                        <a class="nav-link" href="ver_jugador.html">
+                        <a class="nav-link" href="">
                             <i class="fa-solid fa-eye fa-beat-fade" style="
                                          color: rgb(255, 72, 31);
                                          font-size: 14px;
