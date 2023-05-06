@@ -1,9 +1,17 @@
 <?php
-
+  
 include_once(__DIR__ . "../../../config/rutas.php");
 include_once(BASE_DIR . "../../Views/main/header.php");
 include_once(BASE_DIR . "../../Views/partials/aside.php");
+
 ?>
+<div class="container">
+        <div class="row">
+            <div class="col">
+            
+                <h1>
+                    ¡Bienvenido! Estos son sus jugadores</h1>
+                    
 <main>
     <table class="table">
         <thead>
@@ -37,6 +45,9 @@ include_once(BASE_DIR . "../../Views/partials/aside.php");
 </main>
  
 <?php
-       
-       include_once(BASE_DIR . "../../Views/main/footer.php");
+  include_once(BASE_DIR . "../../Views/main/footer.php");
+      
        ?>
+        
+
+
