@@ -26,7 +26,7 @@
 
                 <div class="collapse" id="jugadores" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                     <nav class="sb-sidenav-menu-nested nav">
-                        <a class="nav-link" href="<?= BASE_URL ?>/Views/jugadores/CrearJugador.php">
+                        <a class="nav-link" href="<?= BASE_URL ?>/Views/jugadores/index.php">
                             <i class="fa-solid fa-address-book fa-bounce" style="
                                          color: rgb(255, 244, 31);
                                          font-size: 14px;
@@ -35,7 +35,7 @@
                             <h3>Crear Jugadores</h3>
                         </a>
 
-                        <a class="nav-link" href="ver_jugador.html">
+                        <a class="nav-link" href="<?= BASE_URL ?>/Views/jugadores/VerJugadores.php">
                             <i class="fa-solid fa-eye fa-beat-fade" style="
                                              color: rgb(255, 72, 31);
                                              font-size: 14px;
@@ -47,7 +47,7 @@
                     </nav>
                 </div>
 
-                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#estadisticas" aria-expanded="false" aria-controls="estadisticas">
+                <a class="nav-link collapsed" href="" data-bs-toggle="collapse" data-bs-target="#estadisticas" aria-expanded="false" aria-controls="estadisticas">
 
                     <div class="sb-nav-link-icon">
                         <i class="fa-solid fa-address-card fa-beat-fade" style="

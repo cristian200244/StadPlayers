@@ -22,7 +22,7 @@ include_once(__DIR__ . "/config/rutas.php");
 </head>
 
 <nav class="sb-topnav navbar navbar-expand navbar-dark">
-    <div class="titulo" style="margin-left:34%">
+    <div class="titulo" style="margin-left:38%">
         <font color="aqua" style="
                 text-decoration: underline;
                 text-decoration-color: rgb(255, 0, 0);
