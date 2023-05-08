@@ -8,7 +8,7 @@ include_once(BASE_DIR . "../../Views/partials/aside.php");
     <div class="container">
         <div class="row">
             <div class="col">
-                <h1>¡Bienvenido! Estas son sus estadísticas</h1>
+                <h1>¡Bienvenido! Ahora Podrá ingresar sus estadísticas</h1>
             </div>
         </div>
     </div>
@@ -29,20 +29,20 @@ include_once(BASE_DIR . "../../Views/partials/aside.php");
                     <tbody>
                         <tr>
                             <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
                         </tr>
                         <tr>
                             <th scope="row">2</th>
-                            <td>Jacob</td>
-                            <td>Thornton</td>
-                            <td>@fat</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
                         </tr>
                         <tr>
                             <th scope="row">3</th>
-                            <td colspan="2">Larry the Bird</td>
-                            <td>@twitter</td>
+                            <td colspan="2"></td>
+                            <td></td>
                         </tr>
                     </tbody>
                 </table>
@@ -52,7 +52,7 @@ include_once(BASE_DIR . "../../Views/partials/aside.php");
 
 </main>
 
-  
+
 <?php
-    include_once(BASE_DIR . "../../Views/main/footer.php");
+include_once(BASE_DIR . "../../Views/main/footer.php");
 ?>

@@ -14,9 +14,11 @@
                 </div>
             </div>
             <div class="nav">
-                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#jugadores" aria-expanded="false" aria-controls="collapseLayouts">
+                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#jugadores"
+                    aria-expanded="false" aria-controls="collapseLayouts">
                     <div class="sb-nav-link-icon">
-                        <i class="fa-solid fa-users-rectangle fa-beat-fade" style="color: rgb(255, 255, 255); font-size: 15px"></i>
+                        <i class="fa-solid fa-users-rectangle fa-beat-fade"
+                            style="color: rgb(255, 255, 255); font-size: 15px"></i>
                     </div>
                     <h3>Jugadores</h3>
                     <div class="sb-sidenav-collapse-arrow">
@@ -47,7 +49,8 @@
                     </nav>
                 </div>
 
-                <a class="nav-link collapsed" href="" data-bs-toggle="collapse" data-bs-target="#estadisticas" aria-expanded="false" aria-controls="estadisticas">
+                <a class="nav-link collapsed" href="" data-bs-toggle="collapse" data-bs-target="#estadisticas"
+                    aria-expanded="false" aria-controls="estadisticas">
 
                     <div class="sb-nav-link-icon">
                         <i class="fa-solid fa-address-card fa-beat-fade" style="
@@ -81,7 +84,7 @@
 
 
                         <div class="sb-sidenav-collapse-arrow">
-                            <a class="nav-link" href="ver_estad.html">
+                            <a class="nav-link" href="<?= BASE_URL ?>/Views/Estadisticas/VerEstadisticas.php">
                                 <i class="fa-solid fa-eye fa-beat-fade" style="
                                              color: rgb(255, 72, 31);
                                              font-size: 14px;
@@ -94,7 +97,8 @@
                     </nav>
                 </div>
 
-                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#reportes" aria-expanded="false" aria-controls="reportes">
+                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#reportes"
+                    aria-expanded="false" aria-controls="reportes">
 
                     <div class="sb-nav-link-icon">
                         <i class="fa-solid fa-file-prescription fa-beat" style="
@@ -140,7 +144,8 @@
                     </nav>
                 </div>
 
-                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#config" aria-expanded="false" aria-controls="config">
+                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#config"
+                    aria-expanded="false" aria-controls="config">
 
                     <div class="sb-nav-link-icon">
                         <i class="fa-solid fa-rectangle-list fa-flip" style="

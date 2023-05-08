@@ -10,6 +10,54 @@
  * Copyright 2011-2022 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  */
+
+  .containerTitulo{
+
+    margin-left: 35%;
+    margin-right: 30%;
+    
+padding-right:0%;
+  position: relative;
+  font-size: 3vw;
+  font-family: Russo One;
+  display: inline;
+  font-size: 250%;
+  font-family: Russo One;
+  display: inline-flexbox;
+   background: linear-gradient(to right, rgb(209, 2, 64), rgb(21, 179, 152));
+   border-top-left-radius: px;
+  border-bottom-left-radius: 8px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+ } 
+ @media screen and (max-width: 972px){  
+  .containerTitulo
+
+    {
+      margin-left: 20px;
+      padding-left: 5px;
+      padding-right: 5px;
+      margin-right:10%;
+      font-size: 20px;
+      height: calc(15vh - 50px 50px);
+    
+ }
+}
+.sb-topnavInicio {
+  padding-left: 0;
+  height: 15%;
+  z-index: 1039;
+  background-color:rgb(0, 0, 0);
+}
+
+ .sb-topnav {
+  padding-left: 0;
+  height: 15%;
+  z-index: 1039;
+  background-color:rgb(0, 0, 0);
+}
+
 :root {
   --bs-blue: #0d6efd;
   --bs-indigo: #6610f2;
@@ -4221,7 +4269,6 @@ textarea.form-control-lg {
   flex: 1 1 auto;
   padding: var(--bs-card-spacer-y) var(--bs-card-spacer-x);
   color: var(--bs-card-color);
-  overflow: hidden;
 }
 
 .card-title {
