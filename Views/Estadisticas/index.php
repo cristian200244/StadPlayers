@@ -5,7 +5,7 @@ include_once(BASE_DIR . "../../Views/main/header.php");
 include_once(BASE_DIR . "../../Views/partials/aside.php");
 ?>
 <main>
-    <div class="container">
+    <div class="container text-center">
         <div class="row">
             <div class="col">
                 <h1>¡Bienvenido! Ahora Podrá ingresar sus estadísticas</h1>
@@ -17,35 +17,14 @@ include_once(BASE_DIR . "../../Views/partials/aside.php");
     <div class="container">
         <div class="row">
             <div class="col">
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">First</th>
-                            <th scope="col">Last</th>
-                            <th scope="col">Handle</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td colspan="2"></td>
-                            <td></td>
-                        </tr>
-                    </tbody>
-                </table>
+                <div id="content">
+                    <h2>Ingresar Estadisticas</h2>
+                    <div id="valor">0</div>
+                    <button id="resta">-</button>
+                    <input type="text" id="inputValor" value="0">
+                    <button id="suma">+</button>
+
+                </div>
             </div>
         </div>
     </div>
