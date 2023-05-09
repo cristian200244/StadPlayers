@@ -22,31 +22,34 @@
 
 
 <body class="sb-nav-fixed">
-    <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+    <nav class="sb-topnav navbar navbar-expand navbar-dark bg-black h-">
         <!-- Navbar Brand-->
-        <a class="navbar-brand ps-3" href="index.html">Start Bootstrap</a>
+        <a class="navbar-brand ps-3" href="index.html">Bienvenido</a>
         <!-- Sidebar Toggle-->
         <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i
                 class="fas fa-bars"></i></button>
         <!-- Navbar Search-->
-        <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
-            <div class="titulo">
-                <font color="aqua" style="
-                text-decoration: underline;
-                text-decoration-color: rgb(255, 0, 0);
-              ">
-                    STAD
-                </font>
 
-                <font color="red" style="text-decoration: underline; text-decoration-color: aqua">
-                    <i class="fa-solid fa-futbol fa-spin" style="color: rgb(255, 255, 255)">
-                    </i>
-                    PLAYERS
-                </font>
-            </div>
-        </form>
+        <div class=" d-flex containerTitulo d-md-inline-block  " style="margin-left:23%">
+
+            <font color="aqua" style="
+    text-decoration: underline;
+    text-decoration-color: rgb(255, 0, 0);
+  ">
+                STAD
+            </font>
+            <i class="fa-solid fa-futbol fa-spin" style="color: rgb(255, 255, 255)">
+            </i>
+            <font color="red" style="
+    text-decoration: underline; 
+    text-decoration-color: aqua">
+                PLAYERS
+            </font>
+        </div>
+
         <?php include_once(__DIR__ . "../../../views/main/menuHeader.php"); ?>
 
     </nav>
     <div id="layoutSidenav">
         <div id="layoutSidenav_content">
+            <main>
