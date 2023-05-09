@@ -17,9 +17,7 @@ include_once(__DIR__ . "/config/rutas.php");
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Russo One&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
-        integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 </head>
 
@@ -61,23 +59,17 @@ include_once(__DIR__ . "/config/rutas.php");
                                         </strong>
 
                                         <div class="form-outline mb-4">
-                                            <input type="email" id="typeEmailX-2"
-                                                class="form-control form-control-lg" />
-                                            <strong></strong> <label class="form-label" for="typeEmailX-2"
-                                                style="font-family:Russo One; color:#9bdaff;">Correo</label></strong>
+                                            <input type="email" id="typeEmailX-2" class="form-control form-control-lg" />
+                                            <strong></strong> <label class="form-label" for="typeEmailX-2" style="font-family:Russo One; color:#9bdaff;">Correo</label></strong>
                                         </div>
 
                                         <div class="form-outline mb-4">
-                                            <input type="password" id="typePasswordX-2"
-                                                class="form-control form-control-lg" />
-                                            <label class="form-label" for="typePasswordX-2"
-                                                style="font-family:Russo One; color:#9bdaff;">Contraseña</label>
+                                            <input type="password" id="typePasswordX-2" class="form-control form-control-lg" />
+                                            <label class="form-label" for="typePasswordX-2" style="font-family:Russo One; color:#9bdaff;">Contraseña</label>
                                         </div>
                                         <div class="form-check d-flex justify-content-start mb-4">
-                                            <input class="form-check-input" type="checkbox" value=""
-                                                id="form1Example3" />
-                                            <label class="form-check-label" for="form1Example3"
-                                                style="font-family:Russo One; color: #9bdaff; padding-left: 2%;">
+                                            <input class="form-check-input" type="checkbox" value="" id="form1Example3" />
+                                            <label class="form-check-label" for="form1Example3" style="font-family:Russo One; color: #9bdaff; padding-left: 2%;">
                                                 Recuperar
                                                 Contraseña
                                             </label>
@@ -95,13 +87,10 @@ include_once(__DIR__ . "/config/rutas.php");
                                             </form>
                                         </div>
                                         <hr class="my-4">
-                                        <button class="btn btn-lg btn-block btn-primary"
-                                            style="background-color: #dd4b39;font-family:Russo One;" type="submit"><i
-                                                class="fab fa-google me-2"></i> Iniciar Sesión con Google </button>
+                                        <button class="btn btn-lg btn-block btn-primary" style="background-color: #dd4b39;font-family:Russo One;" type="submit"><i class="fab fa-google me-2"></i> Iniciar Sesión con Google </button>
                                         <br>
                                         <br>
-                                        <button class="btn btn-lg btn-block btn-primary"
-                                            style="background-color: #17c27a;font-family:Russo One;" type="submit">
+                                        <button class="btn btn-lg btn-block btn-primary" style="background-color: #17c27a;font-family:Russo One;" type="submit">
                                             Crear
                                             Usuario
                                         </button>
@@ -112,9 +101,10 @@ include_once(__DIR__ . "/config/rutas.php");
                     </div>
 
                 </section>
+            </main>
+            <?php
+            include_once("Views/main/footer.php");
+            ?>
 
-        </div>
-        <?php
-        include_once("Views/main/footer.php");
-        ?>
-    </div>
+           
+                  

@@ -119,7 +119,7 @@
 
                     <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
                         <div class="sb-sidenav-collapse-arrow">
-                            <a class="nav-link" href="ingre_estad.html">
+                            <a class="nav-link" href="<?= BASE_URL ?>/Views/Reportes/index.php">
                                 <i class="fa-solid fa-file-signature fa-shake" style="
                                          color: rgb(255, 244, 31);
                                          font-size: 14px;
@@ -131,7 +131,7 @@
                         </div>
 
                         <div class="sb-sidenav-collapse-arrow">
-                            <a class="nav-link" href="ver_estad.html">
+                            <a class="nav-link" href="<?= BASE_URL ?>/Views/Reportes/VerReportes.php">
                                 <i class="fa-solid fa-file-export fa-beat-fade" style="
                                          color: rgb(255, 72, 31);
                                          font-size: 14px;
@@ -144,7 +144,7 @@
                     </nav>
                 </div>
 
-                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#config"
+                <a class="nav-link collapsed" href="<?= BASE_URL ?>/Views/Estadisticas/VerEstadisticas.php" data-bs-toggle="collapse" data-bs-target="#config"
                     aria-expanded="false" aria-controls="config">
 
                     <div class="sb-nav-link-icon">
