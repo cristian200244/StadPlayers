@@ -30,7 +30,7 @@
                 class="fas fa-bars"></i></button>
         <!-- Navbar Search-->
 
-        <div class=" d-flex containerTitulo d-md-inline-block  " style="margin-left:23%">
+        <div class=" d-flex containerTitulo d-md-inline-block  " style="margin-left:23.5%">
 
             <font color="aqua" style="
     text-decoration: underline;
