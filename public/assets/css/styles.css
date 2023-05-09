@@ -11289,3 +11289,17 @@ body {
   font-size: 0.75rem;
   border-radius: 0.375rem !important;
 }
+
+.val-estadistica{
+  background-color:red;
+}
+
+#estadistica-resta{
+  position:static;
+  background-color: red;
+}
+
+#estadistica-suma{
+  position:static;
+  background-color: green;
+}

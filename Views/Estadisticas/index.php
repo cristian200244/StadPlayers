@@ -11,23 +11,62 @@ include_once(BASE_DIR . "../../Views/partials/aside.php");
                 <h1>¡Bienvenido! Ahora Podrá ingresar sus estadísticas</h1>
             </div>
         </div>
-    </div>
 
-
-    <div class="container">
-        <div class="row">
-            <div class="col">
-                <div id="content">
-                    <h2>Ingresar Estadisticas</h2>
-                    <div id="valor">0</div>
-                    <button id="resta">-</button>
-                    <input type="text" id="inputValor" value="0">
-                    <button id="suma">+</button>
-
+        <div class="container text-center">
+            <div class="row row-cols-2  justify-content-between">
+                <div class="col col-md-4 m-2">
+                    <div class="row justify-content-md-center">
+                        <div class="col">
+                            <input class="  text-center" type="number" name="val-estadistica" id="val-estadistica" value="0">
+                        </div>
+                    </div>
+                    <div class="row justify-content-md-center">
+                        <div class="col col-lg-2 fixed"><a class="btn" id="estadistica-resta"><i class="fa-solid fa-minus"></i></a></div>
+                        <div class="col col-md-auto">Pases Acertados </div>
+                        <div class="col col-lg-2 fixed"><a class="btn" id="estadistica-suma"><i class="fa-solid fa-plus"></i></a></div>
+                    </div>
                 </div>
             </div>
         </div>
+
+        <div class="container text-center">
+            <div class="row row-cols-  justify-content-between">
+                <div class="col col-md-4 my-2 mx-2">
+                    <div class="row justify-content-md-center">
+                        <div class="col">
+                            <input class="  text-center" type="number" name="val-estadistica" id="val-estadistica" value="0">
+                        </div>
+                    </div>
+                    <div class="row justify-content-md-center">
+                        <div class="col col-lg-2"><a class="btn" id="estadistica-resta"><i class="fa-solid fa-minus"></i></a></div>
+                        <div class="col col-md-auto">Pases Errados</div>
+                        <div class="col col-lg-2"><a class="btn" id="estadistica-suma"><i class="fa-solid fa-plus"></i></a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container text-center">
+            <div class="row row-cols-2  justify-content-between">
+                <div class="col col-md-4 m-2">
+                    <div class="row justify-content-md-center">
+                        <div class="col">
+                            <input class="  text-center" type="number" name="val-estadistica" id="val-estadistica" value="0">
+                        </div>
+                    </div>
+                    <div class="row justify-content-md-center">
+                        <div class="col col-lg-2"><a class="btn" id="estadistica-resta"><i class="fa-solid fa-minus"></i></a></div>
+                        <div class="col col-md-auto">Asistencias de el bicho cr7 siuuuu</div>
+                        <div class="col col-lg-2"><a class="btn" id="estadistica-suma"><i class="fa-solid fa-plus"></i></a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
     </div>
+
+
 
 </main>
 
