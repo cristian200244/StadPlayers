@@ -25,7 +25,8 @@ include_once(__DIR__ . "/config/rutas.php");
 
 <body class="sb-nav-fixed">
     <nav class="sb-topnavLogin navbar navbar-expand navbar-black">
-        <div class=" containerTituloLogin d-flex  d-md-inline-block  " style="margin-left:35%; margin-right:20%">
+        <div class=" containerTituloLogin d-flex   mx-auto  d-md-inline-block  "
+            style="margin-left:35%; margin-right:20%">
 
             <font color="aqua" style="
 text-decoration: underline;
