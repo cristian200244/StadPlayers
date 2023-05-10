@@ -18,7 +18,7 @@ include_once(BASE_DIR . "../../Views/partials/aside.php");
                                 <div class="card-header bg-black text-info">
                                     <h3 class="text-center font-weight-light my-4">Generar Reporte</h3>
                                 </div>
-                                <div class="card-body text-black" style="background-color:#91FFE6   ;">
+                                <div class="card-body text-black" style="background-color:#CFDFE0  ;">
                                     <form>
                                         <div class="row mb-3">
                                             <div class="col-md-6">
@@ -45,7 +45,8 @@ include_once(BASE_DIR . "../../Views/partials/aside.php");
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-floating mb-3 mb-md-0">
-                                                    <input class="form-control" class="form-control" type="date" name="fechaFinal" />
+                                                    <input class="form-control" class="form-control" type="date"
+                                                        name="fechaFinal" />
                                                 </div>
                                             </div>
                                         </div>
@@ -58,7 +59,9 @@ include_once(BASE_DIR . "../../Views/partials/aside.php");
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="dropdown">
-                                                    <a class="btn btn-success dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                                                    <a class="btn btn-success dropdown-toggle" href="#" role="button"
+                                                        id="dropdownMenuLink" data-bs-toggle="dropdown"
+                                                        aria-expanded="false">
                                                         Elegir jugador
                                                     </a>
 
@@ -72,7 +75,8 @@ include_once(BASE_DIR . "../../Views/partials/aside.php");
                                             </div>
                                         </div>
                                         <div class="mt-4 mb-0">
-                                            <div class="d-grid"><a class="btn btn-primary btn-block" href="login.html">Generar</a></div>
+                                            <div class="d-grid"><a class="btn btn-primary btn-block"
+                                                    href="login.html">Generar</a></div>
                                         </div>
                                     </form>
                                 </div>

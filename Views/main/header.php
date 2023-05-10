@@ -26,11 +26,11 @@
         <!-- Navbar Brand-->
         <a class="navbar-brand ps-3" href="index.html">Bienvenido</a>
         <!-- Sidebar Toggle-->
-        <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i
+        <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 " id="sidebarToggle" href="#!"><i
                 class="fas fa-bars"></i></button>
         <!-- Navbar Search-->
 
-        <div class=" d-flex containerTitulo d-md-inline-block  " style="margin-left:23.5%">
+        <div class="containerTitulo  d-flex  d-md-inline-block  " style="margin-left:23.5%">
 
             <font color="aqua" style="
     text-decoration: underline;
