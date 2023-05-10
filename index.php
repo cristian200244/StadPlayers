@@ -24,21 +24,21 @@ include_once(__DIR__ . "/config/rutas.php");
 </head>
 
 <body class="sb-nav-fixed">
-    <nav class="sb-topnavInicio navbar navbar-expand navbar-dark">
-        <div class="containerTitulo ">
+    <nav class="sb-topnavLogin navbar navbar-expand navbar-black">
+        <div class=" containerTituloLogin d-flex  d-md-inline-block  " style="margin-left:35%; margin-right:20%">
 
             <font color="aqua" style="
-                text-decoration: underline;
-                text-decoration-color: rgb(255, 0, 0);
-              ">
+text-decoration: underline;
+text-decoration-color: rgb(255, 0, 0);
+">
                 STAD
-                <i class="fa-solid fa-futbol fa-spin" style="color: rgb(255, 255, 255)">
-                </i>
-                <font color="red" style="
-                text-decoration: underline; 
-                text-decoration-color: aqua">
-                    PLAYERS
-                </font>
+            </font>
+            <i class="fa-solid fa-futbol fa-spin" style="color: rgb(255, 255, 255)">
+            </i>
+            <font color="red" style="
+text-decoration: underline; 
+text-decoration-color: aqua">
+                PLAYERS
             </font>
         </div>
 
@@ -112,9 +112,7 @@ include_once(__DIR__ . "/config/rutas.php");
                     </div>
 
                 </section>
-
-        </div>
-        <?php
-        include_once("Views/main/footer.php");
-        ?>
-    </div>
+            </main>
+            <?php
+            include_once("Views/main/footer.php");
+            ?>

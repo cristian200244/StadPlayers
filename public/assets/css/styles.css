@@ -11,10 +11,15 @@
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  */
 
-  .containerTitulo{
+ .sb-topnavLogin {
+  padding-left: 0;
+  height: 15%;
+  z-index: 1039;
+  background-color:rgb(0, 0, 0);
+}
+  .containerTituloLogin{
 
-    margin-left: 35%;
-    margin-right: 30%;
+   
     
 padding-right:0%;
   position: relative;
@@ -32,31 +37,111 @@ padding-right:0%;
   border-bottom-right-radius: 8px;
  } 
  @media screen and (max-width: 972px){  
-  .containerTitulo
+  .containerTituloLogin
 
     {
-      margin-left: 20px;
-      padding-left: 5px;
-      padding-right: 5px;
-      margin-right:10%;
       font-size: 20px;
-      height: calc(15vh - 50px 50px);
-    
+      
  }
 }
-.sb-topnavInicio {
+
+.containerTitulo{
+ 
+padding-right:0%;
+position: relative;
+font-size: 3vw;
+font-family: Russo One;
+display: inline;
+font-family: Russo One;
+display: inline-flexbox;
+ background: linear-gradient(to right, rgb(209, 2, 64), rgb(21, 179, 152));
+ border-top-left-radius: px;
+border-bottom-left-radius: 8px;
+border-top-left-radius: 8px;
+border-top-right-radius: 8px;
+border-bottom-right-radius: 8px;
+} 
+@media screen and (min-width: 952px){  
+.containerTitulo
+
+  {
+    margin-left: -10%;
+    
+    
+   
+   
+  
+  
+  
+  
+  
+}
+}
+.sb-topnav {
   padding-left: 0;
   height: 15%;
   z-index: 1039;
   background-color:rgb(0, 0, 0);
 }
 
- .sb-topnav {
-  padding-left: 0;
-  height: 15%;
-  z-index: 1039;
-  background-color:rgb(0, 0, 0);
+.imgMenuPrincipal{
+
+  background:url(../../assets/img/futbol14.jpg);
+  background-position: center center;
+  height: calc(100vh - 85px);
+  margin-left:0%;
+   margin-right:0%; 
+   padding-left:0%; 
+   padding-right:0;
+   background-repeat: no-repeat;
+   background-attachment: relative;
+   background-size: cover;
+   height: 100vw;
+width:100%;
+
 }
+@media screen and (max-width: 972px){  
+  .imgMenuPrincipal
+{
+  
+  height: 350vw;
+  width:100%;
+  background-size: cover;
+ 
+ 
+ 
+  
+     
+} 
+ }
+
+
+
+.imgGenReport{
+
+  background:url(../../assets/img/reportesfutbol2.jpg);
+  background-position: center center;
+  height: calc(100vh - 85px);
+  margin-left:0%;
+   margin-right:0%; 
+   padding-left:0%; 
+   padding-right:0;
+   background-repeat: no-repeat;
+   background-attachment: relative;
+   background-size: cover;
+   height: 100vw;
+width:100%;
+
+}
+@media screen and (max-width: 972px){  
+  .imgGenReport
+{
+  height: 100%;
+     
+} 
+ }
+
+
 
 :root {
   --bs-blue: #0d6efd;
@@ -103,7 +188,7 @@ padding-right:0%;
   --bs-body-color-rgb: 33, 37, 41;
   --bs-body-bg-rgb: 255, 255, 255;
   --bs-font-sans-serif: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  --bs-font-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  --bs-font-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Russo One;", "Russo One;", monospace;
   --bs-gradient: linear-gradient(180deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0));
   --bs-body-font-family: var(--bs-font-sans-serif);
   --bs-body-font-size: 1rem;
@@ -3189,7 +3274,7 @@ textarea.form-control-lg {
   --bs-btn-hover-border-color: transparent;
   --bs-btn-active-color: var(--bs-link-hover-color);
   --bs-btn-active-border-color: transparent;
-  --bs-btn-disabled-color: #6c757d;
+  --bs-btn-disabled-color: #058aff;
   --bs-btn-disabled-border-color: transparent;
   --bs-btn-box-shadow: none;
   --bs-btn-focus-shadow-rgb: 49, 132, 253;
@@ -7676,7 +7761,7 @@ textarea.form-control-lg {
 }
 
 .mt-5 {
-  margin-top: 3rem !important;
+  margin-top: 9rem !important;
 }
 
 .mt-auto {
@@ -7696,7 +7781,7 @@ textarea.form-control-lg {
 }
 
 .me-3 {
-  margin-right: 1rem !important;
+  margin-right: 8rem !important;
 }
 
 .me-4 {
@@ -7936,7 +8021,7 @@ textarea.form-control-lg {
 }
 
 .ps-3 {
-  padding-left: 1rem !important;
+  padding-left: 3rem !important;
 }
 
 .ps-4 {
@@ -9136,7 +9221,7 @@ textarea.form-control-lg {
     margin-right: 0.5rem !important;
   }
   .me-md-3 {
-    margin-right: 1rem !important;
+    margin-right: 15.5rem !important;
   }
   .me-md-4 {
     margin-right: 1.5rem !important;
@@ -9169,7 +9254,7 @@ textarea.form-control-lg {
     margin-bottom: auto !important;
   }
   .ms-md-0 {
-    margin-left: 0 !important;
+    margin-left: 8 !important;
   }
   .ms-md-1 {
     margin-left: 0.25rem !important;
@@ -9635,7 +9720,7 @@ textarea.form-control-lg {
     margin-right: 1rem !important;
   }
   .me-lg-4 {
-    margin-right: 1.5rem !important;
+    margin-right: 5rem !important;
   }
   .me-lg-5 {
     margin-right: 3rem !important;
@@ -11004,11 +11089,11 @@ body {
   margin-right: 0.5rem;
 }
 
-.sb-topnav {
+/* .sb-topnav {
   padding-left: 0;
   height: 56px;
   z-index: 1039;
-}
+} */
 .sb-topnav .navbar-brand {
   width: 225px;
   margin: 0;
