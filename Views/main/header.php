@@ -24,32 +24,35 @@
 <body class="sb-nav-fixed">
     <nav class="sb-topnav navbar navbar-expand navbar-dark bg-black h-">
         <!-- Navbar Brand-->
-        <a class="navbar-brand ps-3" href="index.html">Bienvenido</a>
+        <a class="navbar-brand ps-2" href="index.html"></a>
         <!-- Sidebar Toggle-->
-        <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 " id="sidebarToggle" href="#!"><i
+        <button class="btn btn-link btn-sm order-1 order-lg-0 me-5 me-lg-0" id="sidebarToggle" href="#!"><i
                 class="fas fa-bars"></i></button>
-        <!-- Navbar Search-->
 
-        <div class="containerTitulo  d-flex  d-md-inline-block  " style="margin-left:23.5%">
+        <form class="  d-md-inline-block form-inline mx-auto  my-2 my-md-0">
 
-            <font color="aqua" style="
-    text-decoration: underline;
-    text-decoration-color: rgb(255, 0, 0);
-  ">
-                STAD
-            </font>
-            <i class="fa-solid fa-futbol fa-spin" style="color: rgb(255, 255, 255)">
-            </i>
-            <font color="red" style="
-    text-decoration: underline; 
-    text-decoration-color: aqua">
-                PLAYERS
-            </font>
-        </div>
+
+            <div class="   containerTitulo  d-flex  justify-content-around d-md-inline-block 
+                ">
+
+                <font color="aqua" style="
+            text-decoration: underline;
+            text-decoration-color: rgb(255, 0, 0);
+          ">
+                    STAD
+                </font>
+                <i class="fa-solid fa-futbol fa-spin" style="color: rgb(255, 255, 255)">
+                </i>
+                <font color="red" style="
+            text-decoration: underline; 
+            text-decoration-color: aqua">
+                    PLAYERS
+                </font>
+            </div>
+
+        </form>
 
         <?php include_once(__DIR__ . "../../../views/main/menuHeader.php"); ?>
 
     </nav>
     <div id="layoutSidenav">
-        <div id="layoutSidenav_content">
-            <main>

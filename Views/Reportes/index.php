@@ -14,7 +14,8 @@ include_once(BASE_DIR . "../../Views/partials/aside.php");
                 <div class="container">
                     <div class="row justify-content-center">
                         <div class="col-lg-7">
-                            <div class="card shadow-lg border-0 rounded-lg mt-5 ">
+                            <div class="card shadow-lg border-0 rounded-lg   justify-content-center"
+                                style="margin-top: 30%;">
                                 <div class="card-header bg-black text-info">
                                     <h3 class="text-center font-weight-light my-4">Generar Reporte</h3>
                                 </div>

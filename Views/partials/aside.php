@@ -1,25 +1,19 @@
 <div id="layoutSidenav_nav">
-    <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+    <nav class="sb-sidenav accordion " id="sidenavAccordion">
         <div class="sb-sidenav-menu">
+            <div class="menu_Principal">
+                <a class="navbar-brand ps-2" href="<?= BASE_URL ?>/Views/partials/MenuPrincipal.php">Menu
+                    Principal
+                </a>
+                <i class="fa-solid fa-futbol fa-spin"></i>
+            </div>
             <div class="nav">
-                <div class="menu_Principal">
-                    <a class="navbar-brand ps-3" href="<?= BASE_URL ?>/Views/partials/MenuPrincipal.php">Menu
-                        Principal</a>
-
-                    <div class="balon">
-                        <i class="fa-solid fa-futbol fa-spin" style="
-                                  font-size: 18px;
-                                  padding-left: 18%;
-                                  ">
-                        </i>
-                    </div>
-                </div>
                 <div class="nav">
                     <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#jugadores"
                         aria-expanded="false" aria-controls="collapseLayouts">
                         <div class="sb-nav-link-icon">
                             <i class="fa-solid fa-users-rectangle fa-beat-fade"
-                                style="color: rgb(255, 255, 255); font-size: 15px"></i>
+                                style="color:#00FFDA; font-size: 18px"></i>
                         </div>
                         <h3>Jugadores</h3>
                         <div class="sb-sidenav-collapse-arrow">
@@ -56,8 +50,8 @@
 
                         <div class="sb-nav-link-icon">
                             <i class="fa-solid fa-address-card fa-beat-fade" style="
-                                         color: rgb(255, 255, 255);
-                                         font-size: 15px;
+                                         color:FF7D7D;
+                                         font-size: 18px;
                                          padding: 5%;
                                        ">
                             </i>
@@ -105,8 +99,8 @@
 
                         <div class="sb-nav-link-icon">
                             <i class="fa-solid fa-file-prescription fa-beat" style="
-                                       color: rgb(255, 255, 255);
-                                       font-size: 15px;
+                                       color:#7E7DFF;
+                                       font-size: 18px;
                                        padding: 5%;
                                      ">
                             </i>
@@ -152,8 +146,8 @@
 
                         <div class="sb-nav-link-icon">
                             <i class="fa-solid fa-rectangle-list fa-flip" style="
-                                     color: rgb(255, 255, 255);
-                                     font-size: 15px;
+                                     color: FF0073;
+                                     font-size: 18px;
                                      padding: 5%;
                                    ">
                             </i>
@@ -198,3 +192,5 @@
             </div>
     </nav>
 </div>
+<div id="layoutSidenav_content">
+    <main>
