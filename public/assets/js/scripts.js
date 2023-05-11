@@ -3,7 +3,7 @@
     * Copyright 2013-2023 Start Bootstrap
     * Licensed under MIT (https://github.com/StartBootstrap/startbootstrap-sb-admin/blob/master/LICENSE)
     */
-    // 
+// 
 // Scripts
 // 
 
@@ -24,3 +24,15 @@ window.addEventListener('DOMContentLoaded', event => {
     }
 
 });
+
+let val = document.getElementById("val-estadistica-id");
+
+document.getElementById('estadistica-suma-id').onclick = function () {
+    val.value++
+    console.log(val.value)
+}
+
+document.getElementById('estadistica-resta-id').onclick = function () {
+    val.value--
+    console.log(val.value)
+}   
