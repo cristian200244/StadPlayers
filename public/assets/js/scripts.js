@@ -24,15 +24,3 @@ window.addEventListener('DOMContentLoaded', event => {
     }
 
 });
-
-let val = document.getElementById("val-estadistica-id");
-
-document.getElementById('estadistica-suma-id').onclick = function () {
-    val.value++
-    console.log(val.value)
-}
-
-document.getElementById('estadistica-resta-id').onclick = function () {
-    val.value--
-    console.log(val.value)
-}   

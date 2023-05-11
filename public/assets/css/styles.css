@@ -150,6 +150,29 @@ width:100%;
 } 
  }
 
+ .imgIngreEstad{
+
+  background:url(../../assets/img/reportes6.png);
+  background-position: center center;
+  height: calc(100vh - 85px);
+  margin-left:0%;
+   margin-right:0%; 
+   padding-left:0%; 
+   padding-right:0;
+   background-repeat: no-repeat;
+   background-attachment: relative;
+   background-size: cover;
+   height: 100vw;
+width:100%;
+
+}
+@media screen and (max-width: 972px){  
+  .imgGenReport
+{
+  height: 100%;
+     
+} 
+ }
  .menu_Principal {
 
   margin-top: 20%;
