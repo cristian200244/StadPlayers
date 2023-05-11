@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 06-05-2023 a las 01:44:53
+-- Tiempo de generación: 11-05-2023 a las 03:32:44
 -- Versión del servidor: 8.0.32
 -- Versión de PHP: 8.1.10
 
@@ -32,6 +32,17 @@ CREATE TABLE `continentes` (
   `nombre` varchar(50) COLLATE utf8mb3_spanish2_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_spanish2_ci;
 
+--
+-- Volcado de datos para la tabla `continentes`
+--
+
+INSERT INTO `continentes` (`id`, `nombre`) VALUES
+(1, 'Africa'),
+(2, 'America'),
+(3, 'Europa'),
+(4, 'Asia'),
+(5, 'Oceania');
+
 -- --------------------------------------------------------
 
 --
@@ -42,6 +53,22 @@ CREATE TABLE `copas` (
   `id` bigint NOT NULL,
   `nombre` varchar(50) COLLATE utf8mb3_spanish2_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_spanish2_ci;
+
+--
+-- Volcado de datos para la tabla `copas`
+--
+
+INSERT INTO `copas` (`id`, `nombre`) VALUES
+(1, 'Copa Mundial'),
+(2, 'Eurocopa'),
+(3, 'Copa Africana de Nciones'),
+(4, 'Asian Cup AFC'),
+(5, 'Copa America'),
+(6, ' Copa Oro de la Concacaf '),
+(7, 'Copa Santander Libertadores'),
+(8, 'Copa Suramericana'),
+(9, 'Liga de Campeones de Europa'),
+(10, 'Liga de Campeones de la COCACAF');
 
 -- --------------------------------------------------------
 
@@ -82,6 +109,20 @@ CREATE TABLE `equipos` (
   `equipo` varchar(50) COLLATE utf8mb3_spanish2_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_spanish2_ci;
 
+--
+-- Volcado de datos para la tabla `equipos`
+--
+
+INSERT INTO `equipos` (`id`, `equipo`) VALUES
+(1, 'Atletico Nacional'),
+(2, 'America'),
+(3, 'Santa Fe'),
+(4, 'Millonarios'),
+(5, 'Real Madrid'),
+(6, 'Barcelona'),
+(7, 'Manchester City'),
+(8, 'Inter De Milan');
+
 -- --------------------------------------------------------
 
 --
@@ -94,6 +135,26 @@ CREATE TABLE `estadisticas` (
   `descripcion` varchar(100) COLLATE utf8mb3_spanish2_ci NOT NULL,
   `predeterminada` tinyint DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_spanish2_ci;
+
+--
+-- Volcado de datos para la tabla `estadisticas`
+--
+
+INSERT INTO `estadisticas` (`id`, `nombre`, `descripcion`, `predeterminada`) VALUES
+(1, 'Pases acertados', 'Entrega el balón corrctamente a su compañero', 1),
+(2, 'Pases errados', 'No entrega el balón a su compañero', 1),
+(3, 'Tiros al arco', 'Remates directos al arco', 1),
+(4, 'Asistencias de Gol', 'Ultimo pase antes del gol', 1),
+(5, 'Rechazos bien dirigidos', 'Ultimo pase antes del gol', 1),
+(6, 'Rechazos mal dirigidos', 'Ultimo pase antes del gol', 1),
+(7, 'Perdidad de balon perjudiciales', 'perdidas que termina en gol del rival', 1),
+(8, 'Minutos Jugados', 'Por partido', 1),
+(9, 'Goles Anotados', 'Por partido', 1),
+(10, 'Amarillas Recibidas', 'Por partido', 1),
+(11, 'Roja Recibida', 'Por partido', 1),
+(12, 'Atajada Heroica', 'De remates inminentes a gol', 1),
+(13, 'Penales atajados', 'Por partido', 1),
+(14, 'éxitos en mano a mano', 'enfrentamiento directo con el delantero como ultimo hombre', 1);
 
 -- --------------------------------------------------------
 
@@ -141,6 +202,18 @@ CREATE TABLE `ligas` (
   `nombre` varchar(50) COLLATE utf8mb3_spanish2_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_spanish2_ci;
 
+--
+-- Volcado de datos para la tabla `ligas`
+--
+
+INSERT INTO `ligas` (`id`, `nombre`) VALUES
+(1, 'Liga BetPlay'),
+(2, 'Serie A'),
+(3, 'Ligue 1'),
+(4, 'Premier League'),
+(5, 'La Liga'),
+(6, 'Bundesliga');
+
 -- --------------------------------------------------------
 
 --
@@ -153,6 +226,30 @@ CREATE TABLE `paises` (
   `nombre_continente` varchar(45) COLLATE utf8mb3_spanish2_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_spanish2_ci;
 
+--
+-- Volcado de datos para la tabla `paises`
+--
+
+INSERT INTO `paises` (`id`, `nombre_pais`, `nombre_continente`) VALUES
+(1, 'Argentina', 'America'),
+(2, 'Argentina', 'America'),
+(3, 'Colombia', 'America'),
+(4, 'Colombia', 'America'),
+(5, 'Brasil', 'America'),
+(6, 'Brasil', 'America'),
+(7, 'Alemania', 'Europa'),
+(8, 'Alemania', 'Europa'),
+(9, 'Francia', 'Europa'),
+(10, 'Francia', 'Europa'),
+(11, 'Inglaterra', 'Europa'),
+(12, 'Inglaterra', 'Europa'),
+(13, 'Italia', 'Europa'),
+(14, 'Italia', 'Europa'),
+(15, 'Senegal', 'Africa'),
+(16, 'Senegal', 'Africa'),
+(17, 'Camerun', 'Africa'),
+(18, 'Camerun', 'Africa');
+
 -- --------------------------------------------------------
 
 --
@@ -161,8 +258,17 @@ CREATE TABLE `paises` (
 
 CREATE TABLE `perfiles` (
   `id` bigint NOT NULL,
-  `nombre` int NOT NULL
+  `nombre` varchar(20) COLLATE utf8mb3_spanish2_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_spanish2_ci;
+
+--
+-- Volcado de datos para la tabla `perfiles`
+--
+
+INSERT INTO `perfiles` (`id`, `nombre`) VALUES
+(1, 'Diestro'),
+(2, 'Zurdo'),
+(3, 'Ambidiestro');
 
 -- --------------------------------------------------------
 
@@ -175,6 +281,25 @@ CREATE TABLE `posiciones` (
   `descripcion` varchar(45) COLLATE utf8mb3_spanish2_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_spanish2_ci;
 
+--
+-- Volcado de datos para la tabla `posiciones`
+--
+
+INSERT INTO `posiciones` (`id`, `descripcion`) VALUES
+(1, 'Arquero'),
+(2, 'Defensa Central Derecho'),
+(3, 'Defensa Central Izquierdo'),
+(4, 'Defensa Lateral Derecho'),
+(5, 'Defensa Lateral Izquierdo'),
+(6, 'Volante de Recuperacion'),
+(7, 'Volante De Salida'),
+(8, 'Volante De Creacion'),
+(9, 'Volante Mixto'),
+(10, 'Delantero Media Punta'),
+(11, 'Delantero Extremo Izquierdo'),
+(12, 'Delantero Extremo Derecho'),
+(13, 'Delantero Nueve');
+
 -- --------------------------------------------------------
 
 --
@@ -186,6 +311,18 @@ CREATE TABLE `tipo_partido` (
   `nombre` varchar(50) COLLATE utf8mb3_spanish2_ci NOT NULL,
   `num_de_partido` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_spanish2_ci;
+
+--
+-- Volcado de datos para la tabla `tipo_partido`
+--
+
+INSERT INTO `tipo_partido` (`id`, `nombre`, `num_de_partido`) VALUES
+(1, 'Liga', 1),
+(2, 'Seleccion', 4),
+(3, 'Liga', 2),
+(4, 'Liga', 5),
+(5, 'Liga', 10),
+(6, 'Liertadores', 2);
 
 -- --------------------------------------------------------
 
@@ -334,13 +471,13 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `continentes`
 --
 ALTER TABLE `continentes`
-  MODIFY `id` bigint NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `copas`
 --
 ALTER TABLE `copas`
-  MODIFY `id` bigint NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de la tabla `count_estadisticas`
@@ -358,13 +495,13 @@ ALTER TABLE `encuentro_estadisticas`
 -- AUTO_INCREMENT de la tabla `equipos`
 --
 ALTER TABLE `equipos`
-  MODIFY `id` bigint NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `estadisticas`
 --
 ALTER TABLE `estadisticas`
-  MODIFY `id` bigint NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT de la tabla `historial_equipos`
@@ -382,31 +519,31 @@ ALTER TABLE `jugadores`
 -- AUTO_INCREMENT de la tabla `ligas`
 --
 ALTER TABLE `ligas`
-  MODIFY `id` bigint NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `paises`
 --
 ALTER TABLE `paises`
-  MODIFY `id` bigint NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT de la tabla `perfiles`
 --
 ALTER TABLE `perfiles`
-  MODIFY `id` bigint NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `posiciones`
 --
 ALTER TABLE `posiciones`
-  MODIFY `id` bigint NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT de la tabla `tipo_partido`
 --
 ALTER TABLE `tipo_partido`
-  MODIFY `id` bigint NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `titulos_jugador`
