@@ -1,15 +1,18 @@
 <?php
 
-require_once '../Models/JugadorModel.php';
+require_once '../../Models/JugadorModel.php';
 $jugadores = new JugadorController;
 
-class JugadorController
-{
-    private $jugadores;
+class JugadorController{
+private $jugadores;
+
+
+
+    
 
     public function __construct()
     {
-        $this->jugadores = new JugadorModel();
+        $this->jugadores = new JugadorController();
         var_dump($_REQUEST);
         echo "<hr>";
         if (isset($_REQUEST['c'])) {
@@ -42,56 +45,17 @@ class JugadorController
     public function store()
     {
         $datos = [
-            'n1' => $_REQUEST['n1'],
-            'n2' => $_REQUEST['n2'],
-            'operacion' => $_REQUEST['operacion']
+            'perfiles' => $_REQUEST['perfiles'],
+          
         ];
         
         
         $result = $this->jugadores->store($datos);
         
         if ($result) {
-            header("Location:  ../views/index.php");
+            header("Location:  ../views/jugadores/index.php");
             exit();
         }
         
         return $result;
     }
-    public function show()
-    {
-        $id = $_REQUEST['id'];
-        header("Location:  ../Views/editar.php?id=$id");
-    }
-
-    public function update()
-    {
-
-        $datos = [
-            'id'        => $_REQUEST['id'],
-            'n1'   => $_REQUEST['n1'],
-            'n2'   => $_REQUEST['n2'],
-            'operacion' => $_REQUEST['operacion']
-        ];
-
-        $result = $this->jugadores->update($datos);
-
-        if ($result) {
-            header("Location: ../Views/index.php");
-        }
-        exit();
-
-        return $result;
-    }
-
-    public function delete()
-    {
-        // var_dump($_REQUEST);
-        $id = $_REQUEST['id'];
-        $result = $this->jugadores->delete($id);
-        if ($result) {
-            header("Location: ../Views/index.php");
-            exit();
-        }
-    }
-}
-
