@@ -32,7 +32,7 @@ class ReportesModel
         $items = [];
 
         try {
-            $sql = 'SELECT id, nombre_completo FROM jugadores WHERE id_usuario 1';
+            $sql = 'SELECT id, nombre_completo FROM jugadores WHERE id_usuario= 1';
 
             $query = $this->db->conect()->query($sql);
 

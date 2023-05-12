@@ -102,16 +102,17 @@ border-bottom-right-radius: 8px;
 }
 
 .imgMenuPrincipal{
-  background:url(../../assets/img/futbol14.jpg);
-  background-position: center center;
+
+  background:url(../../assets/img/menuInicial.jpg);
   height: calc(100vh - 85px);
   margin-left:0%;
-   margin-right:0%; 
-   padding-left:0%; 
-   padding-right:0;
-   background-repeat: no-repeat;
-   background-attachment: relative;
-   background-size: cover;
+  margin-right:0%; 
+  padding-left:0%; 
+  padding-right:0;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: scroll;
+  background-position: center;
    height: 100vw;
 width:100%;
 
@@ -129,14 +130,14 @@ width:100%;
 .imgGenReport{
 
   background:url(../../assets/img/reportesfutbol2.jpg);
-  background-position: center center;
+  background-position: center;
   height: calc(100vh - 85px);
   margin-left:0%;
    margin-right:0%; 
    padding-left:0%; 
    padding-right:0;
    background-repeat: no-repeat;
-   background-attachment: relative;
+   background-attachment: fixed;
    background-size: cover;
    height: 100vw;
 width:100%;
