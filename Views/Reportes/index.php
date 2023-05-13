@@ -1,8 +1,6 @@
 <?php
 
 require_once(__DIR__ . "../../../config/rutas.php");
-require_once(BASE_DIR . "../../Views/main/header.php");
-require_once(BASE_DIR . "../../Views/partials/aside.php");
 require_once(BASE_DIR . '../../Models/GenerarReportesModel.php');
 
 //Instancia
@@ -12,6 +10,8 @@ $reportes = new ReportesModel();
 $jugadores = $reportes->getPlayers();
 
 
+require_once(BASE_DIR . "../../Views/main/header.php");
+require_once(BASE_DIR . "../../Views/partials/aside.php");
 ?>
 
 <div class="imgGenReport">
