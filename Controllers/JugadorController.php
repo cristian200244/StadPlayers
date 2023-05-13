@@ -1,18 +1,17 @@
 <?php
 
-require_once '../../Models/JugadorModel.php';
-$jugadores = new JugadorController;
-
-class JugadorController{
-private $jugadores;
+require_once '../Models/JugadorModel.php';
+$jugador = new JugadorController;
 
 
+class JugadorController
+{
 
-    
+    private $jugador;
 
     public function __construct()
     {
-        $this->jugadores = new JugadorController();
+        $this->jugador = new JugadorModel();
         var_dump($_REQUEST);
         echo "<hr>";
         if (isset($_REQUEST['c'])) {
@@ -20,42 +19,34 @@ private $jugadores;
                 case 1: //Almacenar en la base de datos
                     self::store();
                     break;
-                case 2: //Ver usuario
-                    self::show();
-                    break;
-                case 3: //Actualizar el registro 
-                    self::update();
-                    break;
-                case 4: //Actualizar el registro 
-                    self::delete();
-                    break;
-                default:
-                    self::index();
-                    break;
             }
         }
     }
 
+
     public function index()
     {
-        return $this->jugadores->getAll();
+        return $this->jugador->getAll();
     }
 
-    
+
     public function store()
     {
         $datos = [
-            'perfiles' => $_REQUEST['perfiles'],
-          
+            'nombre_completo' => $_REQUEST['nombre_completo'],
+            'apodo' => $_REQUEST['apodo'],
+            'fecha_nacimiento' => $_REQUEST['fecha_nacimiento'],
+            'caracteristicas' => $_REQUEST['caracteristicas']
         ];
-        
-        
-        $result = $this->jugadores->store($datos);
-        
+
+
+        $result = $this->jugador->store($datos);
+
         if ($result) {
             header("Location:  ../views/jugadores/index.php");
             exit();
         }
-        
+
         return $result;
     }
+}

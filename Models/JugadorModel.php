@@ -78,6 +78,7 @@ class JugadorModel extends stdClass
             die($e->getMessage());
         }
     }
+    
 
     // public function getAll()
     // {

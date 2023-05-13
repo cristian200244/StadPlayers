@@ -25,3 +25,17 @@
 </body>
 
 </html>
+
+
+<div class="form-floating mb-3">
+                                    <label for="">Perfil</label>
+                                    <select class="form-select" name="perfil" id="perfiles">
+                                        <?php
+                                        include ('..//../Models/conexionModel.php');
+                                        $consulta = "SELECT * FROM perfiles";
+                                        $ejecutar = mysqli_query($conexion, $consulta) or die(mysqli_error($conexion));
+                                        ?>
+                                        <?php foreach ($ejecutar as $pciones):?>
+                                            <option value="<?php echo $pciones['nombre']?>"><?php echo $pciones['nombre']?></option>
+                                    </select>
+                                </div>
