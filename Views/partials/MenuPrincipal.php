@@ -4,7 +4,7 @@ include_once(BASE_DIR . "../../Views/main/header.php");
 include_once(BASE_DIR . "../../Views/partials/aside.php");
 ?>
 <div class="imgMenuPrincipal">
-    hola amiguimatTooltipShowDelay=""
+
 </div>
 <?php
 include_once(BASE_DIR . "../../Views/main/footer.php");

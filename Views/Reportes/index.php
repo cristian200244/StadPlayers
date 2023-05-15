@@ -1,5 +1,4 @@
 <?php
-
 require_once(__DIR__ . "../../../config/rutas.php");
 require_once(BASE_DIR . '../../Models/GenerarReportesModel.php');
 
