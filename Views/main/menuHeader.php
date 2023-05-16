@@ -3,7 +3,7 @@
         <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown"
             aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-            <li>
+            <!-- <li>
                 <a class="dropdown-item" href="<?= BASE_URL ?>/Views/botonExtra/index.php">
                     <i class="fa-solid fa-hand fa-shake"
                         style="color: rgb(250, 241, 254); padding-left: 2%; padding-right:2%;">
@@ -11,7 +11,9 @@
                     Botón extra
                 </a>
 
-            </li>
+            </li> -->
+
+            <!-- <input type="hidden" name="c" value="5"> -->
             <li>
                 <a class="dropdown-item" href="<?= BASE_URL ?>../sugerencias.php">
                     <i class="fa-solid fa-user-pen fa-fade"
@@ -26,13 +28,14 @@
             </li>
 
             <li>
-                <a class="dropdown-item" href="<?= BASE_URL ?>../index.php">
-                    <i class="fa-solid fa-hand fa-shake"
-                        style="color: rgb(250, 241, 254); padding-left: 2%; padding-right:2%;">
-                    </i>
-                    Cerrar Sesión
-                </a>
-
+                <form action="Controllers/UsuarioController.php">
+                    <a class="dropdown-item" type="hidden" method="post" name="c" value="2">
+                        <i class="fa-solid fa-hand fa-shake"
+                            style="color: rgb(250, 241, 254); padding-left: 2%; padding-right:2%;">
+                        </i>
+                        Cerrar Sesión
+                    </a>
+                </form>
             </li>
         </ul>
 

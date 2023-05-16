@@ -1,4 +1,6 @@
 <?php
+
+require_once '../config/config_example.php';
 class Database
 {
     private $host;
@@ -6,7 +8,7 @@ class Database
     private $user;
     private $password;
     private $charset;
- 
+
     public function __construct()
     {
         $this->host     = constant('HOST');
@@ -24,13 +26,15 @@ class Database
                 PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
                 PDO::ATTR_EMULATE_PREPARES => false,
             ];
+
             $pdo = new PDO($con, $this->user, $this->password, $opt);
 
             return $pdo;
+            if ($pdo) {
+                echo  "Conexion Exitosa";
+            }
         } catch (PDOException $e) {
             print_r('Error en la conexión:' . $e->getMessage());
         }
     }
 }
-
-?>
