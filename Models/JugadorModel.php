@@ -10,6 +10,7 @@ class JugadorModel extends stdClass
     public $apodo;
     public $fecha_nacimiento;
     public $caracteristicas;
+    public $pefiles;
    
     private $db;
 
