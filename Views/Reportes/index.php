@@ -1,14 +1,15 @@
 <?php
 include_once(__DIR__ . "../../../config/rutas.php");
 
-// include_once 'Models/calculadoraModel.php';
-// //Reporte
-// $reportes = new ReportesModel();
-// $jugadores = $reportes->getPlayers();
+include_once __DIR__."../../../Models/GenerarReportesModel.php";
+//Reporte
+$reportes = new ReportesModel();
+$jugadores = $reportes->getPlayers();
 include_once(BASE_DIR . "../../Views/partials/header.php");
 include_once(BASE_DIR . "../../Views/partials/aside.php");
-?>
 //Instancia
+?>
+
 
 
 <div class="imgGenReport">
