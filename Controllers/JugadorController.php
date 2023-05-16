@@ -1,7 +1,7 @@
 <?php
 
 require_once '../Models/JugadorModel.php';
-$jugador = new JugadorController;
+$jugador = new JugadorController();
 
 
 class JugadorController
@@ -12,10 +12,10 @@ class JugadorController
     public function __construct()
     {
         $this->jugador = new JugadorModel();
-        var_dump($_REQUEST);
-        echo "<hr>";
+        
         if (isset($_REQUEST['c'])) {
-            switch ($_REQUEST['c']) {
+            $controlador = $_REQUEST['c'];
+            switch ($controlador['c']) {
                 case 1: //Almacenar en la base de datos
                     self::store();
                     break;
@@ -24,10 +24,7 @@ class JugadorController
     }
 
 
-    public function index()
-    {
-        return $this->jugador->getAll();
-    }
+
 
 
     public function store()
@@ -38,17 +35,16 @@ class JugadorController
             'apodo' => $_REQUEST['apodo'],
             'fecha_nacimiento' => $_REQUEST['fecha_nacimiento'],
             'caracteristicas' => $_REQUEST['caracteristicas'],
-            'perfiles' => $_REQUEST['perfiles']
+           
         ];
 
 
         $result = $this->jugador->store($datos);
 
         if ($result) {
-            header("Location:  ../../views/jugadores/index.php");
-            exit();
+            
         }
 
-        return $result;
+      
     }
 }
