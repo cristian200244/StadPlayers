@@ -33,17 +33,19 @@ class JugadorController
     public function store()
     {
         $datos = [
+
             'nombre_completo' => $_REQUEST['nombre_completo'],
             'apodo' => $_REQUEST['apodo'],
             'fecha_nacimiento' => $_REQUEST['fecha_nacimiento'],
-            'caracteristicas' => $_REQUEST['caracteristicas']
+            'caracteristicas' => $_REQUEST['caracteristicas'],
+            'perfiles' => $_REQUEST['perfiles']
         ];
 
 
         $result = $this->jugador->store($datos);
 
         if ($result) {
-            header("Location:  ../views/jugadores/index.php");
+            header("Location:  ../../views/jugadores/index.php");
             exit();
         }
 

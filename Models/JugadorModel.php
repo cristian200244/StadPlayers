@@ -42,6 +42,7 @@ class JugadorModel extends stdClass
                 $item->fecha_nacimiento   = $row['fecha_nacimiento'];
                 $item->fecha_nacimiento= $row['fecha_nacimiento'];
                 $item->caracteristicas = $row['caracteristicas'];
+                $item->perfiles = $row['perfiles'];
 
                 array_push($operacion, $item);
             }
@@ -70,6 +71,7 @@ class JugadorModel extends stdClass
                 $item->apodo   = $row['apodo'];
                 $item->fecha_nacimiento = $row['fecha_nacimiento'];
                 $item->caracteristicas = $row['caracteristicas'];
+                
 
                 array_push($items, $item);
             }
@@ -79,7 +81,54 @@ class JugadorModel extends stdClass
             die($e->getMessage());
         }
     }
+    public function store($datos)
+    {
+
+        try {
+
+            $resultado = self::resultadoOperacion($datos);
+            $sql = 'INSERT INTO jugadores (nombre_completo, apodo, fecha_nacimiento, caracteristicas) VALUES(:nombre_completo, :apodo, :fecha_nacimiento, :caracteristicas)';
+
+            $prepare = $this->db->conect()->prepare($sql);
+            $query = $prepare->execute([
+                'nombre_completo'   => $datos['nombre_completo'],
+                'apodo'   => $datos['apodo'],
+                'fecha_nacimiento' => $datos['fecha_nacimiento'],
+                'caracteristicas' => $resultado,
+            ]);
+
+            if ($query) {
+                return true;
+            }
+        } catch (PDOException $e) {
+            die($e->getMessage());
+        }
+    }
     
+    public function resultadoOperacion($datos)
+    {
+        switch ($datos['operacion']) {
+            case '1': //Suma
+                return $datos['n1'] + $datos['n2'];
+                break;
+            case '2': //Resta
+                # code...
+                return $datos['n1'] - $datos['n2'];
+                break;
+            case '3': //Multiplicación
+                return $datos['n1'] * $datos['n2'];
+                # code...
+                break;
+            case '4': //División
+                return $datos['n1'] / $datos['n2'];
+                # code...
+                break;
+
+            default:
+                return false;
+                break;
+        }
+    }
 
     // public function getAll()
     // {
