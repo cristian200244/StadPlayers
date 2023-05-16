@@ -2,7 +2,7 @@
     <nav class="sb-sidenav accordion " id="sidenavAccordion">
         <div class="sb-sidenav-menu">
             <div class="menu_Principal">
-                <a class="navbar-brand ps-2" href="<?= BASE_URL ?>/Views/partials/MenuPrincipal.php">Menu
+                <a class="navbar-brand ps-2" href="<?= BASE_URL ?>/Views/main/MenuPrincipal.php">Menu
                     Principal
                 </a>
                 <i class="fa-solid fa-futbol fa-spin"></i>

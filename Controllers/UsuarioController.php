@@ -17,103 +17,89 @@ class UsuarioController
     if (isset($_REQUEST['c'])) {
       $controlador = $_REQUEST['c'];
       switch ($controlador) {
-        case '1': //StoreUser
-          self::StoreUser();
-          break;
-        case '2':
-          self::cerrarSesion();
+          case 1: //Store
+            self::Store();
+               break;
+          case 2: //Eliminar
+              // self::destroy();
 
-          break;
-        case '3': //Ver por operacion
-          // self::show();
-          break;
-        case '4':
-          // self::update();
-        case '5':
+              break;
+          case 3: //Ver por operacion
+              // self::show();
+              break;
+          case 4:
+              // self::update();
+              break;
+        case 5:
           self::InciarSesion();
+          break;
+        case 6:
+          self::CerrarSesion();
           break;
       }
     }
   }
-  public function StoreUser()
+  public function Store()
   {
-
     $datos = [
       'email' => $_REQUEST['email'],
       'nickname' => $_REQUEST['nickname'],
       'password' => $_REQUEST['password'],
     ];
-
-
-    $result =  $this->usuarioModel->StoreUser($datos);
-
-
-    if ($result) {
-    }
+    $result =  $this->usuarioModel->Store($datos);
   }
 
 
   public function InciarSesion()
   {
-
-    session_start();
+    //Lo que llega por REQUEST
     $datos = [
       'email' => $_REQUEST['email'],
       'password' => $_REQUEST['password'],
     ];
-    $results =  $this->usuarioModel->getUser($datos);
-    if (
-      empty($_REQUEST['email']) || empty($_REQUEST['password'])
-    ) {
-      echo '<div class="alert-danger"> Nombre de Usuario o contraseña vacio</div>';
+
+    if (empty($datos['email']) || empty($datos['password'])) {
+
+      return $mensaje = "Nombre de Usuario o contraseña vacio";
+      // echo '<div class="alert-danger"> </div>';
     } else {
-    }
+      $results =  $this->usuarioModel->getUser($datos);
 
-    $user = new UsuarioModel;
-    $results = $user->getUser();
-    if (isset($results)) {
-      $message = '';
+      if ($results) {
+        session_start();
 
-      if ($results && ($_POST['password'] == $results['password'])) {
-        $_SESSION['usuario'] = $results['id'];
-        $message = '<div class="alert-info"> ¡Bienvenido!</div>';
-        header('Location:../Views/partials/MenuPrincipal.php');
+        $_SESSION['id']       = $results['id'];
+        $_SESSION['nickname'] = $results['nickname'];
+        $_SESSION['email']    = $results['email'];
+
+        $message = '¡Bienvenido!';
+        header('Location:../Views/main/MenuPrincipal.php');
       } else {
         $message = '¡Lo sentimos! Los datos ingresados no concuerdan' . '<br>' .
           '<div class="alert-danger"> ¡Error al Digtar o Usuario no existe!</div>';
       }
     }
-    if (!empty($message)) {
-      echo $message;
-    }
-  }
-  public function Session()
-  {
-    $user = new UsuarioModel;
-    $session = $user->getUserSession();
-    $user = null;
-    if (count($session) > 0) {
-      $user = $session;
-    }
-    if (!empty($user))
-      $message = ' Wellcome' . $user['email'] .
-        '<br>' . 'You are Successfully Logged In';
-
-    else
-      header('Location:../index.php');
   }
   public function cerrarSesion()
   {
-    $user = new UsuarioModel;
-    $id = $_REQUEST['id'];
-    var_dump($id);
-    $data = $id->cerrarSesion($id);
-
-    if ($data) {
-      session_start();
-      session_unset();
-      session_destroy();
-      header('Location:../index.php');
-    }
+    session_start();
+    session_unset();
+    session_destroy();
+    header('Location: ../index.php');
   }
 }
+  // public function Session()
+  // {
+  //   $user = new UsuarioModel;
+  //   $session = $user->getUserSession();
+  //   $user = null;
+  //   if (count($session) > 0) {
+  //     $user = $session;
+  //   }
+  //   if (!empty($user))
+  //     $message = ' Wellcome' . $user['email'] .
+  //       '<br>' . 'You are Successfully Logged In';
+
+  //   else
+  //     header('Location:../index.php');
+  // }

@@ -24,7 +24,7 @@ class UsuarioModel
     }
 
 
-    public function StoreUser($datos)
+    public function Store($datos)
     {
         try {
             $message = '';
@@ -59,60 +59,61 @@ class UsuarioModel
             die($e->getMessage());
         }
     }
-    public function getUser()
+    public function getUser($datos)
     {
         try {
 
-            if (!empty($_POST['email']) && !empty($_POST['password'])) {
-                $sql = 'SELECT id, email, password FROM usuarios WHERE email = :email';
-                $query = $this->db->conect()->prepare($sql);
-                $query->bindParam(':email', $_POST['email']);
-                $query->execute();
-                $results = $query->fetch(PDO::FETCH_ASSOC);
-                return $results;
-            }
+            $sql = 'SELECT id, email, nickname FROM usuarios WHERE email = :email AND password = :password';
+            $query = $this->db->conect()->prepare($sql);
+            $query->bindParam(':email', $_POST['email']);
+            $query->bindParam(':password', $_POST['password']);
+            $query->execute();
+
+            $results = $query->fetch(PDO::FETCH_ASSOC);
+
+            return $results;
         } catch (PDOException $e) {
             die($e->getMessage());
         }
     }
 
 
-    public function getUserSession()
-    {
-        $user = new UsuarioController;
-        $results = $user->InciarSesion();
-        try {
-            if (isset($this->results->$_SESSION['usuario'])) {
-                $sql = 'SELECT id, email, password FROM usuarios  WHERE id = :id';
-                $query = $this->db->conect()->prepare($sql);
-                $query->bindParam(':id', $_SESSION['usuario']);
-                $query->execute();
-                $Session = $query->fetch(PDO::FETCH_ASSOC);
-                return $Session;
-            }
-        } catch (PDOException $e) {
-            die($e->getMessage());
-        }
-    }
+    // public function getUserSession()
+    // {
+    //     $user = new UsuarioController;
+    //     $results = $user->InciarSesion();
+    //     try {
+    //         if (isset($this->results->$_SESSION['usuario'])) {
+    //             $sql = 'SELECT id, email, password FROM usuarios  WHERE id = :id';
+    //             $query = $this->db->conect()->prepare($sql);
+    //             $query->bindParam(':id', $_SESSION['usuario']);
+    //             $query->execute();
+    //             $Session = $query->fetch(PDO::FETCH_ASSOC);
+    //             return $Session;
+    //         }
+    //     } catch (PDOException $e) {
+    //         die($e->getMessage());
+    //     }
+    // }
 
 
-    public function cerrarSesion($id)
+    // public function cerrarSesion($id)
 
-    {
+    // {
 
-        $getSession = new UsuarioModel();
+    //     $getSession = new UsuarioModel();
 
-        $getSession->getUserSession();
+    //     $getSession->getUserSession();
 
 
-        if ($getSession) {
+    //     if ($getSession) {
 
-            $query = "DELETE FROM operaciones WHERE id=$id";
-            $query = $this->db->conect()->query($query);
-        } else {
-            return false;
-        }
-    }
+    //         $query = "DELETE FROM operaciones WHERE id=$id";
+    //         $query = $this->db->conect()->query($query);
+    //     } else {
+    //         return false;
+    //     }
+    // }
 }
 
 
