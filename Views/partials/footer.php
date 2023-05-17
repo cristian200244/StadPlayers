@@ -1,4 +1,3 @@
-</main>
 <footer class="py-4 bg-light mt-auto">
     <div class="container-fluid px-4">
         <div class="d-flex align-items-center justify-content-between small">
@@ -21,7 +20,7 @@
 <script src="../../public/assets/demo/chart-area-demo.js"></script>
 <script src="../../public/assets/demo/chart-bar-demo.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
-    <script src="../../Public/assets/js/datatables-simple-demo.js"></script>
+<script src="../../Public/assets/js/datatables-simple-demo.js"></script>
 <script src="/../../public/assets/js/datatables-simple-demo.js"></script>
 </body>
 
