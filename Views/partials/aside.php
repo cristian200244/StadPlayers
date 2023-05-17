@@ -129,7 +129,7 @@
                                          padding: 5%;
                                        ">
                                     </i>
-                                    <h3>Ver Reporte</h3>
+                                    <h3>Ver Reportes</h3>
                                 </a>
                             </div>
                         </nav>

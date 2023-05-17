@@ -110,5 +110,5 @@ include_once(__DIR__ . "../../../config/rutas.php");
     </section>
 
     <?php
-    include_once(BASE_DIR . "../../Views/main/footer.php");
+      include_once("../../Views/partials/footer.php");
     ?>

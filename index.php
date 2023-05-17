@@ -73,8 +73,8 @@ text-decoration-color: aqua">
                                     <strong><label class="form-label" for="password" style="font-family:Russo One; color:#9bdaff;">Contraseña</label></strong>
                                 </div>
 
-                                <div class="BotonIniciarSesion">
-                                    <button type="submit" name="submit">
+                                <div class="BotonIniciarSesion ">
+                                    <button type="submit" name="submit" class="btn btn-dark">
                                         <span></span>
                                         <span></span>
                                         <span></span>
