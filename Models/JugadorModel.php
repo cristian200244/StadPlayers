@@ -1,73 +1,67 @@
 <?php
-include_once dirname(__FILE__) . '../../config/config_example.php';
+include_once __DIR__ . '../../config/config_example.php';
+require_once("conexionModel.php");
 
-require_once 'conexionModel.php';
 class JugadorModel extends stdClass
 {
-
     public $id;
     public $nombre_completo;
     public $apodo;
     public $fecha_nacimiento;
     public $caracteristicas;
-    public $results;
+    public $resultado;
+    public $perfiles;
     private $db;
-
 
     public function __construct()
     {
-        $this ->id;
-        $this ->nombre_completo;
-        $this ->apodo;
+        $this->id;
+        $this->nombre_completo;
+        $this->apodo;
         $this->fecha_nacimiento;
-        $this ->results;
+        $this->caracteristicas;
+        $this->resultado;
+        $this->perfiles;
+
         $this->db = new DataBase();
     }
 
- 
-
     public function getbyId($id)
     {
-        $operacion = [];
+        $resultado = [];
 
         try {
             $sql = "SELECT * FROM jugadores WHERE id = $id";
             $query  = $this->db->conect()->query($sql);
 
-
             while ($row = $query->fetch()) {
                 $item            = new JugadorModel();
-                $item->nombre_completo        = $row['nombre_completo'];
-                $item->apodo   = $row['apodo'];
-                $item->fecha_nacimiento   = $row['fecha_nacimiento'];
-                $item->fecha_nacimiento= $row['fecha_nacimiento'];
+                $item->nombre_completo = $row['nombre_completo'];
+                $item->apodo = $row['apodo'];
+                $item->fecha_nacimiento = $row['fecha_nacimiento'];
                 $item->caracteristicas = $row['caracteristicas'];
-              
+                // $item->perfiles = $row['perfiles'];
+                $item->resultado = $row['resultado'];
 
-                array_push($operacion, $item);
+                array_push($resultado, $item);
             }
 
-            return $operacion;
+            return $resultado;
         } catch (PDOException $e) {
             die($e->getMessage());
         }
     }
- 
-    
+
     public function store($datos)
     {
-
         try {
-
-            $resultado = self::resultadoOperacion($datos);
             $sql = 'INSERT INTO jugadores (nombre_completo, apodo, fecha_nacimiento, caracteristicas) VALUES(:nombre_completo, :apodo, :fecha_nacimiento, :caracteristicas)';
-
             $prepare = $this->db->conect()->prepare($sql);
             $query = $prepare->execute([
-                'nombre_completo'   => $datos['nombre_completo'],
-                'apodo'   => $datos['apodo'],
+                'nombre_completo' => $datos['nombre_completo'],
+                'apodo' => $datos['apodo'],
                 'fecha_nacimiento' => $datos['fecha_nacimiento'],
-
+                'caracteristicas' => $datos['caracteristicas'],
             ]);
 
             if ($query) {
@@ -77,120 +71,38 @@ class JugadorModel extends stdClass
             die($e->getMessage());
         }
     }
-    
-    public function resultadoOperacion($datos)
-    {
-        switch ($datos['operacion']) {
-            case '1': //Suma
-                return $datos['n1'] + $datos['n2'];
-                break;
-            case '2': //Resta
-                # code...
-                return $datos['n1'] - $datos['n2'];
-                break;
-            case '3': //Multiplicación
-                return $datos['n1'] * $datos['n2'];
-                # code...
-                break;
-            case '4': //División
-                return $datos['n1'] / $datos['n2'];
-                # code...
-                break;
 
-            default:
-                return false;
-                break;
+    public function getAll()
+    {
+        $items = [];
+
+        try {
+            $sql = 'SELECT jugadores.id, jugadores.nombre_completo, continentes.nombre AS nombre_continente, equipos.equipo, ligas.nombre AS nombre_liga, paises.nombre_pais, perfiles.nombre AS nombre_perfil, posiciones.descripcion AS nombre_posicion
+            FROM jugadores
+            JOIN continentes ON jugadores.id_contiente = continentes.id
+            JOIN equipos ON jugadores.id_equipo = equipos.id
+            JOIN ligas ON jugadores.id_liga = ligas.id
+            JOIN paises ON jugadores.id_pais = paises.id
+            JOIN perfiles ON jugadores.id_perfil = perfiles.id
+            JOIN posiciones ON jugadores.id_posicion = posiciones.id;
+            ';
+            $query  = $this->db->conect()->query($sql);
+
+            while ($row = $query->fetch()) {
+                $item            = new JugadorModel();
+                $item->id = $row['id'];
+                $item->nombre_completo = $row['nombre_completo'];
+                $item->apodo = $row['apodo'];
+                $item->fecha_nacimiento = $row['fecha_nacimiento'];
+                $item->caracteristicas = $row['caracteristicas'];
+
+                array_push($items, $item);
+            }
+    
+            return $items;
+        } catch (PDOException $e) {
+            die($e->getMessage());
         }
     }
-
-    // public function getAll()
-    // {
-    //     $items = [];
-
-    //     try {
-
-    //         $sql = 'SELECT jugadores.id, jugadores.nombre_completo, jugadores.apodo, jugadores.fecha_nacimiento, jugadores.caracteristicas, AS jugadores, jugadores.id FROM jugadores JOIN jugadores ON jugadores.jugadores = jugadores.id';
-    //         $query  = $this->db->conect()->query($sql);
-
-
-    //         while ($row = $query->fetch()) {
-    //             $item            = new JugadorModel();
-    //             $item->id        = $row['id'];
-    //             $item->nombre_completo   = $row['nombre_completo'];
-    //             $item->apodo   = $row['apodo'];
-    //             $item->fecha_nacimiento = $row['fecha_nacimiento'];
-    //             $item->caracteristicas = $row['caracteristicas'];
-
-    //             array_push($items, $item);
-    //         }
-
-    //         return $items;
-    //     } catch (PDOException $e) {
-    //         die($e->getMessage());
-    //     }
-    // }
-
-    // public function store($datos)
-    // {
-
-    //     try {
-
-    //         $guardar = ($datos);
-    //         $sql = 'INSERT INTO jugadores(nombre_completo, apodo, fecha_nacimiento, caracteristicas) VALUES(:nombre_completo, :apodo, :fecha_nacimiento, :caracteristicas)';
-
-    //         $prepare = $this->db->conect()->prepare($sql);
-    //         $query = $prepare->execute([
-    //             'nombre_completo'   => $datos['nombre_completo'],
-    //             'apodo'   => $datos['apodo'],
-    //             'fecha_nacimiento' => $datos['fecha_nacimiento'],
-    //             'caracteristicas' => $guardar,
-    //         ]);
-
-    //         if ($query) {
-    //             return true;
-    //         }
-    //     } catch (PDOException $e) {
-    //         die($e->getMessage());
-    //     }
-    // }
-    // public function update($datos)
-    // {
-    //     try {
-
-    //         $guardar= ($datos);
-    //         $sql = 'UPDATE jugadores SET nombre_completo = :nombre_completo, apodo = :apodo, fecha_nacimiento = :fecha_nacimiento,caracteristicas = :caracteristicas WHERE id = :id';
-
-    //         $prepare = $this->db->conect()->prepare($sql);
-    //         $query = $prepare->execute([
-    //             'id'        => $datos['id'],
-    //             'n1'   => $datos['n1'],
-    //             'n2'   => $datos['n2'],
-    //             'operacion' => $datos['operacion'],
-    //             'resultado' => $guardar,
-    //         ]);
-
-    //         if ($query) {
-    //             return true;
-    //         }
-    //     } catch (PDOException $e) {
-    //         die($e->getMessage());
-    //     }
-    // }
-    // public function delete($id)
-    // {
-    //     try {
-    //         $sql = "DELETE FROM jugadores WHERE id = :id";
-    //         $prepare = $this->db->conect()->prepare($sql);
-    //         $query = $prepare->execute([
-    //             'id'   => $id,
-    //         ]);
-
-    //         if ($query) {
-    //             return true;
-    //         }
-    //     } catch (PDOException $e) {
-    //         die($e->getMessage());
-    //     }
-    // }
-
 }
+    

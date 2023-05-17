@@ -1,15 +1,17 @@
 <?php
-// require_once '../../Models/JugadorModel.php';
-// $datos = new JugadorModel();
-// $registros = $datos->getbyId($_REQUEST['id']);
 
 include_once(__DIR__ . "../../../config/rutas.php");
-include_once(BASE_DIR . "../../Views/main/header.php");
+include_once(BASE_DIR . "../../Views/partials/header.php");
 include_once(BASE_DIR . "../../Views/partials/aside.php");
+
 include_once '../../Models/JugadorModel.php';
+$datos = new JugadorModel();
+// /$registros = $datos->getAll();
 
 ?>
+
 <main>
+
     <div class="container text-center">
         <div class="row">
             <div class="col">
@@ -29,49 +31,58 @@ include_once '../../Models/JugadorModel.php';
                                 <div class="card-body">
                                     <form action="../../Controllers/JugadorController.php" method="POST">
                                         <input type="hidden" name="c" value="1">
-                                        <form>
-                                            <div class="row mb-3">
+
+                                        <div class="row mb-3">
 
 
-                                                <div class="col-md-6">
-                                                    <div class="form-floating mb-3 mb-md-0">
-                                                        <input type="text" class="form-control" id="nombre_completo" type="text" placeholder="Nomber Completo" name="nombre completo" required />
-                                                        <label for="nombre_completo">Nombre Completo</label>
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-md-6">
-                                                    <div class="form-floating mb-3 mb-md-0">
-                                                        <input type="text" class="form-control" id="apodo" type="text" placeholder="Apodo" name="apodo" required />
-                                                        <label for="apodo">Apodo</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-floating mb-3 mb-md-0">
-                                                        <input type="text" class="form-control" id="caracteristicas" type="text" placeholder="Caracteristicas" name="nombre completo" required />
-                                                        <label for="nombre_completo">caracterisitcas</label>
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-md-6">
-                                                    <div class="form-floating">
-                                                        <label for="fecha_nacimiento" id="fecha_nacimiento" class="form-label">Fecha de nacimiento</label>
-                                                        <input type="date" class="form-control" type="datetime" placeholder="Fecha de nacimiento" name="fecha_nacimiento" id="fecha_nacimiento" required>
-                                                    </div>
+                                            <div class="col-md-6">
+                                                <div class="form-floating mb-3 mb-md-0">
+                                                    <input type="text" class="form-control" id="nombre_completo" type="text" placeholder="Nombre Completo" name="nombre_completo" required />
+                                                    <label for="nombre_completo">Nombre Completo</label>
                                                 </div>
                                             </div>
 
-
-                                            <div class="form-floating mb-3">
-                                                <label for="">perfil Operación</label>
-                                                <select class="form-select" name="perfil" id="perfiles">
-                                                    <option value="1">Diestro</option>
-                                                    <option value="2">Zurdo</option>
-                                                    <option value="3">Ambidiestro</option>
-
-                                                </select>
+                                            <div class="col-md-6">
+                                                <div class="form-floating mb-3 mb-md-0">
+                                                    <input type="text" class="form-control" id="apodo" placeholder="Apodo" name="apodo" required />
+                                                    <label for="apodo">Apodo</label>
+                                                </div>
                                             </div>
-                                        </form>
+                                            <div class="col-md-6">
+                                                <div class="form-floating mb-3 mb-md-0">
+                                                    <input type="text" class="form-control" id="caracteristicas" type="text" placeholder="Caracteristicas" name="caracteristicas" required />
+                                                    <label for="nombre_completo">caracterisitcas</label>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <div class="form-floating">
+                                                    <label for="fecha_nacimiento" id="fecha_nacimiento" class="form-label">Fecha de nacimiento</label>
+                                                    <input type="date" class="form-control" type="datetime" placeholder="Fecha de nacimiento" name="fecha_nacimiento" id="fecha_nacimiento" required>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="form-floating mb-3">
+                                            <label for="perfil">Perfil Operación</label>
+                                            <select class="form-select" name="perfil" id="perfiles">
+                                                <?php
+                                                if ($registros) {
+                                                    foreach ($registros as $row) {
+                                                        echo "<option value='" . $row->id . "'>" . $row->perfiles . "</option>";
+                                                    }
+                                                } else {
+                                                    echo "<option value=''>Sin registros</option>";
+                                                }
+                                                ?>
+                                            </select>
+                                        </div>
+
+
+                                        <div class="mb-3">
+                                            <button class="btn btn-sm btn-primary" type="submit">Guardar</button>
+                                        </div>
                                     </form>
 
                                     <table class="table">
@@ -79,11 +90,10 @@ include_once '../../Models/JugadorModel.php';
                                             <tr>
                                                 <h2>sdsa</h2>
                                                 <th scope="col">#</th>
-                                                <th scope="col">Nombre Completo</th>
-                                                <th scope="col">Apodo</th>
-                                                <th scope="col">perfil</th>
+                                                <th scope="col">nombre_completo</th>
+                                                <th scope="col">apodo</th>
                                                 <th scope="col">fecha_nacimiento</th>
-                                                <th scope="col">Caracteristicas</th>
+                                                <th scope="col">caracteristicas</th>
                                                 <th scope="col" colspan="2">Opcion</th>
                                             </tr>
                                         </thead>
@@ -99,9 +109,16 @@ include_once '../../Models/JugadorModel.php';
                                                         <td><?= $row->nombre_completo ?></td>
                                                         <td><?= $row->apodo ?></td>
                                                         <td><?= $row->fecha_nacimiento ?></td>
-                                                        <td><?= $row->caracteristicas ?></td>
-                                                        <td><?= $row->perfiles ?></td>
+                                                        <td><?= $row->caracterisitcas ?></td>
+
                                                         <!-- <th scope="col" >Opciones</th> -->
+
+                                                        <td>
+                                                            <a class="btn btn-sm btn-outline-warning" href="../Controllers/calculadoraController.php?c=2&id=<?= $row->getId() ?>">Actualizar</a>
+                                                        </td>
+                                                        <td>
+                                                            <a class="btn btn-sm btn-outline-danger " href="../Controllers/calculadoraController.php?c=4&id=<?= $row->getId() ?>">Eliminar</a>
+                                                        </td>
                                                     </tr>
                                                 <?php
                                                 }
@@ -115,21 +132,18 @@ include_once '../../Models/JugadorModel.php';
                                             ?>
                                         </tbody>
                                     </table>
-                                    <div class="mb-3">
-                                        <button class="btn btn-sm btn-primary" type="submit">Guardar</button>
-                                    </div>
 
                                 </div>
-                                </form>
                             </div>
                         </div>
                     </div>
                 </div>
-                </form>
             </div>
+        </div>
+    </div>
 </main>
 
 <?php
-include_once(BASE_DIR . "../../Views/main/footer.php");
+include_once(BASE_DIR . "../../Views/partials/footer.php");
 
 ?>

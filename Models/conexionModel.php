@@ -1,6 +1,6 @@
 <?php
 
-require_once '../config/config_example.php';
+require_once __DIR__.'../../config/config_example.php';
 class Database
 {
     private $host;

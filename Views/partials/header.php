@@ -53,7 +53,7 @@
 
         </form>
 
-        <?php include_once(__DIR__ . "../../../views/main/menuHeader.php"); ?>
+        <?php include_once(__DIR__ . "../../../views/partials/menuHeader.php"); ?>
 
     </nav>
     <div id="layoutSidenav">

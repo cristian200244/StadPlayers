@@ -118,5 +118,5 @@ text-decoration-color: aqua">
     </section>
 
     <?php
-    include_once("Views/main/footer.php");
+    include_once("Views/partials/footer.php");
     ?>

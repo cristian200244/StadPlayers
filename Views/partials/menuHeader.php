@@ -1,3 +1,8 @@
+<?php
+include_once(__DIR__ . "/../../config/rutas.php");
+
+?>
+
 <ul class="navbar-nav ms-auto ms-md-0 me-5 me-lg-7">
     <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown"
