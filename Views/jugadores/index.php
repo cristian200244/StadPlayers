@@ -6,7 +6,7 @@ include_once(BASE_DIR . "../../Views/partials/aside.php");
 
 include_once '../../Models/JugadorModel.php';
 $datos = new JugadorModel();
-// /$registros = $datos->getAll();
+$registros = $datos->getAll();
 
 ?>
 
@@ -61,78 +61,71 @@ $datos = new JugadorModel();
                                                     <input type="date" class="form-control" type="datetime" placeholder="Fecha de nacimiento" name="fecha_nacimiento" id="fecha_nacimiento" required>
                                                 </div>
                                             </div>
+                                            <div class="mb-3">
+                                                <button class="btn btn-sm btn-primary" type="submit">Guargar</button>
+                                            </div>
                                         </div>
-
-
-                                        <div class="form-floating mb-3">
-                                            <label for="perfil">Perfil Operación</label>
-                                            <select class="form-select" name="perfil" id="perfiles">
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <!-- <h2>sdsa</h2> -->
+                                                    <th scope="col">#</th>
+                                                    <th scope="col">Nombre Completo</th>
+                                                    <th scope="col">apodo</th>
+                                                    <th scope="col">Fecha Nacimiento</th>
+                                                    <th scope="col">caracteristicas</th>
+                                                    <th scope="col">Equipo</th>
+                                                    <th scope="col">Liga</th>
+                                                    <th scope="col">Pais</th>
+                                                    <th scope="col">Continente</th>
+                                                    <th scope="col">Posicion</th>
+                                                    <th scope="col">Perfil</th>
+                                                    <th scope="col">Historial Equipo</th>
+                                                    <th scope="col" colspan="2">Opcion</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
                                                 <?php
                                                 if ($registros) {
                                                     foreach ($registros as $row) {
-                                                        echo "<option value='" . $row->id . "'>" . $row->perfiles . "</option>";
+
+                                                ?>
+                                                        <tr>
+
+                                                            <td><?= $row->id ?></td>
+                                                            <td><?= $row->nombre_completo ?></td>
+                                                            <td><?= $row->apodo ?></td>
+                                                            <td><?= $row->fecha_nacimiento ?></td>
+                                                            <td><?= $row->caracterisitcas ?></td>
+                                                            <td><?= $row->id_equipo ?></td>
+                                                            <td><?= $row->id_liga?></td>
+                                                            <td><?= $row->id_pais ?></td>
+                                                            <td><?= $row->id_continente ?></td>
+                                                            <td><?= $row->id_posicion ?></td>
+                                                            <td><?= $row->id_perfil?></td>
+                                                            <td><?= $row->id_historial_equipos ?></td>
+                                                            <td><?= $row->guardar?></td>
+                                                            <!-- <th scope="col" >Opciones</th> -->
+
+                                                            <td>
+                                                                <a class="btn btn-sm btn-outline-warning" href="../Controllers/calculadoraController.php?c=2&id=<?= $row->getId() ?>">Actualizar</a>
+                                                            </td>
+                                                            <td>
+                                                                <a class="btn btn-sm btn-outline-danger " href="../Controllers/calculadoraController.php?c=4&id=<?= $row->getId() ?>">Eliminar</a>
+                                                            </td>
+                                                        </tr>
+                                                    <?php
                                                     }
                                                 } else {
-                                                    echo "<option value=''>Sin registros</option>";
-                                                }
-                                                ?>
-                                            </select>
-                                        </div>
-
-
-                                        <div class="mb-3">
-                                            <button class="btn btn-sm btn-primary" type="submit">Guardar</button>
-                                        </div>
-                                    </form>
-
-                                    <table class="table">
-                                        <thead>
-                                            <tr>
-                                                <h2>sdsa</h2>
-                                                <th scope="col">#</th>
-                                                <th scope="col">nombre_completo</th>
-                                                <th scope="col">apodo</th>
-                                                <th scope="col">fecha_nacimiento</th>
-                                                <th scope="col">caracteristicas</th>
-                                                <th scope="col" colspan="2">Opcion</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <?php
-                                            if ($registros) {
-                                                foreach ($registros as $row) {
-
-                                            ?>
-                                                    <tr>
-
-                                                        <td><?= $row->id ?></td>
-                                                        <td><?= $row->nombre_completo ?></td>
-                                                        <td><?= $row->apodo ?></td>
-                                                        <td><?= $row->fecha_nacimiento ?></td>
-                                                        <td><?= $row->caracterisitcas ?></td>
-
-                                                        <!-- <th scope="col" >Opciones</th> -->
-
-                                                        <td>
-                                                            <a class="btn btn-sm btn-outline-warning" href="../Controllers/calculadoraController.php?c=2&id=<?= $row->getId() ?>">Actualizar</a>
-                                                        </td>
-                                                        <td>
-                                                            <a class="btn btn-sm btn-outline-danger " href="../Controllers/calculadoraController.php?c=4&id=<?= $row->getId() ?>">Eliminar</a>
-                                                        </td>
+                                                    ?>
+                                                    <tr class=" text-center">
+                                                        <td colspan="6">Sin datos</td>
                                                     </tr>
                                                 <?php
                                                 }
-                                            } else {
                                                 ?>
-                                                <tr class=" text-center">
-                                                    <td colspan="6">Sin datos</td>
-                                                </tr>
-                                            <?php
-                                            }
-                                            ?>
-                                        </tbody>
-                                    </table>
-
+                                            </tbody>
+                                        </table>
                                 </div>
                             </div>
                         </div>
