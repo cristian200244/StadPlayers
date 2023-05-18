@@ -51,7 +51,7 @@ INSERT INTO `continentes` (`id`, `nombre`) VALUES
 
 CREATE TABLE `copas` (
   `id` bigint NOT NULL,
-  `nombre` varchar(50) COLLATE utf8mb3_spanish2_ci NOT NULL
+  `nombre` varchar(50) COLLATE   NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_spanish2_ci;
 
 --
