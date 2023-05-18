@@ -14,7 +14,7 @@ include_once(BASE_DIR . "../../Views/partials/aside.php");
             </div>
             <div class="card-body">
 
-                <table id="datatablesSimple">
+                <table id="datatablesSimple"  >
                     <thead>
                         <tr>
                             <th>Fecha Inicial</th>
@@ -31,6 +31,18 @@ include_once(BASE_DIR . "../../Views/partials/aside.php");
                         </tr>
                     </tfoot>
                     <tbody>
+                        <tr>
+                            <td>2002/08/12</td>
+                            <td>2010/05/23</td>
+                            <td>
+
+                                <a href="personas/ver.php?id=<?php echo $persona['id']; ?>"
+                                    class="btn btn-sm btn-outline-info">Ver</a>
+                                <a href="personas/editar.php?id=<?php echo $persona['id']; ?>"
+                                    class="btn btn-sm btn-outline-warning">Editar</a>
+                                <a href="personas/eliminar.php?id=<?php echo $persona['id']; ?>"
+                                    class="btn btn-sm btn-outline-danger" value="">Eliminar</a>
+                        </tr>
                         <tr>
                             <td>2002/08/12</td>
                             <td>2010/05/23</td>

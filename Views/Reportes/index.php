@@ -1,16 +1,16 @@
 <?php
 include_once(__DIR__ . "../../../config/rutas.php");
 
-include_once __DIR__."../../../Models/GenerarReportesModel.php";
+include_once __DIR__ . "../../../Models/GenerarReportesModel.php";
 //Reporte
 $reportes = new ReportesModel();
 $jugadores = $reportes->getPlayers();
 include_once(BASE_DIR . "../../Views/partials/header.php");
 include_once(BASE_DIR . "../../Views/partials/aside.php");
 //Instancia
+// include_once __DIR__."../../../Models/GenerarReportesController.php";
+// $reportes = new ReportesController();
 ?>
-
-
 
 <div class="imgGenReport">
 
@@ -22,7 +22,8 @@ include_once(BASE_DIR . "../../Views/partials/aside.php");
                         <h3 class="text-center font-weight-light my-4">Generar Reporte</h3>
                     </div>
                     <div class="card-body text-black" style="background-color:#CFDFE0  ;">
-                        <form>
+                        <form action="../../Controllers/GenerarReportesController.php" method="POST">
+                            <input type="hidden" name="c" value="1">
                             <div class="row mb-3">
                                 <div class="col-md-6">
                                     <div class="form-floating mb-3 mb-md-0">
@@ -44,8 +45,7 @@ include_once(BASE_DIR . "../../Views/partials/aside.php");
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-floating mb-3 mb-md-0">
-                                        <input class="form-control" class="form-control" type="date"
-                                            name="fechaFinal" />
+                                        <input class="form-control" class="form-control" type="date" name="fechaFinal" />
                                     </div>
                                 </div>
                             </div>
@@ -55,19 +55,21 @@ include_once(BASE_DIR . "../../Views/partials/aside.php");
                                         <h3>Nombre del Jugador</h3>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
-                                    <select name="jugadores" id="jugadores">
+
+                                <div class="col-md-6 ">
+                                    <select name="jugadores" id="jugadores" class="btn btn-sm btn-outline-dark p-2 ms-4 ">
                                         <?php foreach ($jugadores as $jugador) :; ?>
 
 
-                                        <option value="<?= $jugador->getId() ?>">
-                                            <?= $jugador->getNombreCompleto()  ?></option>";
+                                            <option value="<?= $jugador->getId() ?>">
+                                                <?= $jugador->getNombreCompleto()  ?></option>";
                                         <?php endforeach ?>
                                     </select>
                                 </div>
                             </div>
                             <div class="mt-4 mb-0">
-                                <div class="d-grid"><a class="btn btn-primary btn-block" href="login.html">Generar</a>
+                                <div class="d-grid">
+                                    <button type="submit" class="btn btn-primary btn-block">Generar</button>
                                 </div>
                             </div>
                         </form>

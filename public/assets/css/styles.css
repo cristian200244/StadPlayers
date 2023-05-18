@@ -160,23 +160,25 @@ form .containerTitulo {
 .imgIngreEstad {
 
   background: url(../../assets/img/reportes6.png);
+  background-position: center;
   height: calc(100vh - 85px);
   margin-left: 0%;
   margin-right: 0%;
   padding-left: 0%;
   padding-right: 0;
+  margin-top: auto;
   background-repeat: no-repeat;
+  background-attachment: fixed;
   background-size: cover;
-  background-attachment: scroll;
-  background-position: center;
   height: 100vw;
   width: 100%;
+
 
 }
 
 @media screen and (max-width: 972px) {
-  .imgGenReport {
-    height: 100%;
+  .imgIngreEstad {
+    height: 120%;
 
   }
 }

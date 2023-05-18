@@ -17,6 +17,29 @@ class ReportesModel
     }
 
     //metodos mágicos
+
+
+    public function store($datos)
+    {
+        try {
+
+           
+            $sql = 'INSERT INTO operaciones(numero_uno, numero_dos, operadores_id, resultado) VALUES(:num1, :num2, :operacion, :resultado)';
+
+            $prepare = $this->db->conect()->prepare($sql);
+            $query = $prepare->execute([
+                'fechaInicial' => $datos['fechaInicial'],
+                'fechaFinal' => $datos['fechaFinal'],
+                'jugadores' => $datos['jugadores'],
+            ]);
+            if ($query) {
+                return true;
+            }
+        } catch (PDOException $e) {
+            die($e->getMessage());
+        }
+    }
+
     public function getId()
     {
         return $this->id;
