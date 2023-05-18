@@ -409,12 +409,12 @@ ALTER TABLE `historial_equipos`
 --
 ALTER TABLE `jugadores`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `FK_jugador_usuario_id_idx` (`id_usuario`),
-  ADD KEY `FK_equipos_jugador_id_idx` (`id_equipo`),
-  ADD KEY `FK_pais_jugador_id_idx` (`id_pais`),
-  ADD KEY `FK_liga_jugador_id_idx` (`id_liga`),
-  ADD KEY `FK_posicion_jugador_id_idx` (`id_posicion`),
-  ADD KEY `FK_perfil_jugador_id_idx` (`id_perfil`),
+  ADD KEY `FK_usuario_jugadores_id_idx` (`id_usuario`),
+  ADD KEY `FK_equipos_jugadores_id_idx` (`id_equipo`),
+  ADD KEY `FK_pais_jugadores_id_idx` (`id_pais`),
+  ADD KEY `FK_liga_jugadores_id_idx` (`id_liga`),
+  ADD KEY `FK_posicion_jugadores_id_idx` (`id_posicion`),
+  ADD KEY `FK_perfil_jugadores_id_idx` (`id_perfil`),
   ADD KEY `FK_continete_jugadores_id_idx` (`id_contiente`),
   ADD KEY `FK_historial_equipos_jugadores_id_idx` (`id_historial_equipos`);
 
