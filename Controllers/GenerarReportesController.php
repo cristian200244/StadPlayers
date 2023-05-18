@@ -1,5 +1,3 @@
-
-
 <?php
 
 require_once '../Models/GenerarReportesModel.php';
@@ -14,7 +12,7 @@ class ReportesController
     public function __construct()
     {
         $this->reportesModel = new ReportesModel();
-        
+
         if (isset($_REQUEST['c'])) {
             $controlador = $_REQUEST['c'];
             switch ($controlador) {
@@ -22,35 +20,36 @@ class ReportesController
                     print_r('aqui se va guardar el reporte...');
                     self::Store();
                     break;
-                    case 2: //Eliminar
+                case 2: //Eliminar
                     // self::destroy();
-                    
+
                     break;
                 case 3: //Ver por operacion
                     // self::show();
                     break;
-                    case 4:
+                case 4:
                     // self::update();
                     break;
-                    case 5:
+                case 5:
 
                     break;
-                    case 6:
-                        //   self::CerrarSesion();
-                        break;
-                    }
-                }
+                case 6:
+                    //   self::CerrarSesion();
+                    break;
             }
+        }
+    }
     public function Store()
     {
         $datos = [
             'fechaInicial' => $_REQUEST['fechaInicial'],
             'fechaFinal' => $_REQUEST['fechaFinal'],
             'jugadores' => $_REQUEST['jugadores'],
+            // 'id_usuario' => $_REQUEST['id'],
         ];
-        
-      
+        var_dump($datos);
 
-         $result =  $this->reportesModel->Store($datos);
+
+        $result =  $this->reportesModel->Store($datos);
     }
 }

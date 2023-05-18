@@ -2,11 +2,13 @@
 
 require_once("conexionModel.php");
 
+
 class ReportesModel
 {
 
     public $id;
     public $nombre_completo;
+
     private $db;
 
 
@@ -23,14 +25,17 @@ class ReportesModel
     {
         try {
 
-           
-            $sql = 'INSERT INTO operaciones(numero_uno, numero_dos, operadores_id, resultado) VALUES(:num1, :num2, :operacion, :resultado)';
+
+            $sql = 'INSERT INTO generar_reporte(fecha_inicial, fecha_final, id_jugador, id_usuario) VALUES(:num1, :num2, :operacion, :resultado)';
 
             $prepare = $this->db->conect()->prepare($sql);
             $query = $prepare->execute([
-                'fechaInicial' => $datos['fechaInicial'],
-                'fechaFinal' => $datos['fechaFinal'],
-                'jugadores' => $datos['jugadores'],
+                'fechaInicial' => $_REQUEST['fechaInicial'],
+                'fechaFinal' => $_REQUEST['fechaFinal'],
+                'id_jugador' => $_REQUEST['id'],
+                'id_usuario' => $_REQUEST['id'],
+
+
             ]);
             if ($query) {
                 return true;
@@ -55,14 +60,15 @@ class ReportesModel
         $items = [];
 
         try {
-            $sql = 'SELECT id, nombre_completo FROM jugadores WHERE id_usuario= 1';
+            $sql = 'SELECT id, nombre_completo, id_usuario FROM jugadores WHERE id_usuario= 1';
 
             $query = $this->db->conect()->query($sql);
-
             while ($row = $query->fetch()) {
                 $item       = new  ReportesModel();
                 $item->id   = $row['id'];
                 $item->nombre_completo = $row['nombre_completo'];
+                $item->nombre_completo = $row['id_usuario'];
+
 
                 array_push($items, $item);
             }
