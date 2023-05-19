@@ -1,8 +1,13 @@
 <?php
 
+
+
 include_once(__DIR__ . "../../../config/rutas.php");
-include_once(BASE_DIR . "../../Views/partials/header.php");
+include_once __DIR__ . "../../../Controllers/GenerarReportesController.php";
+// include_once(BASE_DIR . "../../Views/partials/header.php");
 include_once(BASE_DIR . "../../Views/partials/aside.php");
+$fechaDeReportes = new ReportesController();
+$reportes = $fechaDeReportes->fechasReporte();
 ?>
 
 <div class="imgGenReport">
@@ -14,12 +19,13 @@ include_once(BASE_DIR . "../../Views/partials/aside.php");
             </div>
             <div class="card-body">
 
-                <table id="datatablesSimple"  >
+                <table id="datatablesSimple">
                     <thead>
                         <tr>
-                            <th>Fecha Inicial</th>
-                            <th>Fecha Final</th>
-                            <th scope=" col" colspan="2">Opciones</th>
+                            <th scope="col">#</th>
+                            <th scope="col">Fecha Inicial</th>
+                            <th scope="col">Fecha Final</th>
+                            <th scope="col" colspan="2">Opciones</th>
                         </tr>
                     </thead>
                     <tfoot>
@@ -31,9 +37,15 @@ include_once(BASE_DIR . "../../Views/partials/aside.php");
                         </tr>
                     </tfoot>
                     <tbody>
+                        <?php
+                        if (count($operaciones) > 0) {
+                            $pos = 1;
+                            foreach ($operaciones as $operacion) {
+                        ?>
                         <tr>
-                            <td>2002/08/12</td>
-                            <td>2010/05/23</td>
+                            <td><?php echo $pos; ?></td>
+                            <td><?php echo $reportes->fechaInicial ?></td>
+                            <td><?php echo $reportes->fechaFinal ?></td>
                             <td>
 
                                 <a href="personas/ver.php?id=<?php echo $persona['id']; ?>"
@@ -55,13 +67,26 @@ include_once(BASE_DIR . "../../Views/partials/aside.php");
                                 <a href="personas/eliminar.php?id=<?php echo $persona['id']; ?>"
                                     class="btn btn-sm btn-outline-danger" value="">Eliminar</a>
                         </tr>
-
+                        <?php $pos++;
+                            }
+                        } else { ?>
+                        <tr>
+                            <td colspan=" 9">No hay datos
+                            </td>
+                        </tr>
+                        <?php } ?>
                     </tbody>
                 </table>
             </div>
 
         </div>
     </main>
+</div>
+
+<?php
+include_once(BASE_DIR . "../../Views/partials/footer.php");
+?> </div>
+</main>
 </div>
 
 <?php
