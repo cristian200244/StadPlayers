@@ -27,17 +27,18 @@ class ReportesModel
         try {
 
 
-            $sql = 'INSERT INTO generar_reporte(fecha_inicial, fecha_final, id_jugador, id_usuario) VALUES(:num1, :num2, :operacion, :resultado)';
+            $sql = 'INSERT INTO generar_reporte(fecha_inicial, fecha_final, id_jugador, id_usuario) VALUES(:fechainicial, :fechaFinal, :id_jugador, :id)';
 
             $prepare = $this->db->conect()->prepare($sql);
             $query = $prepare->execute([
-                'fechaInicial' => $_REQUEST['fechaInicial'],
+                'fechainicial' => $_REQUEST['fechaInicial'],
                 'fechaFinal' => $_REQUEST['fechaFinal'],
-                'id_jugador' => $_REQUEST['id'],
-                'id_usuario' => $_REQUEST['id'],
-
-
+                'id_jugador' => $_REQUEST['id_jugador'],
+                'id' => $_REQUEST['id_usuario'],
+                
             ]);
+            var_dump($query);
+           
             if ($query) {
                 return true;
             }

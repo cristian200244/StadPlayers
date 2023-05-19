@@ -1,7 +1,7 @@
 <?php
+require_once __DIR__ . '../../Models/GenerarReportesModel.php';
 
-require_once __DIR__ . '/Models/GenerarReportesModel.php';
-session_start();
+
 
 //Instanciando la clase CalculadoraController
 $usuario = new ReportesController();
@@ -17,7 +17,7 @@ class ReportesController
             $controlador = $_REQUEST['c'];
             switch ($controlador) {
                 case 1: //Store
-                    print_r('aqui se va guardar el reporte...');
+                
                     self::Store();
                     break;
                 case 2: //Eliminar
