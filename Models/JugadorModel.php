@@ -13,7 +13,7 @@ class JugadorModel extends stdClass
     public $id_equipo;
     public $id_liga;
     public $id_pais;
-    public $id_continente;
+    public $id_contiente;
     public $id_posicion;
     public $id_perfil;
     public $id_historial_equipos;
@@ -31,8 +31,7 @@ class JugadorModel extends stdClass
        $this->id_equipo;
        $this->id_liga;
        $this->id_pais;
-       $this->id_continente;
-       $this->id_continente;
+       $this->id_contiente;
        $this->id_posicion;
        $this->id_perfil;
         $this->id_historial_equipos;
@@ -64,6 +63,7 @@ class JugadorModel extends stdClass
                 $item->id_equipo = $row['id_equipo'];
                 $item->id_liga = $row['is_liga'];
                 $item->id_pais = $row['id_pais'];
+                $item->id_contiente = $row['id_contiente'];
                 $item->id_perfil = $row['id_perfil'];
                 $item->is_historial_equipos = $row['id_historial_equipos'];
 
@@ -103,7 +103,7 @@ class JugadorModel extends stdClass
                 $item->id_equipo = $row['id_equipo'];
                 $item->id_liga = $row['id_liga'];
                 $item->id_pais = $row['id_pais'];
-                $item->id_continente = $row['id_continente'];
+                $item->id_continente = $row['id_contiente'];
                 $item->id_posicion = $row['id_posicion'];
                 $item->id_perfil = $row['id_perfil'];
                 $item->id_historial_equipos = $row['id_historial_equipos'];
@@ -122,7 +122,7 @@ class JugadorModel extends stdClass
         try {
 
             $guardar = ($datos);
-            $sql = 'INSERT INTO jugadores(nombre_completo, apodo, fecha_nacimiento, caracteristicas, id_equipo, id_liga, id_pais, id_continente, id_posicion, id_perfil, id_historial_equipos) VALUES(:nombre_completo, :apodo, :fecha_nacimiento, :caracteristicas, :id_equipo, :id_liga, :id_pais, :id_continente, :id_posicion, :id_perfil, :id_historial_equipos)';
+            $sql = 'INSERT INTO jugadores(nombre_completo, apodo, fecha_nacimiento, caracteristicas, id_equipo, id_liga, id_pais, id_contiente, id_posicion, id_perfil, id_historial_equipos) VALUES(:nombre_completo, :apodo, :fecha_nacimiento, :caracteristicas, :id_equipo, :id_liga, :id_pais, :id_contiente, :id_posicion, :id_perfil, :id_historial_equipos)';
 
             $prepare = $this->db->conect()->prepare($sql);
             $query = $prepare->execute([
@@ -130,14 +130,14 @@ class JugadorModel extends stdClass
                 'apodo'   => $datos['apodo'],
                 'fecha_nacimiento' => $datos['fecha_nacimiento'],
                 'caracteristicas' => $datos['caracteristicas'],
-                'id_usuario' => $datos['id_usuario'],
+                // 'id_usuario' => $datos['id_usuario'],
                 'id_equipo' => $datos['id_equipo'],
                 'id_liga' => $datos['id_liga'],
                 'id_pais' => $datos['id_pais'],
-                'id_continente' => $datos['id_continente'],
+                'id_contiente' => $datos['id_contiente'],
                 'id_posicion' => $datos['id_posicion'],
                 'id_perfil' => $datos['id_perfil'],
-                'id_historial_equipos' => $datos['id_historial_equipos'],
+                // 'id_historial_equipos' => $datos['id_historial_equipos'],
                 'resultado' => $guardar,
             ]);
 
@@ -148,4 +148,142 @@ class JugadorModel extends stdClass
             die($e->getMessage());
         }
     }
+    public function getid_equipos(){
+        return $this->equipo;
+    }
+
+    public function equipos()
+    {
+        $items = [];
+        try{
+            $sql = 'SELECT  id, equipo FROM equipos';
+            $query = $this->db->conect()->query($sql);
+            while ($row = $query->fetch()){
+                $item = new JugadorModel();
+                $item->id = $row['id'];
+                $item->equipo = $row['equipo'];
+
+                array_push($items, $item);
+            }
+            return $items;
+        }catch (PDOException $e){
+            die($e->getMessage());
+        }
+    }
+    public function getid_ligas(){
+        return $this->nombre;
+    }
+
+    public function ligas()
+    {
+        $items = [];
+        try{
+            $sql = 'SELECT  id, nombre FROM ligas';
+            $query = $this->db->conect()->query($sql);
+            while ($row = $query->fetch()){
+                $item = new JugadorModel();
+                $item->id = $row['id'];
+                $item->nombre = $row['nombre'];
+
+                array_push($items, $item);
+            }
+            return $items;
+        }catch (PDOException $e){
+            die($e->getMessage());
+        }
+    }
+    public function getid_paises(){
+        return $this->nombre;
+    }
+
+    public function paises()
+    {
+        $items = [];
+        try{
+            $sql = 'SELECT  id, nombre_pais FROM paises';
+            $query = $this->db->conect()->query($sql);
+            while ($row = $query->fetch()){
+                $item = new JugadorModel();
+                $item->id = $row['id'];
+                $item->nombre = $row['nombre_pais'];
+               
+
+                array_push($items, $item);
+            }
+            return $items;
+        }catch (PDOException $e){
+            die($e->getMessage());
+        }
+    }
+    public function getid_continentes(){
+        return $this->nombre;
+    }
+
+    public function continentes()
+    {
+        $items = [];
+        try{
+            $sql = 'SELECT  id, nombre_continente FROM paises';
+            $query = $this->db->conect()->query($sql);
+            while ($row = $query->fetch()){
+                $item = new JugadorModel();
+                $item->id = $row['id'];
+                $item->nombre = $row['nombre_continente'];
+                
+
+                array_push($items, $item);
+            }
+            return $items;
+        }catch (PDOException $e){
+            die($e->getMessage());
+        }
+    }
+
+    public function getid_perfil(){
+        return $this->nombre;
+    }
+
+    public function perfiles()
+    {
+        $items = [];
+        try{
+            $sql = 'SELECT  id, nombre FROM perfiles';
+            $query = $this->db->conect()->query($sql);
+            while ($row = $query->fetch()){
+                $item = new JugadorModel();
+                $item->id = $row['id'];
+                $item->nombre = $row['nombre'];
+              
+
+                array_push($items, $item);
+            }
+            return $items;
+        }catch (PDOException $e){
+            die($e->getMessage());
+        }
+    }
+    public function getid_posicion(){
+        return $this->nombre;
+    }
+
+    public function posiciones()
+    {
+        $items = [];
+        try{
+            $sql = 'SELECT  id, descripcion FROM posiciones';
+            $query = $this->db->conect()->query($sql);
+            while ($row = $query->fetch()){
+                $item = new JugadorModel();
+                $item->id = $row['id'];
+                $item->nombre = $row['descripcion'];
+              
+
+                array_push($items, $item);
+            }
+            return $items;
+        }catch (PDOException $e){
+            die($e->getMessage());
+        }
+    }
+    
 }

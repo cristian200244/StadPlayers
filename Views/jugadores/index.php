@@ -8,6 +8,23 @@ include_once '../../Models/JugadorModel.php';
 $datos = new JugadorModel();
 $registros = $datos->getAll();
 
+$datos = new JugadorModel();
+$equipos = $datos->equipos();
+
+$datos = new JugadorModel();
+$ligas = $datos->ligas();
+
+$datos = new JugadorModel();
+$paises = $datos->paises();
+
+$datos = new JugadorModel();
+$continentes = $datos->continentes();
+
+$datos = new JugadorModel();
+$posiciones = $datos->posiciones();
+
+$datos = new JugadorModel();
+$perfiles = $datos->perfiles();
 ?>
 
 <main>
@@ -35,33 +52,111 @@ $registros = $datos->getAll();
                                         <div class="row mb-3">
 
 
-                                            <div class="col-md-6">
+                                            <div class="form-floating col-md-6 mt-3">
                                                 <div class="form-floating mb-3 mb-md-0">
                                                     <input type="text" class="form-control" id="nombre_completo" type="text" placeholder="Nombre Completo" name="nombre_completo" required />
                                                     <label for="nombre_completo">Nombre Completo</label>
                                                 </div>
                                             </div>
 
-                                            <div class="col-md-6">
+                                            <div class="form-floating col-md-6 mt-3">
                                                 <div class="form-floating mb-3 mb-md-0">
                                                     <input type="text" class="form-control" id="apodo" placeholder="Apodo" name="apodo" required />
                                                     <label for="apodo">Apodo</label>
                                                 </div>
                                             </div>
-                                            <div class="col-md-6">
+                                            <div class="form-floating col-md-6 mt-3">
                                                 <div class="form-floating mb-3 mb-md-0">
                                                     <input type="text" class="form-control" id="caracteristicas" type="text" placeholder="Caracteristicas" name="caracteristicas" required />
                                                     <label for="nombre_completo">caracterisitcas</label>
                                                 </div>
                                             </div>
 
-                                            <div class="col-md-6">
+                                            <div class="form-floating col-md-6 mt-3">
                                                 <div class="form-floating">
                                                     <label for="fecha_nacimiento" id="fecha_nacimiento" class="form-label">Fecha de nacimiento</label>
                                                     <input type="date" class="form-control" type="datetime" placeholder="Fecha de nacimiento" name="fecha_nacimiento" id="fecha_nacimiento" required>
                                                 </div>
                                             </div>
-                                            <div class="mb-3">
+                                            <!-- <div class="col-md-6 mt-4">
+                                                <div class="form-floating mb-3 mb-md-0">
+                                                    <h2>Equipo</h2>
+                                                </div>
+                                            </div> -->
+
+                                            <div class="form-floating col-md-6 mt-3">
+
+                                                <select class="form-select" id="id_equipo" name="id_equipo" aria-label="Default select example" required>
+                                                    <option selected>Seleccionar Equipo</option>
+                                                    <?php foreach ($equipos as $equipo) :; ?>
+
+                                                        <option value="<?= $equipo->getId() ?>">
+                                                            <?= $equipo->getid_equipos() ?> </option>
+
+                                                    <?php endforeach ?>
+                                                </select>
+                                            </div>
+                                            <div class="form-floating col-md-6 mt-3">
+
+                                                <select class="form-select" id="id_liga" name="id_liga" aria-label="Default select example" required>
+                                                    <option selected>Seleccionar Liga</option>
+                                                    <?php foreach ($ligas as $nombre) :; ?>
+
+                                                        <option value="<?= $nombre->getId() ?>">
+                                                            <?= $nombre->getid_ligas() ?> </option>
+
+                                                    <?php endforeach ?>
+                                                </select>
+                                            </div>
+                                            <div class="form-floating col-md-6 mt-3">
+
+                                                <select class="form-select" id="id_contiente" name="id_contiente" aria-label="Default select example" required>
+                                                    <option selected>Seleccionar Continente</option>
+                                                    <?php foreach ($continentes as $nombre) :; ?>
+
+                                                        <option value="<?= $nombre->getId() ?>">
+                                                            <?= $nombre->getid_continentes() ?> </option>
+
+                                                    <?php endforeach ?>
+                                                </select>
+                                            </div>
+                                            <div class="form-floating col-md-6 mt-3">
+
+                                                <select class="form-select" id="id_pais" name="id_pais" aria-label="Default select example" required>
+                                                    <option selected>Seleccionar Pais</option>
+                                                    <?php foreach ($paises as $nombre) :; ?>
+
+                                                        <option value="<?= $nombre->getId() ?>">
+                                                            <?= $nombre->getid_paises() ?> </option>
+
+                                                    <?php endforeach ?>
+                                                </select>
+                                            </div>
+                                            <div class="form-floating col-md-6 mt-3">
+
+                                                <select class="form-select" id="id_posicion" name="id_posicion" aria-label="Default select example" required>
+                                                    <option selected>Seleccionar Posicion</option>
+                                                    <?php foreach ($posiciones as $nombre) :; ?>
+
+                                                        <option value="<?= $nombre->getId() ?>">
+                                                            <?= $nombre->getid_posicion() ?> </option>
+
+                                                    <?php endforeach ?>
+                                                </select>
+                                            </div>
+                                            <div class="form-floating col-md-6 mt-3">
+
+                                                <select class="form-select" id="id_perfil" name="id_perfil" aria-label="Default select example" required>
+                                                    <option selected>Seleccionar Perfil</option>
+                                                    <?php foreach ($perfiles as $nombre) :; ?>
+
+                                                        <option value="<?= $nombre->getId() ?>">
+                                                            <?= $nombre->getid_perfil() ?> </option>
+
+                                                    <?php endforeach ?>
+                                                </select>
+                                            </div>
+                                            <div class=" mb-3">
                                                 <button class="btn btn-sm btn-primary" type="submit">Guargar</button>
                                             </div>
                                         </div>
@@ -98,13 +193,13 @@ $registros = $datos->getAll();
                                                             <td><?= $row->fecha_nacimiento ?></td>
                                                             <td><?= $row->caracterisitcas ?></td>
                                                             <td><?= $row->id_equipo ?></td>
-                                                            <td><?= $row->id_liga?></td>
+                                                            <td><?= $row->id_liga ?></td>
                                                             <td><?= $row->id_pais ?></td>
                                                             <td><?= $row->id_continente ?></td>
                                                             <td><?= $row->id_posicion ?></td>
-                                                            <td><?= $row->id_perfil?></td>
+                                                            <td><?= $row->id_perfil ?></td>
                                                             <td><?= $row->id_historial_equipos ?></td>
-                                                            <td><?= $row->guardar?></td>
+                                                            <td><?= $row->guardar ?></td>
                                                             <!-- <th scope="col" >Opciones</th> -->
 
                                                             <td>

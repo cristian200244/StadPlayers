@@ -47,14 +47,14 @@ class JugadorController
             'apodo' => $_REQUEST['apodo'],
             'fecha_nacimiento' => $_REQUEST['fecha_nacimiento'],
             'caracteristicas' => $_REQUEST['caracteristicas'],
-            'id_usuario' => $_REQUEST['id_usuario'],
+            // 'id_usuario' => $_REQUEST['id_usuario'],
             'id_equipo' => $_REQUEST['id_equipo'],
             'id_liga' => $_REQUEST['id_liga'],
             'id_pais' => $_REQUEST['id_pais'],
-            'id_continente' => $_REQUEST['id_continente'],
+            'id_contiente' => $_REQUEST['id_contiente'],
             'id_posicion' => $_REQUEST['id_posicion'],
             'id_perfil' => $_REQUEST['id_perfil'],
-            'id_historial_equipos' => $_REQUEST['id_historial_equipos'],
+            // 'id_historial_equipos' => $_REQUEST['id_historial_equipos'],
             // 'perfiles' => $_REQUEST['perfiles'],
         ];
 
