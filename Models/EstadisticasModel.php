@@ -10,6 +10,8 @@ class EstadisticasModel extends stdClass
     public $id;
     public $nombre;
     public $valor;
+    public $nombre_completo;
+    public $equipo;
     private $db;
 
 
@@ -22,6 +24,7 @@ class EstadisticasModel extends stdClass
     {
         return $this->id;
     }
+
 
     public function getbyId($id)
     {
@@ -73,7 +76,111 @@ class EstadisticasModel extends stdClass
         }
     }
 
+    public function getNombreCompleto()
+    {
+        return $this->nombre_completo;
+    }
 
+    public function getPlayers()
+    {
+        $items = [];
+
+        try {
+            $sql = 'SELECT id, nombre_completo FROM jugadores';
+
+            $query = $this->db->conect()->query($sql);
+
+            while ($row = $query->fetch()) {
+                $item       = new  EstadisticasModel();
+                $item->id   = $row['id'];
+                $item->nombre_completo = $row['nombre_completo'];
+
+                array_push($items, $item);
+            }
+            return $items;
+        } catch (PDOException $e) {
+            die($e->getMessage());
+        }
+    }
+
+    public function  getEquipo()
+    {
+        return $this->equipo;
+    }
+
+    public function equipos()
+    {
+        $items = [];
+        
+        try {
+            $sql = 'SELECT id, equipo FROM equipos';
+            $query = $this->db->conect()->query($sql);
+            while ($row = $query->fetch()) {
+                $item           = new EstadisticasModel();
+                $item->id       =$row['id'];
+                $item->equipo   =$row['equipo'];
+
+                array_push($items, $item);
+            }
+            return $items;
+        } catch (PDOException $e) {
+            die($e->getMessage());
+        }
+    }
+
+    public function getTipoPartido()
+    {
+        return $this->nombre;
+    }
+
+    public function TipoPartido()
+    {
+        $items = [];
+
+        try {
+            $sql = 'SELECT id, nombre FROM tipo_partido';
+            $query = $this->db->conect()->query($sql);
+
+            while ($row = $query->fetch()) {
+                $item            = new EstadisticasModel();
+                $item->id        =$row['id'];
+                $item->nombre    =$row['nombre'];
+
+                array_push($items, $item);
+            }
+
+            return $items;
+        } catch (PDOException $e) {
+            die($e->getMessage());
+        }
+    }
+
+
+    public function getNumeroPartido()
+    {
+        return $this->num_partido;
+    }
+
+    public function NumeroPartido()
+    {
+        $items = [];
+        try {
+            $sql = 'SELECT id, num_partido FROM numero_partido';
+            $query = $this->db->conect()->query($sql);
+
+            while ($row = $query->fetch()) {
+                $item                = new EstadisticasModel();
+                $item->id            =$row['id'];
+                $item->num_partido   =$row['num_partido'];
+
+                array_push($items, $item);
+            }
+
+            return $items;
+        } catch (PDOException  $e) {
+            die($e->getMessage());
+        }
+    }
 
     public function store($datos)
     {
