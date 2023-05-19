@@ -1,7 +1,7 @@
 <?php
 
-require_once '../Models/GenerarReportesModel.php';
-
+require_once __DIR__ . '/Models/GenerarReportesModel.php';
+session_start();
 
 //Instanciando la clase CalculadoraController
 $usuario = new ReportesController();
@@ -42,13 +42,11 @@ class ReportesController
     public function Store()
     {
         $datos = [
-            'fechaInicial' => $_REQUEST['fechaInicial'],
-            'fechaFinal' => $_REQUEST['fechaFinal'],
-            'jugadores' => $_REQUEST['jugadores'],
-            // 'id_usuario' => $_REQUEST['id'],
+            'fechaInicial'  => $_REQUEST['fechaInicial'],
+            'fechaFinal'    => $_REQUEST['fechaFinal'],
+            'id_jugador'    => $_REQUEST['id_jugador'],
+            'id_usuario'    => $_SESSION['id'],
         ];
-        var_dump($datos);
-
 
         $result =  $this->reportesModel->Store($datos);
     }

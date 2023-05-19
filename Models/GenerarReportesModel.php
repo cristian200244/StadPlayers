@@ -1,16 +1,17 @@
 <?php
-
+include_once __DIR__ . '../../Config/config_example.php';
+include_once dirname(__FILE__) . '../../Config/rutas.php';
 require_once("conexionModel.php");
-
+session_start();
 
 class ReportesModel
 {
 
     public $id;
     public $nombre_completo;
+    public $id_usuario;
 
     private $db;
-
 
     public function __construct()
     {
@@ -57,18 +58,20 @@ class ReportesModel
 
     public function getPlayers()
     {
+
+        $id_usuario =  $_SESSION['id'];
         $items = [];
 
         try {
-            $sql = 'SELECT id, nombre_completo, id_usuario FROM jugadores WHERE id_usuario= 1';
+
+            $sql = ' SELECT id, nombre_completo FROM jugadores WHERE id_usuario=' . $id_usuario;
 
             $query = $this->db->conect()->query($sql);
             while ($row = $query->fetch()) {
                 $item       = new  ReportesModel();
                 $item->id   = $row['id'];
                 $item->nombre_completo = $row['nombre_completo'];
-                $item->nombre_completo = $row['id_usuario'];
-
+                $item->id_usuario = $id_usuario;
 
                 array_push($items, $item);
             }

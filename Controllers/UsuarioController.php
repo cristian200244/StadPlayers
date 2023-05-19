@@ -71,7 +71,7 @@ class UsuarioController
         $_SESSION['id']       = $results['id'];
         $_SESSION['nickname'] = $results['nickname'];
         $_SESSION['email']    = $results['email'];
-
+        
         $message = '¡Bienvenido!';
         header('Location:../Views/main/MenuPrincipal.php');
       } else {
