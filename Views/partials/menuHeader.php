@@ -1,6 +1,12 @@
 
 <?php
 include_once(__DIR__ . "/../../config/rutas.php");
+// include_once __DIR__ . "../../../Controllers/UsuarioController.php";
+// $restriccion = new UsuarioController();
+
+// if ( !isset($_SESSION['id'])) {
+//      header("Location: ../../index.php");
+//     }
 ?>
 
 <ul class="navbar-nav ms-auto ms-md-0 me-5 me-lg-7">

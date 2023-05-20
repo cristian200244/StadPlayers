@@ -2,11 +2,6 @@
 
 include_once(__DIR__ . "../config/rutas.php");
 
-
-// require_once("../../Models/usuarioLoginModel.php");
-// require_once("../../Controllers/usuarioLoginController.php");
-
-
 ?>
 
 

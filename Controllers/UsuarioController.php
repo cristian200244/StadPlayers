@@ -86,9 +86,13 @@ class UsuarioController
     session_unset();
     session_destroy();
     header('Location: ../index.php');
+    
   }
 }
-  // public function Session()
+// public function Session()
+// if (!isset($_SESSION['id'])) {
+//   header("Location:index.php");
+// }
   // {
   //   $user = new UsuarioModel;
   //   $session = $user->getUserSession();

@@ -16,21 +16,59 @@ class ReportesModel
 
     public function __construct()
     {
-        $this->id_usuario;
+        $this->db = new Database();
+
+        $this->id_usuario = $_SESSION['id'];
         $this->fechaInicial;
         $this->fechaFinal;
         //Instanciar la base de datos en el constructor para poder realizar consultas
-        $this->db = new Database();
     }
 
     //metodos mágicos
+    public function getId()
+    {
+        return $this->id;
+    }
 
+    public function getNombreCompleto()
+    {
+        return $this->nombre_completo;
+    }
 
+    //Metodos propios
+    public function getById()
+    {
+        # code...
+    }
+
+    public function getAll()
+    {
+
+        $sql = "SELECT gr.id, gr.fecha_inicial, gr.fecha_final, j.nombre_completo
+        FROM generar_reporte as gr
+        JOIN jugadores as j ON gr.id_jugador = j.id
+        WHERE gr.id_usuario = $this->id_usuario";
+        try {
+            $items = [];
+            $query = $this->db->conect()->query($sql);
+
+            while ($row = $query->fetch()) {
+                $item = new ReportesModel();
+                $item->fechaInicial     = $row['fecha_inicial'];
+                $item->fechaFinal       = $row['fecha_final'];
+                $item->nombre_completo  = $row['nombre_completo'];
+
+                array_push($items, $item);
+            }
+
+            return $items;
+        } catch (PDOException $e) {
+            die($e->getMessage());
+        }
+    }
     public function store($datos)
     {
         try {
-
-
             $sql = 'INSERT INTO generar_reporte(fecha_inicial, fecha_final, id_jugador, id_usuario)
                      VALUES(:fechaInicial, :fechaFinal, :id_jugador, :id_usuario)';
 
@@ -52,57 +90,21 @@ class ReportesModel
         }
     }
 
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    public function getNombreCompleto()
-    {
-        return $this->nombre_completo;
-    }
 
     public function getPlayers()
     {
-
-        $id_usuario =  $_SESSION['id'];
         $items = [];
 
         try {
 
-            $sql = ' SELECT id, nombre_completo FROM jugadores WHERE id_usuario=' . $id_usuario;
-
+            $sql = "SELECT id, nombre_completo FROM jugadores WHERE id_usuario = $this->id_usuario";
             $query = $this->db->conect()->query($sql);
+
             while ($row = $query->fetch()) {
                 $item       = new  ReportesModel();
                 $item->id   = $row['id'];
                 $item->nombre_completo = $row['nombre_completo'];
-                $item->id_usuario = $id_usuario;
-
-                array_push($items, $item);
-            }
-            return $items;
-        } catch (PDOException $e) {
-            die($e->getMessage());
-        }
-    }
-
-    public function getById($id_usuario)
-    {
-
-        $id_usuario =  $_SESSION['id'];
-        $sql = 'SELECT fecha_inicial,fecha_final FROM generar_reporte WHERE id_usuario =' . $id_usuario;
-        try {
-            $items = [];
-            $query = $this->db->conect()->query($sql);
-
-            while ($row = $query->fetch()) {
-                $item = new ReportesModel();
-                $item->fechaInicial = $row['fecha_inicial'];
-                $item->fechaFinal = $row['fecha_final'];
-
-
-
+                $item->id_usuario = $this->id_usuario;
 
                 array_push($items, $item);
             }

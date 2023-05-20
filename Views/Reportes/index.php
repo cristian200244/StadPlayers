@@ -1,83 +1,70 @@
 <?php
 include_once(__DIR__ . "../../../config/rutas.php");
-
 include_once __DIR__ . "../../../Models/GenerarReportesModel.php";
-
-//Reporte
-$reportes = new ReportesModel();
-$jugadores = $reportes->getPlayers();
 
 include_once(BASE_DIR . "../../Views/partials/header.php");
 include_once(BASE_DIR . "../../Views/partials/aside.php");
 
+$reportes = new ReportesModel();
+$registros = $reportes->getAll();
 ?>
 
 <div class="imgGenReport">
-
-    <div class="container my-3">
-        <div class="row justify-content-center">
-            <div class="col-lg-7">
-                <div class="card shadow-lg border-0 rounded-lg   justify-content-center" style="margin-top: 30%;">
-                    <div class="card-header bg-black text-info">
-                        <h3 class="text-center font-weight-light my-4">Generar Reporte</h3>
-                    </div>
-                    <div class="card-body text-black" style="background-color:#CFDFE0  ;">
-                        <form action="../../Controllers/GenerarReportesController.php" method="POST">
-                            <input type="hidden" name="c" value="1">
-                            <div class="row mb-3">
-                                <div class="col-md-6">
-                                    <div class="form-floating mb-3 mb-md-0">
-                                        <h3>Fecha Inicial</h3>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-floating">
-                                        <input class="form-control" type="date" name="fechaInicial" />
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="row mb-3">
-                                <div class="col-md-6">
-                                    <div class="form-floating mb-3 mb-md-0">
-                                        <h3>Fecha Final</h3>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-floating mb-3 mb-md-0">
-                                        <input class="form-control" class="form-control" type="date" name="fechaFinal" />
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row mb-3">
-                                <div class="col-md-6">
-                                    <div class="form-floating mb-3 mb-md-0">
-                                        <h3>Nombre del Jugador</h3>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-6 ">
-                                    <select name="id_jugador" id="id_jugador" class="btn btn-sm btn-outline-dark p-2 ms-4 ">
-                                        <?php foreach ($jugadores as $jugador) :; ?>
-                                            <option value="<?= $jugador->getId() ?>">
-                                                <?= $jugador->getNombreCompleto() ?></option>";
-                                        <?php endforeach ?>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="mt-4 mb-0">
-                                <div class="d-grid">
-                                    <button type="submit" class="btn btn-primary btn-block">Generar</button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-
-                </div>
+    <main>
+        <div class="card mb-4 p-3 ms-5 me-5 " style="margin-top:15%">
+            <div class="card-header bg-success text-light text-center mt-3 p-3 ms-3 me-3">
+                <i class="fas fa-table me-1"></i>
+                Historial De Reportes Del Jugador
             </div>
-        </div>
-    </div>
+            <div class="card-body">
 
+                <table id="datatablesSimple">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Fecha Inicial</th>
+                            <th scope="col">Fecha Final</th>
+                            <th scope="col">Jugador</th>
+                            <th scope="col" colspan="3">Opciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        if (count($registros) > 0) {
+                            $pos = 1;
+                            foreach ($registros as $registro) {
+                        ?>
+                                <tr>
+                                    <td><?php echo $pos; ?></td>
+                                    <td><?php echo $registro->fechaInicial ?></td>
+                                    <td><?php echo $registro->fechaFinal ?></td>
+                                    <td><?php echo $registro->nombre_completo ?></td>
+                                    <td>
+
+                                        <a href="personas/ver.php?id=<?php echo $registro->id; ?>" class="btn btn-sm btn-outline-info">Ver</a>
+                                        <a href="personas/editar.php?id=<?php echo $registro->id; ?>" class="btn btn-sm btn-outline-warning">Editar</a>
+                                        <a href="personas/eliminar.php?id=<?php echo $registro->id; ?>" class="btn btn-sm btn-outline-danger" value="">Eliminar</a>
+                                </tr>
+                            <?php $pos++;
+                            }
+                        } else { ?>
+                            <tr>
+                                <td colspan=" 9">No hay datos
+                                </td>
+                            </tr>
+                        <?php } ?>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </main>
+</div>
+
+<?php
+include_once(BASE_DIR . "../../Views/partials/footer.php");
+?> </div>
+</main>
 </div>
 
 <?php

@@ -49,17 +49,18 @@ class ReportesController
         ];
 
         $result =  $this->reportesModel->Store($datos);
+        header("Location: ../views/Reportes/index.php");
     }
 
 
-    public function getSessionId()
+    public function getDateId()
     {
         $id_usuario =  $_SESSION['id'];
 
         return $this->reportesModel->getById($id_usuario);
     }
 
-    public function fechasReporte()
+    public function fechasReporte($items)
     {
         $items = [
             'fechaInicial' => ['fechaInicial'],
@@ -67,11 +68,11 @@ class ReportesController
 
         ];
 
-        var_dump($items);
+        // var_dump($items);
         $this->reportesModel->getById($items);
         $result = $items;
         if ($result) {
-            header("Location: ../views/Reportes/viewsReportes.php");
+
             exit();
         }
     }

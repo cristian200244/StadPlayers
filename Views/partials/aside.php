@@ -110,7 +110,7 @@
 
                         <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
                             <div class="sb-sidenav-collapse-arrow">
-                                <a class="nav-link" href="<?= BASE_URL ?>/Views/Reportes/index.php">
+                                <a class="nav-link" href="<?= BASE_URL ?>/Views/Reportes/crear.php">
                                     <i class="fa-solid fa-file-signature fa-shake" style="
                                          color: rgb(255, 244, 31);
                                          font-size: 14px;
