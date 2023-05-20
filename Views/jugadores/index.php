@@ -25,6 +25,15 @@ $posiciones = $datos->posiciones();
 
 $datos = new JugadorModel();
 $perfiles = $datos->perfiles();
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Tu código de procesamiento del formulario aquí
+
+    // Redireccionar al archivo index.php después de procesar los datos
+    header('Location: index.php');
+    exit;
+}
+?>
 ?>
 
 <main>
@@ -156,71 +165,151 @@ $perfiles = $datos->perfiles();
                                                     <?php endforeach ?>
                                                 </select>
                                             </div>
-                                            <div class=" mb-3">
-                                                <button class="btn btn-sm btn-primary" type="submit">Guargar</button>
+
+                                            <div class="row row-cols-1 row-cols-md-2 g-4">
+                                                <div class="col">
+                                                    <div class="card">
+
+                                                        <div class="card-body">
+
+
+                                                            <div class="card-body card-header bg-success">
+                                                                <h5 class="text-center text-light my-4 fs-4">Historial Equipos</h5>
+                                                            </div>
+                                                            <div class="form-floating  mt-3">
+
+                                                                <select class="form-select" id="id_equipo" name="id_equipo" aria-label="Default select example" required>
+                                                                    <option selected>Seleccionar Equipo</option>
+                                                                    <?php foreach ($equipos as $equipo) :; ?>
+
+                                                                        <option value="<?= $equipo->getId() ?>">
+                                                                            <?= $equipo->getid_equipos() ?> </option>
+
+                                                                    <?php endforeach ?>
+                                                                </select>
+                                                            </div>
+
+
+                                                            <div class="form-floating col-md-6 mt-3">
+                                                                <div class="form-floating">
+                                                                    <label for="fecha_inicial" id="fecha_inicial" class="form-label">Fecha Inicial</label>
+                                                                    <input type="date" class="form-control" type="datetime" placeholder="Fecha Inicial" name="fecha_inicial" id="fecha_inicial" required>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="form-floating col-md-6 mt-3">
+                                                                <div class="form-floating">
+                                                                    <label for="fecha_terminacion" id="fecha_terminacion" class="form-label">Fecha Terminacion</label>
+                                                                    <input type="date" class="form-control" type="datetime" placeholder="Fecha Terminacion" name="fecha_terminacion" id="fecha_terminacion" required>
+                                                                </div>
+                                                            </div>
+                                                            <table class="table">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th scope="col">#</th>
+                                                                        <th scope="col">Nombre Equipo</th>
+                                                                        <th scope="col">Fecha Inicial</th>
+                                                                        <th scope="col">Fecha Terminacion</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <th scope="row">1</th>
+                                                                        <td>Mark</td>
+                                                                        <td>Otto</td>
+                                                                        <td>@mdo</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <th scope="row">2</th>
+                                                                        <td>Jacob</td>
+                                                                        <td>Thornton</td>
+                                                                        <td>@fat</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <th scope="row">3</th>
+                                                                        <td colspan="2">Larry the Bird</td>
+                                                                        <td>@twitter</td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col">
+                                                    <div class="card">
+                                                        <img src="..." class="card-img-top" alt="...">
+                                                        <div class="card-body">
+                                                            <h5 class="card-title">Card title</h5>
+                                                            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <table class="table">
+                                                    <thead>
+                                                        <tr>
+                                                            <!-- <h2>sdsa</h2> -->
+                                                            <th scope="col">#</th>
+                                                            <th scope="col">Nombre Completo</th>
+                                                            <th scope="col">apodo</th>
+                                                            <th scope="col">Fecha Nacimiento</th>
+                                                            <th scope="col">caracteristicas</th>
+                                                            <th scope="col">Equipo</th>
+                                                            <th scope="col">Liga</th>
+                                                            <th scope="col">Pais</th>
+                                                            <th scope="col">Continente</th>
+                                                            <th scope="col">Posicion</th>
+                                                            <th scope="col">Perfil</th>
+                                                            <th scope="col">Historial Equipo</th>
+                                                            <th scope="col" colspan="2">Opcion</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <?php
+                                                        if ($registros) {
+                                                            foreach ($registros as $row) {
+
+                                                        ?>
+
+                                                                <tr>
+
+                                                                    <td><?= $row->id ?></td>
+                                                                    <td><?= $row->nombre_completo ?></td>
+                                                                    <td><?= $row->apodo ?></td>
+                                                                    <td><?= $row->fecha_nacimiento ?></td>
+                                                                    <td><?= $row->caracterisitcas ?></td>
+                                                                    <td><?= $row->id_equipo ?></td>
+                                                                    <td><?= $row->id_liga ?></td>
+                                                                    <td><?= $row->id_pais ?></td>
+                                                                    <td><?= $row->id_continente ?></td>
+                                                                    <td><?= $row->id_posicion ?></td>
+                                                                    <td><?= $row->id_perfil ?></td>
+
+                                                                    <td><?= $row->guardar ?></td>
+                                                                    <!-- <th scope="col" >Opciones</th> -->
+
+                                                                    <td>
+                                                                        <a class="btn btn-sm btn-outline-warning" href="../Controllers/calculadoraController.php?c=2&id=<?= $row->getId() ?>">Actualizar</a>
+                                                                    </td>
+                                                                    <td>
+                                                                        <a class="btn btn-sm btn-outline-danger " href="../Controllers/calculadoraController.php?c=4&id=<?= $row->getId() ?>">Eliminar</a>
+                                                                    </td>
+                                                                </tr>
+                                                            <?php
+                                                            }
+                                                        } else {
+                                                            ?>
+                                                            <tr class=" text-center">
+                                                                <td colspan="6">Sin datos</td>
+                                                            </tr>
+                                                        <?php
+                                                        }
+                                                        ?>
+                                                    </tbody>
+                                                </table>
                                             </div>
                                         </div>
-                                        <table class="table">
-                                            <thead>
-                                                <tr>
-                                                    <!-- <h2>sdsa</h2> -->
-                                                    <th scope="col">#</th>
-                                                    <th scope="col">Nombre Completo</th>
-                                                    <th scope="col">apodo</th>
-                                                    <th scope="col">Fecha Nacimiento</th>
-                                                    <th scope="col">caracteristicas</th>
-                                                    <th scope="col">Equipo</th>
-                                                    <th scope="col">Liga</th>
-                                                    <th scope="col">Pais</th>
-                                                    <th scope="col">Continente</th>
-                                                    <th scope="col">Posicion</th>
-                                                    <th scope="col">Perfil</th>
-                                                    <th scope="col">Historial Equipo</th>
-                                                    <th scope="col" colspan="2">Opcion</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <?php
-                                                if ($registros) {
-                                                    foreach ($registros as $row) {
-
-                                                ?>
-                                                        <tr>
-
-                                                            <td><?= $row->id ?></td>
-                                                            <td><?= $row->nombre_completo ?></td>
-                                                            <td><?= $row->apodo ?></td>
-                                                            <td><?= $row->fecha_nacimiento ?></td>
-                                                            <td><?= $row->caracterisitcas ?></td>
-                                                            <td><?= $row->id_equipo ?></td>
-                                                            <td><?= $row->id_liga ?></td>
-                                                            <td><?= $row->id_pais ?></td>
-                                                            <td><?= $row->id_continente ?></td>
-                                                            <td><?= $row->id_posicion ?></td>
-                                                            <td><?= $row->id_perfil ?></td>
-                                                            <td><?= $row->id_historial_equipos ?></td>
-                                                            <td><?= $row->guardar ?></td>
-                                                            <!-- <th scope="col" >Opciones</th> -->
-
-                                                            <td>
-                                                                <a class="btn btn-sm btn-outline-warning" href="../Controllers/calculadoraController.php?c=2&id=<?= $row->getId() ?>">Actualizar</a>
-                                                            </td>
-                                                            <td>
-                                                                <a class="btn btn-sm btn-outline-danger " href="../Controllers/calculadoraController.php?c=4&id=<?= $row->getId() ?>">Eliminar</a>
-                                                            </td>
-                                                        </tr>
-                                                    <?php
-                                                    }
-                                                } else {
-                                                    ?>
-                                                    <tr class=" text-center">
-                                                        <td colspan="6">Sin datos</td>
-                                                    </tr>
-                                                <?php
-                                                }
-                                                ?>
-                                            </tbody>
-                                        </table>
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -230,6 +319,7 @@ $perfiles = $datos->perfiles();
         </div>
     </div>
 </main>
+
 
 <?php
 include_once(BASE_DIR . "../../Views/partials/footer.php");

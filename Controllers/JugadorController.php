@@ -54,8 +54,8 @@ class JugadorController
             'id_contiente' => $_REQUEST['id_contiente'],
             'id_posicion' => $_REQUEST['id_posicion'],
             'id_perfil' => $_REQUEST['id_perfil'],
-            // 'id_historial_equipos' => $_REQUEST['id_historial_equipos'],
-            // 'perfiles' => $_REQUEST['perfiles'],
+            'id_historial_equipos' => $_REQUEST['id_historial_equipos'],
+            'perfiles' => $_REQUEST['perfiles'],
         ];
 
         $result = $this->jugador->store($datos);
