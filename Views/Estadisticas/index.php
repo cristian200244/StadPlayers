@@ -24,6 +24,7 @@ $tipoPartido = $data->TipoPartido();
 $datos = new EstadisticasModel();
 $nPartido = $datos->NumeroPartido();
 
+
 ?>
 
 <audio id="sound" src="../../public/assets/audio/error.mp3" preload="auto"></audio>
@@ -40,7 +41,7 @@ $nPartido = $datos->NumeroPartido();
                     </div>
                     <div class="card-body text-black" style="background-color:#CFDFE0  ;">
 
-                        <form>
+                        <form action="../../Controllers/EstadisticasController.php?c=1" method="POST">
                             <div class="card d-flex justify-content-around  py-3 px-3">
                                 <div class="row mb-3 ">
                                     <div class="col-md-6 mt-3 ">
@@ -49,7 +50,7 @@ $nPartido = $datos->NumeroPartido();
                                         </div>
                                     </div>
                                     <div class="form-floating col-md-6">
-                                        <select class="form-select" aria-label="Default select example" name="jugadores" id="jugadores">
+                                        <select class="form-select" aria-label="Default select example" name="id_jugador" id="id_jugador">
                                             <option value="" disabled selected>Selecciona una opción</option>
                                             <?php foreach ($jugadores as $jugador) :; ?>
 
@@ -66,7 +67,7 @@ $nPartido = $datos->NumeroPartido();
                                         </div>
                                     </div>
                                     <div class=" form-floating col-md-6 mt-3">
-                                        <select class="form-select" aria-label="Default select example" name="EquipoRival" id="EquipoRival">
+                                        <select class="form-select" aria-label="Default select example" name="id_equipo" id="id_quipo">
                                             <option value="" disabled selected>Selecciona una opción</option>
                                             <?php foreach ($equipos as $equipo) :; ?>
 
@@ -83,7 +84,7 @@ $nPartido = $datos->NumeroPartido();
                                         </div>
                                     </div>
                                     <div class=" form-floating col-md-6 mt-3">
-                                        <select class="form-select" aria-label="Default select example" name="TipoPartido" id="TipoPartido">
+                                        <select class="form-select" aria-label="Default select example" name="id_tipo_partido" id="id_tipo_partido">
                                             <option value="" disabled selected>Selecciona una opción</option>
                                             <?php foreach ($tipoPartido as $tipo) :; ?>
 
@@ -99,7 +100,7 @@ $nPartido = $datos->NumeroPartido();
                                         </div>
                                     </div>
                                     <div class=" form-floating col-md-6 mt-3">
-                                        <select class="form-select" aria-label="Default select example" name="NumeroPartido" id="NumeroPartido">
+                                        <select class="form-select" aria-label="Default select example" name="numero_partido" id="numero_partido">
                                             <option value="" disabled selected>Selecciona una opción</option>
                                             <?php foreach ($nPartido as $numero) :; ?>
 
@@ -115,7 +116,7 @@ $nPartido = $datos->NumeroPartido();
                                         </div>
                                     </div>
                                     <div class=" form-floating col-md-6 mt-3">
-                                        <select class="form-select" aria-label="Default select example" name="EquipoRival" id="EquipoRival">
+                                        <select class="form-select" aria-label="Default select example" name="equipo_rival" id="equipo_rival">
                                             <option value="" disabled selected>Selecciona una opción</option>
                                             <?php foreach ($equipos as $equipo) :; ?>
 
@@ -134,7 +135,7 @@ $nPartido = $datos->NumeroPartido();
                                     </div>
                                     <div class=" form-floating col-md-6 mt-3">
                                         <div class="form-floating">
-                                            <input class="form-control" type="date" name="fechaInicial" id="fechaInicial" />
+                                            <input class="form-control" type="date" name="fecha_del_partido" id="fecha_del_partido" />
                                         </div>
 
                                     </div>
@@ -144,11 +145,9 @@ $nPartido = $datos->NumeroPartido();
 
                             </div>
 
-
-
-
                             <div class="mt-4 mb-0">
-                                <div class="d-grid"><a class="btn btn-success btn-block" id="submitBtn" href="LlenarEstadistica.php">Ingresar Estadisticas</a>
+                                <div class="d-grid">
+                                    <button class="btn btn-success btn-block" id="submitBtn">Ingresar Estadísticas</button>
                                 </div>
                             </div>
                         </form>
@@ -160,6 +159,7 @@ $nPartido = $datos->NumeroPartido();
     </div>
 
 </div>
+
 
 <script>
     function mostrarAlerta() {
@@ -180,7 +180,7 @@ $nPartido = $datos->NumeroPartido();
 
     function validateForm() {
         var selectElements = document.querySelectorAll('select');
-        var fechaPartido = document.getElementById('fechaInicial').value;
+        var fechaPartido = document.getElementById('fecha_del_partido').value;
 
         if (fechaPartido === "") {
             return mostrarAlerta();
@@ -200,7 +200,24 @@ $nPartido = $datos->NumeroPartido();
             event.preventDefault(); // Evitar la redirección
         }
     });
+
+    var selectElements = document.querySelectorAll('select');
+    console.log(selectElements);
+
+    selectElements.forEach((select) => {
+        select.addEventListener('change', () => {
+            let valorOption = select.value;
+            console.log(valorOption);
+
+            var optionSelect = select.options[select.selectedIndex];
+            console.log("Opción:", optionSelect.text);
+            console.log("Valor:", optionSelect.value);
+        });
+    });
 </script>
+
+
+
 
 <?php
 include_once(BASE_DIR . "../../Views/partials/footer.php");

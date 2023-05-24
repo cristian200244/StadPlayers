@@ -29,14 +29,29 @@ class EstadisticasController
 
     public function index()
     {
-
         return $this->estadistica->getAll();
     }
 
 
-
     public function store()
     {
+        $datos = [
+            'id_jugador'        => $_REQUEST['id_jugador'],
+            'fecha_del_partido' => $_REQUEST['fecha_del_partido'],
+            'id_tipo_partido'   => $_REQUEST['id_tipo_partido'],
+            'id_equipo'         => $_REQUEST['id_equipo'],
+            'equipo_rival'      => $_REQUEST['equipo_rival'],
+            'numero_partido'    => $_REQUEST['numero_partido'],
+        ];
+
+        $result = $this->estadistica->store($datos);
+
+
+        if ($result) {
+            header("Location: ../Views/Estadisticas/LlenarEstadistica.php");
+            exit();
+        } 
+        return $result;
     }
 
     public function update()
@@ -62,4 +77,4 @@ class EstadisticasController
             exit();
         }
     }
-}
+} 

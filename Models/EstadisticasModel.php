@@ -4,8 +4,10 @@ require_once __DIR__ . '../../config/config_example.php';
 require_once 'conexionModel.php';
 
 
+
 class EstadisticasModel extends stdClass
 {
+
 
     public $id;
     public $nombre;
@@ -28,6 +30,8 @@ class EstadisticasModel extends stdClass
 
     public function getbyId($id)
     {
+        var_dump($id);
+        die();
         $operacion = [];
 
         try {
@@ -49,6 +53,7 @@ class EstadisticasModel extends stdClass
             die($e->getMessage());
         }
     }
+
 
     public function getAll()
     {
@@ -76,10 +81,14 @@ class EstadisticasModel extends stdClass
         }
     }
 
+
+
     public function getNombreCompleto()
     {
         return $this->nombre_completo;
     }
+
+
 
     public function getPlayers()
     {
@@ -103,22 +112,26 @@ class EstadisticasModel extends stdClass
         }
     }
 
+
+
     public function  getEquipo()
     {
         return $this->equipo;
     }
 
+
+
     public function equipos()
     {
         $items = [];
-        
+
         try {
             $sql = 'SELECT id, equipo FROM equipos';
             $query = $this->db->conect()->query($sql);
             while ($row = $query->fetch()) {
                 $item           = new EstadisticasModel();
-                $item->id       =$row['id'];
-                $item->equipo   =$row['equipo'];
+                $item->id       = $row['id'];
+                $item->equipo   = $row['equipo'];
 
                 array_push($items, $item);
             }
@@ -128,10 +141,14 @@ class EstadisticasModel extends stdClass
         }
     }
 
+
+
     public function getTipoPartido()
     {
         return $this->nombre;
     }
+
+
 
     public function TipoPartido()
     {
@@ -143,8 +160,8 @@ class EstadisticasModel extends stdClass
 
             while ($row = $query->fetch()) {
                 $item            = new EstadisticasModel();
-                $item->id        =$row['id'];
-                $item->nombre    =$row['nombre'];
+                $item->id        = $row['id'];
+                $item->nombre    = $row['nombre'];
 
                 array_push($items, $item);
             }
@@ -156,10 +173,13 @@ class EstadisticasModel extends stdClass
     }
 
 
+
     public function getNumeroPartido()
     {
         return $this->num_partido;
     }
+
+
 
     public function NumeroPartido()
     {
@@ -170,8 +190,8 @@ class EstadisticasModel extends stdClass
 
             while ($row = $query->fetch()) {
                 $item                = new EstadisticasModel();
-                $item->id            =$row['id'];
-                $item->num_partido   =$row['num_partido'];
+                $item->id            = $row['id'];
+                $item->num_partido   = $row['num_partido'];
 
                 array_push($items, $item);
             }
@@ -182,9 +202,41 @@ class EstadisticasModel extends stdClass
         }
     }
 
+
     public function store($datos)
     {
+        $fecha_del_partido = $datos['fecha_del_partido'];
+        $tipo_partido      = $datos['id_tipo_partido'];
+        $jugador           = $datos['id_jugador'];
+        $equipo            = $datos['id_equipo'];
+        $equipo_rival      = $datos['equipo_rival'];
+        $numero_partido    = $datos['numero_partido'];
+
+        try {
+            $sql = "INSERT INTO estadisticas_encuentro (fecha_del_partido, id_tipo_partido, id_jugador, id_equipo, equipo_rival, numero_partido) VALUES (:fecha_del_partido, :id_tipo_partido, :id_jugador, :id_equipo, :equipo_rival, :numero_partido)";
+
+            $prepare = $this->db->conect()->prepare($sql);
+            $query = $prepare->execute([
+                'fecha_del_partido' => $fecha_del_partido,
+                'id_tipo_partido'   => $tipo_partido,
+                'id_jugador'        => $jugador,
+                'id_equipo'         => $equipo,
+                'equipo_rival'      => $equipo_rival,
+                'numero_partido'    => $numero_partido
+            ]);
+
+            if ($query) {
+
+                return true;
+            }
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+
+            return false;
+        }
     }
+
+
 
     public function update($datos)
     {
@@ -205,6 +257,7 @@ class EstadisticasModel extends stdClass
             die($e->getMessage());
         }
     }
+
 
     public function delete($id)
     {

@@ -95,7 +95,7 @@ $registros = $data->getAll();
         axios.post(`../../Controllers/EstadisticasController.php?c=2&id=${id}&valor=${valor}`)
             .then(function(response) {
                 elemento.value = response.data.valor
-            })
+            })  
             .catch(function(error) {
                 console.error(error);
             });
