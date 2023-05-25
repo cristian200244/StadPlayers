@@ -57,8 +57,34 @@ $registros = $data->getAll();
 
                                     </div>
 
+                                    <hr>
+
+                                    <?php
+                                        if ($registros) {
+                                            foreach ($registros as $registro) { ?>
+                                                <div class="col-md-6">
+
+                                                    <div class="col m-4">
+                                                        <input class="text-center" type="number" id="estadistica-<?= $registro->getId() ?>" name="estadistica-<?= $registro->getId() ?>" value="<?= $registro->valor ?>" min="0" disabled />
+                                                    </div>
+
+                                                    <a class="btn btn-sm btn-danger" onclick="operacion(<?= $registro->getId() ?> ,'restar')">-</a>
+
+
+                                                    <label for="" class="form-label"><?= $registro->nombre ?></label>
+
+
+                                                    <a class="btn btn-sm btn-success" onclick="operacion(<?= $registro->getId() ?>,'sumar')">+</a>
+
+                                                </div>
+
+                                        <?php }
+                                        }
+                                        ?>
+
+
                                 </div>
-                            </div> 
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -95,7 +121,7 @@ $registros = $data->getAll();
         axios.post(`../../Controllers/EstadisticasController.php?c=2&id=${id}&valor=${valor}`)
             .then(function(response) {
                 elemento.value = response.data.valor
-            })  
+            })
             .catch(function(error) {
                 console.error(error);
             });
