@@ -64,6 +64,7 @@ class EstadisticasModel extends stdClass
             $sql = 'SELECT ec.id AS id, e.nombre, ec.valor
             FROM estadisticas_count AS ec
             JOIN estadisticas AS e ON e.id = ec.id_estadistica';
+
             $query  = $this->db->conect()->query($sql);
 
             while ($registro = $query->fetch()) {
@@ -236,7 +237,24 @@ class EstadisticasModel extends stdClass
         }
     }
 
+    public function storeEstadisticasCount($lastId)
+    {
+        $sql = "INSERT INTO estadisticas_count (id_encuentro) VALUES ($lastId)";
+        $prepare = $this->db->conect()->prepare($sql);
+        $query = $prepare->execute([
+            'id'     =>$lastId['id'],
+        ]);
 
+        if ($query) {
+            return true;
+        }else {
+            return false;
+        }
+        
+
+        return $query; // Opcionalmente, puedes retornar el resultado de la operación si es necesario
+    
+    }
 
     public function update($datos)
     {

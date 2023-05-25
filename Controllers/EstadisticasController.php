@@ -44,13 +44,19 @@ class EstadisticasController
             'numero_partido'    => $_REQUEST['numero_partido'],
         ];
 
+
+
         $result = $this->estadistica->store($datos);
 
-
         if ($result) {
+
+            $getIdEncuentro = lastId();
+            $idJugador     = $_REQUEST['id_jugador'];
+            $this->estadistica->storeEstadisticasCount($getIdEncuentro, $idJugador);
+
             header("Location: ../Views/Estadisticas/LlenarEstadistica.php");
             exit();
-        } 
+        }
         return $result;
     }
 
@@ -77,4 +83,4 @@ class EstadisticasController
             exit();
         }
     }
-} 
+}
