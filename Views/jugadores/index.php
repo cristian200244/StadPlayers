@@ -1,39 +1,7 @@
 <?php
-
-include_once(__DIR__ . "../../../config/rutas.php");
-include_once(BASE_DIR . "../../Views/partials/header.php");
-include_once(BASE_DIR . "../../Views/partials/aside.php");
-
-include_once '../../Models/JugadorModel.php';
-$datos = new JugadorModel();
-$registros = $datos->getAll();
-
-$datos = new JugadorModel();
-$equipos = $datos->equipos();
-
-$datos = new JugadorModel();
-$ligas = $datos->ligas();
-
-$datos = new JugadorModel();
-$paises = $datos->paises();
-
-$datos = new JugadorModel();
-$continentes = $datos->continentes();
-
-$datos = new JugadorModel();
-$posiciones = $datos->posiciones();
-
-$datos = new JugadorModel();
-$perfiles = $datos->perfiles();
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Tu código de procesamiento del formulario aquí
-
-    // Redireccionar al archivo index.php después de procesar los datos
-    header('Location: index.php');
-    exit;
-}
-?>
+  include_once(__DIR__ . "../../../config/rutas.php");
+  include_once(BASE_DIR . "../../Views/partials/header.php");
+  include_once(BASE_DIR . "../../Views/partials/aside.php");
 ?>
 
 <main>

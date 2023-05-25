@@ -156,6 +156,31 @@ form .containerTitulo {
   }
 }
 
+
+.imgGen {
+
+  background: url(../../assets/img/futbol3.jpg.crdownload);
+  background-position: center;
+  height: calc(100vh - 85px);
+  margin-left: 0%;
+  margin-right: 0%;
+  padding-left: 0%;
+  padding-right: 0;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  height: 100vw;
+  width: 100%;
+
+}
+
+@media screen and (max-width: 972px) {
+  .imgGen {
+    height: 100%;
+
+  }
+}
+
 .imgIngreEstad {
 
   background: url(../../assets/img/reportes6.png);
@@ -174,7 +199,7 @@ form .containerTitulo {
 }
 
 @media screen and (max-width: 972px) {
-  .imgGenReport {
+  .imgIngreEstad {
     height: 100%;
 
   }

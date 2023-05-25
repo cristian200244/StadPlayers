@@ -1,17 +1,16 @@
 <?php
-require_once(__DIR__ . "../../../config/rutas.php");
-require_once(BASE_DIR . '../../Models/GenerarReportesModel.php');
+include_once(__DIR__ . "../../../config/rutas.php");
 
-//Instancia
-$reportes = new ReportesModel();
-
+include_once __DIR__."../../../Models/GenerarReportesModel.php";
 //Reporte
+$reportes = new ReportesModel();
 $jugadores = $reportes->getPlayers();
-
-
-require_once(BASE_DIR . "../../Views/main/header.php");
-require_once(BASE_DIR . "../../Views/partials/aside.php");
+include_once(BASE_DIR . "../../Views/partials/header.php");
+include_once(BASE_DIR . "../../Views/partials/aside.php");
+//Instancia
 ?>
+
+
 
 <div class="imgGenReport">
 
@@ -82,5 +81,5 @@ require_once(BASE_DIR . "../../Views/partials/aside.php");
 </div>
 
 <?php
-include_once(BASE_DIR . "../../Views/main/footer.php");
+include_once(BASE_DIR . "../../Views/partials/footer.php");
 ?>
