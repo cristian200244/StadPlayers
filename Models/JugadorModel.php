@@ -9,7 +9,7 @@ class JugadorModel extends stdClass
     public $apodo;
     public $fecha_nacimiento;
     public $caracteristicas;
-    // public $id_usuario;
+
     public $id_equipo;
     public $id_liga;
     public $id_pais;
@@ -27,7 +27,7 @@ class JugadorModel extends stdClass
         $this->apodo;
         $this->fecha_nacimiento;
         $this->caracteristicas;
-        //    $this->id_usuario;
+
         $this->id_equipo;
         $this->id_liga;
         $this->id_pais;
@@ -118,14 +118,27 @@ class JugadorModel extends stdClass
     }
     public function store($datos)
     {
+        $nomnbre_completo = $datos['nombre_completo'];
+        $apodo      = $datos['apodo'];
+        $fecha_nacimiento           = $datos['fecha_nacimiento'];
+        $caracteristicas            = $datos['caracteristicas'];
+        $id_equipo      = $datos['id_equipo'];
+        $id_liga    = $datos['id_liga'];
+        $id_pais    = $datos['id_pais'];
+        $id_contiente    = $datos['id_continente'];
+        $id_posicion    = $datos['id_posicion'];
+        $id_perfil    = $datos['id_perfil'];
+
+
 
         try {
 
 
-            $sql = 'INSERT INTO jugadores(nombre_completo, apodo, fecha_nacimiento, caracteristicas, id_equipo, id_liga, id_pais, id_contiente, id_posicion, id_perfil, id_hitorial_equipos,id_usuario) VALUES(:nombre_completo, :apodo, :fecha_nacimiento, :caracteristicas, :id_equipo, :id_liga, :id_pais, :id_contiente, :id_posicion, :id_perfil, ,:id_usuario)';
+            $sql = 'INSERT INTO jugadores(nombre_completo, apodo, fecha_nacimiento, caracteristicas, id_usuario,id_equipo, id_liga, id_pais, id_contiente, id_posicion, id_perfil, id_hitorial_equipos,) VALUES(:nombre_completo, :apodo, :fecha_nacimiento, :caracteristicas, :id_usuario, :id_equipo, :id_liga, :id_pais, :id_contiente, :id_posicion, :id_perfil)';
 
             $prepare = $this->db->conect()->prepare($sql);
             $query = $prepare->execute([
+                'id_usuario'   => $datos['id_usuario'],
                 'nombre_completo'   => $datos['nombre_completo'],
                 'apodo'   => $datos['apodo'],
                 'fecha_nacimiento' => $datos['fecha_nacimiento'],
@@ -136,21 +149,22 @@ class JugadorModel extends stdClass
                 'id_contiente' => $datos['id_contiente'],
                 'id_posicion' => $datos['id_posicion'],
                 'id_perfil' => $datos['id_perfil'],
-                'id_historial_equipos' =>$datos['id_historial_equipos'],
-                'id_usuario' => 1, // Reemplaza el 1 por el valor correcto del usuario
-                
+                'id_historial_equipos' => $datos['id_historial_equipos'],
+
             ]);
 
-
-
-
             if ($query) {
+
                 return true;
             }
         } catch (PDOException $e) {
-            die($e->getMessage());
+            echo $e->getMessage();
+
+            return false;
         }
     }
+
+
     public function getid_equipos()
     {
         return $this->equipo;
@@ -285,6 +299,31 @@ class JugadorModel extends stdClass
                 $item = new JugadorModel();
                 $item->id = $row['id'];
                 $item->nombre = $row['descripcion'];
+
+
+                array_push($items, $item);
+            }
+            return $items;
+        } catch (PDOException $e) {
+            die($e->getMessage());
+        }
+    }
+
+    public function getid_copa()
+    {
+        return $this->nombre;
+    }
+
+    public function copas()
+    {
+        $items = [];
+        try {
+            $sql = 'SELECT  id, nombre FROM copas';
+            $query = $this->db->conect()->query($sql);
+            while ($row = $query->fetch()) {
+                $item = new JugadorModel();
+                $item->id = $row['id'];
+                $item->nombre = $row['nombre'];
 
 
                 array_push($items, $item);

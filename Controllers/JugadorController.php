@@ -10,24 +10,16 @@ class JugadorController
 
     public function __construct()
     {
-        $this->jugador = new JugadorModel();
+        $this->jugador = new EstadisticasModel();
 
-        var_dump($_REQUEST);
-        echo "<hr>";
         if (isset($_REQUEST['c'])) {
             switch ($_REQUEST['c']) {
-                case 1: //Almacenar en la base de datos
+                case 1:
                     self::store();
                     break;
-                    // case 2: //Ver usuario
-                    //     self::show();
-                    //     break;
-                    // case 3: //Actualizar el registro 
-                    //     self::update();
-                    //     break;
-                    // case 4: //Actualizar el registro 
-                    //     self::delete();
-                    //     break;
+                case 2:
+                    self::update();
+                    break;
                 default:
                     self::index();
                     break;
@@ -47,7 +39,7 @@ class JugadorController
             'apodo' => $_REQUEST['apodo'],
             'fecha_nacimiento' => $_REQUEST['fecha_nacimiento'],
             'caracteristicas' => $_REQUEST['caracteristicas'],
-            // 'id_usuario' => $_REQUEST['id_usuario'],
+            'id_usuario' => $_REQUEST['id_usuario'],
             'id_equipo' => $_REQUEST['id_equipo'],
             'id_liga' => $_REQUEST['id_liga'],
             'id_pais' => $_REQUEST['id_pais'],
@@ -55,15 +47,39 @@ class JugadorController
             'id_posicion' => $_REQUEST['id_posicion'],
             'id_perfil' => $_REQUEST['id_perfil'],
             'id_historial_equipos' => $_REQUEST['id_historial_equipos'],
-            'perfiles' => $_REQUEST['perfiles'],
         ];
 
         $result = $this->jugador->store($datos);
 
         if ($result) {
-            header("Location: ../views//jugadores//index.php");
+            header("Location: ../views/jugadores/index.php");
             exit();
         }
         return $result;
+    }
+
+
+    public function update()
+    {
+        $datos = [
+            'id'     => $_REQUEST['id'],
+            'valor'  => $_REQUEST['valor'],
+        ];
+
+        $result = $this->jugador->update($datos);
+
+        if ($result) {
+            echo json_encode(array('success' => 1, 'valor' => $datos['valor']));
+        }
+    }
+
+    public function delete()
+    {
+        $id = $_REQUEST['id'];
+        $result = $this->jugador->delete($id);
+        if ($result) {
+            header("Location: ../Views/Estadisticas/index.php");
+            exit();
+        }
     }
 }
