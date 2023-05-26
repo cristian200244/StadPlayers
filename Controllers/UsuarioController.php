@@ -17,19 +17,19 @@ class UsuarioController
     if (isset($_REQUEST['c'])) {
       $controlador = $_REQUEST['c'];
       switch ($controlador) {
-          case 1: //Store
-            self::Store();
-               break;
-          case 2: //Eliminar
-              // self::destroy();
+        case 1: //Store
+          self::Store();
+          break;
+        case 2: //Eliminar
+          // self::destroy();
 
-              break;
-          case 3: //Ver por operacion
-              // self::show();
-              break;
-          case 4:
-              // self::update();
-              break;
+          break;
+        case 3: //Ver por operacion
+          // self::show();
+          break;
+        case 4:
+          // self::update();
+          break;
         case 5:
           self::InciarSesion();
           break;
@@ -71,7 +71,7 @@ class UsuarioController
         $_SESSION['id']       = $results['id'];
         $_SESSION['nickname'] = $results['nickname'];
         $_SESSION['email']    = $results['email'];
-        
+
         $message = '¡Bienvenido!';
         header('Location:../Views/main/MenuPrincipal.php');
       } else {
@@ -86,7 +86,6 @@ class UsuarioController
     session_unset();
     session_destroy();
     header('Location: ../index.php');
-    
   }
 }
 // public function Session()
