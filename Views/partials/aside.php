@@ -122,7 +122,7 @@
                             </div>
 
                             <div class="sb-sidenav-collapse-arrow">
-                                <a class="nav-link" href="<?= BASE_URL ?>/Views/Reportes/VerReportes.php">
+                                <a class="nav-link" href="<?= BASE_URL ?>/Views/Reportes/index.php">
                                     <i class="fa-solid fa-file-export fa-beat-fade" style="
                                          color: rgb(255, 72, 31);
                                          font-size: 14px;

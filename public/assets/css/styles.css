@@ -183,6 +183,31 @@ form .containerTitulo {
   }
 }
 
+.imgReporteIndividual {
+
+  background: url(../../assets/img/reporteIndividual.jpg);
+  background-position: center;
+  height: calc(100vh - 85px);
+  margin-left: 0%;
+  margin-right: 0%;
+  padding-left: 0%;
+  padding-right: 0;
+  margin-top: auto;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  height: 100vw;
+  width: 100%;
+
+
+}
+
+@media screen and (max-width: 972px) {
+  .imgReporteIndividual {
+    height: 120%;
+
+  }
+}
 .menu_Principal {
 
   margin-top: 20%;
