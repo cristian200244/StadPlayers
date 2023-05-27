@@ -161,7 +161,7 @@ $copas = $datos->copas();
                                                     </select>
                                                 </div>
 
-                                                <div class="row row-cols-1 row-cols-md-2 g-4" id="id_historial_equipos" name="id_historial_equipos">
+                                                <!-- <div class="row row-cols-1 row-cols-md-2 g-4" id="id_historial_equipos" name="id_historial_equipos">
                                                     <div class="col">
                                                         <div class="card">
 
@@ -173,7 +173,7 @@ $copas = $datos->copas();
                                                                 </div>
                                                                 <div class="form-floating  mt-3">
 
-                                                                    <select class="form-select"  aria-label="Default select example" required>
+                                                                    <select class="form-select" aria-label="Default select example" required>
                                                                         <option selected>Seleccionar Equipo</option>
                                                                         <?php foreach ($equipos as $equipo) :; ?>
 
@@ -264,7 +264,7 @@ $copas = $datos->copas();
                                                                             <th scope="col">#</th>
                                                                             <th scope="col">Nombre Titulo</th>
                                                                             <th scope="col">Fecha Obtencion</th>
-                                                                           
+
                                                                         </tr>
                                                                     </thead>
                                                                     <tbody>
@@ -272,24 +272,24 @@ $copas = $datos->copas();
                                                                             <th scope="row">1</th>
                                                                             <td>Mark</td>
                                                                             <td>Otto</td>
-                                                                           
+
                                                                         </tr>
                                                                         <tr>
                                                                             <th scope="row">2</th>
                                                                             <td>Jacob</td>
                                                                             <td>Thornton</td>
-                                                                           
+
                                                                         </tr>
                                                                         <tr>
                                                                             <th scope="row">3</th>
                                                                             <td colspan="2">Larry the Bird</td>
-                                                                           
+
                                                                         </tr>
                                                                     </tbody>
                                                                 </table>
                                                             </div>
                                                         </div>
-                                                    </div>
+                                                    </div> -->
                                                     <div class="mt-4 mb-0">
                                                         <div class="d-grid">
                                                             <button class="btn btn-success btn-block" id="submitBtn">guardar Jugador</button>

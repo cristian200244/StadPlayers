@@ -10,90 +10,75 @@ $data = new JugadorModel();
 $registros = $data->getAll();
 
 ?>
+<?php
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    require_once '../Models/JugadorModel.php';
+
+    $jugador = new JugadorModel();
+
+    $datos = [
+        'nombre_completo' => $_POST['nombre_completo'],
+        'apodo' => $_POST['apodo'],
+        'fecha_nacimiento' => $_POST['fecha_nacimiento'],
+        'caracteristicas' => $_POST['caracteristicas'],
+        'id_equipo' => $_POST['id_equipo'],
+        'id_liga' => $_POST['id_liga'],
+        'id_pais' => $_POST['id_pais'],
+        'id_contiente' => $_POST['id_contiente'],
+        'id_posicion' => $_POST['id_posicion'],
+        'id_perfil' => $_POST['id_perfil']
+    ];
+
+    $result = $jugador->store($datos);
+
+    if ($result) {
+        echo "Los datos se han guardado correctamente.";
+    } else {
+        echo "Error al guardar los datos.";
+    }
+}
+?>
 
 
-<div class="imgIngreEstad">
-    <div class="container text-center">
-        <div class="row">
-            <div class="col">
-                <h1>¡Bienvenido! Ahora Podrá ingresar sus estadísticas</h1>
-            </div>
-        </div>
 
-        <div id="layoutAuthentication">
-            <div id="layoutAuthentication_content">
-                <div class="container py-4">
-                    <div class="row justify-content-center">
-                        <div class="col-lg-12">
-                            <div class="card shadow-lg border-0 rounded-lg mt-5">
-                                <div class="card-header bg-success">
-                                    <h3 class="text-center text-light my-4 fs-4">Ingresar Estadistica</h3>
-                                </div>
-                                <div class="card-body">
+<body>
+    <h2>Guardar Jugador</h2>
+    <form method="POST" action="guardar.php">
+        <label for="nombre_completo">Nombre completo:</label>
+        <input type="text" name="nombre_completo" required><br><br>
 
-                                    <div class="row mb-3">
-                                        <?php
-                                        if ($registros) {
-                                            foreach ($registros as $registro) { ?>
-                                                <div class="col-md-6">
+        <label for="apodo">Apodo:</label>
+        <input type="text" name="apodo" required><br><br>
 
-                                                    <div class="col m-4">
-                                                        <input class="text-center" type="number" id="estadistica-<?= $registro->getId() ?>" name="estadistica-<?= $registro->getId() ?>" value="<?= $registro->valor ?>" min="0" disabled />
-                                                    </div>
+        <label for="fecha_nacimiento">Fecha de nacimiento:</label>
+        <input type="date" name="fecha_nacimiento" required><br><br>
 
-                                                    <a class="btn btn-sm btn-danger" onclick="operacion(<?= $registro->getId() ?> ,'restar')">-</a>
+        <label for="caracteristicas">Características:</label>
+        <textarea name="caracteristicas" required></textarea><br><br>
 
+        <label for="id_equipo">ID Equipo:</label>
+        <input type="number" name="id_equipo" required><br><br>
 
-                                                    <label for="" class="form-label"><?= $registro->nombre ?></label>
+        <label for="id_liga">ID Liga:</label>
+        <input type="number" name="id_liga" required><br><br>
 
+        <label for="id_pais">ID País:</label>
+        <input type="number" name="id_pais" required><br><br>
 
-                                                    <a class="btn btn-sm btn-success" onclick="operacion(<?= $registro->getId() ?>,'sumar')">+</a>
+        <label for="id_contiente">ID Continente:</label>
+        <input type="number" name="id_contiente" required><br><br>
 
-                                                </div>
+        <label for="id_posicion">ID Posición:</label>
+        <input type="number" name="id_posicion" required><br><br>
 
-                                        <?php }
-                                        }
-                                        ?>
+        <label for="id_perfil">ID Perfil:</label>
+        <input type="number" name="id_perfil" required><br><br>
 
-                                    </div>
+        <input type="submit" value="Guardar">
+    </form>
+</body>
 
-                                    <hr>
-
-                                    <?php
-                                        if ($registros) {
-                                            foreach ($registros as $registro) { ?>
-                                                <div class="col-md-6">
-
-                                                    <div class="col m-4">
-                                                        <input class="text-center" type="number" id="estadistica-<?= $registro->getId() ?>" name="estadistica-<?= $registro->getId() ?>" value="<?= $registro->valor ?>" min="0" disabled />
-                                                    </div>
-
-                                                    <a class="btn btn-sm btn-danger" onclick="operacion(<?= $registro->getId() ?> ,'restar')">-</a>
-
-
-                                                    <label for="" class="form-label"><?= $registro->nombre ?></label>
-
-
-                                                    <a class="btn btn-sm btn-success" onclick="operacion(<?= $registro->getId() ?>,'sumar')">+</a>
-
-                                                </div>
-
-                                        <?php }
-                                        }
-                                        ?>
-
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    </div>
-</div>
-
+</html>
 
 <?php
 include_once(BASE_DIR . "../../Views/partials/footer.php");

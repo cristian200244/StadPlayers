@@ -1,6 +1,6 @@
 <?php
 include_once __DIR__ . '../../config/config_example.php';
-require_once("conexionModel.php");
+require_once 'conexionModel.php';
 
 class JugadorModel extends stdClass
 {
@@ -23,18 +23,7 @@ class JugadorModel extends stdClass
     public function __construct()
     {
         $this->id;
-        $this->nombre_completo;
-        $this->apodo;
-        $this->fecha_nacimiento;
-        $this->caracteristicas;
 
-        $this->id_equipo;
-        $this->id_liga;
-        $this->id_pais;
-        $this->id_contiente;
-        $this->id_posicion;
-        $this->id_perfil;
-        $this->id_historial_equipos;
         $this->guardar;
 
         $this->db = new DataBase();
@@ -59,7 +48,7 @@ class JugadorModel extends stdClass
                 $item->apodo = $row['apodo'];
                 $item->fecha_nacimiento = $row['fecha_nacimiento'];
                 $item->caracteristicas = $row['caracteristicas'];
-                $item->id_usuario = $row['id_usuario'];
+                
                 $item->id_equipo = $row['id_equipo'];
                 $item->id_liga = $row['is_liga'];
                 $item->id_pais = $row['id_pais'];
@@ -103,7 +92,7 @@ class JugadorModel extends stdClass
                 $item->id_equipo = $row['id_equipo'];
                 $item->id_liga = $row['id_liga'];
                 $item->id_pais = $row['id_pais'];
-                $item->id_continente = $row['id_contiente'];
+                $item->id_contiente = $row['id_contiente'];
                 $item->id_posicion = $row['id_posicion'];
                 $item->id_perfil = $row['id_perfil'];
                 $item->id_historial_equipos = $row['id_historial_equipos'];
@@ -118,38 +107,27 @@ class JugadorModel extends stdClass
     }
     public function store($datos)
     {
-        $nomnbre_completo = $datos['nombre_completo'];
-        $apodo      = $datos['apodo'];
-        $fecha_nacimiento           = $datos['fecha_nacimiento'];
-        $caracteristicas            = $datos['caracteristicas'];
-        $id_equipo      = $datos['id_equipo'];
-        $id_liga    = $datos['id_liga'];
-        $id_pais    = $datos['id_pais'];
-        $id_contiente    = $datos['id_continente'];
-        $id_posicion    = $datos['id_posicion'];
-        $id_perfil    = $datos['id_perfil'];
-
-
-
+ 
         try {
 
 
-            $sql = 'INSERT INTO jugadores(nombre_completo, apodo, fecha_nacimiento, caracteristicas, id_usuario,id_equipo, id_liga, id_pais, id_contiente, id_posicion, id_perfil, id_hitorial_equipos,) VALUES(:nombre_completo, :apodo, :fecha_nacimiento, :caracteristicas, :id_usuario, :id_equipo, :id_liga, :id_pais, :id_contiente, :id_posicion, :id_perfil)';
+            $sql = 'INSERT INTO jugadores(nombre_completo, apodo, fecha_nacimiento, caracteristicas, id_equipo, id_liga, id_pais, id_contiente, id_posicion, id_perfil, id_historial_equipos) VALUES(:nombre_completo, :apodo, :fecha_nacimiento, :caracteristicas, :id_equipo, :id_liga, :id_pais, :id_contiente, :id_posicion, :id_perfil, :id_historial_equipos)';
 
             $prepare = $this->db->conect()->prepare($sql);
             $query = $prepare->execute([
-                'id_usuario'   => $datos['id_usuario'],
-                'nombre_completo'   => $datos['nombre_completo'],
-                'apodo'   => $datos['apodo'],
-                'fecha_nacimiento' => $datos['fecha_nacimiento'],
-                'caracteristicas' => $datos['caracteristicas'],
-                'id_equipo' => $datos['id_equipo'],
-                'id_liga' => $datos['id_liga'],
-                'id_pais' => $datos['id_pais'],
-                'id_contiente' => $datos['id_contiente'],
-                'id_posicion' => $datos['id_posicion'],
-                'id_perfil' => $datos['id_perfil'],
-                'id_historial_equipos' => $datos['id_historial_equipos'],
+                
+                'nombre_completo'       => $datos['nombre_completo'],
+                'apodo'                 => $datos['apodo'],
+                'fecha_nacimiento'      => $datos['fecha_nacimiento'],
+                'caracteristicas'       => $datos['caracteristicas'],
+                'id_equipo'             => $datos['id_equipo'],
+                'id_liga'               => $datos['id_liga'],
+                'id_pais'               => $datos['id_pais'],
+                'id_contiente'          => $datos['id_contiente'],
+                'id_posicion'           => $datos['id_posicion'],
+                'id_perfil'             => $datos['id_perfil'],
+                'id_historial_equipos'  => $datos['id_historial_equipos']
+                
 
             ]);
 
