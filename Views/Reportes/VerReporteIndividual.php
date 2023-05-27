@@ -92,57 +92,213 @@ include_once(BASE_DIR . "../../Views/partials/aside.php");
                                         </div>
                                     </div>
 
-                                    <div class="card-body mt-5">
-                                        <table class="table table-bordered  row">
-                                            <tr class="table-success">
-                                                <th class="col-4 table-success">Estadística</th>
-                                                <th class="col-1">Total</th>
-                                            </tr>
-                                            <tr>
-                                                <td class="col-3 table-primary">Pases acertados</td>
-                                                <td class="col-2 table-primary">10</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="col-3 table-dark">Remates al arco</td>
-                                                <td class="col-2 table-dark">3</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="col-3 table-primary">Asistencias de Gol</td>
-                                                <td class="col-2 table-primary">10</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="col-3 table-dark">Rechazos bien dirigidos</td>
-                                                <td class="col-2 table-dark">5</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="col-3 table-primary">Rechazos mal dirigidos</td>
-                                                <td class="col-2 table-primary">10</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="col-3 table-dark">Pérdidas de balón</td>
-                                                <td class="col-2 table-dark">5</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="col-3 table-primary"> pérdidas de balón perjudiciales</td>
-                                                <td class="col-2 table-primary">10</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="col-3 table-dark">Goles anotados</td>
-                                                <td class="col-2 table-dark">5</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="col-3 table-primary"> Amarillas recibidas</td>
-                                                <td class="col-2 table-primary">10</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="col-3 table-dark">Rojas recibidas</td>
-                                                <td class="col-2 table-dark">5</td>
-                                            </tr>
-
-                                        </table>
 
 
+                                    <div class="container text-center mt-5">
+                                    <div class="row">
+
+                                        <div class="card d-flex text-bg-light col-5 mt-5 ms-5">
+
+                                            <div class="col-12">
+                                                <div class="row">
+                                                    <div class="col-9">
+                                                        <div class="card-header bg-info">
+                                                            Estadísticas
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-3">
+                                                        <div class="card-header bg-warning pt-2 pb-2  me-0 " style="margin-left: -16%;">
+                                                            Total
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <ul class="list-group list-group-flush bg-info">
+                                                    <div class="row">
+                                                        <div class="col-9">
+                                                            <li class="list-group-item">Pases acertados</li>
+                                                        </div>
+                                                        <div class="col-3">
+                                                            <div class="card bg-dark text-light pt-2 pb-2  me-0 " style="margin-left: -16%;">
+                                                               33 </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-9">
+                                                            <li class="list-group-item">Pases errados</li>
+                                                        </div>
+                                                        <div class="col-3">
+                                                            <div class="card bg-dark text-light pt-2 pb-2  me-0 " style="margin-left: -16%;">
+                                                                15</div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-9">
+                                                            <li class="list-group-item">Remates al arco</li>
+                                                        </div>
+                                                        <div class="col-3">
+                                                            <div class="card bg-dark text-light pt-2 pb-2  me-0 " style="margin-left: -16%;">
+                                                                19</div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-9">
+                                                            <li class="list-group-item">Asistencias de Gol</li>
+                                                        </div>
+                                                        <div class="col-3">
+                                                            <div class="card bg-dark text-light pt-2 pb-2  me-0 " style="margin-left: -16%;">
+                                                                11</div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-9">
+                                                            <li class="list-group-item">Rechazos bien dirigidos</li>
+                                                        </div>
+                                                        <div class="col-3">
+                                                            <div class="card bg-dark text-light pt-2 pb-2  me-0 " style="margin-left: -16%;">
+                                                                25</div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-9">
+                                                            <li class="list-group-item">Rechazos mal dirigidos</li>
+                                                        </div>
+                                                        <div class="col-3">
+                                                            <div class="card bg-dark text-light pt-2 pb-2  me-0 " style="margin-left: -16%;">
+                                                                8</div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-9">
+                                                            <li class="list-group-item">Pérdidas de balón</li>
+                                                        </div>
+                                                        <div class="col-3">
+                                                            <div class="card bg-dark text-light pt-2 pb-2  me-0 " style="margin-left: -16%;">
+                                                               9 </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-9">
+                                                            <li class="list-group-item">pérdidas de balón perjudiciales
+                                                            </li>
+                                                        </div>
+                                                        <div class="col-3">
+                                                            <div class="card bg-dark text-light pt-2 pb-2  me-0 " style="margin-left: -16%;">
+                                                                3</div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-9">
+                                                            <li class="list-group-item">Goles anotados</li>
+                                                        </div>
+                                                        <div class="col-3">
+                                                            <div class="card bg-dark text-light pt-2 pb-2  me-0 " style="margin-left: -16%;">
+                                                                10</div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-9">
+                                                            <li class="list-group-item"> Amarillas recibidas</li>
+                                                        </div>
+                                                        <div class="col-3">
+                                                            <div class="card bg-dark text-light pt-2 pb-2  me-0 " style="margin-left: -16%;">
+                                                                7</div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-9">
+                                                            <li class="list-group-item"> Rojas recibidas</li>
+                                                        </div>
+                                                        <div class="col-3">
+                                                            <div class="card bg-dark text-light pt-2 pb-2  me-0 " style="margin-left: -16%;">
+                                                                2</div>
+                                                        </div>
+                                                    </div>
+                                                </ul>
+
+                                                <div class="row">
+                                                    <div class="col-9">
+                                                        <div class="card-header bg-info">
+                                                            Estadísticas De Portero
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-3">
+                                                        <div class="card-header bg-warning pt-2 pb-2  me-0 " style="margin-left: -16%;">
+                                                            Total
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <ul class="list-group list-group-flush bg-info">
+                                                    <div class="row">
+                                                        <div class="col-9">
+                                                            <li class="list-group-item">Atajadas Heroicas</li>
+                                                        </div>
+                                                        <div class="col-3">
+                                                            <div class="card bg-dark text-light pt-2 pb-2  me-0 " style="margin-left: -16%;">
+                                                                4</div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-9">
+                                                            <li class="list-group-item">Penales atajados</li>
+                                                        </div>
+                                                        <div class="col-3">
+                                                            <div class="card bg-dark text-light pt-2 pb-2  me-0 " style="margin-left: -16%;">
+                                                                3</div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-9">
+                                                            <li class="list-group-item">éxitos en mano a mano.</li>
+                                                        </div>
+                                                        <div class="col-3">
+                                                            <div class="card bg-dark text-light pt-2 pb-2  me-0 " style="margin-left: -16%;">
+                                                                5</div>
+                                                        </div>
+                                                    </div>
+                                                </ul>
+                                            </div>
+
+                                        </div>
+
+                                       <div class=" d-flex text-bg-light col-1 mt-5">   <!--espacio entre estadisticas -->
+                                        </div>
+
+                                        <div class="col-5">
+                                        <div class="row">
+
+                                                <div class="card d-flex text-bg-light col-12 mt-5">
+                                                    <div class="row">
+                                                        <div class="col-9">
+                                                            <div class="card-header bg-warning">
+                                                                Estadísticas Creadas
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-3">
+                                                            <div class="card-header bg-info pt-2 pb-2  me-0 " style="margin-left: -16%;">
+                                                                Total
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <ul class="list-group list-group-flush bg-info">
+                                                        <div class="row">
+                                                            <div class="col-9">
+                                                                <li class="list-group-item"> estadistica nueva</li>
+                                                            </div>
+                                                            <div class="col-3">
+                                                                <div class="card bg-dark text-light pt-2 pb-2  me-0 " style="margin-left: -16%;">
+                                                                    0</div>
+                                                            </div>
+                                                        </div>
+                                                    </ul>
+
+
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
+                                    </div>
+
                                 </div>
                             </div>
                         </div>
@@ -151,9 +307,9 @@ include_once(BASE_DIR . "../../Views/partials/aside.php");
             </div>
         </div>
 </div>
-
+</div>
 </main>
+</div>
 <?php
 include_once(BASE_DIR . "../../Views/partials/footer.php");
 ?>
-</div>
