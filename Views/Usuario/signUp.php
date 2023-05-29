@@ -45,8 +45,7 @@ include_once(__DIR__ . "../../../config/rutas.php");
         </div>
 
     </nav>
-
-    <section class="vh-110" style="background-color:#48C9B0;">
+    <div class="ImgCrearUsuario">
         <div class="container py-5 px-5 h-10 mt-0">
             <div class="row d-flex justify-content-center align-items-center h-100">
                 <div class="col-12 col-md-8 col-lg-6 col-xl-5">
@@ -107,8 +106,8 @@ include_once(__DIR__ . "../../../config/rutas.php");
                 </div>
             </div>
         </div>
-    </section>
-
+        </section>
+    </div>
     <?php
-      include_once("../../Views/partials/footer.php");
+    include_once("../../Views/partials/footer.php");
     ?>

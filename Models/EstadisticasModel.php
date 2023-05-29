@@ -22,4 +22,3 @@ class Modelo {
         $this->valor -=$cantidad;
     }
 }
-?>

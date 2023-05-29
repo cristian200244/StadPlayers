@@ -3,14 +3,17 @@ require_once __DIR__ . '../../Models/GenerarReportesModel.php';
 
 
 
+
 //Instanciando la clase CalculadoraController
 $usuario = new ReportesController();
 
 class ReportesController
 {
     private $reportesModel;
+    public $reporte;
     public function __construct()
     {
+
         $this->reportesModel = new ReportesModel();
 
         if (isset($_REQUEST['c'])) {
@@ -24,7 +27,8 @@ class ReportesController
 
                     break;
                 case 3: //Ver por operacion
-                    // self::show();
+                    self::show();
+
                     break;
                 case 4:
                     // self::update();
@@ -44,18 +48,27 @@ class ReportesController
         $datos = [
             'fechaInicial'  => $_REQUEST['fechaInicial'],
             'fechaFinal'    => $_REQUEST['fechaFinal'],
-            'id_jugador'    => $_REQUEST['id_jugador'],
+            'id_jugador'    => $_REQUEST['nombre_completo'],
             'id_usuario'    => $id_usuario,
         ];
+
 
         $result =  $this->reportesModel->Store($datos);
         header("Location: ../views/Reportes/index.php");
     }
+    public function show()
+    {
 
+        $datos = [
+            $this->reporte  = $_REQUEST['reporte'],
+
+        ];
+        $this->reportesModel->getReporteId($datos);
+    }
 
     public function getDateId()
     {
-        $id_usuario =  $_SESSION['id'];
+        $id_usuario = $_SESSION['id'];
 
         return $this->reportesModel->getById($id_usuario);
     }
@@ -64,7 +77,7 @@ class ReportesController
     {
         $items = [
             'fechaInicial' => ['fechaInicial'],
-            'fechaFinal'  => ['fechaFinal'],
+            'fechaFinal' => ['fechaFinal'],
 
         ];
 

@@ -2,6 +2,7 @@
 include_once __DIR__ . '../../Config/config_example.php';
 include_once dirname(__FILE__) . '../../Config/rutas.php';
 require_once("conexionModel.php");
+require_once("../Controllers/GenerarReportesController.php");
 session_start();
 
 class ReportesModel
@@ -12,18 +13,21 @@ class ReportesModel
     public $id_usuario;
     public $fechaInicial;
     public $fechaFinal;
+    public $id_reporte;
     private $db;
 
     public function __construct()
     {
+        //Instanciar la base de datos en el constructor para poder realizar consultas
+
         $this->db = new Database();
+
 
         $this->id_usuario = $_SESSION['id'];
         $this->fechaInicial;
         $this->fechaFinal;
-        //Instanciar la base de datos en el constructor para poder realizar consultas
+        $this->id_reporte;
     }
-
     //metodos mágicos
     public function getId()
     {
@@ -34,26 +38,34 @@ class ReportesModel
     {
         return $this->nombre_completo;
     }
+    public function getIdReporte()
+    {
+        return $this->id;
+    }
+
 
     //Metodos propios
     public function getById()
     {
-        # code...
+        $this->id_usuario = $_SESSION['id'];
+        return  $this->id_usuario; # code...
     }
 
     public function getAll()
     {
 
-        $sql = "SELECT gr.id, gr.fecha_inicial, gr.fecha_final, j.nombre_completo
+
+        $sql = 'SELECT gr.id, gr.fecha_inicial, gr.fecha_final, j.nombre_completo
         FROM generar_reporte as gr
         JOIN jugadores as j ON gr.id_jugador = j.id
-        WHERE gr.id_usuario = $this->id_usuario";
+        WHERE gr.id_usuario =' . $this->id_usuario;
         try {
             $items = [];
             $query = $this->db->conect()->query($sql);
 
             while ($row = $query->fetch()) {
                 $item = new ReportesModel();
+                $item->id               = $row['id'];
                 $item->fechaInicial     = $row['fecha_inicial'];
                 $item->fechaFinal       = $row['fecha_final'];
                 $item->nombre_completo  = $row['nombre_completo'];
@@ -89,6 +101,66 @@ class ReportesModel
             die($e->getMessage());
         }
     }
+
+    public function getReporteId($datos)
+    {
+
+
+        try {
+            // $sql='SELECT * FROM users WHERE Patrocinador = $_SESSION['NumCedula']';
+            // $result = mysql_query($sql);
+            $sql = 'SELECT gr.id, gr.fecha_inicial, gr.fecha_final, j.nombre_completo 
+            FROM generar_reporte as gr 
+            JOIN jugadores as j ON gr.id_jugador = j.id
+             WHERE gr.id =' . $datos;
+
+            $query = $this->db->conect()->query($sql);
+            $items = [];
+            while ($row = $query->fetch()) {
+                $item = new ReportesModel();
+                $item->id = $row['id'];
+
+                $item->fechaInicial = $row['fecha_inicial'];
+                $item->fechaFinal = $row['fecha_final'];
+                $item->nombre_completo = $row['nombre_completo'];
+
+                array_push($items, $item);
+                print_r($item);
+                die();
+            }
+
+            return $items;
+        } catch (PDOException $e) {
+            die($e->getMessage());
+        }
+    }
+
+
+
+    // if ($datos == $items) {
+    //     self::getAll();
+    //     $getAll = $this->getAll();
+    //     print_r($getAll);
+    // }
+
+
+
+
+
+
+
+
+
+
+    // if ($datos == $query) {
+    //     self::getAll();
+    //     $getAll = $this->getAll();
+    // }
+
+
+
+
+
 
 
     public function getPlayers()

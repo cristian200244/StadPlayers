@@ -86,6 +86,9 @@ class UsuarioController
     session_unset();
     session_destroy();
     header('Location: ../index.php');
+
+    // error_reporting(0);
+
   }
 }
 // public function Session()
