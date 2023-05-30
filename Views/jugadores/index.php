@@ -288,8 +288,8 @@ $copas = $datos->copas();
                                                                     </tbody>
                                                                 </table>
                                                             </div>
-                                                        </div>
-                                                    </div> -->
+                                                        <-- </div> -->
+                                                    </div> 
                                                     <div class="mt-4 mb-0">
                                                         <div class="d-grid">
                                                             <button class="btn btn-success btn-block" id="submitBtn">guardar Jugador</button>

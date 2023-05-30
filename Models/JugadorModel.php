@@ -43,18 +43,17 @@ class JugadorModel extends stdClass
             $query  = $this->db->conect()->query($sql);
 
             while ($row = $query->fetch()) {
-                $item            = new JugadorModel();
-                $item->nombre_completo = $row['nombre_completo'];
-                $item->apodo = $row['apodo'];
+                $item                   = new JugadorModel();
+                $item->nombre_completo  = $row['nombre_completo'];
+                $item->apodo            = $row['apodo'];
                 $item->fecha_nacimiento = $row['fecha_nacimiento'];
-                $item->caracteristicas = $row['caracteristicas'];
-                
-                $item->id_equipo = $row['id_equipo'];
-                $item->id_liga = $row['is_liga'];
-                $item->id_pais = $row['id_pais'];
-                $item->id_contiente = $row['id_contiente'];
-                $item->id_perfil = $row['id_perfil'];
-                $item->id_historial_equipos = $row['id_historial_equipos'];
+                $item->caracteristicas  = $row['caracteristicas'];
+                $item->id_equipo        = $row['id_equipo'];
+                $item->id_liga          = $row['is_liga'];
+                $item->id_pais          = $row['id_pais'];
+                $item->id_contiente     = $row['id_contiente'];
+                $item->id_perfil        = $row['id_perfil'];
+
 
                 array_push($resultado, $item);
             }
@@ -65,16 +64,17 @@ class JugadorModel extends stdClass
         }
     }
 
+
     public function getAll()
     {
         $items = [];
 
         try {
-            $sql = 'SELECT j.*, c.nombre AS nombre_continente, eq.equipo, he.fecha_inicial, he.fecha_terminacion, l.nombre AS nombre_liga, p.nombre_pais, pf.nombre AS nombre_perfil, ps.descripcion AS descripcion_posicion
+            $sql = 'SELECT j.*, c.nombre AS nombre_continente, eq.equipo, l.nombre 
+            AS nombre_liga, p.nombre_pais, pf.nombre AS nombre_perfil, ps.descripcion AS descripcion_posicion
             FROM jugadores j
             JOIN continentes c ON j.id_contiente = c.id
             JOIN equipos eq ON j.id_equipo = eq.id
-            JOIN historial_equipos he ON j.id_historial_equipos = he.id
             JOIN ligas l ON j.id_liga = l.id
             JOIN paises p ON j.id_pais = p.id
             JOIN perfiles pf ON j.id_perfil = pf.id
@@ -83,19 +83,19 @@ class JugadorModel extends stdClass
             $query  = $this->db->conect()->query($sql);
 
             while ($row = $query->fetch()) {
-                $item            = new JugadorModel();
-                $item->id = $row['id'];
-                $item->nombre_completo = $row['nombre_completo'];
-                $item->apodo = $row['apodo'];
-                $item->fecha_nacimiento = $row['fecha_nacimiento'];
-                $item->caracteristicas = $row['caracteristicas'];
-                $item->id_equipo = $row['id_equipo'];
-                $item->id_liga = $row['id_liga'];
-                $item->id_pais = $row['id_pais'];
-                $item->id_contiente = $row['id_contiente'];
-                $item->id_posicion = $row['id_posicion'];
-                $item->id_perfil = $row['id_perfil'];
-                $item->id_historial_equipos = $row['id_historial_equipos'];
+                $item                   =   new JugadorModel();
+                $item->id               =  $row['id'];
+                $item->nombre_completo  =  $row['nombre_completo'];
+                $item->apodo            =  $row['apodo'];
+                $item->fecha_nacimiento =  $row['fecha_nacimiento'];
+                $item->caracteristicas  =  $row['caracteristicas'];
+                $item->id_equipo        =  $row['id_equipo'];
+                $item->id_liga          =  $row['id_liga'];
+                $item->id_pais          =  $row['id_pais'];
+                $item->id_contiente     =  $row['id_contiente'];
+                $item->id_posicion      =  $row['id_posicion'];
+                $item->id_perfil        =  $row['id_perfil'];
+
 
                 array_push($items, $item);
             }
@@ -105,17 +105,18 @@ class JugadorModel extends stdClass
             die($e->getMessage());
         }
     }
+
     public function store($datos)
     {
- 
+
         try {
 
 
-            $sql = 'INSERT INTO jugadores(nombre_completo, apodo, fecha_nacimiento, caracteristicas, id_equipo, id_liga, id_pais, id_contiente, id_posicion, id_perfil, id_historial_equipos) VALUES(:nombre_completo, :apodo, :fecha_nacimiento, :caracteristicas, :id_equipo, :id_liga, :id_pais, :id_contiente, :id_posicion, :id_perfil, :id_historial_equipos)';
+            $sql = 'INSERT INTO jugadores(nombre_completo, apodo, fecha_nacimiento, caracteristicas, id_equipo, id_liga, id_pais, id_contiente, id_posicion, id_perfil) VALUES(:nombre_completo, :apodo, :fecha_nacimiento, :caracteristicas, :id_equipo, :id_liga, :id_pais, :id_contiente, :id_posicion, :id_perfil)';
 
             $prepare = $this->db->conect()->prepare($sql);
             $query = $prepare->execute([
-                
+
                 'nombre_completo'       => $datos['nombre_completo'],
                 'apodo'                 => $datos['apodo'],
                 'fecha_nacimiento'      => $datos['fecha_nacimiento'],
@@ -126,8 +127,8 @@ class JugadorModel extends stdClass
                 'id_contiente'          => $datos['id_contiente'],
                 'id_posicion'           => $datos['id_posicion'],
                 'id_perfil'             => $datos['id_perfil'],
-                'id_historial_equipos'  => $datos['id_historial_equipos']
-                
+
+
 
             ]);
 
@@ -141,6 +142,57 @@ class JugadorModel extends stdClass
             return false;
         }
     }
+
+    public function update($datos)
+    {
+        try {
+
+            
+            $sql = 'UPDATE jugadores SET nombre_completo = :nombre_completo, apodo = :apodo, fecha_nacimiento = :fecha_nacimiento, caracteristicas = :caracteristicas, id_equipo = :id_equipo,  id_liga = :id_liga, id_pais = :id_pais, id_contiente = :id_contiente, id_posicion = :id_posicion, id_perfil = :id_perfil  WHERE id = :id';
+
+            $prepare = $this->db->conect()->prepare($sql);
+            $query = $prepare->execute([
+                'id'                    => $datos['id'],
+                'nombre_completo'       => $datos['nombre_completo'],
+                'apodo'                 => $datos['apodo'],
+                'fecha_nacimiento'      => $datos['fecha_nacimiento'],
+                'caracteristicas'       => $datos['caracteristicas'],
+                'id_equipo'             => $datos['id_equipo'],
+                'id_liga'               => $datos['id_liga'],
+                'id_pais'               => $datos['id_pais'],
+                'id_contiente'          => $datos['id_contiente'],
+                'id_posicion'           => $datos['id_posicion'],
+                'id_perfil'             => $datos['id_perfil'],
+                
+            ]);
+
+            if ($query) {
+                return true;
+            }
+        } catch (PDOException $e) {
+            die($e->getMessage());
+        }
+    }
+
+
+    public function delete($id)
+    {
+        try {
+            $sql = "DELETE FROM jugadores WHERE id = :id";
+            $prepare = $this->db->conect()->prepare($sql);
+            $query = $prepare->execute([
+                'id'   => $id,
+            ]);
+
+            if ($query) {
+                return true;
+            }
+        } catch (PDOException $e) {
+            die($e->getMessage());
+        }
+    }
+
+
 
 
     public function getid_equipos()
