@@ -113,17 +113,22 @@ class ReportesModel
     public function getReporteId($datos)
     {
         try {
-            // $sql SELECT column_name(s)
-            // FROM table_name
-            // WHERE column_name BETWEEN value1 AND value2;
-            $sql = 'SELECT gr.id, gr.fecha_inicial, gr.fecha_final, j.nombre_completo, j.apodo, e.equipo,l.nombre,p.descripcion
-            FROM generar_reporte as gr 
-            JOIN jugadores as j ON gr.id_jugador = j.id
-            JOIN equipos as e ON  j.id_equipo = e.id
-            JOIN ligas as l ON  j.id_liga = l.id
-            JOIN posiciones as p ON  j.id_posicion = p.id
 
-             WHERE gr.id =' . $datos['id'];
+
+            // $sql = 'SELECT gr.id, gr.fecha_inicial, gr.fecha_final, j.nombre_completo, j.apodo, e.equipo,l.nombre,p.descripcion
+            // FROM generar_reporte as gr 
+            // JOIN jugadores as j ON gr.id_jugador = j.id
+            // JOIN equipos as e ON  j.id_equipo = e.id
+            // JOIN ligas as l ON  j.id_liga = l.id
+            // JOIN posiciones as p ON  j.id_posicion = p.id
+            // WHERE gr.id =' . $datos['id'];
+
+            $sql = 'SELECT coun.id,coun.valor 
+            FROM count_estadisticas AS coun 
+            JOIN encuentro_estadisticas AS encu ON coun.id_encuentro_estadistica = encu.id
+             WHERE  encu.id=encu.id_jugador AND coun.id_estadistica=15;';
+
+
 
             $query = $this->db->conect()->query($sql);
             $items = [];
@@ -136,11 +141,11 @@ class ReportesModel
                 $item->apodo            = $row['apodo'];
                 $item->equipo        = $row['equipo'];
                 $item->liga          = $row['nombre'];
-             $item->posicion      = $row['descripcion'];
+                $item->posicion      = $row['descripcion'];
 
                 array_push($items, $item);
                 print_r($items);
-         die();
+                die();
             }
 
             return $items;
