@@ -60,10 +60,12 @@ class ReportesController
     {
 
         $datos = [
-            $this->reporte  = $_REQUEST['reporte'],
-
+            'id'  => $_REQUEST['reporte'],
         ];
+
+        
         $this->reportesModel->getReporteId($datos);
+     
     }
 
     public function getDateId()
