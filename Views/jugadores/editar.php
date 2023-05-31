@@ -44,7 +44,7 @@ foreach ($registros as $resultado) {
                         <h3>Formulario para editar operaciones</h3>
                         <div class="card-body">
                             <form action="../../Controllers/JugadorController.php" method="POST">
-                                <input type="hidden" name="c" value="1">
+                                <input type="hidden" name="c" value="3">
 
                                 <div class="row mb-3">
                                     <div class="row">
@@ -77,3 +77,9 @@ foreach ($registros as $resultado) {
 
     </body>
 </main>
+
+
+<?php
+include_once(BASE_DIR . "../../Views/partials/footer.php");
+
+?>

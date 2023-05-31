@@ -18,6 +18,7 @@ $registros = $data->getAll();
                 <h1>¡Bienvenido! Ahora Podrá ingresar sus Jugadores</h1>
             </div>
         </div>
+
         <div id="layoutAuthentication">
             <div id="layoutAuthentication_content">
                 <div class="container">
@@ -29,104 +30,92 @@ $registros = $data->getAll();
                                 </div>
 
                                 <div class="card-body">
-                                    <form action="../../Controllers/JugadorController.php" method="POST">
-                                        <input type="hidden" name="c" value="1">
+                                    <?php
+                                    if ($registros) {
+                                        foreach ($registros as $row) { ?>
+                                            <div class="row mb-3">
+                                                <div class="row">
 
-                                        <div class="row mb-3">
-                                            <div class="row">
 
-                                                <form method="post">
-                                                    <!-- Agrega aquí los campos de entrada -->
-                                                    <input type="text" name="nombre" placeholder="Nombre"><br>
-                                                    <input type="email" name="email" placeholder="Email"><br>
-                                                    <textarea name="mensaje" placeholder="Mensaje"></textarea><br>
-                                                    <button type="submit">Guardar</button>
-                                                </form>
+                                                    <div class="form-floating col-md-6 mt-3">
 
-                                                <div id="dataContainer">
-                                                    <?php
-                                                    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-                                                        $nombre_completo = $_POST["nombre_completo"];
-                                                        $apodo = $_POST["apodo"];
-                                                        $caracteristicas = $_POST["caracteristicas"];
+                                                        <div class="form-floating mb-3 mb-md-0">
+                                                            <input type="text" value="<?= $row->nombre_completo ?>" readonly>
+                                                        </div>
 
-                                                        // Guardar los datos en un archivo o base de datos
+                                                    </div>
 
-                                                        // Mostrar los datos registrados
-                                                        echo "<p><strong>nombre_completo:</strong> " . $nombre_completo . "</p>";
-                                                        echo "<p><strong>apodo:</strong> " . $apodo . "</p>";
-                                                        echo "<p><strong>caracteristicas:</strong> " . $caracteristicas . "</p>";
-                                                    }
-                                                    ?>
+                                                    <div class="form-floating col-md-6 mt-3">
+                                                        <div class="form-floating mb-3 mb-md-0">
+                                                            <input type="text"  value="<?= $row->apodo ?>" readonly />
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-floating col-md-6 mt-3">
+                                                        <div class="form-floating mb-3 mb-md-0">
+                                                            <input type="text"  value="<?= $row->fecha_nacimiento ?>" readonly />
+                                                        </div>
+                                                    </div>
+
+
+                                                    <div class="form-floating col-md-6 mt-3">
+                                                        <div class="form-floating mb-3 mb-md-0">
+                                                            <input type="text"  value="<?= $row->caracteristicas ?>" readonly />
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-floating col-md-6 mt-3">
+                                                        <div class="form-floating mb-3 mb-md-0">
+                                                            <input type="text"  value="<?= $row->id_equipo ?>" readonly />
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-floating col-md-6 mt-3">
+                                                        <div class="form-floating mb-3 mb-md-0">
+                                                            <input type="text"  value="<?= $row->id_pais ?>" readonly />
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-floating col-md-6 mt-3">
+                                                        <div class="form-floating mb-3 mb-md-0">
+                                                            <input type="text"  value="<?= $row->id_contiente ?>" readonly />
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-floating col-md-6 mt-3">
+                                                        <div class="form-floating mb-3 mb-md-0">
+                                                            <input type="text"  value="<?= $row->id_posicion ?>" readonly />
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-floating col-md-6 mt-3">
+                                                        <div class="form-floating mb-8 mb-md-">
+                                                            <input type="text"  value="<?= $row->id_perfil ?>" readonly />
+                                                        </div>
+                                                    </div>
+
+
+
+                                                    <a class="btn btn-sm btn-outline-warning" href="../Controllers/JugadorController.php?c=2&id=<?= $row->getId() ?>">Actualizar</a>
+
+
+                                                    <a class="btn btn-sm btn-outline-danger " href="../../Controllers/JugadorController.php?c=4&id=<?= $row->getId() ?>">Eliminar</a>
                                                 </div>
-
-
-                                                <table class="table">
-                                                    <thead>
-                                                        <tr>
-                                                            <h2>sdsa</h2>
-                                                            <th scope="col">#</th>
-                                                            <th scope="col">Nombre Completo</th>
-                                                            <th scope="col">Apodo</th>
-                                                            <th scope="col">fecha nacimiento</th>
-                                                            <th scope="col">caracteristicas</th>
-                                                            <th scope="col">Equipo</th>
-                                                            <th scope="col">Pais</th>
-                                                            <th scope="col">Continente</th>
-                                                            <th scope="col">Posicion</th>
-                                                            <th scope="col">Perfil</th>
-                                                            <th scope="col" colspan="2">Opcion</th>
-                                                        </tr>
-                                                    </thead>
-
-                                                    <tbody>
-                                                        <?php
-                                                        if ($registros) {
-                                                            foreach ($registros as $row) {
-
-                                                        ?>
-
-                                                                <tr>
-
-                                                                    <td><?= $row->id ?></td>
-                                                                    <td><?= $row->nombre_completo ?></td>
-
-                                                                    <td><?= $row->apodo ?></td>
-                                                                    <td><?= $row->fecha_nacimiento ?></td>
-                                                                    <td><?= $row->caracteristicas ?></td>
-                                                                    <td><?= $row->id_equipo ?></td>
-                                                                    <td><?= $row->id_pais ?></td>
-                                                                    <td><?= $row->id_contiente ?></td>
-                                                                    <td><?= $row->id_posicion ?></td>
-                                                                    <td><?= $row->id_perfil ?></td>
-                                                                    <!-- <th scope="col" >Opciones</th> -->
-                                                                    <td>
-                                                                        <a class="btn btn-sm btn-outline-warning" href="../Controllers/JugadorController.php?c=2&id=<?= $row->getId() ?>">Actualizar</a>
-                                                                    </td>
-                                                                    <td>
-                                                                        <a class="btn btn-sm btn-outline-danger " href="../../Controllers/JugadorController.php?c=4&id=<?= $row->getId() ?>">Eliminar</a>
-                                                                    </td>
-                                                                </tr>
-                                                            <?php
-                                                            }
-                                                        } else {
-                                                            ?>
-                                                            <tr class=" text-center">
-                                                                <td colspan="6">Sin datos</td>
-                                                            </tr>
-                                                        <?php
-                                                        }
-                                                        ?>
-                                                    </tbody>
-                                                </table>
                                             </div>
-                                        </div>
+                                    <?php }
+                                    }
+                                    ?>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
 </main>
+
+
 
 
 <?php

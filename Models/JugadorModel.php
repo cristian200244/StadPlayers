@@ -78,7 +78,7 @@ class JugadorModel extends stdClass
             JOIN ligas l ON j.id_liga = l.id
             JOIN paises p ON j.id_pais = p.id
             JOIN perfiles pf ON j.id_perfil = pf.id
-            JOIN posiciones ps ON j.id_posicion = ps.id;
+            JOIN posiciones ps ON j.id_posicion = ps.id         
             ';
             $query  = $this->db->conect()->query($sql);
 
@@ -89,13 +89,12 @@ class JugadorModel extends stdClass
                 $item->apodo            =  $row['apodo'];
                 $item->fecha_nacimiento =  $row['fecha_nacimiento'];
                 $item->caracteristicas  =  $row['caracteristicas'];
-                $item->id_equipo        =  $row['id_equipo'];
-                $item->id_liga          =  $row['id_liga'];
-                $item->id_pais          =  $row['id_pais'];
-                $item->id_contiente     =  $row['id_contiente'];
-                $item->id_posicion      =  $row['id_posicion'];
-                $item->id_perfil        =  $row['id_perfil'];
-
+                $item->id_equipo        =  $row['equipo'];
+                $item->id_liga          =  $row['nombre'];
+                $item->id_pais          =  $row['nombre_pais'];
+                $item->id_contiente     =  $row['nombre'];
+                $item->id_posicion      =  $row['descripcion'];
+                $item->id_perfil        =  $row['nombre'];
 
                 array_push($items, $item);
             }
@@ -147,7 +146,7 @@ class JugadorModel extends stdClass
     {
         try {
 
-            
+
             $sql = 'UPDATE jugadores SET nombre_completo = :nombre_completo, apodo = :apodo, fecha_nacimiento = :fecha_nacimiento, caracteristicas = :caracteristicas, id_equipo = :id_equipo,  id_liga = :id_liga, id_pais = :id_pais, id_contiente = :id_contiente, id_posicion = :id_posicion, id_perfil = :id_perfil  WHERE id = :id';
 
             $prepare = $this->db->conect()->prepare($sql);
@@ -163,7 +162,7 @@ class JugadorModel extends stdClass
                 'id_contiente'          => $datos['id_contiente'],
                 'id_posicion'           => $datos['id_posicion'],
                 'id_perfil'             => $datos['id_perfil'],
-                
+
             ]);
 
             if ($query) {

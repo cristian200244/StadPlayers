@@ -26,3 +26,14 @@
 
 </html>
 
+
+include_once '../../Models/JugadorModel.php';
+
+$data = new JugadorModel();
+$registros = $data->getAll();
+?>
+
+
+<?php
+if ($registros) {
+foreach ($registros as $row) { ?>

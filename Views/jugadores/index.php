@@ -53,7 +53,7 @@ $copas = $datos->copas();
                                     <form action="../../Controllers/JugadorController.php" method="POST">
                                         <input type="hidden" name="c" value="1">
 
-                                        <div class="row mb-3">
+                                        <div class="mb-3">
                                             <div class="row">
 
                                                 <div class="form-floating col-md-6 mt-3">
