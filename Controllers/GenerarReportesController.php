@@ -61,12 +61,16 @@ class ReportesController
         $id_reporte = $_REQUEST['reporte'];
 
         $datos = $this->reportesModel->getReporteId($id_reporte);
+        // var_dump($datos);
+        // die();
+
+
+        $datos = $this->reportesModel->DatosJugadorReporte($id_reporte);
 
         $totalMinutosJugados = $this->reportesModel->getTotalMinutos($datos);
 
-        var_dump($totalMinutosJugados);
-        die();
-        
+
+
         // $this->reportesModel->getReporteId($datos);
     }
 
@@ -85,7 +89,7 @@ class ReportesController
 
         ];
 
-        // var_dump($items);
+
         $this->reportesModel->getById($items);
         $result = $items;
         if ($result) {
