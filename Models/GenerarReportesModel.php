@@ -18,6 +18,8 @@ class ReportesModel
     public $equipo;
     public $liga;
     public $posicion;
+    public $minutos_jugados;
+    public $id_jugador;
 
     private $db;
 
@@ -36,6 +38,7 @@ class ReportesModel
         $this->equipo;
         $this->liga;
         $this->posicion;
+        $this->minutos_jugados;
     }
     //metodos mágicos
     public function getId()
@@ -51,6 +54,11 @@ class ReportesModel
     {
         return $this->id;
     }
+    public function getMinutosJugados()
+    {
+        return $this->minutos_jugados;
+    }
+
 
 
     //Metodos propios
@@ -110,11 +118,14 @@ class ReportesModel
         }
     }
 
-    public function getReporteId($datos)
+    public function getReporteId($id)
     {
         try {
+            $items = [];
 
-
+            $sql = "SELECT * 
+            FROM generar_reporte 
+            WHERE id = $id AND id_usuario = 1";
             // $sql = 'SELECT gr.id, gr.fecha_inicial, gr.fecha_final, j.nombre_completo, j.apodo, e.equipo,l.nombre,p.descripcion
             // FROM generar_reporte as gr 
             // JOIN jugadores as j ON gr.id_jugador = j.id
@@ -122,33 +133,53 @@ class ReportesModel
             // JOIN ligas as l ON  j.id_liga = l.id
             // JOIN posiciones as p ON  j.id_posicion = p.id
             // WHERE gr.id =' . $datos['id'];
-
-            $sql = 'SELECT coun.id,coun.valor 
-            FROM count_estadisticas AS coun 
-            JOIN encuentro_estadisticas AS encu ON coun.id_encuentro_estadistica = encu.id
-             WHERE  encu.id=encu.id_jugador AND coun.id_estadistica=15;';
-
-
-
             $query = $this->db->conect()->query($sql);
-            $items = [];
-            while ($row = $query->fetch()) {
-                $item = new ReportesModel();
-                $item->id = $row['id'];
-                $item->fechaInicial     = $row['fecha_inicial'];
-                $item->fechaFinal       = $row['fecha_final'];
-                $item->nombre_completo  = $row['nombre_completo'];
-                $item->apodo            = $row['apodo'];
-                $item->equipo        = $row['equipo'];
-                $item->liga          = $row['nombre'];
-                $item->posicion      = $row['descripcion'];
 
-                array_push($items, $item);
-                print_r($items);
-                die();
+            while ($row = $query->fetchObject()) {
+                $item = new ReportesModel();
+                $item->id           = $row->id;
+                $item->fechaInicial = $row->fecha_inicial;
+                $item->fechaFinal   = $row->fecha_final;
+                $item->id_jugador   = $row->id_jugador;
+                // $item->nombre_completo  = $row['nombre_completo'];
+                // $item->apodo            = $row['apodo'];
+                // $item->equipo           = $row['equipo'];
+                // $item->liga             = $row['nombre'];
+                // $item->posicion         = $row['descripcion'];
+
+
+                // array_push($items, $item);
+
+                //     print_r($items);
+                //     die();
             }
 
-            return $items;
+            return $item;
+        } catch (PDOException $e) {
+            die($e->getMessage());
+        }
+    }
+
+    public function getTotalMinutos($datos)
+    {
+        try {
+
+            $sql = "SELECT SUM(valor) AS min_jugados
+            FROM count_estadisticas  AS ce
+            JOIN encuentro_estadisticas AS ee ON ce.id_encuentro_estadistica = ee.id AND ee.id_jugador = ?
+            WHERE id_estadistica = ? AND ee.fecha_del_partido BETWEEN ? AND ?
+            ";
+
+            $query = $this->db->conect()->prepare($sql);
+            $query->execute([
+                $datos->id_jugador,
+                15,
+                $datos->fechaInicial,
+                $datos->fechaFinal
+            ]);
+            $total_minutos = $query->fetchObject();
+            
+            return $total_minutos;
         } catch (PDOException $e) {
             die($e->getMessage());
         }
@@ -178,3 +209,12 @@ class ReportesModel
         }
     }
 }
+
+
+// CONSULTA SUMAR TODAS LAS ESTADISTICAS
+// SELECT e.nombre, SUM(ce.valor)
+// FROM estadisticas AS e
+// RIGHT JOIN count_estadisticas AS ce ON e.id = ce.id_estadistica
+// JOIN encuentro_estadisticas AS ee ON ce.id_encuentro_estadistica = ee.id AND ee.id_jugador = 1
+// WHERE ee.fecha_del_partido BETWEEN "2017-01-01-" AND "2017-12-31"
+// GROUP BY e.nombre, e.id

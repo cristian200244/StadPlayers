@@ -58,14 +58,16 @@ class ReportesController
     }
     public function show()
     {
+        $id_reporte = $_REQUEST['reporte'];
 
-        $datos = [
-            'id'  => $_REQUEST['reporte'],
-        ];
+        $datos = $this->reportesModel->getReporteId($id_reporte);
 
+        $totalMinutosJugados = $this->reportesModel->getTotalMinutos($datos);
+
+        var_dump($totalMinutosJugados);
+        die();
         
-        $this->reportesModel->getReporteId($datos);
-     
+        // $this->reportesModel->getReporteId($datos);
     }
 
     public function getDateId()
