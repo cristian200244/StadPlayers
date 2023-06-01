@@ -6,12 +6,29 @@ require_once __DIR__ . '../../../Controllers/GenerarReportesController.php';
 // include_once(BASE_DIR . "../../Views/partials/header.php");
 // include_once(BASE_DIR . "../../Views/partials/aside.php");
 
+$data = new ReportesController();
+
+$datosReporte = (object)[($_GET['b'])];
+foreach ($datosReporte as $key => $info) {;
 
 
-// $reporteFinal=$controller->show();
+
+
+    $info = $reporte->fechaInicial;
+    var_dump($info);
+    die();
+    $info  = $fechaFinal;
+    $id_jugador = $dato->id_jugador;
+    $id = $dato->id;
+    $nombre_completo = $dato->nombre_completo;
+    $apodo = $dato->apodo;
+    $equipo = $dato->equipo;
+    $liga = $dato->liga;
+    $posicion = $dato->posicion;
+    $total_minutos = $dato->$totalMinutosJugados;
+}
 
 ?>
-
 
 
 
@@ -32,8 +49,9 @@ require_once __DIR__ . '../../../Controllers/GenerarReportesController.php';
                                         <h6><label for="nombre_completo">Fecha Inicial</label></h6>
                                     </strong>
 
-                                    <div class="card bg-white text-success text-center mt-2 pt-2 pb-2">
-                                        10/5/2</div>
+                                    <div class="card bg-white text-success text-center mt-2 pt-2 pb-2"
+                                        value="<?= $dato->fechaInicial ?>">
+                                    </div>
 
                                 </div>
                                 <div class="col-md-2 text-light pt-2">
@@ -137,7 +155,8 @@ require_once __DIR__ . '../../../Controllers/GenerarReportesController.php';
                                                     <li class="list-group-item">Pases acertados</li>
                                                 </div>
                                                 <div class="col-3">
-                                                    <div class="card bg-dark text-light pt-2 pb-2  me-2 " style="margin-left: -24%;">
+                                                    <div class="card bg-dark text-light pt-2 pb-2  me-2 "
+                                                        style="margin-left: -24%;">
                                                         33 </div>
                                                 </div>
                                             </div>
@@ -146,7 +165,8 @@ require_once __DIR__ . '../../../Controllers/GenerarReportesController.php';
                                                     <li class="list-group-item">Pases errados</li>
                                                 </div>
                                                 <div class="col-3">
-                                                    <div class="card bg-dark text-light pt-2 pb-2  me-2 " style="margin-left: -24%;">
+                                                    <div class="card bg-dark text-light pt-2 pb-2  me-2 "
+                                                        style="margin-left: -24%;">
                                                         15</div>
                                                 </div>
                                             </div>
@@ -155,7 +175,8 @@ require_once __DIR__ . '../../../Controllers/GenerarReportesController.php';
                                                     <li class="list-group-item">Remates al arco</li>
                                                 </div>
                                                 <div class="col-3">
-                                                    <div class="card bg-dark text-light pt-2 pb-2  me-2 " style="margin-left: -24%;">
+                                                    <div class="card bg-dark text-light pt-2 pb-2  me-2 "
+                                                        style="margin-left: -24%;">
                                                         19</div>
                                                 </div>
                                             </div>
@@ -164,7 +185,8 @@ require_once __DIR__ . '../../../Controllers/GenerarReportesController.php';
                                                     <li class="list-group-item">Asistencias de Gol</li>
                                                 </div>
                                                 <div class="col-3">
-                                                    <div class="card bg-dark text-light pt-2 pb-2  me-2 " style="margin-left: -24%;">
+                                                    <div class="card bg-dark text-light pt-2 pb-2  me-2 "
+                                                        style="margin-left: -24%;">
                                                         11</div>
                                                 </div>
                                             </div>
@@ -174,7 +196,8 @@ require_once __DIR__ . '../../../Controllers/GenerarReportesController.php';
                                                     </li>
                                                 </div>
                                                 <div class="col-3">
-                                                    <div class="card bg-dark text-light pt-2 pb-2  me-2 " style="margin-left: -24%;">
+                                                    <div class="card bg-dark text-light pt-2 pb-2  me-2 "
+                                                        style="margin-left: -24%;">
                                                         25</div>
                                                 </div>
                                             </div>
@@ -184,7 +207,8 @@ require_once __DIR__ . '../../../Controllers/GenerarReportesController.php';
                                                     </li>
                                                 </div>
                                                 <div class="col-3">
-                                                    <div class="card bg-dark text-light pt-2 pb-2  me-2 " style="margin-left: -24%;">
+                                                    <div class="card bg-dark text-light pt-2 pb-2  me-2 "
+                                                        style="margin-left: -24%;">
                                                         8</div>
                                                 </div>
                                             </div>
@@ -193,7 +217,8 @@ require_once __DIR__ . '../../../Controllers/GenerarReportesController.php';
                                                     <li class="list-group-item">Pérdidas de balón</li>
                                                 </div>
                                                 <div class="col-3">
-                                                    <div class="card bg-dark text-light pt-2 pb-2  me-2 " style="margin-left: -24%;">
+                                                    <div class="card bg-dark text-light pt-2 pb-2  me-2 "
+                                                        style="margin-left: -24%;">
                                                         9 </div>
                                                 </div>
                                             </div>
@@ -204,7 +229,8 @@ require_once __DIR__ . '../../../Controllers/GenerarReportesController.php';
                                                     </li>
                                                 </div>
                                                 <div class="col-3">
-                                                    <div class="card bg-dark text-light pt-2 pb-2  me-2 " style="margin-left: -24%;">
+                                                    <div class="card bg-dark text-light pt-2 pb-2  me-2 "
+                                                        style="margin-left: -24%;">
                                                         3</div>
                                                 </div>
                                             </div>
@@ -213,7 +239,8 @@ require_once __DIR__ . '../../../Controllers/GenerarReportesController.php';
                                                     <li class="list-group-item">Goles anotados</li>
                                                 </div>
                                                 <div class="col-3">
-                                                    <div class="card bg-dark text-light pt-2 pb-2  me-2 " style="margin-left: -24%;">
+                                                    <div class="card bg-dark text-light pt-2 pb-2  me-2 "
+                                                        style="margin-left: -24%;">
                                                         10</div>
                                                 </div>
                                             </div>
@@ -223,7 +250,8 @@ require_once __DIR__ . '../../../Controllers/GenerarReportesController.php';
                                                     </li>
                                                 </div>
                                                 <div class="col-3">
-                                                    <div class="card bg-dark text-light pt-2 pb-2  me-2 " style="margin-left: -24%;">
+                                                    <div class="card bg-dark text-light pt-2 pb-2  me-2 "
+                                                        style="margin-left: -24%;">
                                                         7</div>
                                                 </div>
                                             </div>
@@ -232,7 +260,8 @@ require_once __DIR__ . '../../../Controllers/GenerarReportesController.php';
                                                     <li class="list-group-item"> Rojas recibidas</li>
                                                 </div>
                                                 <div class="col-3">
-                                                    <div class="card bg-dark text-light pt-2 pb-2  me-2 " style="margin-left: -24%;">
+                                                    <div class="card bg-dark text-light pt-2 pb-2  me-2 "
+                                                        style="margin-left: -24%;">
                                                         2</div>
                                                 </div>
                                             </div>
@@ -256,7 +285,8 @@ require_once __DIR__ . '../../../Controllers/GenerarReportesController.php';
                                                     <li class="list-group-item">Atajadas Heroicas</li>
                                                 </div>
                                                 <div class="col-3">
-                                                    <div class="card bg-dark text-light pt-2 pb-2  me-2 " style="margin-left: -24%;">
+                                                    <div class="card bg-dark text-light pt-2 pb-2  me-2 "
+                                                        style="margin-left: -24%;">
                                                         4</div>
                                                 </div>
                                             </div>
@@ -265,7 +295,8 @@ require_once __DIR__ . '../../../Controllers/GenerarReportesController.php';
                                                     <li class="list-group-item">Penales atajados</li>
                                                 </div>
                                                 <div class="col-3">
-                                                    <div class="card bg-dark text-light pt-2 pb-2  me-2 " style="margin-left: -24%;">
+                                                    <div class="card bg-dark text-light pt-2 pb-2  me-2 "
+                                                        style="margin-left: -24%;">
                                                         3</div>
                                                 </div>
                                             </div>
@@ -275,7 +306,8 @@ require_once __DIR__ . '../../../Controllers/GenerarReportesController.php';
                                                     </li>
                                                 </div>
                                                 <div class="col-3">
-                                                    <div class="card bg-dark text-light pt-2 pb-2  me-2 " style="margin-left: -24%;">
+                                                    <div class="card bg-dark text-light pt-2 pb-2  me-2 "
+                                                        style="margin-left: -24%;">
                                                         5</div>
                                                 </div>
                                             </div>
@@ -284,7 +316,8 @@ require_once __DIR__ . '../../../Controllers/GenerarReportesController.php';
 
                                     <div class="col-sm-5">
                                         <div class="row ms-3">
-                                            <div class="card shadow-lg bg-primary border-0 rounded-lg mt-5 p-3 text-light ">
+                                            <div
+                                                class="card shadow-lg bg-primary border-0 rounded-lg mt-5 p-3 text-light ">
                                                 <div class="row">
                                                     <div class="col-9">
                                                         Nuevas Estadìsticas
@@ -301,7 +334,8 @@ require_once __DIR__ . '../../../Controllers/GenerarReportesController.php';
                                                         <li class="list-group-item">nueva estadìstica</li>
                                                     </div>
                                                     <div class="col-3">
-                                                        <div class="card bg-dark text-light pt-2 pb-2  me-2 " style="margin-left: -24%;">
+                                                        <div class="card bg-dark text-light pt-2 pb-2  me-2 "
+                                                            style="margin-left: -24%;">
                                                             0</div>
                                                     </div>
                                                 </div>
@@ -320,7 +354,8 @@ require_once __DIR__ . '../../../Controllers/GenerarReportesController.php';
                                                         <i class="fas fa-chart-bar me-1"></i>
                                                         Grafica del Repote
                                                     </div>
-                                                    <div class="card-body bg-white"><canvas id="myBarChart" width="100%" height="50"></canvas></div>
+                                                    <div class="card-body bg-white"><canvas id="myBarChart" width="100%"
+                                                            height="50"></canvas></div>
                                                     <div class="card-footer bg-success small text-muted">Generada
                                                         fecha del reporte
                                                     </div>

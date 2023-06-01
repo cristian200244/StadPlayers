@@ -81,8 +81,25 @@ class ReportesController
         $params["descripcion"]      = $datosJugador->posicion;
         $params["totalMinutos"]     = $totalMinutosJugados;
 
-        header("Location: ../Views/Reportes/VerReporteIndividual.php?". $params["totalMinutos"]);
-        echo header("Location: ../Views/Reportes/VerReporteIndividual.php? $params");
+
+        $DatosReporte = [];
+
+
+        $DatosReporte = $params['id_reporte'] . '<br>' . $params["fechaInicial"] .  '<br>' .
+            $params["fechaFinal"] . '<br>' . $params["id_jugador"]   .  '<br>' .
+            $params["id_jugador"] . '<br>' . $params["id"] .             '<br>' .
+            $params["nombre_completo"] . '<br>' . $params["apodo"] .        '<br>' .
+            $params["equipo"] .         '<br>' . $params["nombre"] .       '<br>' .
+            $params["totalMinutos"] .   '<br>' . $params["descripcion"];
+        '<br>' .
+
+            header("Location: ../Views/Reportes/VerReporteIndividual.php?b=" . $DatosReporte);
+
+
+        // header("Location:Location: ../Views/Reportes/VerReporteIndividual.php?//$mensaje");
+
+
+
     }
 
 

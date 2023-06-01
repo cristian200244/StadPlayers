@@ -140,6 +140,7 @@ class ReportesModel
                 $item->id_jugador   = $row->id_jugador;
             }
 
+
             return $item;
         } catch (PDOException $e) {
             die($e->getMessage());
@@ -179,7 +180,7 @@ class ReportesModel
 
     public function getTotalMinutos($totalMinutosJugados)
     {
-      
+
 
         try {
             $sql = "SELECT SUM(valor) AS min_jugados
@@ -193,17 +194,17 @@ class ReportesModel
 
             $query->execute([
 
-                   $totalMinutosJugados->id_jugador,
+                $totalMinutosJugados->id_jugador,
                 15,
-                   $totalMinutosJugados->fechaInicial,
-                   $totalMinutosJugados->fechaFinal
+                $totalMinutosJugados->fechaInicial,
+                $totalMinutosJugados->fechaFinal
                 //  1, 15, "2017-01-01", "2017-12-31"
 
             ]);
 
             $result = $query->fetchColumn();
             $total_minutos = ($result > 0) ? $result : 0;
-          
+
             return $total_minutos;
         } catch (PDOException $e) {
             die($e->getMessage());
