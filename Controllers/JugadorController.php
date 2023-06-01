@@ -58,7 +58,7 @@ class JugadorController
         $result = $this->jugador->store($datos);
 
         if ($result) {
-            header("Location: ../views/jugadores/VerJugadores.php");
+            header("Location: ../views/jugadores/verJugador.php");
             exit();
         }
         return $result;
@@ -67,7 +67,7 @@ class JugadorController
     public function show()
     {
         $id = $_REQUEST['id'];
-        header("Location:  ../views/jugadores/editar.php?id=$id");
+        header("Location:  ../views/jugadores/guardar.php?id=$id");
     }
 
     public function update()

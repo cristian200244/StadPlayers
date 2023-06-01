@@ -9,7 +9,6 @@ class JugadorModel extends stdClass
     public $apodo;
     public $fecha_nacimiento;
     public $caracteristicas;
-
     public $id_equipo;
     public $id_liga;
     public $id_pais;
@@ -33,6 +32,46 @@ class JugadorModel extends stdClass
         return $this->id;
     }
 
+
+    public function getAll()
+    {
+        $items = [];
+
+        try {
+            $sql = 'SELECT j.*, c.nombre AS nombre_continente, eq.equipo, l.nombre 
+            AS nombre_liga, p.nombre_pais, pf.nombre AS nombre_perfil, ps.descripcion AS descripcion_posicion
+            FROM jugadores j
+            JOIN continentes c ON j.id_contiente = c.id
+            JOIN equipos eq ON j.id_equipo = eq.id
+            JOIN ligas l ON j.id_liga = l.id
+            JOIN paises p ON j.id_pais = p.id
+            JOIN perfiles pf ON j.id_perfil = pf.id
+            JOIN posiciones ps ON j.id_posicion = ps.id';
+    
+            $query  = $this->db->conect()->query($sql);
+
+            while ($row = $query->fetch()) {
+                $item                   =   new JugadorModel();
+                $item->id               =  $row['id'];
+                $item->nombre_completo  =  $row['nombre_completo'];
+                $item->apodo            =  $row['apodo'];
+                $item->fecha_nacimiento =  $row['fecha_nacimiento'];
+                $item->caracteristicas  =  $row['caracteristicas'];
+                $item->id_equipo        =  $row['equipo'];
+                $item->id_liga          =  $row['nombre_liga'];
+                $item->id_pais          =  $row['nombre_pais'];
+                $item->id_contiente     =  $row['nombre_continente'];
+                $item->id_posicion      =  $row['descripcion_posicion'];
+                $item->id_perfil        =  $row['nombre_perfil'];
+                
+                array_push($items, $item);
+            }
+
+            return $items;
+        } catch (PDOException $e) {
+            die($e->getMessage());
+        }
+    }
 
     public function getbyId($id)
     {
@@ -64,47 +103,6 @@ class JugadorModel extends stdClass
         }
     }
 
-
-    public function getAll()
-    {
-        $items = [];
-
-        try {
-            $sql = 'SELECT j.*, c.nombre AS nombre_continente, eq.equipo, l.nombre 
-            AS nombre_liga, p.nombre_pais, pf.nombre AS nombre_perfil, ps.descripcion AS descripcion_posicion
-            FROM jugadores j
-            JOIN continentes c ON j.id_contiente = c.id
-            JOIN equipos eq ON j.id_equipo = eq.id
-            JOIN ligas l ON j.id_liga = l.id
-            JOIN paises p ON j.id_pais = p.id
-            JOIN perfiles pf ON j.id_perfil = pf.id
-            JOIN posiciones ps ON j.id_posicion = ps.id         
-            ';
-            $query  = $this->db->conect()->query($sql);
-
-            while ($row = $query->fetch()) {
-                $item                   =   new JugadorModel();
-                $item->id               =  $row['id'];
-                $item->nombre_completo  =  $row['nombre_completo'];
-                $item->apodo            =  $row['apodo'];
-                $item->fecha_nacimiento =  $row['fecha_nacimiento'];
-                $item->caracteristicas  =  $row['caracteristicas'];
-                $item->id_equipo        =  $row['equipo'];
-                $item->id_liga          =  $row['nombre'];
-                $item->id_pais          =  $row['nombre_pais'];
-                $item->id_contiente     =  $row['nombre'];
-                $item->id_posicion      =  $row['descripcion'];
-                $item->id_perfil        =  $row['nombre'];
-
-                array_push($items, $item);
-            }
-
-            return $items;
-        } catch (PDOException $e) {
-            die($e->getMessage());
-        }
-    }
-
     public function store($datos)
     {
 
@@ -126,8 +124,6 @@ class JugadorModel extends stdClass
                 'id_contiente'          => $datos['id_contiente'],
                 'id_posicion'           => $datos['id_posicion'],
                 'id_perfil'             => $datos['id_perfil'],
-
-
 
             ]);
 
