@@ -1,10 +1,18 @@
 <?php
 
 include_once(__DIR__ . "../../../config/rutas.php");
-// include_once __DIR__ . "../../../Models/GenerarReportesModel.php";
-include_once(BASE_DIR . "../../Views/partials/header.php");
-include_once(BASE_DIR . "../../Views/partials/aside.php");
+include_once __DIR__ . "../../../Models/GenerarReportesModel.php";
+require_once __DIR__ . '../../../Controllers/GenerarReportesController.php';
+// include_once(BASE_DIR . "../../Views/partials/header.php");
+// include_once(BASE_DIR . "../../Views/partials/aside.php");
+
+
+
+// $reporteFinal=$controller->show();
+
 ?>
+
+
 
 
 <div class="imgReporteIndividual">

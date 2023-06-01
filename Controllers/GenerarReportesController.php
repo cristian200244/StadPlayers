@@ -58,21 +58,33 @@ class ReportesController
     }
     public function show()
     {
+
+        $params = [];
         $id_reporte = $_REQUEST['reporte'];
 
-        $datos = $this->reportesModel->getReporteId($id_reporte);
-        // var_dump($datos);
-        // die();
+        $reporte        = $this->reportesModel->getReporteId($id_reporte);
+        $datosJugador   = $this->reportesModel->DatosJugadorReporte($id_reporte);
+
+        $totalMinutosJugados = $this->reportesModel->getTotalMinutos($reporte);
 
 
-        $datos = $this->reportesModel->DatosJugadorReporte($id_reporte);
+        $params['id_reporte']       = $id_reporte;
+        $params["fechaInicial"]     = $reporte->fechaInicial;
+        $params["fechaFinal"]       = $reporte->fechaFinal;
+        $params["id_jugador"]       = $reporte->id_jugador;
+        $params["id_jugador"]       = $datosJugador->id;
+        $params["id"]               = $datosJugador->id;
+        $params["nombre_completo"]  = $datosJugador->nombre_completo;
+        $params["apodo"]            = $datosJugador->apodo;
+        $params["equipo"]           = $datosJugador->equipo;
+        $params["nombre"]           = $datosJugador->liga;
+        $params["descripcion"]      = $datosJugador->posicion;
+        $params["totalMinutos"]     = $totalMinutosJugados;
 
-        $totalMinutosJugados = $this->reportesModel->getTotalMinutos($datos);
-
-
-
-        // $this->reportesModel->getReporteId($datos);
+        header("Location: ../Views/Reportes/VerReporteIndividual.php?". $params["totalMinutos"]);
+        echo header("Location: ../Views/Reportes/VerReporteIndividual.php? $params");
     }
+
 
     public function getDateId()
     {

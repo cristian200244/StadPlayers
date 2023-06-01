@@ -19,6 +19,7 @@ class ReportesModel
     public $liga;
     public $posicion;
     public $minutos_jugados;
+    public $total_minutos;
     public $id_jugador;
     public $datos;
     public $numEstadistica;
@@ -40,6 +41,7 @@ class ReportesModel
         $this->liga;
         $this->posicion;
         $this->minutos_jugados;
+        $this->total_minutos;
         $this->numEstadistica;
     }
     //metodos mágicos
@@ -124,20 +126,19 @@ class ReportesModel
     public function getReporteId($id)
     {
         $sql = "SELECT * 
-            FROM generar_reporte 
-            WHERE id = $id AND id_usuario =$this->id_usuario";
+        FROM generar_reporte 
+        WHERE id = $id AND id_usuario =$this->id_usuario";
 
         try {
             $items = [];
             $query = $this->db->conect()->query($sql);
             while ($row = $query->fetchObject()) {
-                $item = new ReportesModel();
-                $item->id = $row->id;
+                $item               = new ReportesModel();
+                $item->id           = $row->id;
                 $item->fechaInicial = $row->fecha_inicial;
-                $item->fechaFinal = $row->fecha_final;
-                $item->id_jugador = $row->id_jugador;
+                $item->fechaFinal   = $row->fecha_final;
+                $item->id_jugador   = $row->id_jugador;
             }
-
 
             return $item;
         } catch (PDOException $e) {
@@ -145,7 +146,7 @@ class ReportesModel
         }
     }
 
-    public function DatosJugadorReporte($id_reporte)
+    public function DatosJugadorReporte($datosJugador)
     {
 
         $sql = "SELECT gr.id, gr.fecha_inicial, gr.fecha_final, j.nombre_completo, j.apodo, e.equipo,l.nombre,p.descripcion
@@ -154,60 +155,61 @@ class ReportesModel
             JOIN equipos as e ON  j.id_equipo = e.id
             JOIN ligas as l ON  j.id_liga = l.id
             JOIN posiciones as p ON  j.id_posicion = p.id
-            WHERE gr.id = $id_reporte";
+            WHERE gr.id = $datosJugador";
 
         try {
-            $items = [];
+
             $query = $this->db->conect()->query($sql);
             while ($row = $query->fetch()) {
-                $item = new ReportesModel();
-                $item->id = $row['id'];
-                $item->nombre_completo = $row['nombre_completo'];
-                $item->apodo = $row['apodo'];
-                $item->equipo = $row['equipo'];
-                $item->liga = $row['nombre'];
-                $item->posicion = $row['descripcion'];
-
-                $result = array_push($items, $item);
+                $item                   = new ReportesModel();
+                $item->id               = $row['id'];
+                $item->nombre_completo  = $row['nombre_completo'];
+                $item->apodo            = $row['apodo'];
+                $item->equipo           = $row['equipo'];
+                $item->liga             = $row['nombre'];
+                $item->posicion         = $row['descripcion'];
             }
-            return $result;
+
+            return $item;
         } catch (PDOException $e) {
             die($e->getMessage());
         }
     }
 
 
-    public function getTotalMinutos($datos)
+    public function getTotalMinutos($totalMinutosJugados)
     {
+      
 
-        $sql = "SELECT SUM(valor) AS min_jugados
+        try {
+            $sql = "SELECT SUM(valor) AS min_jugados
             FROM count_estadisticas  AS ce
             JOIN encuentro_estadisticas AS ee 
             ON ce.id_encuentro_estadistica = ee.id AND ee.id_jugador = ?
             WHERE id_estadistica = ? AND ee.fecha_del_partido BETWEEN ? AND ?
             ";
 
-
-        try {
-
             $query = $this->db->conect()->prepare($sql);
 
             $query->execute([
 
-                $datos = $this->id_jugador,
+                   $totalMinutosJugados->id_jugador,
                 15,
-                $datos = $this->fechaInicial,
-                $datos = $this->fechaFinal,
+                   $totalMinutosJugados->fechaInicial,
+                   $totalMinutosJugados->fechaFinal
+                //  1, 15, "2017-01-01", "2017-12-31"
 
             ]);
-            $total_minutos = $query->fetchObject();
 
-
+            $result = $query->fetchColumn();
+            $total_minutos = ($result > 0) ? $result : 0;
+          
             return $total_minutos;
         } catch (PDOException $e) {
             die($e->getMessage());
         }
     }
+
 
     public function getPlayers()
     {
