@@ -60,6 +60,8 @@ class ReportesController
     {
 
         $params = [];
+        $datosReporte = [];
+
         $id_reporte = $_REQUEST['reporte'];
 
         $reporte        = $this->reportesModel->getReporteId($id_reporte);
@@ -72,7 +74,7 @@ class ReportesController
         $params["fechaInicial"]     = $reporte->fechaInicial;
         $params["fechaFinal"]       = $reporte->fechaFinal;
         $params["id_jugador"]       = $reporte->id_jugador;
-        $params["id_jugador"]       = $datosJugador->id;
+        // $params["id_jugador"]       = $datosJugador->id;
         $params["id"]               = $datosJugador->id;
         $params["nombre_completo"]  = $datosJugador->nombre_completo;
         $params["apodo"]            = $datosJugador->apodo;
@@ -82,24 +84,9 @@ class ReportesController
         $params["totalMinutos"]     = $totalMinutosJugados;
 
 
-        $DatosReporte = [];
+        $datosReporte .= $params['id_reporte']  . "|" . $params["fechaInicial"] . "|" . $params["fechaFinal"] . "|" . $params["id_jugador"] . "|" . $params["id"] . "|" . $params["nombre_completo"] . "|" . $params["apodo"] . "|" . $params["equipo"] . "|" . $params["nombre"] . "|" . $params["totalMinutos"] . "|" . $params["descripcion"];
 
-
-        $DatosReporte = $params['id_reporte'] . '<br>' . $params["fechaInicial"] .  '<br>' .
-            $params["fechaFinal"] . '<br>' . $params["id_jugador"]   .  '<br>' .
-            $params["id_jugador"] . '<br>' . $params["id"] .             '<br>' .
-            $params["nombre_completo"] . '<br>' . $params["apodo"] .        '<br>' .
-            $params["equipo"] .         '<br>' . $params["nombre"] .       '<br>' .
-            $params["totalMinutos"] .   '<br>' . $params["descripcion"];
-        '<br>' .
-
-            header("Location: ../Views/Reportes/VerReporteIndividual.php?b=" . $DatosReporte);
-
-
-        // header("Location:Location: ../Views/Reportes/VerReporteIndividual.php?//$mensaje");
-
-
-
+        header("Location: ../Views/Reportes/VerReporteIndividual.php?params=" . $datosReporte);
     }
 
 

@@ -184,9 +184,9 @@ class ReportesModel
 
         try {
             $sql = "SELECT SUM(valor) AS min_jugados
-            FROM count_estadisticas  AS ce
-            JOIN encuentro_estadisticas AS ee 
-            ON ce.id_encuentro_estadistica = ee.id AND ee.id_jugador = ?
+            FROM estadisticas_count  AS ec
+            JOIN estadisticas_encuentro AS ee 
+            ON ec.id_encuentro_estadistica = ee.id AND ee.id_jugador = ?
             WHERE id_estadistica = ? AND ee.fecha_del_partido BETWEEN ? AND ?
             ";
 
