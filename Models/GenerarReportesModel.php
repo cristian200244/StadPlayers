@@ -19,7 +19,12 @@ class ReportesModel
     public $liga;
     public $posicion;
     public $minutos_jugados;
+    public $partidos_jugados;
     public $total_minutos;
+    public$totalEstadisticas;
+    public $pases_acertados;
+    public $pases_errados;
+    public $tiros_al_arco;
     public $id_jugador;
     public $datos;
     public $numEstadistica;
@@ -41,8 +46,13 @@ class ReportesModel
         $this->liga;
         $this->posicion;
         $this->minutos_jugados;
+        $this->partidos_jugados;
         $this->total_minutos;
         $this->numEstadistica;
+        $this->totalEstadisticas;
+        $this->pases_acertados;
+        $this->pases_errados;
+        $this->tiros_al_arco;
     }
     //metodos mágicos
     public function getId()
@@ -54,14 +64,7 @@ class ReportesModel
     {
         return $this->nombre_completo;
     }
-    public function getIdReporte()
-    {
-        return $this->id;
-    }
-    public function getMinutosJugados()
-    {
-        return $this->minutos_jugados;
-    }
+
 
 
 
@@ -210,6 +213,81 @@ class ReportesModel
             die($e->getMessage());
         }
     }
+    public function getTotalPartidos($totalPartidosJugados)
+    {
+
+
+        try {
+            $sql = "SELECT COUNT(*) AS total_partidos
+            FROM estadisticas_encuentro  AS ee
+            WHERE ee.id_jugador=? 
+            AND ee.fecha_del_partido BETWEEN ? AND ?
+            ";
+
+            $query = $this->db->conect()->prepare($sql);
+
+            $query->execute([
+
+                $totalPartidosJugados->id_jugador,
+
+                $totalPartidosJugados->fechaInicial,
+                $totalPartidosJugados->fechaFinal,
+
+                //  1, 15, "2017-01-01", "2017-12-31"
+
+
+            ]);
+
+            $result = $query->fetchColumn();
+            $total_partidos = ($result > 0) ? $result : 0;
+
+            return  $total_partidos;
+        } catch (PDOException $e) {
+            die($e->getMessage());
+        }
+    }
+
+    public function getTotalEstadisticas($totalEstadisticas)
+    {
+        try {
+            $sql = "SELECT e.nombre, SUM(ec.valor)
+             FROM estadisticas AS e
+             RIGHT JOIN estadisticas_count AS ec ON e.id = ec.id_estadistica
+             JOIN estadisticas_encuentro AS ee ON ec.id_encuentro_estadistica = ee.id AND ee.id_jugador = ?
+             WHERE ee.fecha_del_partido BETWEEN ? AND ?
+             GROUP BY e.nombre, e.id
+            ";
+
+            $query = $this->db->conect()->prepare($sql);
+
+            $query->execute([
+                $totalEstadisticas->id_jugador,
+                $totalEstadisticas->fechaInicial,
+                $totalEstadisticas->fechaFinal
+            ]);
+            $result = $query->fetchObject(); 
+            // var_dump($result);
+            // die();
+            // if ($result) {
+            //     $items = [];
+            //     while ($row = $query->fetchObject()) {
+            //         $item               = new ReportesModel();
+            //         $item->pases_acertados  = $row->pases_acertados;
+            //         $item->pases_errados = $row->pases_errados;
+            //         $item->tiros_al_arco   = $row->tiros_alrco ;
+                
+         
+            //     }
+            
+            // }
+            return  $result;
+        } catch (PDOException $e) {
+            die($e->getMessage());
+        }
+        }
+
+    
+
 
 
     public function getPlayers()
@@ -239,9 +317,9 @@ class ReportesModel
 
 
 // CONSULTA SUMAR TODAS LAS ESTADISTICAS
-// SELECT e.nombre, SUM(ce.valor)
-// FROM estadisticas AS e
-// RIGHT JOIN count_estadisticas AS ce ON e.id = ce.id_estadistica
-// JOIN encuentro_estadisticas AS ee ON ce.id_encuentro_estadistica = ee.id AND ee.id_jugador = 1
-// WHERE ee.fecha_del_partido BETWEEN "2017-01-01-" AND "2017-12-31"
-// GROUP BY e.nombre, e.id
+// SELECT e.nombre, SUM(ec.valor)
+//  FROM estadisticas AS e
+//  RIGHT JOIN estadisticas_count AS ec ON e.id = ec.id_estadistica
+//  JOIN estadisticas_encuentro AS ee ON ec.id_encuentro_estadistica = ee.id AND ee.id_jugador = 1
+//  WHERE ee.fecha_del_partido BETWEEN "2017-01-01-" AND "2017-12-31"
+//  GROUP BY e.nombre, e.id
