@@ -46,7 +46,7 @@ $nPartido = $datos->NumeroPartido();
                                 <div class="row mb-3 ">
                                     <div class="col-md-6 mt-3 ">
                                         <div class="form-floating  mb-3 mb-md-0 ">
-                                            <h4>Nombre del Jugador</h4>
+                                            <h4>Nombre Jugador</h4>
                                         </div>
                                     </div>
                                     <div class="form-floating col-md-6">
@@ -63,11 +63,11 @@ $nPartido = $datos->NumeroPartido();
 
                                     <div class="col-md-6 mt-4">
                                         <div class="form-floating mb-3 mb-md-0">
-                                            <h4>Equipo Actual Del jugador</h4>
+                                            <h4>Equipo Rival</h4>
                                         </div>
                                     </div>
                                     <div class=" form-floating col-md-6 mt-3">
-                                        <select class="form-select" aria-label="Default select example" name="id_equipo" id="id_quipo">
+                                        <select class="form-select" aria-label="Default select example" name="id_equipo" id="id_equipo">
                                             <option value="" disabled selected>Selecciona una opción</option>
                                             <?php foreach ($equipos as $equipo) :; ?>
 
@@ -110,22 +110,6 @@ $nPartido = $datos->NumeroPartido();
                                         </select>
                                     </div>
 
-                                    <div class="col-md-6 mt-4">
-                                        <div class="form-floating mb-3 mb-md-0">
-                                            <h4>Equipo rival</h4>
-                                        </div>
-                                    </div>
-                                    <div class=" form-floating col-md-6 mt-3">
-                                        <select class="form-select" aria-label="Default select example" name="equipo_rival" id="equipo_rival">
-                                            <option value="" disabled selected>Selecciona una opción</option>
-                                            <?php foreach ($equipos as $equipo) :; ?>
-
-
-                                                <option value="<?= $equipo->getId() ?>">
-                                                    <?= $equipo->getEquipo()  ?></option>";
-                                            <?php endforeach ?>
-                                        </select>
-                                    </div>
 
 
                                     <div class="col-md-6 mt-4">

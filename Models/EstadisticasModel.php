@@ -28,22 +28,31 @@ class EstadisticasModel extends stdClass
     }
 
 
-    public function getbyId($id)
+    public function getbyId($id_encuentro)
     {
-        var_dump($id);
-        die();
         $operacion = [];
 
         try {
-            $sql = "SELECT nombre, valor FROM estadisticas JOIN estadisticas_count WHERE id = $id";
-            $query  = $this->db->conect()->query($sql);
+            // Obtener el último ID
+            $lastId = $id_encuentro;
 
+            $sql = "SELECT estadisticas_count.id, nombre, valor
+            FROM estadisticas_count
+            JOIN estadisticas ON estadisticas_count.id_estadistica = estadisticas.id
+            JOIN posiciones ON posiciones.id = estadisticas.id_posicion
+            WHERE id_encuentro_estadistica = :lastId";
+
+            $query  = $this->db->conect()->query($sql);
+            $query->bindParam(':lastId', $lastId);
+            $query->execute();
 
             while ($row = $query->fetch()) {
                 $item            = new EstadisticasModel();
                 $item->id        = $row['id'];
-                $item->nombre   = $row['nombre'];
-                $item->valor   = $row['valor'];
+                $item->nombre    = $row['nombre'];
+                $item->valor     = $row['valor'];
+                $id_posicion     = $row['id_posicion'];
+
 
                 array_push($operacion, $item);
             }
@@ -53,6 +62,7 @@ class EstadisticasModel extends stdClass
             die($e->getMessage());
         }
     }
+
 
 
     public function getAll()
@@ -210,51 +220,101 @@ class EstadisticasModel extends stdClass
         $tipo_partido      = $datos['id_tipo_partido'];
         $jugador           = $datos['id_jugador'];
         $equipo            = $datos['id_equipo'];
-        $equipo_rival      = $datos['equipo_rival'];
         $numero_partido    = $datos['numero_partido'];
 
         try {
-            $sql = "INSERT INTO estadisticas_encuentro (fecha_del_partido, id_tipo_partido, id_jugador, id_equipo, equipo_rival, numero_partido) VALUES (:fecha_del_partido, :id_tipo_partido, :id_jugador, :id_equipo, :equipo_rival, :numero_partido)";
+            $sql = "INSERT INTO estadisticas_encuentro (fecha_del_partido, id_tipo_partido, id_jugador, id_equipo, numero_partido) VALUES (:fecha_del_partido, :id_tipo_partido, :id_jugador, :id_equipo, :numero_partido)";
 
-            $prepare = $this->db->conect()->prepare($sql);
-            $query = $prepare->execute([
+            $connection = $this->db->conect();
+            $prepare = $connection->prepare($sql);
+            $prepare->execute([
                 'fecha_del_partido' => $fecha_del_partido,
                 'id_tipo_partido'   => $tipo_partido,
                 'id_jugador'        => $jugador,
                 'id_equipo'         => $equipo,
-                'equipo_rival'      => $equipo_rival,
                 'numero_partido'    => $numero_partido
             ]);
 
-            if ($query) {
+            $lastId = $connection->lastInsertId();
+            $this->storeEstadisticasCount($lastId);
 
-                return true;
-            }
+            return true;
         } catch (PDOException $e) {
             echo $e->getMessage();
+            return false;
+        }
+    }
 
+    public function getLastId()
+    {
+        try {
+            // Obtener el último id insertado
+            $lastId = $this->db->conect()->lastInsertId();
+            return $lastId;
+        } catch (PDOException $e) {
+            echo $e->getMessage();
             return false;
         }
     }
 
     public function storeEstadisticasCount($lastId)
     {
-        $sql = "INSERT INTO estadisticas_count (id_encuentro) VALUES ($lastId)";
-        $prepare = $this->db->conect()->prepare($sql);
-        $query = $prepare->execute([
-            'id'     =>$lastId['id'],
-        ]);
+        try {
+            $sqlSelect = 'SELECT * FROM estadisticas';
+            $sqlInsert = 'INSERT INTO estadisticas_count (id_encuentro_estadistica, id_estadistica) VALUES (?, ?)';
 
-        if ($query) {
+            $connection = $this->db->conect();
+
+            // Obtener los datos de la tabla estadisticas
+            $querySelect = $connection->query($sqlSelect);
+            $items = $querySelect->fetchAll(PDO::FETCH_ASSOC);
+
+            // Insertar los datos en la tabla estadisticas_count
+            $Insert = $connection->prepare($sqlInsert);
+            foreach ($items as $item) {
+                $Insert->execute([
+                    $lastId,
+                    $item['id']
+                ]);
+            }
+
             return true;
-        }else {
+        } catch (PDOException $e) {
+            echo $e->getMessage();
             return false;
         }
-        
-
-        return $query; // Opcionalmente, puedes retornar el resultado de la operación si es necesario
-    
     }
+
+    public function getUltimasEstadisticas()
+    {
+        $items = [];
+
+        try {
+
+            $sql = 'SELECT ec.id AS id, e.nombre, ec.valor
+                FROM estadisticas_count AS ec
+                JOIN estadisticas AS e ON e.id = ec.id_estadistica
+                WHERE ec.id_encuentro_estadistica = (SELECT MAX(id) FROM estadisticas_encuentro)';
+
+            $query = $this->db->conect()->query($sql);
+
+            while ($registro = $query->fetch()) {
+                $item         = new EstadisticasModel();
+                $item->id     = $registro['id'];
+                $item->nombre = $registro['nombre'];
+                $item->valor  = $registro['valor'];
+
+                array_push($items, $item);
+            }
+
+            return $items;
+        } catch (PDOException $e) {
+            die($e->getMessage());
+        }
+    }
+
+
+
 
     public function update($datos)
     {

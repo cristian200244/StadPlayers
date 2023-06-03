@@ -7,7 +7,7 @@ include_once(BASE_DIR . "../../Views/partials/aside.php");
 include_once '../../Models/EstadisticasModel.php';
 
 $data = new EstadisticasModel();
-$registros = $data->getAll();
+$registros = $data->getUltimasEstadisticas($ultId);
 
 ?>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -38,11 +38,11 @@ $registros = $data->getAll();
                                                 <div class="col-md-6">
 
                                                     <div class="col m-4">
+                                                        <hr class="my-4 border border-3 border-primary ">
                                                         <input class="text-center" type="number" id="estadistica-<?= $registro->getId() ?>" name="estadistica-<?= $registro->getId() ?>" value="<?= $registro->valor ?>" min="0" disabled />
                                                     </div>
 
                                                     <a class="btn btn-sm btn-danger" onclick="operacion(<?= $registro->getId() ?> ,'restar')">-</a>
-
 
                                                     <label for="" class="form-label"><?= $registro->nombre ?></label>
 
@@ -56,32 +56,6 @@ $registros = $data->getAll();
                                         ?>
 
                                     </div>
-
-                                    <hr>
-
-                                    <?php
-                                        if ($registros) {
-                                            foreach ($registros as $registro) { ?>
-                                                <div class="col-md-6">
-
-                                                    <div class="col m-4">
-                                                        <input class="text-center" type="number" id="estadistica-<?= $registro->getId() ?>" name="estadistica-<?= $registro->getId() ?>" value="<?= $registro->valor ?>" min="0" disabled />
-                                                    </div>
-
-                                                    <a class="btn btn-sm btn-danger" onclick="operacion(<?= $registro->getId() ?> ,'restar')">-</a>
-
-
-                                                    <label for="" class="form-label"><?= $registro->nombre ?></label>
-
-
-                                                    <a class="btn btn-sm btn-success" onclick="operacion(<?= $registro->getId() ?>,'sumar')">+</a>
-
-                                                </div>
-
-                                        <?php }
-                                        }
-                                        ?>
-
 
                                 </div>
                             </div>
