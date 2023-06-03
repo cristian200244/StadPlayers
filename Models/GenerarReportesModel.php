@@ -21,7 +21,7 @@ class ReportesModel
     public $minutos_jugados;
     public $partidos_jugados;
     public $total_minutos;
-    public$totalEstadisticas;
+    public $totalEstadisticas;
     public $pases_acertados;
     public $pases_errados;
     public $tiros_al_arco;
@@ -142,8 +142,6 @@ class ReportesModel
                 $item->fechaFinal   = $row->fecha_final;
                 $item->id_jugador   = $row->id_jugador;
             }
-
-
             return $item;
         } catch (PDOException $e) {
             die($e->getMessage());
@@ -250,7 +248,7 @@ class ReportesModel
     public function getTotalEstadisticas($totalEstadisticas)
     {
         try {
-            $sql = "SELECT e.nombre, SUM(ec.valor)
+            $sql = "SELECT e.nombre, SUM(ec.valor) AS valor
              FROM estadisticas AS e
              RIGHT JOIN estadisticas_count AS ec ON e.id = ec.id_estadistica
              JOIN estadisticas_encuentro AS ee ON ec.id_encuentro_estadistica = ee.id AND ee.id_jugador = ?
@@ -265,28 +263,18 @@ class ReportesModel
                 $totalEstadisticas->fechaInicial,
                 $totalEstadisticas->fechaFinal
             ]);
-            $result = $query->fetchObject(); 
-            // var_dump($result);
-            // die();
-            // if ($result) {
-            //     $items = [];
-            //     while ($row = $query->fetchObject()) {
-            //         $item               = new ReportesModel();
-            //         $item->pases_acertados  = $row->pases_acertados;
-            //         $item->pases_errados = $row->pases_errados;
-            //         $item->tiros_al_arco   = $row->tiros_alrco ;
-                
-         
-            //     }
-            
-            // }
-            return  $result;
+
+            while ($row = $query->fetchObject()) {
+                $params[$row->nombre] = $row->valor;
+            }
+
+            return $params;
         } catch (PDOException $e) {
             die($e->getMessage());
         }
-        }
+    }
 
-    
+
 
 
 

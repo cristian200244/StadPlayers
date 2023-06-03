@@ -70,6 +70,8 @@ class ReportesController
         $totalPartidosJugados = $this->reportesModel->getTotalPartidos($reporte);
         $totalEstadisticas    = $this->reportesModel->getTotalEstadisticas($reporte);
 
+        var_dump($totalEstadisticas["Pases acertados"]);
+        die();
 
         $params['id_reporte']       = $id_reporte;
         $params["fechaInicial"]     = $reporte->fechaInicial;
@@ -83,18 +85,12 @@ class ReportesController
         $params["descripcion"]      = $datosJugador->posicion;
         $params["totalMinutos"]     = $totalMinutosJugados;
         $params["totalPartidos"]    = $totalPartidosJugados;
-        $params["pasesAcertados"]   = $totalEstadisticas->pases_acertados;
-        $params["pasesErrados"]     = $totalEstadisticas->pases_errados;
-        $params["tirosAlArco"]      = $totalEstadisticas->tiros_alrco;
 
-
-        var_dump($params);
-        die();
         $datosReporte .= $params['id_reporte']  . "|" . $params["fechaInicial"] . "|" . $params["fechaFinal"] . "|" .
-         $params["id_jugador"] . "|" . $params["id"] . "|" . $params["nombre_completo"] . "|" . $params["apodo"] .
-          "|" . $params["equipo"] . "|" . $params["nombre"] . "|" . $params["descripcion"] . "|" .
-          $params["totalMinutos"] . "|" .  $params["totalPartidos"]. "|" . $params["pasesAcertados"] . "|" .
-          $params["pasesErrados"] . "|" .   $params["tirosAlArco"] ;
+            $params["id_jugador"] . "|" . $params["id"] . "|" . $params["nombre_completo"] . "|" . $params["apodo"] .
+            "|" . $params["equipo"] . "|" . $params["nombre"] . "|" . $params["descripcion"] . "|" .
+            $params["totalMinutos"] . "|" .  $params["totalPartidos"] . "|" . $params["pasesAcertados"] . "|" .
+            $params["pasesErrados"] . "|" .   $params["tirosAlArco"];
 
         header("Location: ../Views/Reportes/VerReporteIndividual.php?params=" . $datosReporte);
     }
