@@ -69,31 +69,84 @@ class ReportesController
         $totalMinutosJugados  = $this->reportesModel->getTotalMinutos($reporte);
         $totalPartidosJugados = $this->reportesModel->getTotalPartidos($reporte);
         $totalEstadisticas    = $this->reportesModel->getTotalEstadisticas($reporte);
+        $nuevaEstadistica     = $this->reportesModel->getNuevaEstadistica($reporte);
 
-        var_dump($totalEstadisticas["Pases acertados"]);
-        die();
 
-        $params['id_reporte']       = $id_reporte;
-        $params["fechaInicial"]     = $reporte->fechaInicial;
-        $params["fechaFinal"]       = $reporte->fechaFinal;
-        $params["id_jugador"]       = $reporte->id_jugador;
+        $params['IdReporte']       = $id_reporte;
+        $params["FechaInicial"]     = $reporte->fechaInicial;
+        $params["FechaFinal"]       = $reporte->fechaFinal;
+        $params["IdJugador"]       = $reporte->id_jugador;
         $params["id"]               = $datosJugador->id;
-        $params["nombre_completo"]  = $datosJugador->nombre_completo;
+        $params["NombreCompleto"]  = $datosJugador->nombre_completo;
         $params["apodo"]            = $datosJugador->apodo;
         $params["equipo"]           = $datosJugador->equipo;
         $params["nombre"]           = $datosJugador->liga;
         $params["descripcion"]      = $datosJugador->posicion;
-        $params["totalMinutos"]     = $totalMinutosJugados;
-        $params["totalPartidos"]    = $totalPartidosJugados;
+        $params["TotalMinutos"]     = $totalMinutosJugados;
+        $params["TotalPartidos"]    = $totalPartidosJugados;
 
-        $datosReporte .= $params['id_reporte']  . "|" . $params["fechaInicial"] . "|" . $params["fechaFinal"] . "|" .
-            $params["id_jugador"] . "|" . $params["id"] . "|" . $params["nombre_completo"] . "|" . $params["apodo"] .
-            "|" . $params["equipo"] . "|" . $params["nombre"] . "|" . $params["descripcion"] . "|" .
-            $params["totalMinutos"] . "|" .  $params["totalPartidos"] . "|" . $params["pasesAcertados"] . "|" .
-            $params["pasesErrados"] . "|" .   $params["tirosAlArco"];
+        $params["PasesAcertados"]               = $totalEstadisticas["Pases acertados"];
+        $params["PasesErrados"]                 = $totalEstadisticas["Pases errados"];
+        $params["TirosAlArco"]                  = $totalEstadisticas["Tiros al arco"];
+        $params["AsistenciasDeGol"]             = $totalEstadisticas["Asistencias de Gol"];
+        $params["RechazosBienDirigidos"]        = $totalEstadisticas["Rechazos bien dirigidos"];
+        $params["RechazosMalDirigidos"]         = $totalEstadisticas["Rechazos mal dirigidos"];
+        $params["PerdidasDeBalon"]              = $totalEstadisticas["Perdidas de balon"];
+        $params["PerdidasDeBalonPerjudiciales"] = $totalEstadisticas["Perdidas de balon perjudiciales"];
+        // $params["MinutosJugados"]               = $totalEstadisticas["Minutos Jugados"];
+        $params["GolesAnotados"]                = $totalEstadisticas["Goles Anotados"];
+        $params["AmarillasRecibidas"]           = $totalEstadisticas["Amarillas Recibidas"];
+        $params["RojasRecibidas"]               = $totalEstadisticas["Roja Recibida"];
+
+        $params["AtajadaHeroica"]               = $totalEstadisticas["Atajada Heroica"];
+        $params["PenalesAtajados"]              = $totalEstadisticas["Penales atajados"];
+        $params["ExitoManoAMano"]               = $totalEstadisticas["exitos en mano a mano"];
+        $params["NuevaEstadistica"]             = $nuevaEstadistica;
+
+        $datosReporte =
+            $params['IdReporte']                   . "|" .
+            $params["FechaInicial"]                . "|" .
+            $params["FechaFinal"]                  . "|" .
+            $params["IdJugador"]                  . "|" .
+            $params["id"]                          . "|" .
+            $params["NombreCompleto"]             . "|" .
+            $params["apodo"]                       . "|" .
+            $params["equipo"]                      . "|" .
+            $params["nombre"]                      . "|" .
+            $params["descripcion"]                 . "|" .
+            $params["TotalMinutos"]                . "|" .
+            $params["TotalPartidos"]               . "|" .
+
+
+            $params["PasesAcertados"]         . "|" .
+            $params["PasesErrados"]           . "|" .
+            $params["TirosAlArco"]            . "|" .
+            $params["AsistenciasDeGol"]       . "|" .
+            $params["RechazosBienDirigidos"]  . "|" .
+            $params["RechazosMalDirigidos"]   . "|" .
+            $params["PerdidasDeBalon"]   . "|" .
+            $params["PerdidasDeBalonPerjudiciales"] . "|" .
+            // $params["MinutosJugados"]  . "|" .
+            $params["GolesAnotados"]             . "|" .
+            $params["AmarillasRecibidas"]        . "|" .
+            $params["RojasRecibidas"]            . "|" .
+
+            $params["AtajadaHeroica"]            . "|" .
+            $params["PenalesAtajados"]           . "|" .
+            $params["ExitoManoAMano"]            . "|" .
+            $params[implode($params["NuevaEstadistica"])];
+
+
+
+
+        // var_dump($params["NuevaEstadistica"]);
+        // die();
+
+
 
         header("Location: ../Views/Reportes/VerReporteIndividual.php?params=" . $datosReporte);
     }
+
 
 
     public function getDateId()

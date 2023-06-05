@@ -3,11 +3,17 @@
 include_once(__DIR__ . "../../../config/rutas.php");
 include_once __DIR__ . "../../../Models/GenerarReportesModel.php";
 require_once __DIR__ . '../../../Controllers/GenerarReportesController.php';
-include_once(BASE_DIR . "../../Views/partials/header.php");
-include_once(BASE_DIR . "../../Views/partials/aside.php");
+// include_once(BASE_DIR . "../../Views/partials/header.php");
+// include_once(BASE_DIR . "../../Views/partials/aside.php");
 
 $data = new ReportesController();
 $datosReporte = explode("|", $_REQUEST['params']);
+
+$nueva_estadistica = $datosReporte[26];
+
+var_dump($nueva_estadistica);
+die();
+
 
 $id_reporte = $datosReporte[0];
 $fechaInicial = $datosReporte[1];
@@ -24,6 +30,19 @@ $totalPartidos = $datosReporte[11];
 $pases_acertados = $datosReporte[12];
 $pases_errados = $datosReporte[13];
 $tiros_al_arco = $datosReporte[14];
+$asistencias_de_gol = $datosReporte[15];
+$rechazos_bien_dirigidos = $datosReporte[16];
+$rechazos_mal_dirigidos = $datosReporte[17];
+$perdidas_de_balon = $datosReporte[18];
+$Perdidas_perjudiciales = $datosReporte[19];
+// $minutos_jugados = $datosReporte[20],
+$goles_anotados = $datosReporte[20];
+$amarillas_recibidas = $datosReporte[21];
+$rojas_recibidas = $datosReporte[22];
+$atajada_heroica = $datosReporte[23];
+$penales_atajados = $datosReporte[24];
+$éxitos_mano_a_mano = $datosReporte[25];
+
 ?>
 
 <div class="imgReporteIndividual">
@@ -32,6 +51,7 @@ $tiros_al_arco = $datosReporte[14];
             <div class="row justify-content-center">
                 <div class="col-lg-11">
                     <div class="card shadow-lg border-0 rounded-lg mt-5">
+
 
                         <div class="card-header bg-success">
                             <div class="row ">
@@ -67,8 +87,8 @@ $tiros_al_arco = $datosReporte[14];
                                         <h5><label for="nombre_completo"></label></h5>
                                     </strong>
                                     <div class="card bg-dark text-light  mt-2 pt-2 pb-2">
-                                    <span><?= $nombre_completo ?></span>
-                                   
+                                        <span><?= $nombre_completo ?></span>
+
                                     </div>
                                 </div>
                                 <div class="col-md-3 mt-3 text-success">
@@ -76,7 +96,8 @@ $tiros_al_arco = $datosReporte[14];
                                         <h5> <label for="nombre_completo">Equipo Actual</label></h5>
                                     </strong>
                                     <div class="card bg-dark text-light  mt-2 pt-2 pb-2">
-                                    <span><?= $equipo ?></span></div>
+                                        <span><?= $equipo ?></span>
+                                    </div>
 
                                 </div>
                                 <div class="col-md-3 mt-3 text-success">
@@ -84,7 +105,8 @@ $tiros_al_arco = $datosReporte[14];
                                         <h5><label for="nombre_completo">Liga Actual</label></h5>
                                     </strong>
                                     <div class="card bg-dark text-light  mt-2 pt-2 pb-2">
-                                    <span><?= $nombre ?></span></div>
+                                        <span><?= $nombre ?></span>
+                                    </div>
 
                                 </div>
                                 <div class="col-md-3 mt-3 text-success">
@@ -92,7 +114,8 @@ $tiros_al_arco = $datosReporte[14];
                                         <h5><label for="nombre_completo">Posiciones</label></h5>
                                     </strong>
                                     <div class="card bg-dark text-light  mt-2 pt-2 pb-2">
-                                    <span><?= $descripcion ?></span></div>
+                                        <span><?= $descripcion ?></span>
+                                    </div>
 
                                 </div>
                             </div>
@@ -102,16 +125,18 @@ $tiros_al_arco = $datosReporte[14];
                                         <h5><label for="nombre_completo">Apodo</label></h5>
                                     </strong>
                                     <div class="card  bg-dark text-light  mt-2 pt-2 pb-2">
-                                    <span><?= $apodo ?></span></div>
+                                        <span><?= $apodo ?></span>
+                                    </div>
 
                                 </div>
                                 <div class="col-md-3 text-success">
                                     <strong>
                                         <h5>
                                     </strong> <label for="nombre_completo">Minutos
-                                      </label></h5></strong>
+                                    </label></h5></strong>
                                     <div class="card  ms-5 me-5 bg-dark text-light mt-2 pt-2 pb-2">
-                                    <span><?= $totalMinutos ?></span></div>
+                                        <span><?= $totalMinutos ?></span>
+                                    </div>
 
                                 </div>
                                 <div class="col-md-3 text-success">
@@ -119,7 +144,8 @@ $tiros_al_arco = $datosReporte[14];
                                         <h5><label for="nombre_completo">Partidos Jugados</label></h5>
                                     </strong>
                                     <div class="card   ms-5 me-5 bg-dark text-light  mt-2 pt-2 pb-2">
-                                    <span><?=$totalPartidos?></span></div>
+                                        <span><?= $totalPartidos ?></span>
+                                    </div>
 
                                 </div>
                                 <div class="col-md-3 text-success">
@@ -128,8 +154,8 @@ $tiros_al_arco = $datosReporte[14];
                                                 Rendimiento</label></h5>
                                     </strong>
                                     <div class="card ms-5 me-5 bg-info text-black  mt-2 pt-2 pb-2">
-                                        78 %</div>
-
+                                        78 %
+                                    </div>
                                 </div>
                             </div>
                             <div class="container">
@@ -151,9 +177,10 @@ $tiros_al_arco = $datosReporte[14];
                                                     <li class="list-group-item">Pases acertados</li>
                                                 </div>
                                                 <div class="col-3">
-                                                    <div class="card bg-dark text-light pt-2 pb-2  me-2 " style="margin-left: -24%;">
-                                                    <span><?=$pases_acertados?></span>    
-                                                </div>
+                                                    <div class="card bg-dark text-light pt-2 pb-2  me-2 "
+                                                        style="margin-left: -24%;">
+                                                        <span><?= $pases_acertados ?></span>
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div class="row">
@@ -161,9 +188,10 @@ $tiros_al_arco = $datosReporte[14];
                                                     <li class="list-group-item">Pases errados</li>
                                                 </div>
                                                 <div class="col-3">
-                                                    <div class="card bg-dark text-light pt-2 pb-2  me-2 " style="margin-left: -24%;">
-                                                    <span><?=$pases_errados?></span>      
-                                                </div>
+                                                    <div class="card bg-dark text-light pt-2 pb-2  me-2 "
+                                                        style="margin-left: -24%;">
+                                                        <span><?= $pases_errados ?></span>
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div class="row">
@@ -171,8 +199,10 @@ $tiros_al_arco = $datosReporte[14];
                                                     <li class="list-group-item">Remates al arco</li>
                                                 </div>
                                                 <div class="col-3">
-                                                    <div class="card bg-dark text-light pt-2 pb-2  me-2 " style="margin-left: -24%;">
-                                                    <span><?=$tiros_al_arco?></span> </div>
+                                                    <div class="card bg-dark text-light pt-2 pb-2  me-2 "
+                                                        style="margin-left: -24%;">
+                                                        <span><?= $tiros_al_arco ?></span>
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div class="row">
@@ -180,8 +210,10 @@ $tiros_al_arco = $datosReporte[14];
                                                     <li class="list-group-item">Asistencias de Gol</li>
                                                 </div>
                                                 <div class="col-3">
-                                                    <div class="card bg-dark text-light pt-2 pb-2  me-2 " style="margin-left: -24%;">
-                                                        11</div>
+                                                    <div class="card bg-dark text-light pt-2 pb-2  me-2 "
+                                                        style="margin-left: -24%;">
+                                                        <span><?= $asistencias_de_gol ?></span>
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div class="row">
@@ -190,8 +222,10 @@ $tiros_al_arco = $datosReporte[14];
                                                     </li>
                                                 </div>
                                                 <div class="col-3">
-                                                    <div class="card bg-dark text-light pt-2 pb-2  me-2 " style="margin-left: -24%;">
-                                                        25</div>
+                                                    <div class="card bg-dark text-light pt-2 pb-2  me-2 "
+                                                        style="margin-left: -24%;">
+                                                        <span><?= $rechazos_bien_dirigidos ?></span>
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div class="row">
@@ -200,8 +234,10 @@ $tiros_al_arco = $datosReporte[14];
                                                     </li>
                                                 </div>
                                                 <div class="col-3">
-                                                    <div class="card bg-dark text-light pt-2 pb-2  me-2 " style="margin-left: -24%;">
-                                                        8</div>
+                                                    <div class="card bg-dark text-light pt-2 pb-2  me-2 "
+                                                        style="margin-left: -24%;">
+                                                        <span><?= $rechazos_mal_dirigidos ?></span>
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div class="row">
@@ -209,19 +245,23 @@ $tiros_al_arco = $datosReporte[14];
                                                     <li class="list-group-item">Pérdidas de balón</li>
                                                 </div>
                                                 <div class="col-3">
-                                                    <div class="card bg-dark text-light pt-2 pb-2  me-2 " style="margin-left: -24%;">
-                                                        9 </div>
+                                                    <div class="card bg-dark text-light pt-2 pb-2  me-2 "
+                                                        style="margin-left: -24%;">
+                                                        <span><?= $perdidas_de_balon ?></span>
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div class="row">
                                                 <div class="col-9">
-                                                    <li class="list-group-item">pérdidas de balón
-                                                        perjudiciales
+                                                    <li class="list-group-item">pérdidas de balón perjudiciales
+
                                                     </li>
                                                 </div>
                                                 <div class="col-3">
-                                                    <div class="card bg-dark text-light pt-2 pb-2  me-2 " style="margin-left: -24%;">
-                                                        3</div>
+                                                    <div class="card bg-dark text-light pt-2 pb-2  me-2 "
+                                                        style="margin-left: -24%;">
+                                                        <span><?= $Perdidas_perjudiciales ?></span>
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div class="row">
@@ -229,8 +269,10 @@ $tiros_al_arco = $datosReporte[14];
                                                     <li class="list-group-item">Goles anotados</li>
                                                 </div>
                                                 <div class="col-3">
-                                                    <div class="card bg-dark text-light pt-2 pb-2  me-2 " style="margin-left: -24%;">
-                                                        10</div>
+                                                    <div class="card bg-dark text-light pt-2 pb-2  me-2 "
+                                                        style="margin-left: -24%;">
+                                                        <span><?= $goles_anotados ?></span>
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div class="row">
@@ -239,8 +281,10 @@ $tiros_al_arco = $datosReporte[14];
                                                     </li>
                                                 </div>
                                                 <div class="col-3">
-                                                    <div class="card bg-dark text-light pt-2 pb-2  me-2 " style="margin-left: -24%;">
-                                                        7</div>
+                                                    <div class="card bg-dark text-light pt-2 pb-2  me-2 "
+                                                        style="margin-left: -24%;">
+                                                        <span><?= $amarillas_recibidas ?></span>
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div class="row">
@@ -248,8 +292,10 @@ $tiros_al_arco = $datosReporte[14];
                                                     <li class="list-group-item"> Rojas recibidas</li>
                                                 </div>
                                                 <div class="col-3">
-                                                    <div class="card bg-dark text-light pt-2 pb-2  me-2 " style="margin-left: -24%;">
-                                                        2</div>
+                                                    <div class="card bg-dark text-light pt-2 pb-2  me-2 "
+                                                        style="margin-left: -24%;">
+                                                        <span> <?= $rojas_recibidas ?> </span>
+                                                    </div>
                                                 </div>
                                             </div>
 
@@ -272,8 +318,10 @@ $tiros_al_arco = $datosReporte[14];
                                                     <li class="list-group-item">Atajadas Heroicas</li>
                                                 </div>
                                                 <div class="col-3">
-                                                    <div class="card bg-dark text-light pt-2 pb-2  me-2 " style="margin-left: -24%;">
-                                                        4</div>
+                                                    <div class="card bg-dark text-light pt-2 pb-2  me-2 "
+                                                        style="margin-left: -24%;">
+                                                        <span><?= $atajada_heroica ?></span>
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div class="row">
@@ -281,8 +329,10 @@ $tiros_al_arco = $datosReporte[14];
                                                     <li class="list-group-item">Penales atajados</li>
                                                 </div>
                                                 <div class="col-3">
-                                                    <div class="card bg-dark text-light pt-2 pb-2  me-2 " style="margin-left: -24%;">
-                                                        3</div>
+                                                    <div class="card bg-dark text-light pt-2 pb-2  me-2 "
+                                                        style="margin-left: -24%;">
+                                                        <span><?= $penales_atajados ?></span>
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div class="row">
@@ -291,8 +341,10 @@ $tiros_al_arco = $datosReporte[14];
                                                     </li>
                                                 </div>
                                                 <div class="col-3">
-                                                    <div class="card bg-dark text-light pt-2 pb-2  me-2 " style="margin-left: -24%;">
-                                                        5</div>
+                                                    <div class="card bg-dark text-light pt-2 pb-2  me-2 "
+                                                        style="margin-left: -24%;">
+                                                        <span><?= $éxitos_mano_a_mano ?></span>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </ul>
@@ -300,7 +352,8 @@ $tiros_al_arco = $datosReporte[14];
 
                                     <div class="col-sm-5">
                                         <div class="row ms-3">
-                                            <div class="card shadow-lg bg-primary border-0 rounded-lg mt-5 p-3 text-light ">
+                                            <div
+                                                class="card shadow-lg bg-primary border-0 rounded-lg mt-5 p-3 text-light ">
                                                 <div class="row">
                                                     <div class="col-9">
                                                         Nuevas Estadìsticas
@@ -317,7 +370,8 @@ $tiros_al_arco = $datosReporte[14];
                                                         <li class="list-group-item">nueva estadìstica</li>
                                                     </div>
                                                     <div class="col-3">
-                                                        <div class="card bg-dark text-light pt-2 pb-2  me-2 " style="margin-left: -24%;">
+                                                        <div class="card bg-dark text-light pt-2 pb-2  me-2 "
+                                                            style="margin-left: -24%;">
                                                             0</div>
                                                     </div>
                                                 </div>
@@ -332,7 +386,8 @@ $tiros_al_arco = $datosReporte[14];
                                                         <i class="fas fa-chart-bar me-1"></i>
                                                         Grafica del Repote
                                                     </div>
-                                                    <div class="card-body bg-white"><canvas id="myBarChart" width="100%" height="50"></canvas></div>
+                                                    <div class="card-body bg-white"><canvas id="myBarChart" width="100%"
+                                                            height="50"></canvas></div>
                                                     <div class="card-footer bg-success small text-muted">Generada
                                                         fecha del reporte
                                                     </div>
@@ -362,7 +417,6 @@ $tiros_al_arco = $datosReporte[14];
                                 </div>
                             </div>
                         </div>
-
                     </div>
                 </div>
             </div>

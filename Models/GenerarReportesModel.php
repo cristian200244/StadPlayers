@@ -25,6 +25,19 @@ class ReportesModel
     public $pases_acertados;
     public $pases_errados;
     public $tiros_al_arco;
+    public $asistencias_de_gol;
+    public $rechazos_bien_dirigidos;
+    public $rechazos_mal_dirigidos;
+    public $perdidas_de_balon;
+    public $Perdidas_perjudiciales;
+    public $goles_anotados;
+    public $amarillas_recibidas;
+    public $rojas_recibidas;
+    public $atajada_heroica;
+    public $penales_atajados;
+    public $éxitos_mano_a_mano;
+    public $nueva_estadistica;
+    public $valor;
     public $id_jugador;
     public $datos;
     public $numEstadistica;
@@ -53,6 +66,19 @@ class ReportesModel
         $this->pases_acertados;
         $this->pases_errados;
         $this->tiros_al_arco;
+        $this->asistencias_de_gol;
+        $this->rechazos_bien_dirigidos;
+        $this->rechazos_mal_dirigidos;
+        $this->perdidas_de_balon;
+        $this->Perdidas_perjudiciales;
+        $this->goles_anotados;
+        $this->amarillas_recibidas;
+        $this->rojas_recibidas;
+        $this->atajada_heroica;
+        $this->penales_atajados;
+        $this->éxitos_mano_a_mano;
+        $this->nueva_estadistica;
+        $this->valor;
     }
     //metodos mágicos
     public function getId()
@@ -196,7 +222,7 @@ class ReportesModel
             $query->execute([
 
                 $totalMinutosJugados->id_jugador,
-                15,
+                9,
                 $totalMinutosJugados->fechaInicial,
                 $totalMinutosJugados->fechaFinal
                 //  1, 15, "2017-01-01", "2017-12-31"
@@ -248,7 +274,7 @@ class ReportesModel
     public function getTotalEstadisticas($totalEstadisticas)
     {
         try {
-            $sql = "SELECT e.nombre, SUM(ec.valor) AS valor
+            $sql = "SELECT e.nombre, SUM(ec.valor) AS valor ,predeterminada as clase
              FROM estadisticas AS e
              RIGHT JOIN estadisticas_count AS ec ON e.id = ec.id_estadistica
              JOIN estadisticas_encuentro AS ee ON ec.id_encuentro_estadistica = ee.id AND ee.id_jugador = ?
@@ -261,7 +287,9 @@ class ReportesModel
             $query->execute([
                 $totalEstadisticas->id_jugador,
                 $totalEstadisticas->fechaInicial,
-                $totalEstadisticas->fechaFinal
+                $totalEstadisticas->fechaFinal,
+
+
             ]);
 
             while ($row = $query->fetchObject()) {
@@ -275,7 +303,45 @@ class ReportesModel
     }
 
 
+    public function getNuevaEstadistica($nuevaEstadistica)
+    {
 
+
+
+        try {
+            $sql = "SELECT e.nombre, SUM(ec.valor) AS valor
+            FROM estadisticas AS e
+            RIGHT JOIN estadisticas_count AS ec ON e.id = ec.id_estadistica 
+            JOIN estadisticas_encuentro AS ee ON ec.id_encuentro_estadistica = ee.id AND ee.id_jugador =?
+            WHERE predeterminada=0 
+            AND ee.fecha_del_partido BETWEEN ? AND ?
+            GROUP BY e.nombre, e.id";
+            $query = $this->db->conect()->prepare($sql);
+
+            $query->execute([
+                $nuevaEstadistica->id_jugador,
+                $nuevaEstadistica->fechaInicial,
+                $nuevaEstadistica->fechaFinal
+
+
+            ]);
+
+
+            while ($row = $query->fetchObject()) {
+                $params[$row->nombre] = $row->valor;
+                if ($params[$row->nombre] = $row->valor) {
+
+                    $array = [$params];
+                    array_push($array);
+                }
+            }
+
+            $this->nueva_estadistica = $array;
+            return $this->nueva_estadistica;
+        } catch (PDOException $e) {
+            die($e->getMessage());
+        }
+    }
 
 
     public function getPlayers()
