@@ -8,27 +8,47 @@ require_once __DIR__ . '../../../Controllers/GenerarReportesController.php';
 
 $data = new ReportesController();
 $datosReporte = $_REQUEST;
+// var_dump($datosReporte);
+// die();
 
 $encabezado = [
-    "" => ""
+
+    "Fecha_Inicial" =>
+    $_REQUEST["fechaInicial"],
+    "Fecha_Final" =>
+    $_REQUEST["fechaFinal"]
 ];
+
+
+$DatosJugador = [
+    "Nombre"           =>   $_REQUEST["nombre_completo"],
+    "Apodo"            =>   $_REQUEST["apodo"],
+    "Equipo"            =>   $_REQUEST["equipo"],
+    "Liga"             =>   $_REQUEST["liga"],
+    "Posicion"         =>   $_REQUEST["posicion"],
+    "Total_Minutos"    =>   $_REQUEST["Total_Minutos_jugados"],
+    "Partidos_Jugados" =>   $_REQUEST["Total_Partidos_Jugados"]
+    // "Rendimiento" =>   =>     $_REQUEST["promedio"],
+];
+
 
 $predeterminadas = [
-    "" => ""
-]
+    "" => $_REQUEST[($totalEstadisticas)],
 
-$NoPrede = [
-    "" => ""
+
 ];
-
-var_dump($datosReporte);
+var_dump($predeterminadas);
 die();
+// $NoPrede = [
+//     "" => ""
+// ];
+
 
 
 
 ?>
 
-<span id="id" hidden>$encabezado['id_uuarsio']</span>
+<!-- <span id="id" hidden>$encabezado['id_uuarsio']</span> -->
 
 <div class="imgReporteIndividual">
     <main>
@@ -38,75 +58,56 @@ die();
                     <div class="card shadow-lg border-0 rounded-lg mt-5">
 
 
-                        <!-- <div class="card-header bg-success">
+                        <div class="card-header bg-success">
                             <div class="row ">
                                 <div class="col-md-8">
                                     <h3 class="text-start text-light my-4 fs-4 ms-5">Reporte del Jugador</h3>
                                 </div>
 
-                                <ul class="list-group list-group-flush bg-info">
-                                            <?php
-                                            foreach ($datosReporte as $key => $value) { ?>
 
-                                                <div class="col-md-3 mt-3 text-success">
-                                                    <strong>
-                                                        <h5><label for="nombre_completo"><?= str_replace("_", " ", $key) ?></label></h5>
-                                                    </strong>
-                                                    <div class="card bg-dark text-light  mt-2 pt-2 pb-2">
-                                                        <span><?= $value ?></span>
-                                                    </div>
+                                <?php
+                                foreach ($encabezado as $key => $value) { ?>
 
-                                                </div>
-                                            <?php } ?>
-
-
-                                        </ul>
                                 <div class="col-md-2 text-light pt-2  ">
                                     <strong>
-                                        <h6><label for="nombre_completo">Fecha Inicial</label></h6>
+                                        <h6><label for="nombre_completo"><?= str_replace("_", " ", $key) ?></label>
+                                        </h6>
                                     </strong>
-
                                     <div class="card bg-white text-success text-center mt-2 pt-2 pb-2">
-                                        <span></span>
+                                        <span><?= $value ?></span>
                                     </div>
 
                                 </div>
-                                <div class="col-md-2 text-light pt-2">
-                                    <strong>
-                                        <h6><label for="nombre_completo">Fecha Final</label></h6>
-                                    </strong>
-
-                                    <div class="card bg-white text-success text-center mt-2 pt-2 pb-2 mb-2">
-                                        <span></span>
-                                    </div>
-                                </div>
+                                <?php } ?>
                             </div>
-                        </div> -->
+                        </div>
                         <div class="card d-flex text-bg-light text-center py-3 px-3">
-                        <ul class="list-group list-group-flush bg-info">
-                                            <?php
-                                            foreach ($datosReporte as $key => $value) { ?>
-
-                                                <div class="col-md-3 mt-3 text-success">
-                                                    <strong>
-                                                        <h5><label for="nombre_completo"><?= str_replace("_", " ", $key) ?></label></h5>
-                                                    </strong>
-                                                    <div class="card bg-dark text-light  mt-2 pt-2 pb-2">
-                                                        <span><?= $value ?></span>
-                                                    </div>
-
-                                                </div>
-                                            <?php } ?>
-
-
-                                        </ul>
                             <div class="row mb-3">
+
+                                <?php
+                                foreach ($DatosJugador as $key => $value) { ?>
+
+                                <div class="col-md-3 mt-3 text-success s-md">
+                                    <strong>
+                                        <h5><label><?= str_replace("_", " ", $key) ?></label>
+                                        </h5>
+                                    </strong>
+                                    <div class="card bg-dark text-light  mt-2 pt-2 pb-2">
+                                        <span><?= $value ?></span>
+                                    </div>
+
+                                </div>
+
+                                <?php } ?>
+                            </div>
+
+                            <!-- <div class="row mb-3">
                                 <div class="col-md-3 mt-3 text-success s-md">
                                     <strong>
                                         <h5><label for="nombre_completo"></label></h5>
                                     </strong>
                                     <div class="card bg-dark text-light  mt-2 pt-2 pb-2">
-                                        <span><?= $nombre_completo ?></span>
+                                        <span></span>
 
                                     </div>
                                 </div>
@@ -115,7 +116,7 @@ die();
                                         <h5> <label for="nombre_completo">Equipo Actual</label></h5>
                                     </strong>
                                     <div class="card bg-dark text-light  mt-2 pt-2 pb-2">
-                                        <span><?= $equipo ?></span>
+                                        <span></span>
                                     </div>
 
                                 </div>
@@ -124,7 +125,7 @@ die();
                                         <h5><label for="nombre_completo">Liga Actual</label></h5>
                                     </strong>
                                     <div class="card bg-dark text-light  mt-2 pt-2 pb-2">
-                                        <span><?= $nombre ?></span>
+                                        <span></span>
                                     </div>
 
                                 </div>
@@ -133,7 +134,7 @@ die();
                                         <h5><label for="nombre_completo">Posiciones</label></h5>
                                     </strong>
                                     <div class="card bg-dark text-light  mt-2 pt-2 pb-2">
-                                        <span><?= $descripcion ?></span>
+                                        <span></span>
                                     </div>
 
                                 </div>
@@ -144,7 +145,7 @@ die();
                                         <h5><label for="nombre_completo">Apodo</label></h5>
                                     </strong>
                                     <div class="card  bg-dark text-light  mt-2 pt-2 pb-2">
-                                        <span><?= $apodo ?></span>
+                                        <span></span>
                                     </div>
 
                                 </div>
@@ -154,7 +155,7 @@ die();
                                     </strong> <label for="nombre_completo">Minutos
                                     </label></h5></strong>
                                     <div class="card  ms-5 me-5 bg-dark text-light mt-2 pt-2 pb-2">
-                                        <span><?= $totalMinutos ?></span>
+                                        <span></span>
                                     </div>
 
                                 </div>
@@ -163,7 +164,7 @@ die();
                                         <h5><label for="nombre_completo">Partidos Jugados</label></h5>
                                     </strong>
                                     <div class="card   ms-5 me-5 bg-dark text-light  mt-2 pt-2 pb-2">
-                                        <span><?= $totalPartidos ?></span>
+                                        <span></span>
                                     </div>
 
                                 </div>
@@ -176,7 +177,7 @@ die();
                                         78 %
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
                             <div class="container">
                                 <div class="row justify-content-center">
                                     <div class="col-sm-6">
@@ -194,15 +195,17 @@ die();
                                             <?php
                                             foreach ($datosReporte as $key => $value) { ?>
 
-                                                <div class="col-md-3 mt-3 text-success">
-                                                    <strong>
-                                                        <h5><label for="nombre_completo"><?= str_replace("_", " ", $key) ?></label></h5>
-                                                    </strong>
-                                                    <div class="card bg-dark text-light  mt-2 pt-2 pb-2">
-                                                        <span><?= $value ?></span>
-                                                    </div>
-
+                                            <div class="col-md-3 mt-3 text-success">
+                                                <strong>
+                                                    <h5><label
+                                                            for="nombre_completo"><?= str_replace("_", " ", $key) ?></label>
+                                                    </h5>
+                                                </strong>
+                                                <div class="card bg-dark text-light  mt-2 pt-2 pb-2">
+                                                    <span><?= $value ?></span>
                                                 </div>
+
+                                            </div>
                                             <?php } ?>
 
 
@@ -224,7 +227,8 @@ die();
                                                     <li class="list-group-item">Atajadas Heroicas</li>
                                                 </div>
                                                 <div class="col-3">
-                                                    <div class="card bg-dark text-light pt-2 pb-2  me-2 " style="margin-left: -24%;">
+                                                    <div class="card bg-dark text-light pt-2 pb-2  me-2 "
+                                                        style="margin-left: -24%;">
                                                         <span><?= $atajada_heroica ?></span>
                                                     </div>
                                                 </div>
@@ -234,7 +238,8 @@ die();
                                                     <li class="list-group-item">Penales atajados</li>
                                                 </div>
                                                 <div class="col-3">
-                                                    <div class="card bg-dark text-light pt-2 pb-2  me-2 " style="margin-left: -24%;">
+                                                    <div class="card bg-dark text-light pt-2 pb-2  me-2 "
+                                                        style="margin-left: -24%;">
                                                         <span><?= $penales_atajados ?></span>
                                                     </div>
                                                 </div>
@@ -245,7 +250,8 @@ die();
                                                     </li>
                                                 </div>
                                                 <div class="col-3">
-                                                    <div class="card bg-dark text-light pt-2 pb-2  me-2 " style="margin-left: -24%;">
+                                                    <div class="card bg-dark text-light pt-2 pb-2  me-2 "
+                                                        style="margin-left: -24%;">
                                                         <span><?= $éxitos_mano_a_mano ?></span>
                                                     </div>
                                                 </div>
@@ -255,7 +261,8 @@ die();
 
                                     <div class="col-sm-5">
                                         <div class="row ms-3">
-                                            <div class="card shadow-lg bg-primary border-0 rounded-lg mt-5 p-3 text-light ">
+                                            <div
+                                                class="card shadow-lg bg-primary border-0 rounded-lg mt-5 p-3 text-light ">
                                                 <div class="row">
                                                     <div class="col-9">
                                                         Nuevas Estadìsticas
@@ -272,7 +279,8 @@ die();
                                                         <li class="list-group-item">nueva estadìstica</li>
                                                     </div>
                                                     <div class="col-3">
-                                                        <div class="card bg-dark text-light pt-2 pb-2  me-2 " style="margin-left: -24%;">
+                                                        <div class="card bg-dark text-light pt-2 pb-2  me-2 "
+                                                            style="margin-left: -24%;">
                                                             0</div>
                                                     </div>
                                                 </div>
@@ -287,8 +295,10 @@ die();
                                                         <i class="fas fa-chart-bar me-1"></i>
                                                         Grafica del Repote
                                                     </div>
-                                                    <div class="card-body bg-white"><canvas id="myBarChart" width="100%" height="50"></canvas></div>
-                                                    <div class="card-footer bg-success small text-muted">Generada
+                                                    <div class="card-body bg-white"><canvas id="myBarChart" width="100%"
+                                                            height="50"></canvas></div>
+                                                    <div class="card-footer bg-success small text-muted">
+                                                        Generada
                                                         fecha del reporte
                                                     </div>
                                                 </div>
@@ -323,6 +333,20 @@ die();
         </div>
 
     </main>
+</div>
+<?php
+include_once(BASE_DIR . "../../Views/partials/footer.php");
+?> </div>
+</div>
+
+</main>
+</div>
+<?php
+include_once(BASE_DIR . "../../Views/partials/footer.php");
+?> </div>
+</div>
+
+</main>
 </div>
 <?php
 include_once(BASE_DIR . "../../Views/partials/footer.php");

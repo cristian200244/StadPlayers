@@ -59,8 +59,8 @@ class ReportesController
     public function show()
     {
 
-        $params = [];
-        $datosReporte = [];
+        // $params = [];
+        // $datosReporte = [];
 
         $id_reporte = $_REQUEST['reporte'];
 
@@ -69,10 +69,14 @@ class ReportesController
         $totalMinutosJugados  = $this->reportesModel->getTotalMinutos($reporte);
         $totalPartidosJugados = $this->reportesModel->getTotalPartidos($reporte);
         $totalEstadisticas    = $this->reportesModel->getTotalEstadisticas($reporte);
-        $nuevaEstadistica     = $this->reportesModel->getNuevaEstadistica($reporte)[0];
-
-        header("Location: ../Views/Reportes/VerReporteIndividual.php?" . http_build_query($datosJugador) .'&Total_Minutos='. ($totalMinutosJugados).'&Total_Partidos_Jugados='. ($totalPartidosJugados));
+        $nuevaEstadistica     = $this->reportesModel->getNuevaEstadistica($reporte);
+        // var_dump($totalEstadisticas);
+        // die();
+        header("Location: ../Views/Reportes/VerReporteIndividual.php?" . http_build_query($reporte) . http_build_query($datosJugador) . '&Total_Minutos_jugados=' . ($totalMinutosJugados) . '&Total_Partidos_Jugados=' . ($totalPartidosJugados)  . "&" . http_build_query($totalEstadisticas));
     }
+
+
+
 
 
 

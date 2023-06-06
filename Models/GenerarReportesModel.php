@@ -21,6 +21,7 @@ class ReportesModel
     public $minutos_jugados;
     public $partidos_jugados;
     public $total_minutos;
+    public $estadisticas;
     public $totalEstadisticas;
     public $pases_acertados;
     public $pases_errados;
@@ -61,7 +62,7 @@ class ReportesModel
         $this->minutos_jugados;
         $this->partidos_jugados;
         $this->total_minutos;
-        $this->numEstadistica;
+        $this->estadisticas;
         $this->totalEstadisticas;
         $this->pases_acertados;
         $this->pases_errados;
@@ -276,6 +277,7 @@ class ReportesModel
     public function getTotalEstadisticas($totalEstadisticas)
     {
         try {
+            $array = [];
             $sql = "SELECT e.nombre, SUM(ec.valor) AS valor ,predeterminada as clase
              FROM estadisticas AS e
              RIGHT JOIN estadisticas_count AS ec ON e.id = ec.id_estadistica
@@ -296,9 +298,18 @@ class ReportesModel
 
             while ($row = $query->fetchObject()) {
                 $params[$row->nombre] = $row->valor;
+                if ($params[$row->nombre] = $row->valor) {
+                }
+                $array = [$params];
+                array_push($array);
             }
 
-            return $params;
+            $this->estadisticas = $array;
+
+            // var_dump($this->estadisticas);
+            // die();
+
+            return $this->estadisticas;
         } catch (PDOException $e) {
             die($e->getMessage());
         }
