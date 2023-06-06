@@ -46,6 +46,8 @@ class UsuarioController
       'nickname' => $_REQUEST['nickname'],
       'password' => $_REQUEST['password'],
     ];
+    var_dump($datos);
+    die();
     $result =  $this->usuarioModel->Store($datos);
   }
 
