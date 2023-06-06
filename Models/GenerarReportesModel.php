@@ -128,6 +128,7 @@ class ReportesModel
             die($e->getMessage());
         }
     }
+
     public function store($datos)
     {
         $sql = 'INSERT INTO generar_reporte(fecha_inicial, fecha_final, id_jugador, id_usuario)
@@ -210,7 +211,7 @@ class ReportesModel
 
 
         try {
-            $sql = "SELECT SUM(valor) AS min_jugados
+            $sql = "SELECT  SUM(valor) AS min_jugados
             FROM estadisticas_count  AS ec
             JOIN estadisticas_encuentro AS ee 
             ON ec.id_encuentro_estadistica = ee.id AND ee.id_jugador = ?
@@ -228,6 +229,7 @@ class ReportesModel
                 //  1, 15, "2017-01-01", "2017-12-31"
 
             ]);
+
 
             $result = $query->fetchColumn();
             $total_minutos = ($result > 0) ? $result : 0;
@@ -305,10 +307,8 @@ class ReportesModel
 
     public function getNuevaEstadistica($nuevaEstadistica)
     {
-
-
-
         try {
+            $array = [];
             $sql = "SELECT e.nombre, SUM(ec.valor) AS valor
             FROM estadisticas AS e
             RIGHT JOIN estadisticas_count AS ec ON e.id = ec.id_estadistica 
@@ -326,17 +326,19 @@ class ReportesModel
 
             ]);
 
-
             while ($row = $query->fetchObject()) {
                 $params[$row->nombre] = $row->valor;
                 if ($params[$row->nombre] = $row->valor) {
-
-                    $array = [$params];
-                    array_push($array);
                 }
+                $array = [$params];
+                array_push($array);
             }
 
+
             $this->nueva_estadistica = $array;
+
+            // var_dump( $this->nueva_estadistica);
+            // die();
             return $this->nueva_estadistica;
         } catch (PDOException $e) {
             die($e->getMessage());
@@ -368,6 +370,7 @@ class ReportesModel
         }
     }
 }
+
 
 
 // CONSULTA SUMAR TODAS LAS ESTADISTICAS
