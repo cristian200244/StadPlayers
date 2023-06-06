@@ -26,6 +26,9 @@ class JugadorController
                 case 4: //Actualizar el registro 
                     self::delete();
                     break;
+                case 5:
+                    self::titulos();
+                    break;
                 default:
                     self::index();
                     break;
@@ -58,7 +61,7 @@ class JugadorController
         $result = $this->jugador->store($datos);
 
         if ($result) {
-            header("Location: ../views/jugadores/verJugador.php");
+            header("Location: ../views/jugadores/VerJugadores.php");
             exit();
         }
         return $result;
@@ -67,7 +70,7 @@ class JugadorController
     public function show()
     {
         $id = $_REQUEST['id'];
-        header("Location:  ../views/jugadores/guardar.php?id=$id");
+        header("Location:  ../views/jugadores/editar.php?id=$id");
     }
 
     public function update()
@@ -90,13 +93,33 @@ class JugadorController
         $result = $this->jugador->update($datos);
 
         if ($result) {
-            header("Location: ../views/jugadores/index.php");
-        }
-        exit();
 
+            header("Location: ../views/jugadores/index.php");
+            exit();
+        }
         return $result;
     }
 
+
+    public function titulos()
+    {
+    
+        $datos = [
+            'id'                    =>$_REQUEST['id'],
+            'fecha'                 => $_REQUEST['fecha'],
+            'id_jugador'            => $_REQUEST['id_equipo'],
+            'id_copa'               => $_REQUEST['id_copa'],
+            'id_jugador'            => $_REQUEST['id_jugador'],
+        ];
+    
+        $result = $this->jugador->titulos($datos);
+    
+        if ($result) {
+            header("Location: ../views/jugadores/verjugador.php");
+            exit();
+        }
+        return $result;
+    }
     public function delete()
     {
         // var_dump($_REQUEST);

@@ -34,6 +34,326 @@ $registros = $data->getAll();
 ?>
 
 
+
+
+
+
+
+
+
+
+
+
+                                                <!-- <div class="row row-cols-1 row-cols-md-2 g-4" id="id_historial_equipos" name="id_historial_equipos">
+                                                    <div class="col">
+                                                        <div class="card">
+
+                                                            <div class="card-body">
+
+
+                                                                <div class="card-body card-header bg-success">
+                                                                    <h5 class="text-center text-light my-4 fs-4">Historial Equipos</h5>
+                                                                </div>
+                                                                <div class="form-floating  mt-3">
+
+                                                                    <select class="form-select" aria-label="Default select example" required>
+                                                                        <option selected>Seleccionar Equipo</option>
+                                                                        <?php foreach ($equipos as $equipo) :; ?>
+
+                                                                            <option value="<?= $equipo->getId() ?>">
+                                                                                <?= $equipo->getid_equipos() ?> </option>
+
+                                                                        <?php endforeach ?>
+                                                                    </select>
+                                                                </div>
+
+
+                                                                <div class="mt-3">
+                                                                    <div class="form-floating pt-2">
+                                                                        <label for="fecha_inicial" id="fecha_inicial" class="form-label">Fecha Inicial</label>
+                                                                        <input type="date" class="form-control" type="datetime" placeholder="Fecha Inicial" name="fecha_inicial" id="fecha_inicial" required>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="mt-3">
+                                                                    <div class="form-floating pt-2">
+                                                                        <label for="fecha_terminacion" id="fecha_terminacion" class="form-label">Fecha Terminacion</label>
+                                                                        <input type="date" class="form-control" type="datetime" placeholder="Fecha Terminacion" name="fecha_terminacion" id="fecha_terminacion" required>
+                                                                    </div>
+                                                                </div>
+                                                                <table class="table">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th scope="col">#</th>
+                                                                            <th scope="col">Nombre Equipo</th>
+                                                                            <th scope="col">Fecha Inicial</th>
+                                                                            <th scope="col">Fecha Terminacion</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <th scope="row">1</th>
+                                                                            <td>Mark</td>
+                                                                            <td>Otto</td>
+                                                                            <td>@mdo</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <th scope="row">2</th>
+                                                                            <td>Jacob</td>
+                                                                            <td>Thornton</td>
+                                                                            <td>@fat</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <th scope="row">3</th>
+                                                                            <td colspan="2">Larry the Bird</td>
+                                                                            <td>@twitter</td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col">
+                                                        <div class="card">
+                                                            <div class="card-body card-header bg-success">
+                                                                <h5 class="text-center text-light my-4 fs-4">Titulos Obtenidos</h5>
+                                                            </div>
+                                                            <div class="card-body">
+                                                                <div class="form-floating  mt-2">
+
+                                                                    <select class="form-select" id="id_copas" name="id_copas" aria-label="Default select example" required>
+                                                                        <option selected>Seleccionar Titulo</option>
+                                                                        <?php foreach ($copas as $nombre) :; ?>
+
+                                                                            <option value="<?= $nombre->getId() ?>">
+                                                                                <?= $nombre->getid_copa() ?> </option>
+
+                                                                        <?php endforeach ?>
+                                                                    </select>
+                                                                </div>
+
+
+                                                                <div class="mt-2">
+                                                                    <div class="form-floating pt-2">
+                                                                        <label for="fecha" id="fecha" class="form-label">Fecha del Titulo</label>
+                                                                        <input type="date" class="form-control" type="datetime" name="fecha" id="fecha" required>
+                                                                    </div>
+                                                                </div>
+
+
+                                                                <table class="table">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th scope="col">#</th>
+                                                                            <th scope="col">Nombre Titulo</th>
+                                                                            <th scope="col">Fecha Obtencion</th>
+
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <th scope="row">1</th>
+                                                                            <td>Mark</td>
+                                                                            <td>Otto</td>
+
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <th scope="row">2</th>
+                                                                            <td>Jacob</td>
+                                                                            <td>Thornton</td>
+
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <th scope="row">3</th>
+                                                                            <td colspan="2">Larry the Bird</td>
+
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                        <-- </div> -->
+
+
+
+                                                        <form action="../../Controllers/JugadorController.php" method="POST">
+                                        <input type="hidden" name="c" value="5">
+                                        <input type="hidden" name="id" value="<?= $id ?>">
+                                        <div class="mb-3">
+                                            <div class="row">
+
+                                                <div class="row row-cols-1 row-cols-md-2 g-4" id="id_historial_equipos" name="id_historial_equipos">
+                                                    <div class="col">
+                                                        <div class="card">
+
+                                                            <div class="card-body">
+
+
+                                                                <div class="card-body card-header bg-success">
+                                                                    <h5 class="text-center text-light my-4 fs-4">Historial Equipos</h5>
+                                                                </div>
+                                                                <div class="form-floating  mt-3">
+
+                                                                    <select class="form-select" aria-label="Default select example" required>
+                                                                        <option selected>Seleccionar Equipo</option>
+                                                                        <?php foreach ($equipos as $equipo) :; ?>
+
+                                                                            <option value="<?= $equipo->getId() ?>">
+                                                                                <?= $equipo->getid_equipos() ?> </option>
+
+                                                                        <?php endforeach ?>
+                                                                    </select>
+                                                                </div>
+
+
+                                                                <div class="mt-3">
+                                                                    <div class="form-floating pt-2">
+                                                                        <label for="fecha_inicial" id="fecha_inicial" class="form-label">Fecha Inicial</label>
+                                                                        <input type="date" class="form-control" type="datetime" placeholder="Fecha Inicial" name="fecha_inicial" id="fecha_inicial" required>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="mt-3">
+                                                                    <div class="form-floating pt-2">
+                                                                        <label for="fecha_terminacion" id="fecha_terminacion" class="form-label">Fecha Terminacion</label>
+                                                                        <input type="date" class="form-control" type="datetime" placeholder="Fecha Terminacion" name="fecha_terminacion" id="fecha_terminacion" required>
+                                                                    </div>
+                                                                </div>
+                                                                <table class="table">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th scope="col">#</th>
+                                                                            <th scope="col">Nombre Equipo</th>
+                                                                            <th scope="col">Fecha Inicial</th>
+                                                                            <th scope="col">Fecha Terminacion</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <th scope="row">1</th>
+                                                                            <td>Mark</td>
+                                                                            <td>Otto</td>
+                                                                            <td>@mdo</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <th scope="row">2</th>
+                                                                            <td>Jacob</td>
+                                                                            <td>Thornton</td>
+                                                                            <td>@fat</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <th scope="row">3</th>
+                                                                            <td colspan="2">Larry the Bird</td>
+                                                                            <td>@twitter</td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                                <div class="mt-4 mb-0">
+                                                                    <div class="d-grid">
+                                                                        <button class="btn btn-success btn-block" id="submitBtn">guardar Jugador</button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col">
+                                                        <div class="card">
+                                                            <div class="card-body card-header bg-success">
+                                                                <h5 class="text-center text-light my-4 fs-4">Titulos Obtenidos</h5>
+                                                            </div>
+                                                            <div class="card-body">
+                                                                <div class="form-floating  mt-3">
+
+                                                                    <select class="form-select" aria-label="Default select example" required>
+                                                                        <option selected>Seleccionar Equipo</option>
+                                                                        <?php foreach ($equipos as $equipo) :; ?>
+
+                                                                            <option value="<?= $equipo->getId() ?>">
+                                                                                <?= $equipo->getid_equipos() ?> </option>
+
+                                                                        <?php endforeach ?>
+                                                                    </select>
+                                                                </div>
+
+                                                                <div class="form-floating col-md-6 mt-2">
+                                                                    <div class="form-floating pt-2">
+                                                                        <label for="fecha" id="fecha" class="form-label ">Fecha del Titulo</label>
+                                                                        <input type="date" class="form-control" type="date" name="fecha" id="fecha" required>
+                                                                    </div>
+                                                                </div>
+
+
+                                                                <table class="table">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th scope="col">#</th>
+                                                                            <th scope="col">Nombre Titulo</th>
+                                                                            <th scope="col">Fecha Obtencion</th>
+
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <th scope="row">1</th>
+                                                                            <td>Mark</td>
+                                                                            <td>Otto</td>
+
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <th scope="row">2</th>
+                                                                            <td>Jacob</td>
+                                                                            <td>Thornton</td>
+
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <th scope="row">3</th>
+                                                                            <td colspan="2">Larry the Bird</td>
+
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+
+
+
+
+
+
+
+
+
+
+
+
+                                    SELECT
+  titulos_jugador.fecha,
+  equipos.id AS id_equipo,
+  copas.id AS id_copa,
+  jugadores.id AS id_jugador,
+  historial_equipos.fecha_inicial,
+  historial_equipos.fecha_terminacion,
+  equipos.id AS id_equipo
+FROM
+  titulos_jugador
+  JOIN equipos ON titulos_jugador.id_equipo = equipos.id
+  JOIN copas ON titulos_jugador.id_copa = copas.id
+  JOIN jugadores ON titulos_jugador.id_jugador = jugadores.id
+  JOIN historial_equipos ON jugadores.id = historial_equipos.id_jugador;
+
+
+
+
+
+
+
+
+
+
 <?php
 if ($registros) {
 foreach ($registros as $row) { ?>

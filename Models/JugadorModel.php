@@ -15,8 +15,9 @@ class JugadorModel extends stdClass
     public $id_contiente;
     public $id_posicion;
     public $id_perfil;
-    public $id_historial_equipos;
+    // public $id_historial_equipos;
     public $guardar;
+    public $resultado;
     private $db;
 
     public function __construct()
@@ -47,7 +48,7 @@ class JugadorModel extends stdClass
             JOIN paises p ON j.id_pais = p.id
             JOIN perfiles pf ON j.id_perfil = pf.id
             JOIN posiciones ps ON j.id_posicion = ps.id';
-    
+
             $query  = $this->db->conect()->query($sql);
 
             while ($row = $query->fetch()) {
@@ -63,7 +64,7 @@ class JugadorModel extends stdClass
                 $item->id_contiente     =  $row['nombre_continente'];
                 $item->id_posicion      =  $row['descripcion_posicion'];
                 $item->id_perfil        =  $row['nombre_perfil'];
-                
+
                 array_push($items, $item);
             }
 
@@ -72,6 +73,7 @@ class JugadorModel extends stdClass
             die($e->getMessage());
         }
     }
+    
 
     public function getbyId($id)
     {
@@ -88,7 +90,7 @@ class JugadorModel extends stdClass
                 $item->fecha_nacimiento = $row['fecha_nacimiento'];
                 $item->caracteristicas  = $row['caracteristicas'];
                 $item->id_equipo        = $row['id_equipo'];
-                $item->id_liga          = $row['is_liga'];
+                $item->id_liga          = $row['id_liga'];
                 $item->id_pais          = $row['id_pais'];
                 $item->id_contiente     = $row['id_contiente'];
                 $item->id_perfil        = $row['id_perfil'];
@@ -137,6 +139,7 @@ class JugadorModel extends stdClass
             return false;
         }
     }
+
 
     public function update($datos)
     {
@@ -188,11 +191,35 @@ class JugadorModel extends stdClass
     }
 
 
+    public function titulos($datos)
+    {
+        try {
+            $sql = 'INSERT INTO titulos_jugador (fecha, id_equipo, id_copa, id_jugador) VALUES (:fecha, :id_equipo, :id_copa, :id_jugador)';
+            $prepare = $this->db->conect()->prepare($sql);
+            $query = $prepare->execute([
 
+                'id'                    => $datos['id'],
+                'fecha'                 => $datos['fecha'],
+                'id_jugador'            => $datos['id_equipo'],
+                'id_copa'               => $datos['id_copa'],
+                'id_jugador'            => $datos['id_jugador'],
+
+            ]);
+
+            if ($query) {
+
+                return true;
+            }
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+
+            return false;
+        }
+    }
 
     public function getid_equipos()
     {
-        return $this->equipo;
+        return $this->nombre;
     }
 
     public function equipos()
@@ -204,7 +231,7 @@ class JugadorModel extends stdClass
             while ($row = $query->fetch()) {
                 $item = new JugadorModel();
                 $item->id = $row['id'];
-                $item->equipo = $row['equipo'];
+                $item->nombre = $row['equipo'];
 
                 array_push($items, $item);
             }

@@ -8,11 +8,33 @@ include_once(BASE_DIR . "../../Views/partials/aside.php");
 
 include_once '../../Models/JugadorModel.php';
 
-$data = new JugadorModel();
-$registros = $data->getAll();
+$datos = new JugadorModel();
+ $registros = $datos->getAll();
+
+$datos = new JugadorModel();
+$equipos = $datos->equipos();
+
+$datos = new JugadorModel();
+$ligas = $datos->ligas();
+
+$datos = new JugadorModel();
+$paises = $datos->paises();
+
+$datos = new JugadorModel();
+$continentes = $datos->continentes();
+
+$datos = new JugadorModel();
+$posiciones = $datos->posiciones();
+
+$datos = new JugadorModel();
+$perfiles = $datos->perfiles();
+
+$datos = new JugadorModel();
+$copas = $datos->copas();
+?>
+
 ?>
 <main>
-
 
 
     <div class="container text-center">
@@ -55,12 +77,14 @@ $registros = $data->getAll();
 
                                                         <!-- <th scope="col" >Opciones</th> -->
                                                         <td>
-                                                            <a class="btn btn-sm btn-outline-warning" href="show.php?id=<? $row->getId()?>">Ver Jugador</a>
-                                                       
-                                                        
+                                                            <a class="btn btn-sm btn-outline-warning" href="guardar.php?id=<?= $row->id ?>">Ver Jugador</a>
+
+
+                                                            -
+
                                                             <a class="btn btn-sm btn-outline-warning" href="../../Controllers/JugadorController.php?c=2&id=<?= $row->getId() ?>">Actualizar</a>
-                                                        
-                                                    
+                                                            -
+
                                                             <a class="btn btn-sm btn-outline-danger " href="../../Controllers/JugadorController.php?c=4&id=<?= $row->getId() ?>">Eliminar</a>
                                                         </td>
                                                     </tr>
