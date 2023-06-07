@@ -26,28 +26,26 @@ class UsuarioModel
 
     public function Store($datos)
     {
+        
         try {
             $message = '';
             if (!empty($_POST['email']) && !empty($_POST['nickname']) && !empty($_POST['password'])) {
+                
+                $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
+                $sql = 'INSERT INTO usuarios ( email, nickname,password) VALUES (:email, :nickname, :password)';
+                $prepare = $this->db->conect()->prepare($sql);
+                
+                $query = $prepare->execute([
+                    'email'    => $datos['email'],
+                    'nickname' => $datos['nickname'],
+                    'password' => $password,
+                ]);
+         
 
-
-                $sql = 'INSERT INTO usuarios ( Email, nickname,password) VALUES (:email,:nickname,:password)';
-                // $prepare = $this->db->conect()->prepare($sql);
-                // $query = $this->db->conect()->prepare($sql);
-                // $query = $prepare->execute([
-                $stmt = $this->db->conect()->prepare($sql);
-                $stmt->bindParam(':Email', $_POST['email']);
-                $stmt->bindParam(':nickname', $_POST['nickname']);
-                $password = password_hash($datos['password'], PASSWORD_BCRYPT);
-                $stmt->bindParam(':password', $password);
-                // 'email' => $datos['email'],
-                // 'nickname' => $datos['nickname'],
-                // 'password' => $datos['password'],
-                // ]);
-
-                if ($stmt->execute()) {
+                if ($query) {
                     $message = ' Nuevo Usuario Creado Correctamente';
                     header("Location: ../index.php");
+            
                 } else {
                     $message = 'Hubo un erro al crear el Usuario';
                 }

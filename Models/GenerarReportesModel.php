@@ -278,11 +278,11 @@ class ReportesModel
     {
         try {
             $array = [];
-            $sql = "SELECT e.nombre, SUM(ec.valor) AS valor ,predeterminada as clase
+            $sql = "SELECT e.nombre, SUM(ec.valor) AS valor
              FROM estadisticas AS e
              RIGHT JOIN estadisticas_count AS ec ON e.id = ec.id_estadistica
              JOIN estadisticas_encuentro AS ee ON ec.id_encuentro_estadistica = ee.id AND ee.id_jugador = ?
-             WHERE ee.fecha_del_partido BETWEEN ? AND ?
+             WHERE ee.fecha_del_partido BETWEEN ? AND ? AND predeterminada = 1  AND ec.id_estadistica != 9
              GROUP BY e.nombre, e.id
             ";
 

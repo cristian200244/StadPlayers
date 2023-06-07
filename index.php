@@ -59,7 +59,7 @@ text-decoration-color: aqua">
                                     <input type="hidden" name="c" value="5">
 
                                     <div class="form-group mb-4">
-                                        <input class="form-control form-control-lg" type="email" name="correo">
+                                        <input class="form-control form-control-lg" type="email" name="email">
                                         <strong><label class="form-label" for="email-2" style="font-family:Russo One; color:#9bdaff;">Correo/Nickname</label></strong>
                                     </div>
 
