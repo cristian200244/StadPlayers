@@ -1,36 +1,35 @@
-
 <?php
 require_once '../Models/JugadorModel.php';
 
-$jugador = new JugadorController();
+$jugadorController = new JugadorController();
 
 class JugadorController
 {
-    private $jugador;
+    private $jugadorModel;
 
     public function __construct()
     {
-        $this->jugador = new JugadorModel();
+        $this->jugadorModel = new JugadorModel();
 
         if (isset($_REQUEST['c'])) {
             switch ($_REQUEST['c']) {
                 case 1:
-                    self::store();
+                    $this->store();
                     break;
-                case 2: //Ver usuario
-                    self::show();
+                case 2:
+                    $this->show();
                     break;
-                case 3: //Actualizar el registro 
-                    self::update();
+                case 3:
+                    $this->update();
                     break;
-                case 4: //Actualizar el registro 
-                    self::delete();
+                case 4:
+                    $this->delete();
                     break;
                 case 5:
-                    self::titulos();
+                    $this->titulos();
                     break;
                 default:
-                    self::index();
+                    $this->index();
                     break;
             }
         }
@@ -38,30 +37,29 @@ class JugadorController
 
     public function index()
     {
-        return $this->jugador->getAll();
+        return $this->jugadorModel->getAll();
     }
 
     public function store()
     {
-
         $datos = [
-            'nombre_completo'       => $_REQUEST['nombre_completo'],
-            'apodo'                 => $_REQUEST['apodo'],
-            'fecha_nacimiento'      => $_REQUEST['fecha_nacimiento'],
-            'caracteristicas'       => $_REQUEST['caracteristicas'],
-            'id_equipo'             => $_REQUEST['id_equipo'],
-            'id_liga'               => $_REQUEST['id_liga'],
-            'id_pais'               => $_REQUEST['id_pais'],
-            'id_contiente'          => $_REQUEST['id_contiente'],
-            'id_posicion'           => $_REQUEST['id_posicion'],
-            'id_perfil'             => $_REQUEST['id_perfil'],
-
+            'nombre_completo' => $_POST['nombre_completo'],
+            'apodo' => $_POST['apodo'],
+            'fecha_nacimiento' => $_POST['fecha_nacimiento'],
+            'caracteristicas' => $_POST['caracteristicas'],
+            'id_equipo' => $_POST['id_equipo'],
+            'id_liga' => $_POST['id_liga'],
+            'id_pais' => $_POST['id_pais'],
+            'id_contiente' => $_POST['id_contiente'],
+            'id_posicion' => $_POST['id_posicion'],
+            'id_perfil' => $_POST['id_perfil']
         ];
 
-        $result = $this->jugador->store($datos);
+        $result = $this->jugadorModel->store($datos);
 
         if ($result) {
-            header("Location: ../views/jugadores/VerJugadores.php");
+            
+            header("Location: ../views/jugadores/guardar.php");
             exit();
         }
         return $result;
@@ -70,63 +68,61 @@ class JugadorController
     public function show()
     {
         $id = $_REQUEST['id'];
-        header("Location:  ../views/jugadores/editar.php?id=$id");
+        header("Location: ../views/jugadores/editar.php?id=$id");
     }
 
     public function update()
     {
-
         $datos = [
-            'id'                    => $_REQUEST['id'],
-            'nombre_completo'       => $_REQUEST['nombre_completo'],
-            'apodo'                 => $_REQUEST['apodo'],
-            'fecha_nacimiento'      => $_REQUEST['fecha_nacimiento'],
-            'caracteristicas'       => $_REQUEST['caracteristicas'],
-            'id_equipo'             => $_REQUEST['id_equipo'],
-            'id_liga'               => $_REQUEST['id_liga'],
-            'id_pais'               => $_REQUEST['id_pais'],
-            'id_contiente'          => $_REQUEST['id_contiente'],
-            'id_posicion'           => $_REQUEST['id_posicion'],
-            'id_perfil'             => $_REQUEST['id_perfil'],
+            'id' => $_POST['id'],
+            'nombre_completo' => $_POST['nombre_completo'],
+            'apodo' => $_POST['apodo'],
+            'fecha_nacimiento' => $_POST['fecha_nacimiento'],
+            'caracteristicas' => $_POST['caracteristicas'],
+            'id_equipo' => $_POST['id_equipo'],
+            'id_liga' => $_POST['id_liga'],
+            'id_pais' => $_POST['id_pais'],
+            'id_contiente' => $_POST['id_contiente'],
+            'id_posicion' => $_POST['id_posicion'],
+            'id_perfil' => $_POST['id_perfil']
         ];
 
-        $result = $this->jugador->update($datos);
+        $result = $this->jugadorModel->update($datos);
 
         if ($result) {
-
             header("Location: ../views/jugadores/index.php");
             exit();
         }
         return $result;
     }
 
+    public function delete()
+    {
+        $id = $_REQUEST['id'];
+        $result = $this->jugadorModel->delete($id);
+        if ($result) {
+            header("Location: ../views/jugadores/VerJugadores.php");
+            exit();
+        }
+    }
 
     public function titulos()
     {
-    
         $datos = [
-            'id'                    =>$_REQUEST['id'],
-            'fecha'                 => $_REQUEST['fecha'],
-            'id_jugador'            => $_REQUEST['id_equipo'],
-            'id_copa'               => $_REQUEST['id_copa'],
-            'id_jugador'            => $_REQUEST['id_jugador'],
+            'fecha' => $_POST['fecha'],
+            'fecha_inicial' => $_POST['fecha_inicial'],
+            'fecha_terminacion' => $_POST['fecha_terminacion'],
+            'id_jugador' => $_POST['id_equipo'],
+            'id_copa' => $_POST['id_copa']
         ];
-    
-        $result = $this->jugador->titulos($datos);
-    
+
+        var_dump($datos);
+        die();
+
+        $result = $this->jugadorModel->titulos($datos);
+
         if ($result) {
-            header("Location: ../views/jugadores/verjugador.php");
-            exit();
-        }
-        return $result;
-    }
-    public function delete()
-    {
-        // var_dump($_REQUEST);
-        $id = $_REQUEST['id'];
-        $result = $this->jugador->delete($id);
-        if ($result) {
-            header("Location: ../views/jugadores/VerJugadores.php");
+            header("Location: ../views/jugadores/index.php");
             exit();
         }
     }

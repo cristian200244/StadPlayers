@@ -33,7 +33,7 @@ $datos = new JugadorModel();
 $copas = $datos->copas();
 ?>
 
-?>
+
 <main>
 
 

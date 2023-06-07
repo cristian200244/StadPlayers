@@ -7,6 +7,9 @@ class JugadorModel extends stdClass
     public $id;
     public $nombre_completo;
     public $apodo;
+    public $fecha;
+    public $fecha_inicial;
+    public $fecha_terminacion;
     public $fecha_nacimiento;
     public $caracteristicas;
     public $id_equipo;
@@ -73,7 +76,7 @@ class JugadorModel extends stdClass
             die($e->getMessage());
         }
     }
-    
+
 
     public function getbyId($id)
     {
@@ -190,33 +193,79 @@ class JugadorModel extends stdClass
         }
     }
 
+    // public function getUltimoJugador()
+    // {
 
-    public function titulos($datos)
+    //     $items = [];
+    //     try {
+    //         $sql = 'SELECT titulos_jugador.fecha, equipos.id AS id_equipo, copas.id AS id_copa, jugadores.id AS id_jugador, historial_equipos.fecha_inicial, historial_equipos.fecha_terminacion
+    //         FROM titulos_jugador
+    //         JOIN equipos ON titulos_jugador.id_equipo = equipos.id
+    //         JOIN copas ON titulos_jugador.id_copa = copas.id
+    //         JOIN jugadores ON titulos_jugador.id_jugador = jugadores.id
+    //         JOIN historial_equipos ON jugadores.id = historial_equipos.id_jugador
+    //         WHERE jugadores.id = (SELECT MAX(id) FROM jugadores)';
+
+    //         $query = $this->db->conect()->prepare($sql);
+
+
+    //         while ($registro = $query->fetch()) {
+
+    //             $item  = new JugadorModel();
+    //             $item->id  = $registro['id'];
+    //             $item->fecha_inicial  = $fecha_inicial['fecha_inicial'];
+    //             $item->fecha_terminacion  = $fecha_inicial['fecha_terminacion'];
+    //             $item->id_equipo  = $id_equipo['id_equipo'];
+    //             $item->id_copa  = $id_copa['id_copa'];
+    //             $item->id_jugador  = $id_jugador['id_jugador'];
+
+
+
+    //             array_push($items, $item);
+    //         }
+    //         return $items;
+
+    //     } catch (PDOException $e) {
+    //         echo $e->getMessage();
+
+    //         return false;
+    //     }
+    // }
+
+
+    public function titulos()
     {
+        $items = [];
         try {
-            $sql = 'INSERT INTO titulos_jugador (fecha, id_equipo, id_copa, id_jugador) VALUES (:fecha, :id_equipo, :id_copa, :id_jugador)';
-            $prepare = $this->db->conect()->prepare($sql);
-            $query = $prepare->execute([
 
-                'id'                    => $datos['id'],
-                'fecha'                 => $datos['fecha'],
-                'id_jugador'            => $datos['id_equipo'],
-                'id_copa'               => $datos['id_copa'],
-                'id_jugador'            => $datos['id_jugador'],
+            $sql = 'SELECT titulos_jugador.fecha, equipos.id AS id_equipo, copas.id AS id_copa, jugadores.id AS id_jugador, historial_equipos.fecha_inicial, historial_equipos.fecha_terminacion
+            FROM titulos_jugador
+            JOIN equipos ON titulos_jugador.id_equipo = equipos.id
+            JOIN copas ON titulos_jugador.id_copa = copas.id
+            JOIN jugadores ON titulos_jugador.id_jugador = jugadores.id
+            JOIN historial_equipos ON jugadores.id = historial_equipos.id_jugador
+            WHERE jugadores.id = (SELECT MAX(id) FROM jugadores)';
+            $query  = $this->db->conect()->query($sql);
 
-            ]);
 
-            if ($query) {
+            while ($row = $query->fetch()) {
+                $item            = new JugadorModel();
+                $item->id        = $row['id'];
+                $item->fecha                 = $row['fecha'];
+                $item->id_equipo           = $row['id_equipo'];
+                $item->id_copa               = $row['id_copa'];
+                $item->id_jugador            = $row['id_jugador'];
 
-                return true;
+                array_push($items, $item);
             }
-        } catch (PDOException $e) {
-            echo $e->getMessage();
 
-            return false;
+            return $items;
+        } catch (PDOException $e) {
+            die($e->getMessage());
         }
     }
 
+    //Equipos
     public function getid_equipos()
     {
         return $this->nombre;
@@ -240,6 +289,8 @@ class JugadorModel extends stdClass
             die($e->getMessage());
         }
     }
+
+    //ligas
     public function getid_ligas()
     {
         return $this->nombre;
@@ -263,6 +314,8 @@ class JugadorModel extends stdClass
             die($e->getMessage());
         }
     }
+
+
     public function getid_paises()
     {
         return $this->nombre;

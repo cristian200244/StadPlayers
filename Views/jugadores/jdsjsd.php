@@ -351,6 +351,82 @@ FROM
 
 
 
+  <?php $datos = new JugadorModel();
+        $equipos = $datos->titulos(); ?>
+
+        <div class="container text-center">
+            <div class="row">
+                <div class="col">
+                    <h1>¡Bienvenido! Ahora Podrá ingresar sus Jugadores</h1>
+                </div>
+            </div>
+            <div id="layoutAuthentication">
+                <div id="layoutAuthentication_content">
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-12">
+                                <div class="card shadow-lg border-0 rounded-lg mt-5">
+                                    <div class="card-header bg-success">
+                                        <h3 class="text-center text-light my-4 fs-4">Ingresar Jugadores</h3>
+                                    </div>
+                                    <div class="card-body">
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <h2>Historial Equipos Creados</h2>
+                                                    <th scope="col">#</th>
+                                                    <th scope="col">Jugador</th>
+                                                    <th scope="col">Fecha Inicial</th>
+                                                    <th scope="col">Fecha terminacion</th>
+                                                    <th scope="col" colspan="2">Opcion</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <?php
+                                                if ($registros) {
+                                                    foreach ($registros as $row) {
+
+                                                ?>
+
+                                                        <tr>
+
+                                                            <td><?= $row->id ?></td>
+                                                            <td><?= $row->id_jugador ?></td>
+                                                            <td><?= $row->fecha_inicial ?></td>
+                                                            <td><?= $row->fecha_terminacion ?></td>
+
+                                                            <td>
+
+
+
+                                                                <a class="btn btn-sm btn-outline-warning" href="../../Controllers/JugadorController.php?c=2&id=<?= $row->getId() ?>">Actualizar</a>
+                                                                -
+
+                                                                <a class="btn btn-sm btn-outline-danger " href="../../Controllers/JugadorController.php?c=4&id=<?= $row->getId() ?>">Eliminar</a>
+                                                            </td>
+                                                        </tr>
+                                                    <?php
+                                                    }
+                                                } else {
+                                                    ?>
+                                                    <tr class=" text-center">
+                                                        <td colspan="6">Sin datos</td>
+                                                    </tr>
+                                                <?php
+                                                }
+                                                ?>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
 
 
 
