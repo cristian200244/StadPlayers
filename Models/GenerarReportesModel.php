@@ -17,6 +17,7 @@ class ReportesModel
     public $apodo;
     public $equipo;
     public $liga;
+    public $id_posicion;
     public $posicion;
     public $minutos_jugados;
     public $partidos_jugados;
@@ -179,13 +180,14 @@ class ReportesModel
     public function DatosJugadorReporte($datosJugador)
     {
 
-        $sql = "SELECT gr.id, gr.fecha_inicial, gr.fecha_final, j.nombre_completo, j.apodo, e.equipo,l.nombre,p.descripcion
-            FROM generar_reporte as gr 
-            JOIN jugadores as j ON gr.id_jugador = j.id
-            JOIN equipos as e ON  j.id_equipo = e.id
-            JOIN ligas as l ON  j.id_liga = l.id
-            JOIN posiciones as p ON  j.id_posicion = p.id
-            WHERE gr.id = $datosJugador";
+        $sql = "SELECT gr.id, gr.fecha_inicial, gr.fecha_final, j.nombre_completo, j.apodo, e.equipo,l.nombre,p.descripcion, p.id AS id_posicion
+                FROM generar_reporte as gr 
+                JOIN jugadores as j ON gr.id_jugador = j.id
+                JOIN equipos as e ON  j.id_equipo = e.id
+                JOIN ligas as l ON  j.id_liga = l.id
+                JOIN posiciones as p ON  j.id_posicion = p.id
+                WHERE gr.id = $datosJugador
+        ";
 
         try {
 
@@ -198,6 +200,7 @@ class ReportesModel
                 $item->equipo           = $row['equipo'];
                 $item->liga             = $row['nombre'];
                 $item->posicion         = $row['descripcion'];
+                $item->id_posicion      = $row['id_posicion'];
             }
 
             return $item;
@@ -282,7 +285,7 @@ class ReportesModel
              FROM estadisticas AS e
              RIGHT JOIN estadisticas_count AS ec ON e.id = ec.id_estadistica
              JOIN estadisticas_encuentro AS ee ON ec.id_encuentro_estadistica = ee.id AND ee.id_jugador = ?
-             WHERE ee.fecha_del_partido BETWEEN ? AND ? AND predeterminada = 1  AND ec.id_estadistica != 9
+             WHERE ee.fecha_del_partido BETWEEN ? AND ? AND predeterminada = 1  AND ec.id_estadistica != 9 #AND valor > 0
              GROUP BY e.nombre, e.id
             ";
 
