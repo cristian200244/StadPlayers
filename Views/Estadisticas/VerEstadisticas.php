@@ -1,58 +1,77 @@
 <?php
-
 include_once(__DIR__ . "../../../config/rutas.php");
 include_once(BASE_DIR . "../../Views/partials/header.php");
 include_once(BASE_DIR . "../../Views/partials/aside.php");
+
+include_once '../../Models/EstadisticasModel.php';
+
+$data = new EstadisticasModel();
+$registros = $data->verStad();
+
 ?>
 
-
-<main>
+<div class="imgVer">
     <div class="container">
         <div class="row">
             <div class="col">
-                <h1>¡Bienvenido! Estas son sus estadísticas</h1>
+                <h1>¡Bienvenido! Estas son tus estadísticas</h1>
             </div>
         </div>
     </div>
 
-
-    <div class="container">
-        <div class="row">
+    <div class="container mt-5">
+        <div class="row pt-5">
             <div class="col">
-                <table class="table">
+                <table class="table table-dark table-striped text-primary fs-5">
                     <thead>
-                        <tr>
+                        <tr class="fs-3">
                             <th scope="col">#</th>
-                            <th scope="col">First</th>
-                            <th scope="col">Last</th>
-                            <th scope="col">Handle</th>
+                            <th scope="col">Jugador</th>
+                            <th scope="col">Fecha Partido</th>
+                            <th scope="col">Tipo Partido</th>
+                            <th scope="col">N° Partido</th>
+                            <th scope="col">Equipo Rival</th>
+                            <th scope="col">Opciones</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>Jacob</td>
-                            <td>Thornton</td>
-                            <td>@fat</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td colspan="2">Larry the Bird</td>
-                            <td>@twitter</td>
-                        </tr>
+                        <?php
+                        if ($registros) {
+                            foreach ($registros as $row) {
+                        ?>
+                                <tr>
+                                    <td><?= $row->id ?></td>
+                                    <td><?= $row->nombre_jugador ?></td>
+                                    <td><?= $row->fecha_del_partido ?></td>
+                                    <td><?= $row->nombre_tipo_partido ?></td>
+                                    <td><?= $row->num_partido ?></td>
+                                    <td><?= $row->equipo ?></td>
+                                    <td>
+                                        <button class="btn btn-primary" type="button">Ver</button>
+                                        <button class="btn btn-success" type="button">Editar</button>
+                                        <button class="btn btn-danger" type="button">Eliminar</button>
+                                    </td>
+                                </tr>
+                            <?php
+                            }
+                        } else {
+                            ?>
+                            <tr>
+                                <td colspan="7">No se encontraron registros</td>
+                            </tr>
+                        <?php
+                        }
+                        ?>
                     </tbody>
                 </table>
+
             </div>
         </div>
     </div>
 
-</main>
+</div>
+
+
 <?php
- include_once(BASE_DIR . "../../Views/partials/footer.php");
+include_once(BASE_DIR . "../../Views/partials/footer.php");
 ?>

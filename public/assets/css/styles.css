@@ -183,6 +183,32 @@ form .containerTitulo {
   }
 }
 
+.imgVer {
+
+  background: url(../../assets/img/futbol2.jpg);
+  background-position: center;
+  height: calc(100vh - 85px);
+  margin-left: 0%;
+  margin-right: 0%;
+  padding-left: 0%;
+  padding-right: 0;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  height: 100vw;
+  width: 100%;
+
+}
+
+@media screen and (max-width: 972px) {
+  .imgVer {
+    height: 100%;
+
+  }
+}
+
+
+
 .imgIngreEstad {
 
   background: url(../../assets/img/reportes6.png);
@@ -206,6 +232,7 @@ form .containerTitulo {
 
   }
 }
+
 
 .menu_Principal {
 

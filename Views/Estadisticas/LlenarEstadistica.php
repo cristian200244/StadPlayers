@@ -7,24 +7,24 @@ include_once(BASE_DIR . "../../Views/partials/aside.php");
 include_once '../../Models/EstadisticasModel.php';
 
 $data = new EstadisticasModel();
-$registros = $data->getUltimasEstadisticas($ultId);
+$registros = $data->getUltimasEstadisticas();
 
 ?>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <div class="imgIngreEstad">
     <div class="container text-center">
-        <div class="row">
-            <div class="col">
-                <h1>¡Bienvenido! Ahora Podrá ingresar sus estadísticas</h1>
-            </div>
-        </div>
-
         <div id="layoutAuthentication">
             <div id="layoutAuthentication_content">
                 <div class="container py-4">
                     <div class="row justify-content-center">
+                        <div class="row pt-5">
+                            <div class="col text-secondary">
+                                <h1>¡Bienvenido! Ahora Podrá ingresar sus estadísticas</h1>
+                            </div>
+                        </div>
                         <div class="col-lg-12">
+                            
                             <div class="card shadow-lg border-0 rounded-lg mt-5">
                                 <div class="card-header bg-success">
                                     <h3 class="text-center text-light my-4 fs-4">Ingresar Estadistica</h3>
@@ -56,6 +56,10 @@ $registros = $data->getUltimasEstadisticas($ultId);
                                         ?>
 
                                     </div>
+
+                                    <hr class="my-4 border border-5 border-danger">
+
+                                    <a class="btn btn-success" href="../Estadisticas/NuevaEstadistica.php">Crear Nueva Estadistica</a>
 
                                 </div>
                             </div>

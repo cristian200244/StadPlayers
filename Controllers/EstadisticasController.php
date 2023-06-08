@@ -20,6 +20,11 @@ class EstadisticasController
                 case 2:
                     self::update();
                     break;
+                case 3:
+                    self::stad();
+                    break;
+
+
                 default:
                     self::index();
                     break;
@@ -27,10 +32,14 @@ class EstadisticasController
         }
     }
 
+
+
     public function index()
     {
         return $this->estadistica->getAll();
     }
+
+
 
 
     public function store()
@@ -42,20 +51,37 @@ class EstadisticasController
             'id_equipo'         => $_REQUEST['id_equipo'],
             'numero_partido'    => $_REQUEST['numero_partido'],
         ];
-    
+
         $result = $this->estadistica->store($datos);
-    
+
         if ($result) {
-            $lastId = $this->estadistica->getLastId();
-            $this->estadistica->storeEstadisticasCount($lastId);
-    
             header("Location: ../Views/Estadisticas/LlenarEstadistica.php");
             exit();
         }
-    
+
         return $result;
     }
-    
+
+    public function stad()
+    {
+
+        $datos = [
+            'nombre' => $_REQUEST['nombre'],
+            'descripcion' => $_REQUEST['descripcion'],
+            'tipo'         => $_REQUEST['tipo']
+        ];
+
+        $result = $this->estadistica->stad($datos);
+
+        if ($result) {
+            header("Location: ../Views/Estadisticas/LlenarEstadistica.php");
+            exit();
+        }
+
+        return $result;
+    }
+
+
 
     public function update()
     {
