@@ -433,3 +433,165 @@ FROM
 <?php
 if ($registros) {
 foreach ($registros as $row) { ?>
+
+
+
+
+
+
+
+
+
+<div class="container text-center">
+        <div class="row">
+            <div class="col">
+                <h1>¡Bienvenido! Ahora podrá ingresar sus jugadores</h1>
+            </div>
+        </div>
+        <div id="layoutAuthentication">
+            <div id="layoutAuthentication_content">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-12">
+                            <div class="card shadow-lg border-0 rounded-lg mt-5">
+                                <div class="card-header bg-success">
+                                    <h3 class="text-center text-light my-4 fs-4">Ingresar Jugadores</h3>
+                                </div>
+                                <div class="card-body">
+                                    <form action="guardar.php" method="POST">
+                                        <input type="hidden" name="c" value="5">
+                                        <div class="mb-3">
+                                            <div class="row">
+                                                <div class="col row-cols-1 row-cols-md-2 g-4">
+                                                    <div class="col">
+                                                        <div class="card">
+                                                            <div class="card-body">
+                                                                <div class="card-body card-header bg-success">
+                                                                    <h5 class="text-center text-light my-4 fs-4">Historial Equipos</h5>
+                                                                </div>
+                                                                <div class="form-floating mt-3">
+                                                                    <select class="form-select" id="id_equipo_historial" name="id_equipo_historial" aria-label="Default select example" required>
+                                                                        <option selected>Seleccionar Equipo</option>
+                                                                        <?php foreach ($equipos as $equipo) :; ?>
+
+                                                                            <option value="<?= $equipo->getId() ?>">
+                                                                                <?= $equipo->getid_equipos() ?> </option>
+
+                                                                        <?php endforeach ?>
+                                                                    </select>
+                                                                </div>
+                                                                <div class="mt-3">
+                                                                    <div class="form-floating pt-2">
+                                                                        <label for="fecha_inicial" id="fecha_inicial" class="form-label">Fecha Inicial</label>
+                                                                        <input type="date" class="form-control" placeholder="Fecha Inicial" name="fecha_inicial" id="fecha_inicial" required>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="mt-3">
+                                                                    <div class="form-floating pt-2">
+                                                                        <label for="fecha_terminacion" id="fecha_terminacion" class="form-label">Fecha Terminacion</label>
+                                                                        <input type="date" class="form-control" placeholder="Fecha Terminacion" name="fecha_terminacion" id="fecha_terminacion" required>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col">
+                                                        <div class="card">
+                                                            <div class="card-body card-header bg-success">
+                                                                <h5 class="text-center text-light my-4 fs-4">Títulos Obtenidos</h5>
+                                                            </div>
+                                                            <form action="../Controllers/calculadoraController.php" method="POST">
+                                                                <input type="hidden" name="c" value="1">
+                                                                <div class="mb-3">
+                                                                    <label for="" class="form-label">Número uno </label>
+                                                                    <input class="form-control" type="number" name="n1" id="n1">
+                                                                </div>
+                                                                <div class="mb-3">
+                                                                    <label for="" class="form-label">Número dos</label>
+                                                                    <input class="form-control" type="number" name="n2" id="n2">
+                                                                </div>
+                                                                <div class="mb-3">
+                                                                    <label for="">Seleccione Operación</label>
+                                                                    <select class="form-select" name="operacion" id="operacion">
+                                                                        <option value="1">Sumar</option>
+                                                                        <option value="2">Restar</option>
+                                                                        <option value="3">Multiplicar</option>
+                                                                        <option value="4">Dividir</option>
+                                                                    </select>
+                                                                </div>
+                                                                <div class="mb-3">
+                                                                    <button class="btn btn-sm btn-primary" type="submit">Calcular</button>
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                        <table class="table">
+                                                            <thead>
+                                                                <tr>
+                                                                    <h2>sdsa</h2>
+                                                                    <th scope="col">#</th>
+                                                                    <th scope="col">Primer Numero</th>
+                                                                    <th scope="col">Segundo Numero</th>
+                                                                    <th scope="col">operacion</th>
+                                                                    <th scope="col">Resultado</th>
+                                                                    <th scope="col" colspan="2">Opcion</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <?php
+                                                                if ($registros) {
+                                                                    foreach ($registros as $row) {
+
+                                                                ?>
+
+                                                                        <tr>
+
+                                                                            <td><?= $row->id ?></td>
+                                                                            <td><?= $row->n1 ?></td>
+                                                                            <td><?= $row->n2 ?></td>
+                                                                            <td><?= $row->operacion ?></td>
+                                                                            <td><?= $row->resultado ?></td>
+                                                                            <!-- <th scope="col" >Opciones</th> -->
+
+                                                                            <td>
+                                                                                <a class="btn btn-sm btn-outline-warning" href="../Controllers/calculadoraController.php?c=2&id=<?= $row->getId() ?>">Actualizar</a>
+                                                                            </td>
+                                                                            <td>
+                                                                                <a class="btn btn-sm btn-outline-danger " href="../Controllers/calculadoraController.php?c=4&id=<?= $row->getId() ?>">Eliminar</a>
+                                                                            </td>
+                                                                        </tr>
+                                                                    <?php
+                                                                    }
+                                                                } else {
+                                                                    ?>
+                                                                    <tr class=" text-center">
+                                                                        <td colspan="6">Sin datos</td>
+                                                                    </tr>
+                                                                <?php
+                                                                }
+                                                                ?>
+                                                            </tbody>
+                                                        </table>
+                                                        <div class="mt-4 mb-0">
+                                                            <div class="d-grid">
+                                                                <button class="btn btn-success btn-block" id="submitBtn">Guardar Jugador</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    $id = $_GET['id'];
+
+$datos = new JugadorModel();
+$registros = $datos->getById($id);

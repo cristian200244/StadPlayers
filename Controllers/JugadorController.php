@@ -26,7 +26,10 @@ class JugadorController
                     $this->delete();
                     break;
                 case 5:
-                    $this->titulos();
+                    $this->guardar();
+                    break;
+                case 6:
+                    $this->BorrarHistorial();
                     break;
                 default:
                     $this->index();
@@ -58,7 +61,28 @@ class JugadorController
         $result = $this->jugadorModel->store($datos);
 
         if ($result) {
-            
+
+            header("Location: ../views/jugadores/guardar.php");
+            exit();
+        }
+        return $result;
+    }
+
+    public function guardar()
+    {
+        $data = [
+            'id_jugador' => $_POST['id_jugador'],
+            'fecha_inicial' => $_POST['fecha_inicial'],
+            'fecha_terminacion' => $_POST['fecha_terminacion'],
+            'id_equipo' => $_POST['id_equipo'],
+
+        ];
+        var_dump($data);
+        die();
+        $result = $this->jugadorModel->store($data);
+
+        if ($result) {
+
             header("Location: ../views/jugadores/guardar.php");
             exit();
         }
@@ -105,25 +129,34 @@ class JugadorController
             exit();
         }
     }
-
-    public function titulos()
+    public function BorrarHistorial()
     {
-        $datos = [
-            'fecha' => $_POST['fecha'],
-            'fecha_inicial' => $_POST['fecha_inicial'],
-            'fecha_terminacion' => $_POST['fecha_terminacion'],
-            'id_jugador' => $_POST['id_equipo'],
-            'id_copa' => $_POST['id_copa']
-        ];
-
-        var_dump($datos);
-        die();
-
-        $result = $this->jugadorModel->titulos($datos);
-
+        $id = $_REQUEST['id'];
+        $result = $this->jugadorModel->delete($id);
         if ($result) {
-            header("Location: ../views/jugadores/index.php");
+            header("Location: ../views/jugadores/guardar.php");
             exit();
         }
     }
+
+    // public function titulos()
+    // {
+    //     $datos = [
+    //         'fecha' => $_POST['fecha'],
+    //         'fecha_inicial' => $_POST['fecha_inicial'],
+    //         'fecha_terminacion' => $_POST['fecha_terminacion'],
+    //         'id_jugador' => $_POST['id_equipo'],
+    //         'id_copa' => $_POST['id_copa']
+    //     ];
+
+    //     var_dump($datos);
+    //     die();
+
+    //     $result = $this->jugadorModel->titulos($datos);
+
+    //     if ($result) {
+    //         header("Location: ../views/jugadores/index.php");
+    //         exit();
+    //     }
+    // }
 }
