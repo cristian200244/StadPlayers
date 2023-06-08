@@ -64,15 +64,22 @@ class ReportesController
 
         $id_reporte = $_REQUEST['reporte'];
 
-        $reporte              = $this->reportesModel->getReporteId($id_reporte);
-        $datosJugador         = $this->reportesModel->DatosJugadorReporte($id_reporte);
-        $totalMinutosJugados  = $this->reportesModel->getTotalMinutos($reporte);
-        $totalPartidosJugados = $this->reportesModel->getTotalPartidos($reporte);
-        $totalEstadisticas    = $this->reportesModel->getTotalEstadisticas($reporte);
-        $nuevaEstadistica     = $this->reportesModel->getNuevaEstadistica($reporte);
-        // var_dump($totalEstadisticas);
+        $reporte                  = $this->reportesModel->getReporteId($id_reporte);
+        $datosJugador             = $this->reportesModel->DatosJugadorReporte($id_reporte);
+        $totalMinutosJugados      = $this->reportesModel->getTotalMinutos($reporte);
+        $totalPartidosJugados     = $this->reportesModel->getTotalPartidos($reporte);
+        $totalEstadisticasPre     = $this->reportesModel->getTotalEstadPre($reporte);
+        $totalEstadisticasPortero = $this->reportesModel->getTotalEstadPortero($reporte);
+        $nuevasEstadisticas         = $this->reportesModel->getNuevaEstadistica($reporte);
+        // var_dump($totalEstadisticasPre);
         // die();
-        header("Location: ../Views/Reportes/VerReporteIndividual.php?" . http_build_query($reporte) . http_build_query($datosJugador) . '&Total_Minutos_jugados=' . ($totalMinutosJugados) . '&Total_Partidos_Jugados=' . ($totalPartidosJugados)  . "&" . http_build_query($totalEstadisticas));
+        header(
+            "Location: ../Views/Reportes/VerReporteIndividual.php?" . http_build_query($reporte) . http_build_query($datosJugador)
+                . '&Total_Minutos_jugados='  . ($totalMinutosJugados)
+                . '&Total_Partidos_Jugados=' . ($totalPartidosJugados)
+                . "&" .        http_build_query($totalEstadisticasPre)
+                . "&" .        http_build_query($totalEstadisticasPortero)
+        );
     }
 
 

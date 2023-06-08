@@ -39,31 +39,34 @@ $registros = $reportes->getAll();
                             $pos = 1;
                             foreach ($registros as $registro) {
                         ?>
-                                <tr>
-                                    <td><?php echo $pos; ?></td>
-                                    <td><?php echo $registro->fechaInicial ?></td>
-                                    <td><?php echo $registro->fechaFinal ?></td>
-                                    <td><?php echo $registro->nombre_completo ?></td>
-                                    <td>
-                                        <form action="../../Controllers/GenerarReportesController.php" method="post">
-                                            <input type="hidden" name="c" value="3">
-                                            <button type="submit" name="reporte" value="<?= $registro->id ?>" class="btn btn-info">Ver</button>
+                        <tr>
+                            <td><?php echo $pos; ?></td>
+                            <td><?php echo $registro->fechaInicial ?></td>
+                            <td><?php echo $registro->fechaFinal ?></td>
+                            <td><?php echo $registro->nombre_completo ?></td>
+                            <td>
+                                <form action="../../Controllers/GenerarReportesController.php" method="post">
+                                    <input type="hidden" name="c" value="3">
+                                    <button type=" submit" name="reporte" value="<?= $registro->id ?>"
+                                        class="btn btn-info">Ver</button>
 
 
 
 
-                                            <a type="button" href="<?= BASE_URL ?>/Views/Reportes/VerReporteIndividual.php" class="btn btn-warning">Editar</a>
-                                            <a type="button" href="<?= BASE_URL ?>/Views/Reportes/VerReporteIndividual.php" class="btn btn-danger">Eliminar</a>
-                                        </form>
-                                    </td>
-                                </tr>
-                            <?php $pos++;
+                                    <a type="button" href="<?= BASE_URL ?>/Views/Reportes/VerReporteIndividual.php"
+                                        class="btn btn-warning">Editar</a>
+                                    <a type="button" href="<?= BASE_URL ?>/Views/Reportes/VerReporteIndividual.php"
+                                        class="btn btn-danger">Eliminar</a>
+                                </form>
+                            </td>
+                        </tr>
+                        <?php $pos++;
                             }
                         } else { ?>
-                            <tr>
-                                <td colspan=" 9">No hay datos
-                                </td>
-                            </tr>
+                        <tr>
+                            <td colspan=" 9">No hay datos
+                            </td>
+                        </tr>
                         <?php } ?>
                     </tbody>
                 </table>
@@ -73,9 +76,6 @@ $registros = $reportes->getAll();
     </main>
 </div>
 
-<?php
-include_once(BASE_DIR . "../../Views/partials/footer.php");
-?>
 <?php
 include_once(BASE_DIR . "../../Views/partials/footer.php");
 ?>

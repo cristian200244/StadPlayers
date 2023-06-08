@@ -1,8 +1,24 @@
 
+  function myFunction() {
+
+      var predeterminadas =  document.getElementById('EstadPre');
+      var arquero =  document.getElementById('EstadArquero')
+    
+      if (predeterminadas.style.display === "none") {
+        predeterminadas.style.display = "block";
+      } else {
+        x.style.display = "none";
+      }
+   
+
+    }  
+
+    
+
   
+      d
 
-
-       alert("#register"+"Sí hay conexión al documento js");
+  
    
 
    

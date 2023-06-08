@@ -8,42 +8,30 @@ session_start();
 class ReportesModel
 {
 
+    private $db;
     public $id;
-    public $nombre_completo;
+    public $id_reporte;
     public $id_usuario;
+    public $nombre_completo;
     public $fechaInicial;
     public $fechaFinal;
-    public $id_reporte;
     public $apodo;
     public $equipo;
     public $liga;
-    public $id_posicion;
     public $posicion;
     public $minutos_jugados;
     public $partidos_jugados;
     public $total_minutos;
-    public $estadisticas;
-    public $totalEstadisticas;
-    public $pases_acertados;
-    public $pases_errados;
-    public $tiros_al_arco;
-    public $asistencias_de_gol;
-    public $rechazos_bien_dirigidos;
-    public $rechazos_mal_dirigidos;
-    public $perdidas_de_balon;
-    public $Perdidas_perjudiciales;
-    public $goles_anotados;
-    public $amarillas_recibidas;
-    public $rojas_recibidas;
-    public $atajada_heroica;
-    public $penales_atajados;
-    public $éxitos_mano_a_mano;
+    public $totalEstadisticasPre;
+    public $estadisticasPre;
+    public $totalEstadisticasPortero;
+    public $estadPortero;
+    public $id_posicion;
     public $nueva_estadistica;
-    public $valor;
     public $id_jugador;
     public $datos;
     public $numEstadistica;
-    private $db;
+    public $valor;
 
     public function __construct()
     {
@@ -53,9 +41,10 @@ class ReportesModel
 
 
         $this->id_usuario = $_SESSION['id'];
+        $this->id_reporte;
+        $this->nombre_completo;
         $this->fechaInicial;
         $this->fechaFinal;
-        $this->id_reporte;
         $this->apodo;
         $this->equipo;
         $this->liga;
@@ -63,23 +52,15 @@ class ReportesModel
         $this->minutos_jugados;
         $this->partidos_jugados;
         $this->total_minutos;
-        $this->estadisticas;
-        $this->totalEstadisticas;
-        $this->pases_acertados;
-        $this->pases_errados;
-        $this->tiros_al_arco;
-        $this->asistencias_de_gol;
-        $this->rechazos_bien_dirigidos;
-        $this->rechazos_mal_dirigidos;
-        $this->perdidas_de_balon;
-        $this->Perdidas_perjudiciales;
-        $this->goles_anotados;
-        $this->amarillas_recibidas;
-        $this->rojas_recibidas;
-        $this->atajada_heroica;
-        $this->penales_atajados;
-        $this->éxitos_mano_a_mano;
+        $this->totalEstadisticasPre;
+        $this->estadisticasPre;
+        $this->totalEstadisticasPortero;
+        $this->estadPortero;
+        $this->id_posicion;
         $this->nueva_estadistica;
+        $this->id_jugador;
+        $this->datos;
+        $this->numEstadistica;
         $this->valor;
     }
     //metodos mágicos
@@ -277,24 +258,29 @@ class ReportesModel
         }
     }
 
-    public function getTotalEstadisticas($totalEstadisticas)
+    public function getTotalEstadPre($totalEstadisticasPre)
     {
         try {
             $array = [];
-            $sql = "SELECT e.nombre, SUM(ec.valor) AS valor
+            $sql = "SELECT e.nombre, SUM(ec.valor) AS valor,j.id_posicion 
              FROM estadisticas AS e
              RIGHT JOIN estadisticas_count AS ec ON e.id = ec.id_estadistica
-             JOIN estadisticas_encuentro AS ee ON ec.id_encuentro_estadistica = ee.id AND ee.id_jugador = ?
-             WHERE ee.fecha_del_partido BETWEEN ? AND ? AND predeterminada = 1  AND ec.id_estadistica != 9 #AND valor > 0
-             GROUP BY e.nombre, e.id
+             JOIN estadisticas_encuentro AS ee ON ec.id_encuentro_estadistica = ee.id
+             AND ee.id_jugador = ?
+             JOIN jugadores AS j ON j.id = ee.id_jugador AND j.id= ee.id_jugador
+             WHERE ee.fecha_del_partido 
+             BETWEEN ? AND ? 
+             AND predeterminada = 1  AND ec.id_estadistica != 9 AND valor > 0
+             AND j.id_posicion !=1
+             GROUP BY e.nombre, e.id, j.id_posicion 
             ";
 
             $query = $this->db->conect()->prepare($sql);
 
             $query->execute([
-                $totalEstadisticas->id_jugador,
-                $totalEstadisticas->fechaInicial,
-                $totalEstadisticas->fechaFinal,
+                $totalEstadisticasPre->id_jugador,
+                $totalEstadisticasPre->fechaInicial,
+                $totalEstadisticasPre->fechaFinal,
 
 
             ]);
@@ -307,16 +293,61 @@ class ReportesModel
                 array_push($array);
             }
 
-            $this->estadisticas = $array;
+            $this->estadisticasPre = $array;
 
-            // var_dump($this->estadisticas);
+            // var_dump($this->estadisticasPre);
             // die();
 
-            return $this->estadisticas;
+            return $this->estadisticasPre;
         } catch (PDOException $e) {
             die($e->getMessage());
         }
     }
+
+    public function getTotalEstadPortero($totalEstadisticasPortero)
+    {
+        try {
+            $array = [];
+            $sql = "SELECT e.nombre, e.predeterminada, SUM(ec.valor) AS valor,j.id_posicion 
+            FROM estadisticas AS e
+            RIGHT JOIN estadisticas_count AS ec ON e.id = ec.id_estadistica 
+            JOIN estadisticas_encuentro AS ee ON ec.id_encuentro_estadistica = ee.id AND ee.id_jugador = ? 
+            JOIN jugadores AS j ON j.id = ee.id_jugador and j.id= ee.id_jugador
+            WHERE ee.fecha_del_partido BETWEEN ? AND ? AND valor > 0 AND predeterminada =1 AND ec.id_estadistica != 9 AND j.id_posicion =1
+            GROUP BY e.nombre, e.id, e.predeterminada,j.id_posicion;
+            ";
+
+            $query = $this->db->conect()->prepare($sql);
+
+            $query->execute([
+                $totalEstadisticasPortero->id_jugador,
+                $totalEstadisticasPortero->fechaInicial,
+                $totalEstadisticasPortero->fechaFinal,
+
+
+            ]);
+
+            while ($row = $query->fetchObject()) {
+                $params[$row->nombre] = $row->valor;
+                if ($params[$row->nombre] = $row->valor) {
+                }
+                $array = [$params];
+                array_push($array);
+            }
+
+            $this->estadPortero = $array;
+
+            // var_dump($this->estadPortero);
+            // die();
+
+            return  $this->estadPortero;
+        } catch (PDOException $e) {
+            die($e->getMessage());
+        }
+    }
+
+
+
 
 
     public function getNuevaEstadistica($nuevaEstadistica)
