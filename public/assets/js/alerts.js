@@ -5,7 +5,8 @@ document.addEventListener("DOMContentLoaded", function (event) {
   let arquero = document.getElementById('EstadArquero')
   let id_posicion = document.getElementById('id_posicion').value;
 
-  if (id_posicion != 1) {
+
+  if (id_posicion != 1)  {
         document.getElementById("TituloEstadJugador").textContent="Estadisticas del Jugador";
         predeterminadas.style.display = "block";
         arquero.style.display = "none";

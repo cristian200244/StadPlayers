@@ -33,6 +33,7 @@ class ReportesModel
     public $numEstadistica;
     public $valor;
 
+
     public function __construct()
     {
         //Instanciar la base de datos en el constructor para poder realizar consultas
@@ -262,26 +263,15 @@ class ReportesModel
     {
         try {
             $array = [];
-
-            $sql ="#Trae las estadísticas del jugador tipo otro y predeterminadas mayores a 0
-            SELECT e.nombre, SUM(ec.valor) AS total  	
+            #Trae las estadísticas del jugador tipo otro y predeterminadas mayores a 0
+            $sql = "SELECT e.nombre, SUM(ec.valor) AS valor ,e.tipo 	
             FROM estadisticas AS e
             RIGHT JOIN estadisticas_count AS ec ON e.id = ec.id_estadistica
-            JOIN estadisticas_encuentro AS ee ON ec.id_encuentro_estadistica = ee.id AND ee.id_jugador = 1
-            WHERE ee.fecha_del_partido BETWEEN "2000-01-01" AND "2023-06-25" AND tipo = 0 AND valor > 0 AND e.predeterminada = 1
-            GROUP BY e.nombre, e.id";
-            // $sql = "SELECT e.nombre, SUM(ec.valor) AS valor
-            //  FROM estadisticas AS e
-            //  RIGHT JOIN estadisticas_count AS ec ON e.id = ec.id_estadistica
-            //  JOIN estadisticas_encuentro AS ee ON ec.id_encuentro_estadistica = ee.id
-            //  AND ee.id_jugador = ?
-            //  JOIN jugadores AS j ON j.id = ee.id_jugador AND j.id= ee.id_jugador
-            //  WHERE ee.fecha_del_partido 
-            //  BETWEEN ? AND ? 
-            //  AND predeterminada = 1  AND ec.id_estadistica != 9 AND valor > 0
-            
-            //  GROUP BY e.nombre, e.id, j.id_posicion 
-            // ";
+            JOIN estadisticas_encuentro AS ee ON ec.id_encuentro_estadistica = ee.id 
+            AND ee.id_jugador = ?
+            WHERE ee.fecha_del_partido BETWEEN ? AND ?
+            AND tipo = 0 AND valor > 0 AND e.predeterminada = 1 AND ec.id_estadistica != 9 
+            GROUP BY e.nombre, e.id,e.tipo";
 
             $query = $this->db->conect()->prepare($sql);
 
@@ -294,7 +284,9 @@ class ReportesModel
             ]);
 
             while ($row = $query->fetchObject()) {
+
                 $params[$row->nombre] = $row->valor;
+                $params['Tipo'] = $row->tipo;
                 if ($params[$row->nombre] = $row->valor) {
                 }
                 $array = [$params];
@@ -311,32 +303,33 @@ class ReportesModel
             die($e->getMessage());
         }
     }
+    // $sql = "SELECT e.nombre, SUM(ec.valor) AS valor
+    //  FROM estadisticas AS e
+    //  RIGHT JOIN estadisticas_count AS ec ON e.id = ec.id_estadistica
+    //  JOIN estadisticas_encuentro AS ee ON ec.id_encuentro_estadistica = ee.id
+    //  AND ee.id_jugador = ?
+    //  JOIN jugadores AS j ON j.id = ee.id_jugador AND j.id= ee.id_jugador
+    //  WHERE ee.fecha_del_partido 
+    //  BETWEEN ? AND ? 
+    //  AND predeterminada = 1  AND ec.id_estadistica != 9 AND valor > 0
+
+    //  GROUP BY e.nombre, e.id, j.id_posicion 
+    // ";
+
+
 
     public function getTotalEstadPortero($totalEstadisticasPortero)
     {
         try {
             $array = [];
-            $sqil=#Trae las estadísticas del jugador tipo portero y predeterminadas mayores a 0
-           " SELECT e.nombre, SUM(ec.valor)  	
+            #Trae las estadísticas del jugador tipo portero y predeterminadas mayores a 0
+            $sql = " SELECT e.nombre, SUM(ec.valor) AS valor, e.tipo 	
             FROM estadisticas AS e
             RIGHT JOIN estadisticas_count AS ec ON e.id = ec.id_estadistica
-            JOIN estadisticas_encuentro AS ee ON ec.id_encuentro_estadistica = ee.id AND ee.id_jugador = 1 
-            WHERE ee.fecha_del_partido BETWEEN "2000-01-01" AND "2023-06-25" AND tipo = 1 AND valor > 0 AND e.predeterminada = 1
-            GROUP BY e.nombre, e.id";
-            // $sql = "SELECT e.nombre, e.predeterminada, SUM(ec.valor) AS valor,j.id_posicion 
-            // FROM estadisticas AS e
-            // RIGHT JOIN estadisticas_count AS ec ON e.id = ec.id_estadistica 
-            // JOIN estadisticas_encuentro AS ee ON ec.id_encuentro_estadistica = ee.id AND ee.id_jugador = ? 
-            // JOIN jugadores AS j ON j.id = ee.id_jugador and j.id= ee.id_jugador
-            // WHERE ee.fecha_del_partido BETWEEN ? AND ?
-            // AND valor > 0 
-            // AND predeterminada =1
-            // AND ec.id_estadistica != 9 
-            // AND j.id_posicion =1 
-            // AND e.id >12
-            // AND e.tipo = 1
-            // GROUP BY e.nombre, e.id, e.predeterminada,j.id_posicion
-            // ";
+            JOIN estadisticas_encuentro AS ee ON ec.id_encuentro_estadistica = ee.id AND ee.id_jugador = ?
+            WHERE ee.fecha_del_partido BETWEEN ? AND ?
+            AND tipo = 1 AND valor > 0 AND e.predeterminada = 1 AND ec.id_estadistica != 9 
+            GROUP BY e.nombre, e.id,e.tipo";
 
             $query = $this->db->conect()->prepare($sql);
 
@@ -349,7 +342,9 @@ class ReportesModel
             ]);
 
             while ($row = $query->fetchObject()) {
+
                 $params[$row->nombre] = $row->valor;
+                $params['Tipo'] = $row->tipo;
                 if ($params[$row->nombre] = $row->valor) {
                 }
                 $array = [$params];
@@ -367,6 +362,20 @@ class ReportesModel
         }
     }
 
+    // $sql = "SELECT e.nombre, e.predeterminada, SUM(ec.valor) AS valor,j.id_posicion 
+    // FROM estadisticas AS e
+    // RIGHT JOIN estadisticas_count AS ec ON e.id = ec.id_estadistica 
+    // JOIN estadisticas_encuentro AS ee ON ec.id_encuentro_estadistica = ee.id AND ee.id_jugador = ? 
+    // JOIN jugadores AS j ON j.id = ee.id_jugador and j.id= ee.id_jugador
+    // WHERE ee.fecha_del_partido BETWEEN ? AND ?
+    // AND valor > 0 
+    // AND predeterminada =1
+    // AND ec.id_estadistica != 9 
+    // AND j.id_posicion =1 
+    // AND e.id >12
+    // AND e.tipo = 1
+    // GROUP BY e.nombre, e.id, e.predeterminada,j.id_posicion
+    // ";
 
 
 
