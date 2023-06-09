@@ -162,436 +162,50 @@ $registros = $data->getAll();
                                                                             <td>Jacob</td>
                                                                             <td>Thornton</td>
 
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <th scope="row">3</th>
-                                                                            <td colspan="2">Larry the Bird</td>
-
-                                                                        </tr>
-                                                                    </tbody>
-                                                                </table>
-                                                            </div>
-                                                        <-- </div> -->
-
-
-
-                                                        <form action="../../Controllers/JugadorController.php" method="POST">
-                                        <input type="hidden" name="c" value="5">
-                                        <input type="hidden" name="id" value="<?= $id ?>">
-                                        <div class="mb-3">
-                                            <div class="row">
-
-                                                <div class="row row-cols-1 row-cols-md-2 g-4" id="id_historial_equipos" name="id_historial_equipos">
-                                                    <div class="col">
-                                                        <div class="card">
-
-                                                            <div class="card-body">
-
-
-                                                                <div class="card-body card-header bg-success">
-                                                                    <h5 class="text-center text-light my-4 fs-4">Historial Equipos</h5>
-                                                                </div>
-                                                                <div class="form-floating  mt-3">
-
-                                                                    <select class="form-select" aria-label="Default select example" required>
-                                                                        <option selected>Seleccionar Equipo</option>
-                                                                        <?php foreach ($equipos as $equipo) :; ?>
-
-                                                                            <option value="<?= $equipo->getId() ?>">
-                                                                                <?= $equipo->getid_equipos() ?> </option>
-
-                                                                        <?php endforeach ?>
-                                                                    </select>
-                                                                </div>
-
-
-                                                                <div class="mt-3">
-                                                                    <div class="form-floating pt-2">
-                                                                        <label for="fecha_inicial" id="fecha_inicial" class="form-label">Fecha Inicial</label>
-                                                                        <input type="date" class="form-control" type="datetime" placeholder="Fecha Inicial" name="fecha_inicial" id="fecha_inicial" required>
-                                                                    </div>
-                                                                </div>
-
-                                                                <div class="mt-3">
-                                                                    <div class="form-floating pt-2">
-                                                                        <label for="fecha_terminacion" id="fecha_terminacion" class="form-label">Fecha Terminacion</label>
-                                                                        <input type="date" class="form-control" type="datetime" placeholder="Fecha Terminacion" name="fecha_terminacion" id="fecha_terminacion" required>
-                                                                    </div>
-                                                                </div>
-                                                                <table class="table">
-                                                                    <thead>
-                                                                        <tr>
-                                                                            <th scope="col">#</th>
-                                                                            <th scope="col">Nombre Equipo</th>
-                                                                            <th scope="col">Fecha Inicial</th>
-                                                                            <th scope="col">Fecha Terminacion</th>
-                                                                        </tr>
-                                                                    </thead>
-                                                                    <tbody>
-                                                                        <tr>
-                                                                            <th scope="row">1</th>
-                                                                            <td>Mark</td>
-                                                                            <td>Otto</td>
-                                                                            <td>@mdo</td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <th scope="row">2</th>
-                                                                            <td>Jacob</td>
-                                                                            <td>Thornton</td>
-                                                                            <td>@fat</td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <th scope="row">3</th>
-                                                                            <td colspan="2">Larry the Bird</td>
-                                                                            <td>@twitter</td>
-                                                                        </tr>
-                                                                    </tbody>
-                                                                </table>
-                                                                <div class="mt-4 mb-0">
-                                                                    <div class="d-grid">
-                                                                        <button class="btn btn-success btn-block" id="submitBtn">guardar Jugador</button>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col">
-                                                        <div class="card">
-                                                            <div class="card-body card-header bg-success">
-                                                                <h5 class="text-center text-light my-4 fs-4">Titulos Obtenidos</h5>
-                                                            </div>
-                                                            <div class="card-body">
-                                                                <div class="form-floating  mt-3">
-
-                                                                    <select class="form-select" aria-label="Default select example" required>
-                                                                        <option selected>Seleccionar Equipo</option>
-                                                                        <?php foreach ($equipos as $equipo) :; ?>
-
-                                                                            <option value="<?= $equipo->getId() ?>">
-                                                                                <?= $equipo->getid_equipos() ?> </option>
-
-                                                                        <?php endforeach ?>
-                                                                    </select>
-                                                                </div>
-
-                                                                <div class="form-floating col-md-6 mt-2">
-                                                                    <div class="form-floating pt-2">
-                                                                        <label for="fecha" id="fecha" class="form-label ">Fecha del Titulo</label>
-                                                                        <input type="date" class="form-control" type="date" name="fecha" id="fecha" required>
-                                                                    </div>
-                                                                </div>
-
-
-                                                                <table class="table">
-                                                                    <thead>
-                                                                        <tr>
-                                                                            <th scope="col">#</th>
-                                                                            <th scope="col">Nombre Titulo</th>
-                                                                            <th scope="col">Fecha Obtencion</th>
-
-                                                                        </tr>
-                                                                    </thead>
-                                                                    <tbody>
-                                                                        <tr>
-                                                                            <th scope="row">1</th>
-                                                                            <td>Mark</td>
-                                                                            <td>Otto</td>
-
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <th scope="row">2</th>
-                                                                            <td>Jacob</td>
-                                                                            <td>Thornton</td>
-
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <th scope="row">3</th>
-                                                                            <td colspan="2">Larry the Bird</td>
-
-                                                                        </tr>
-                                                                    </tbody>
-                                                                </table>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </form>
-
-
-
-
-
-
-
-
-
-
-
-
-                                    SELECT
-  titulos_jugador.fecha,
-  equipos.id AS id_equipo,
-  copas.id AS id_copa,
-  jugadores.id AS id_jugador,
-  historial_equipos.fecha_inicial,
-  historial_equipos.fecha_terminacion,
-  equipos.id AS id_equipo
-FROM
-  titulos_jugador
-  JOIN equipos ON titulos_jugador.id_equipo = equipos.id
-  JOIN copas ON titulos_jugador.id_copa = copas.id
-  JOIN jugadores ON titulos_jugador.id_jugador = jugadores.id
-  JOIN historial_equipos ON jugadores.id = historial_equipos.id_jugador;
-
-
-
-
-
-
-
-  <?php $datos = new JugadorModel();
-        $equipos = $datos->titulos(); ?>
-
-        <div class="container text-center">
-            <div class="row">
-                <div class="col">
-                    <h1>¡Bienvenido! Ahora Podrá ingresar sus Jugadores</h1>
-                </div>
-            </div>
-            <div id="layoutAuthentication">
-                <div id="layoutAuthentication_content">
-                    <div class="container">
-                        <div class="row justify-content-center">
-                            <div class="col-lg-12">
-                                <div class="card shadow-lg border-0 rounded-lg mt-5">
-                                    <div class="card-header bg-success">
-                                        <h3 class="text-center text-light my-4 fs-4">Ingresar Jugadores</h3>
-                                    </div>
-                                    <div class="card-body">
-                                        <table class="table">
-                                            <thead>
-                                                <tr>
-                                                    <h2>Historial Equipos Creados</h2>
-                                                    <th scope="col">#</th>
-                                                    <th scope="col">Jugador</th>
-                                                    <th scope="col">Fecha Inicial</th>
-                                                    <th scope="col">Fecha terminacion</th>
-                                                    <th scope="col" colspan="2">Opcion</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <?php
-                                                if ($registros) {
-                                                    foreach ($registros as $row) {
-
-                                                ?>
-
-                                                        <tr>
-
-                                                            <td><?= $row->id ?></td>
-                                                            <td><?= $row->id_jugador ?></td>
-                                                            <td><?= $row->fecha_inicial ?></td>
-                                                            <td><?= $row->fecha_terminacion ?></td>
-
-                                                            <td>
-
-
-
-                                                                <a class="btn btn-sm btn-outline-warning" href="../../Controllers/JugadorController.php?c=2&id=<?= $row->getId() ?>">Actualizar</a>
-                                                                -
-
-                                                                <a class="btn btn-sm btn-outline-danger " href="../../Controllers/JugadorController.php?c=4&id=<?= $row->getId() ?>">Eliminar</a>
-                                                            </td>
-                                                        </tr>
-                                                    <?php
-                                                    }
-                                                } else {
-                                                    ?>
-                                                    <tr class=" text-center">
-                                                        <td colspan="6">Sin datos</td>
-                                                    </tr>
-                                                <?php
-                                                }
-                                                ?>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
-
-
-
-<?php
-if ($registros) {
-foreach ($registros as $row) { ?>
-
-
-
-
-
-
-
-
-
-<div class="container text-center">
-        <div class="row">
-            <div class="col">
-                <h1>¡Bienvenido! Ahora podrá ingresar sus jugadores</h1>
-            </div>
-        </div>
-        <div id="layoutAuthentication">
-            <div id="layoutAuthentication_content">
-                <div class="container">
-                    <div class="row justify-content-center">
-                        <div class="col-lg-12">
-                            <div class="card shadow-lg border-0 rounded-lg mt-5">
-                                <div class="card-header bg-success">
-                                    <h3 class="text-center text-light my-4 fs-4">Ingresar Jugadores</h3>
-                                </div>
-                                <div class="card-body">
-                                    <form action="guardar.php" method="POST">
-                                        <input type="hidden" name="c" value="5">
-                                        <div class="mb-3">
-                                            <div class="row">
-                                                <div class="col row-cols-1 row-cols-md-2 g-4">
-                                                    <div class="col">
-                                                        <div class="card">
-                                                            <div class="card-body">
-                                                                <div class="card-body card-header bg-success">
-                                                                    <h5 class="text-center text-light my-4 fs-4">Historial Equipos</h5>
-                                                                </div>
-                                                                <div class="form-floating mt-3">
-                                                                    <select class="form-select" id="id_equipo_historial" name="id_equipo_historial" aria-label="Default select example" required>
-                                                                        <option selected>Seleccionar Equipo</option>
-                                                                        <?php foreach ($equipos as $equipo) :; ?>
-
-                                                                            <option value="<?= $equipo->getId() ?>">
-                                                                                <?= $equipo->getid_equipos() ?> </option>
-
-                                                                        <?php endforeach ?>
-                                                                    </select>
-                                                                </div>
-                                                                <div class="mt-3">
-                                                                    <div class="form-floating pt-2">
-                                                                        <label for="fecha_inicial" id="fecha_inicial" class="form-label">Fecha Inicial</label>
-                                                                        <input type="date" class="form-control" placeholder="Fecha Inicial" name="fecha_inicial" id="fecha_inicial" required>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="mt-3">
-                                                                    <div class="form-floating pt-2">
-                                                                        <label for="fecha_terminacion" id="fecha_terminacion" class="form-label">Fecha Terminacion</label>
-                                                                        <input type="date" class="form-control" placeholder="Fecha Terminacion" name="fecha_terminacion" id="fecha_terminacion" required>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col">
-                                                        <div class="card">
-                                                            <div class="card-body card-header bg-success">
-                                                                <h5 class="text-center text-light my-4 fs-4">Títulos Obtenidos</h5>
-                                                            </div>
-                                                            <form action="../Controllers/calculadoraController.php" method="POST">
-                                                                <input type="hidden" name="c" value="1">
-                                                                <div class="mb-3">
-                                                                    <label for="" class="form-label">Número uno </label>
-                                                                    <input class="form-control" type="number" name="n1" id="n1">
-                                                                </div>
-                                                                <div class="mb-3">
-                                                                    <label for="" class="form-label">Número dos</label>
-                                                                    <input class="form-control" type="number" name="n2" id="n2">
-                                                                </div>
-                                                                <div class="mb-3">
-                                                                    <label for="">Seleccione Operación</label>
-                                                                    <select class="form-select" name="operacion" id="operacion">
-                                                                        <option value="1">Sumar</option>
-                                                                        <option value="2">Restar</option>
-                                                                        <option value="3">Multiplicar</option>
-                                                                        <option value="4">Dividir</option>
-                                                                    </select>
-                                                                </div>
-                                                                <div class="mb-3">
-                                                                    <button class="btn btn-sm btn-primary" type="submit">Calcular</button>
-                                                                </div>
-                                                            </form>
-                                                        </div>
-                                                        <table class="table">
-                                                            <thead>
-                                                                <tr>
-                                                                    <h2>sdsa</h2>
-                                                                    <th scope="col">#</th>
-                                                                    <th scope="col">Primer Numero</th>
-                                                                    <th scope="col">Segundo Numero</th>
-                                                                    <th scope="col">operacion</th>
-                                                                    <th scope="col">Resultado</th>
-                                                                    <th scope="col" colspan="2">Opcion</th>
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody>
-                                                                <?php
-                                                                if ($registros) {
-                                                                    foreach ($registros as $row) {
-
-                                                                ?>
-
-                                                                        <tr>
-
-                                                                            <td><?= $row->id ?></td>
-                                                                            <td><?= $row->n1 ?></td>
-                                                                            <td><?= $row->n2 ?></td>
-                                                                            <td><?= $row->operacion ?></td>
-                                                                            <td><?= $row->resultado ?></td>
-                                                                            <!-- <th scope="col" >Opciones</th> -->
-
-                                                                            <td>
-                                                                                <a class="btn btn-sm btn-outline-warning" href="../Controllers/calculadoraController.php?c=2&id=<?= $row->getId() ?>">Actualizar</a>
-                                                                            </td>
-                                                                            <td>
-                                                                                <a class="btn btn-sm btn-outline-danger " href="../Controllers/calculadoraController.php?c=4&id=<?= $row->getId() ?>">Eliminar</a>
-                                                                            </td>
-                                                                        </tr>
-                                                                    <?php
-                                                                    }
-                                                                } else {
-                                                                    ?>
-                                                                    <tr class=" text-center">
-                                                                        <td colspan="6">Sin datos</td>
-                                                                    </tr>
-                                                                <?php
-                                                                }
-                                                                ?>
-                                                            </tbody>
-                                                        </table>
-                                                        <div class="mt-4 mb-0">
-                                                            <div class="d-grid">
-                                                                <button class="btn btn-success btn-block" id="submitBtn">Guardar Jugador</button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-
-
-    $id = $_GET['id'];
-
-$datos = new JugadorModel();
-$registros = $datos->getById($id);
+<!-- < -->
+
+public function getbyId($id)
+    {
+        $resultado = [];
+    
+        try {
+            $sql = "SELECT j.*, e.equipo, l.nombre AS nombre_liga, p.nombre AS nombre_pais, c.nombre AS nombre_continente, pr.nombre AS nombre_perfil
+                    FROM jugadores j
+                    INNER JOIN equipos e ON j.id_equipo = e.id
+                    INNER JOIN ligas l ON j.id_liga = l.id
+                    INNER JOIN paises p ON j.id_pais = p.id
+                    INNER JOIN continentes c ON j.id_contiente = c.id
+                    INNER JOIN perfiles pr ON j.id_perfil = pr.id
+                    WHERE j.id = $id";
+            $query  = $this->db->conect()->query($sql);
+    
+            while ($row = $query->fetch()) {
+                $item                   = new JugadorModel();
+                $item->nombre_completo  = $row['nombre_completo'];
+                $item->apodo            = $row['apodo'];
+                $item->fecha_nacimiento = $row['fecha_nacimiento'];
+                $item->caracteristicas  = $row['caracteristicas'];
+                $item->id_equipo        = $row['id_equipo'];
+                $item->id_liga          = $row['id_liga'];
+                $item->id_pais          = $row['id_pais'];
+                $item->id_contiente     = $row['id_contiente'];
+                $item->id_perfil        = $row['id_perfil'];
+                $item->equipo           = $row['equipo'];
+                $item->nombre_liga      = $row['nombre_liga'];
+                $item->nombre_pais      = $row['nombre_pais'];
+                $item->nombre_continente = $row['nombre_continente'];
+                $item->nombre_perfil    = $row['nombre_perfil'];
+    
+                array_push($resultado, $item);
+            }
+    
+            return $resultado;
+        } catch (PDOException $e) {
+            die($e->getMessage());
+        }
+    }
+    
+                                                                            
+
+
+    <a class="btn btn-sm btn-outline-warning" href="../../Controllers/jugadorController.php?c=2&id=<?= $row->getId() ?>">Actualizar</a>

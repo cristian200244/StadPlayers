@@ -66,7 +66,6 @@ $copas = $datos->copas();
                                 <form action="../../Controllers/JugadorController.php" method="post">
                                     <input type="hidden" name="c" value="3">
                                     <input type="hidden" name="id" value="<?= $id ?>">
-
                                     <div class="mb-3">
                                         <div class="row">
 
@@ -83,9 +82,9 @@ $copas = $datos->copas();
                                                     <label for="apodo">Apodo</label>
                                                 </div>
                                             </div>
-                                            <div class="form-floating col-md-6 mt-3" >
-                                                <div class="form-floating mb-3 mb-md-0" >
-                                                    <input type="text" class="form-control" id="caracteristicas" placeholder="caracteristicas" name="caracteristicas"value="<?= $caracteristicas ?>" required />
+                                            <div class="form-floating col-md-6 mt-3">
+                                                <div class="form-floating mb-3 mb-md-0">
+                                                    <input type="text" class="form-control" id="caracteristicas" placeholder="caracteristicas" name="caracteristicas" value="<?= $caracteristicas ?>" required />
                                                     <label for="caracteristicas"> caracterisitcas</label>
                                                 </div>
                                             </div>
@@ -199,10 +198,8 @@ $copas = $datos->copas();
 
 
                                         </div>
-                                        <div class="mt-4 mb-0">
-                                            <div class="d-grid">
+                                        <div class="mb-3">
                                             <button type="submit" class="btn btn-primary mb-3">Guardar</button>
-                                            </div>
                                         </div>
                                     </div>
                                 </form>

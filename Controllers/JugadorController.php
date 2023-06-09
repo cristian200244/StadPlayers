@@ -62,7 +62,7 @@ class JugadorController
 
         if ($result) {
 
-            header("Location: ../views/jugadores/guardar.php");
+            header("Location: ../views/jugadores/VerJugadores.php");
             exit();
         }
         return $result;
@@ -71,7 +71,7 @@ class JugadorController
     public function guardar()
     {
         $data = [
-            'id_jugador' => $_POST['id_jugador'],
+            // 'id_jugador' => $_POST['id_jugador'],
             'fecha_inicial' => $_POST['fecha_inicial'],
             'fecha_terminacion' => $_POST['fecha_terminacion'],
             'id_equipo' => $_POST['id_equipo'],
@@ -92,9 +92,8 @@ class JugadorController
     public function show()
     {
         $id = $_REQUEST['id'];
-        header("Location: ../views/jugadores/editar.php?id=$id");
+        header("Location:  ../views/jugadores/editar.php?id=$id");
     }
-
     public function update()
     {
         $datos = [
@@ -114,7 +113,7 @@ class JugadorController
         $result = $this->jugadorModel->update($datos);
 
         if ($result) {
-            header("Location: ../views/jugadores/index.php");
+            header("Location: ../views/jugadores/verJugadores.php");
             exit();
         }
         return $result;
@@ -138,6 +137,7 @@ class JugadorController
             exit();
         }
     }
+}
 
     // public function titulos()
     // {
@@ -159,4 +159,3 @@ class JugadorController
     //         exit();
     //     }
     // }
-}
