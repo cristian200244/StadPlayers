@@ -6,13 +6,14 @@ document.addEventListener("DOMContentLoaded", function (event) {
   let id_posicion = document.getElementById('id_posicion').value;
 
   if (id_posicion != 1) {
-    
-      predeterminadas.style.display = "block";
-      arquero.style.display = "none";
-  } else {
-     
-      predeterminadas.style.display = "block";
-      arquero.style.display = "block";
+        document.getElementById("TituloEstadJugador").textContent="Estadisticas del Jugador";
+        predeterminadas.style.display = "block";
+        arquero.style.display = "none";
+    } else { //Cuando es portero
+        document.getElementById("TituloEstadJugador").textContent="Estadisticas del Jugador";
+        document.getElementById("TituloEstadArquero").textContent="Estadisticas del Portero";
+        predeterminadas.style.display = "block";
+        arquero.style.display = "block";
   }
 
 });

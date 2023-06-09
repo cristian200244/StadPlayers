@@ -262,18 +262,26 @@ class ReportesModel
     {
         try {
             $array = [];
-            $sql = "SELECT e.nombre, SUM(ec.valor) AS valor,j.id_posicion 
-             FROM estadisticas AS e
-             RIGHT JOIN estadisticas_count AS ec ON e.id = ec.id_estadistica
-             JOIN estadisticas_encuentro AS ee ON ec.id_encuentro_estadistica = ee.id
-             AND ee.id_jugador = ?
-             JOIN jugadores AS j ON j.id = ee.id_jugador AND j.id= ee.id_jugador
-             WHERE ee.fecha_del_partido 
-             BETWEEN ? AND ? 
-             AND predeterminada = 1  AND ec.id_estadistica != 9 AND valor > 0
-             AND j.id_posicion !=1
-             GROUP BY e.nombre, e.id, j.id_posicion 
-            ";
+
+            $sql ="#Trae las estadísticas del jugador tipo otro y predeterminadas mayores a 0
+            SELECT e.nombre, SUM(ec.valor) AS total  	
+            FROM estadisticas AS e
+            RIGHT JOIN estadisticas_count AS ec ON e.id = ec.id_estadistica
+            JOIN estadisticas_encuentro AS ee ON ec.id_encuentro_estadistica = ee.id AND ee.id_jugador = 1
+            WHERE ee.fecha_del_partido BETWEEN "2000-01-01" AND "2023-06-25" AND tipo = 0 AND valor > 0 AND e.predeterminada = 1
+            GROUP BY e.nombre, e.id";
+            // $sql = "SELECT e.nombre, SUM(ec.valor) AS valor
+            //  FROM estadisticas AS e
+            //  RIGHT JOIN estadisticas_count AS ec ON e.id = ec.id_estadistica
+            //  JOIN estadisticas_encuentro AS ee ON ec.id_encuentro_estadistica = ee.id
+            //  AND ee.id_jugador = ?
+            //  JOIN jugadores AS j ON j.id = ee.id_jugador AND j.id= ee.id_jugador
+            //  WHERE ee.fecha_del_partido 
+            //  BETWEEN ? AND ? 
+            //  AND predeterminada = 1  AND ec.id_estadistica != 9 AND valor > 0
+            
+            //  GROUP BY e.nombre, e.id, j.id_posicion 
+            // ";
 
             $query = $this->db->conect()->prepare($sql);
 
@@ -308,14 +316,27 @@ class ReportesModel
     {
         try {
             $array = [];
-            $sql = "SELECT e.nombre, e.predeterminada, SUM(ec.valor) AS valor,j.id_posicion 
+            $sqil=#Trae las estadísticas del jugador tipo portero y predeterminadas mayores a 0
+           " SELECT e.nombre, SUM(ec.valor)  	
             FROM estadisticas AS e
-            RIGHT JOIN estadisticas_count AS ec ON e.id = ec.id_estadistica 
-            JOIN estadisticas_encuentro AS ee ON ec.id_encuentro_estadistica = ee.id AND ee.id_jugador = ? 
-            JOIN jugadores AS j ON j.id = ee.id_jugador and j.id= ee.id_jugador
-            WHERE ee.fecha_del_partido BETWEEN ? AND ? AND valor > 0 AND predeterminada =1 AND ec.id_estadistica != 9 AND j.id_posicion =1
-            GROUP BY e.nombre, e.id, e.predeterminada,j.id_posicion;
-            ";
+            RIGHT JOIN estadisticas_count AS ec ON e.id = ec.id_estadistica
+            JOIN estadisticas_encuentro AS ee ON ec.id_encuentro_estadistica = ee.id AND ee.id_jugador = 1 
+            WHERE ee.fecha_del_partido BETWEEN "2000-01-01" AND "2023-06-25" AND tipo = 1 AND valor > 0 AND e.predeterminada = 1
+            GROUP BY e.nombre, e.id";
+            // $sql = "SELECT e.nombre, e.predeterminada, SUM(ec.valor) AS valor,j.id_posicion 
+            // FROM estadisticas AS e
+            // RIGHT JOIN estadisticas_count AS ec ON e.id = ec.id_estadistica 
+            // JOIN estadisticas_encuentro AS ee ON ec.id_encuentro_estadistica = ee.id AND ee.id_jugador = ? 
+            // JOIN jugadores AS j ON j.id = ee.id_jugador and j.id= ee.id_jugador
+            // WHERE ee.fecha_del_partido BETWEEN ? AND ?
+            // AND valor > 0 
+            // AND predeterminada =1
+            // AND ec.id_estadistica != 9 
+            // AND j.id_posicion =1 
+            // AND e.id >12
+            // AND e.tipo = 1
+            // GROUP BY e.nombre, e.id, e.predeterminada,j.id_posicion
+            // ";
 
             $query = $this->db->conect()->prepare($sql);
 

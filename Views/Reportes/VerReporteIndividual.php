@@ -8,8 +8,10 @@ require_once __DIR__ . '../../../Controllers/GenerarReportesController.php';
 
 $data = new ReportesController();
 $datosReporte = $_REQUEST;
-// var_dump($datosReporte[0]);
-// die();
+
+var_dump($datosReporte);
+
+die();
 $encabezado = [
 
     "Fecha_Inicial" => $_REQUEST["fechaInicial"],
@@ -28,30 +30,7 @@ $DatosJugador = [
     // "Rendimiento" =>   =>     $_REQUEST["promedio"],
 ];
 
-// foreach ($datosReporte[0] as $key => $value) {
-//     if ($value != 0) {
-//         echo $key . " => " . $value . "<br>";
-//     }
-// }
-// var_dump($DatosJugador["id_posicion"] == 1);
-// die();
-
-
-
-// var_dump($DatosJugador);
-// die();
-// var_dump($predeterminadas);
-// die();
-// $NoPrede = [
-//     "" => ""
-// ];
-
-
-
-
 ?>
-
-<!-- <span id="id" hidden>$encabezado['id_uuarsio']</span> -->
 
 <div class="imgReporteIndividual">
     <main>
@@ -111,17 +90,13 @@ $DatosJugador = [
                         <div class="row mb-3">
                             <div class="col-lg-6">
 
-
-                                <input type="hidden" id="id_posicion" name="id_posicion"
-                                    value=" <?= $DatosJugador["id_posicion"] ?>">
+                                <input type="hidden" id="id_posicion" name="id_posicion" value=" <?= $DatosJugador["id_posicion"] ?>">
                                 <div class="card shadow-lg bg-info  border-0 rounded-lg mt-5 p-4" id="EstadisticasPre">
-
-
                                     <div class="row mb-3">
                                         <div class="card-header bg-white fs-5">
                                             <div class="row mb-3">
                                                 <div class="col-9 mt-3">
-                                                    Estadísticas Del Jugador
+                                                    <span id="TituloEstadJugador"></span>
                                                 </div>
                                                 <div class="col-3 bg-info mt-3 border-3">
                                                     Total
@@ -132,7 +107,7 @@ $DatosJugador = [
                                     <?php
                                     foreach ($datosReporte[0] as $key => $value) {
 
-                                        ?>
+                                    ?>
 
                                         <div class="col-12 card bg-dark text-light">
                                             <ul class="list-group list-group-flush bg-info">
@@ -157,7 +132,7 @@ $DatosJugador = [
                                             </ul>
                                         </div>
 
-                                        <?php
+                                    <?php
 
                                     }
                                     ?>
@@ -167,7 +142,7 @@ $DatosJugador = [
                                         <div class="card-header bg-white fs-5">
                                             <div class="row mb-3">
                                                 <div class="col-9 mt-3">
-                                                    Estadísticas Del Arquero
+                                                    <span id="TituloEstadArquero"></span>
                                                 </div>
                                                 <div class="col-3 bg-info mt-3 border-3">
                                                     Total
@@ -179,6 +154,14 @@ $DatosJugador = [
                                     <div class="col-12 card bg-dark text-light">
                                         <ul class="list-group list-group-flush bg-info">
                                             <div class="row">
+                                                <div class="card-header bg-white fs-5">
+                                                    <div class="row mb-3">
+
+                                                        <div class="col-3 bg-info mt-3 border-3">
+                                                            Total
+                                                        </div>
+                                                    </div>
+                                                </div>
                                                 <div class="col-9 bg-white text-dark p-2">
 
                                                     <strong>
