@@ -1,22 +1,21 @@
+document.addEventListener("DOMContentLoaded", function (event) {
+  //código a ejecutar cuando existe la certeza de que el DOM está listo para recibir acciones
 
-  function myFunction() {
+  let predeterminadas = document.getElementById('EstadisticasPre');
+  let arquero = document.getElementById('EstadArquero')
+  let id_posicion = document.getElementById('id_posicion').value;
 
-      var predeterminadas =  document.getElementById('EstadPre');
-      var arquero =  document.getElementById('EstadArquero')
+  if (id_posicion != 1) {
     
-      if (predeterminadas.style.display === "none") {
-        predeterminadas.style.display = "block";
-      } else {
-        x.style.display = "none";
-      }
-   
+      predeterminadas.style.display = "block";
+      arquero.style.display = "none";
+  } else {
+     
+      predeterminadas.style.display = "block";
+      arquero.style.display = "block";
+  }
 
-    }  
-
-    
-
-  
-      d
+});
 
   
    

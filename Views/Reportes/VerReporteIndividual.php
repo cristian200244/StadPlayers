@@ -3,13 +3,13 @@
 include_once(__DIR__ . "../../../config/rutas.php");
 include_once __DIR__ . "../../../Models/GenerarReportesModel.php";
 require_once __DIR__ . '../../../Controllers/GenerarReportesController.php';
-include_once(BASE_DIR . "../../Views/partials/header.php");
-include_once(BASE_DIR . "../../Views/partials/aside.php");
+// include_once(BASE_DIR . "../../Views/partials/header.php");
+// include_once(BASE_DIR . "../../Views/partials/aside.php");
 
 $data = new ReportesController();
 $datosReporte = $_REQUEST;
-// var_dump($datosReporte[0]);
-// die();
+var_dump($datosReporte[0]);
+die();
 $encabezado = [
 
     "Fecha_Inicial" => $_REQUEST["fechaInicial"],
@@ -91,14 +91,14 @@ $DatosJugador = [
 
                                 if ($key != 'id_posicion') { ?>
 
-                                    <div class=" card col-lg-3 bg-warning ms-5 me-1 mt-3 pt-2 pb-2 ">
+                                    <div class=" card col-lg-3 bg-black ms-5 me-1 mt-3 pt-2 pb-2 text-white">
                                         <strong>
                                             <h5><label>
                                                     <?= str_replace("_", " ", $key) ?>
                                                 </label>
                                             </h5>
                                         </strong>
-                                        <div class=" card-floating bg-dark mb-3 mb-md-0 text-light  mt-2 pt-2 pb-2">
+                                        <div class=" card-floating bg-success mb-3 mb-md-0 text-white  mt-2 pt-2 pb-2">
                                             <span>
                                                 <?= $value ?>
                                             </span>
@@ -112,7 +112,10 @@ $DatosJugador = [
                             <div class="col-lg-6">
 
 
-                                <div class="card shadow-lg bg-info  border-0 rounded-lg mt-5 p-4" id="EstadPre" onclick="myFunction()">
+                                <input type="hidden" id="id_posicion" name="id_posicion"
+                                    value=" <?= $DatosJugador["id_posicion"] ?>">
+                                <div class="card shadow-lg bg-info  border-0 rounded-lg mt-5 p-4" id="EstadisticasPre">
+
 
                                     <div class="row mb-3">
                                         <div class="card-header bg-white fs-5">
@@ -129,7 +132,7 @@ $DatosJugador = [
                                     <?php
                                     foreach ($datosReporte[0] as $key => $value) {
 
-                                    ?>
+                                        ?>
 
                                         <div class="col-12 card bg-dark text-light">
                                             <ul class="list-group list-group-flush bg-info">
@@ -154,7 +157,7 @@ $DatosJugador = [
                                             </ul>
                                         </div>
 
-                                    <?php
+                                        <?php
 
                                     }
                                     ?>
@@ -172,36 +175,30 @@ $DatosJugador = [
                                             </div>
                                         </div>
                                     </div>
-                                    <?php
-                                    foreach ($datosReporte[0] as $key => $value) {
 
-                                    ?>
-                                        <div class="col-12 card bg-dark text-light">
-                                            <ul class="list-group list-group-flush bg-info">
-                                                <div class="row">
-                                                    <div class="col-9 bg-white text-dark p-2">
+                                    <div class="col-12 card bg-dark text-light">
+                                        <ul class="list-group list-group-flush bg-info">
+                                            <div class="row">
+                                                <div class="col-9 bg-white text-dark p-2">
 
-                                                        <strong>
-                                                            <h5><label for="nombreEstadistica">
-                                                                    <?= str_replace("_", " ", $key) ?>
-                                                                </label>
-                                                            </h5>
-                                                        </strong>
-                                                    </div>
-                                                    <div class="col-3 bg-secondary ">
-                                                        <div class="card bg-dark text-light  m-1 pt-2 p-1">
-                                                            <span>
-                                                                <?= $value ?>
-                                                            </span>
-                                                        </div>
+                                                    <strong>
+                                                        <h5><label for="nombreEstadistica">
+                                                                <?= str_replace("_", " ", $key) ?>
+                                                            </label>
+                                                        </h5>
+                                                    </strong>
+                                                </div>
+                                                <div class="col-3 bg-secondary ">
+                                                    <div class="card bg-dark text-light  m-1 pt-2 p-1">
+                                                        <span>
+                                                            <?= $value ?>
+                                                        </span>
                                                     </div>
                                                 </div>
-                                            </ul>
-                                        </div>
-                                    <?php
+                                            </div>
+                                        </ul>
+                                    </div>
 
-                                    }
-                                    ?>
                                 </div>
 
                             </div>
