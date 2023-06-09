@@ -8,8 +8,8 @@ require_once __DIR__ . '../../../Controllers/GenerarReportesController.php';
 
 $data = new ReportesController();
 $datosReporte = $_REQUEST;
-var_dump($datosReporte[0]);
-die();
+// var_dump($datosReporte[0]);
+// die();
 $encabezado = [
 
     "Fecha_Inicial" => $_REQUEST["fechaInicial"],
