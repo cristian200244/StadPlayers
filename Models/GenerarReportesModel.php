@@ -262,16 +262,15 @@ class ReportesModel
     public function getTotalEstadPre($totalEstadisticasPre)
     {
         try {
-            $array = [];
+            $params = [];
             #Trae las estadísticas del jugador tipo otro y predeterminadas mayores a 0
-            $sql = "SELECT e.nombre, SUM(ec.valor) AS valor ,e.tipo 	
+            $sql = "SELECT e.nombre, SUM(ec.valor) AS valor
             FROM estadisticas AS e
             RIGHT JOIN estadisticas_count AS ec ON e.id = ec.id_estadistica
             JOIN estadisticas_encuentro AS ee ON ec.id_encuentro_estadistica = ee.id 
             AND ee.id_jugador = ?
-            WHERE ee.fecha_del_partido BETWEEN ? AND ?
-            AND tipo = 0 AND valor > 0 AND e.predeterminada = 1 AND ec.id_estadistica != 9 
-            GROUP BY e.nombre, e.id,e.tipo";
+            WHERE ee.fecha_del_partido BETWEEN ? AND ? AND tipo = 0 AND valor > 0 AND e.predeterminada = 1 AND ec.id_estadistica != 9
+            GROUP BY e.nombre, e.id";
 
             $query = $this->db->conect()->prepare($sql);
 
@@ -279,57 +278,30 @@ class ReportesModel
                 $totalEstadisticasPre->id_jugador,
                 $totalEstadisticasPre->fechaInicial,
                 $totalEstadisticasPre->fechaFinal,
-
-
             ]);
 
             while ($row = $query->fetchObject()) {
-
-                $params[$row->nombre] = $row->valor;
-                $params['Tipo'] = $row->tipo;
-                if ($params[$row->nombre] = $row->valor) {
-                }
-                $array = [$params];
-                array_push($array);
+                $params["pre_" . $row->nombre] =  $row->valor;
             }
 
-            $this->estadisticasPre = $array;
-
-            // var_dump($this->estadisticasPre);
-            // die();
-
-            return $this->estadisticasPre;
+            return $params;
         } catch (PDOException $e) {
             die($e->getMessage());
         }
     }
-    // $sql = "SELECT e.nombre, SUM(ec.valor) AS valor
-    //  FROM estadisticas AS e
-    //  RIGHT JOIN estadisticas_count AS ec ON e.id = ec.id_estadistica
-    //  JOIN estadisticas_encuentro AS ee ON ec.id_encuentro_estadistica = ee.id
-    //  AND ee.id_jugador = ?
-    //  JOIN jugadores AS j ON j.id = ee.id_jugador AND j.id= ee.id_jugador
-    //  WHERE ee.fecha_del_partido 
-    //  BETWEEN ? AND ? 
-    //  AND predeterminada = 1  AND ec.id_estadistica != 9 AND valor > 0
-
-    //  GROUP BY e.nombre, e.id, j.id_posicion 
-    // ";
-
-
 
     public function getTotalEstadPortero($totalEstadisticasPortero)
     {
         try {
-            $array = [];
+            $params = [];
             #Trae las estadísticas del jugador tipo portero y predeterminadas mayores a 0
-            $sql = " SELECT e.nombre, SUM(ec.valor) AS valor, e.tipo 	
+            $sql = " SELECT e.nombre, SUM(ec.valor) AS valor
             FROM estadisticas AS e
             RIGHT JOIN estadisticas_count AS ec ON e.id = ec.id_estadistica
             JOIN estadisticas_encuentro AS ee ON ec.id_encuentro_estadistica = ee.id AND ee.id_jugador = ?
             WHERE ee.fecha_del_partido BETWEEN ? AND ?
             AND tipo = 1 AND valor > 0 AND e.predeterminada = 1 AND ec.id_estadistica != 9 
-            GROUP BY e.nombre, e.id,e.tipo";
+            GROUP BY e.nombre, e.id";
 
             $query = $this->db->conect()->prepare($sql);
 
@@ -337,26 +309,13 @@ class ReportesModel
                 $totalEstadisticasPortero->id_jugador,
                 $totalEstadisticasPortero->fechaInicial,
                 $totalEstadisticasPortero->fechaFinal,
-
-
             ]);
 
             while ($row = $query->fetchObject()) {
-
-                $params[$row->nombre] = $row->valor;
-                $params['Tipo'] = $row->tipo;
-                if ($params[$row->nombre] = $row->valor) {
-                }
-                $array = [$params];
-                array_push($array);
+                $params["por_" . $row->nombre] =  $row->valor;
             }
 
-            $this->estadPortero = $array;
-
-            // var_dump($this->estadPortero);
-            // die();
-
-            return  $this->estadPortero;
+            return $params;
         } catch (PDOException $e) {
             die($e->getMessage());
         }

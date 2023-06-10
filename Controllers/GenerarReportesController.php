@@ -72,18 +72,14 @@ class ReportesController
         $totalEstadisticasPortero = $this->reportesModel->getTotalEstadPortero($reporte);
         $nuevasEstadisticas         = $this->reportesModel->getNuevaEstadistica($reporte);
 
-        // var_dump($totalEstadisticasPre);
-        // die();
-        $params = http_build_query($reporte) .
-            "&" . http_build_query($datosJugador)
-            . '<br>' . '&totalMinutosJugados='  . ($totalMinutosJugados)
-            . '<br>' . '&totalPartidosJugados=' . ($totalPartidosJugados)
-            . '<br>' . '&totalEstadisticasPre=' . http_build_query($totalEstadisticasPre)
-            . '<br>' . '&totalEstadisticasPortero=' . http_build_query($totalEstadisticasPortero);
+        $params =
+            http_build_query($reporte)
+            . "&totalMinutosJugados="  . ($totalMinutosJugados)
+            . "&totalPartidosJugados=" . ($totalPartidosJugados)
+            . "&" . http_build_query($datosJugador)
+            . "&" . http_build_query($totalEstadisticasPre)
+            . "&" . http_build_query($totalEstadisticasPortero);
 
-
-        // var_dump($reporte);
-        // die();
         header(
             "Location: ../Views/Reportes/VerReporteIndividual.php?" . $params
         );

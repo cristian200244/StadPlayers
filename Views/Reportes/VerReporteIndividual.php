@@ -3,12 +3,19 @@
 include_once(__DIR__ . "../../../config/rutas.php");
 include_once __DIR__ . "../../../Models/GenerarReportesModel.php";
 require_once __DIR__ . '../../../Controllers/GenerarReportesController.php';
-// include_once(BASE_DIR . "../../Views/partials/header.php");
-// include_once(BASE_DIR . "../../Views/partials/aside.php");
+include_once(BASE_DIR . "../../Views/partials/header.php");
+include_once(BASE_DIR . "../../Views/partials/aside.php");
 
 $data = new ReportesController();
 $datosReporte = $_REQUEST;
-//  var_dump($datosReporte[0]);
+// var_dump($datosReporte);
+// die();
+// foreach ($datosReporte as $k => $v) {
+//     print_r($k . "=>" . $v);
+//     echo "<hr>";
+// }
+
+
 // die();
 
 $encabezado = [
@@ -28,14 +35,7 @@ $DatosJugador = [
     "id_posicion" => $_REQUEST["id_posicion"],
     // "Rendimiento" =>   =>     $_REQUEST["promedio"],
 ];
-$estdPre = [
 
-    "Tipo" => $_REQUEST["Tipo"],
-
-];
-
-var_dump($estdPre);
-die();
 ?>
 
 <div class="imgReporteIndividual">
@@ -45,8 +45,8 @@ die();
                 <div class="card shadow-lg border-0 bg-light rounded-lg mt-5">
 
 
-                    <div class="card d-flex text-bg-light  text-center py-3 px-3">
-                        <div class="card-header bg-success">
+                    <div class="card d-flex bg-black  text-center py-3 px-3">
+                        <div class="card-header bg-danger">
                             <div class="row ">
                                 <div class="col-md-8">
                                     <h3 class="text-start text-light my-4 fs-4 ms-5">Reporte del Jugador</h3>
@@ -54,21 +54,21 @@ die();
                                 <?php
 
                                 # code...
-
+                                
                                 foreach ($encabezado as $key => $value) { ?>
-                                <div class="col-md-2 text-light pt-2  ">
-                                    <strong>
-                                        <h6><label for="#">
-                                                <?= str_replace("_", " ", $key) ?>
-                                            </label>
-                                        </h6>
-                                    </strong>
-                                    <div class="card bg-white text-success text-center mt-2 pt-2 pb-2">
-                                        <span>
-                                            <?= $value ?>
-                                        </span>
+                                    <div class="col-md-2 text-light pt-2  ">
+                                        <strong>
+                                            <h6><label for="#">
+                                                    <?= str_replace("_", " ", $key) ?>
+                                                </label>
+                                            </h6>
+                                        </strong>
+                                        <div class="card bg-white text-success text-center mt-2 pt-2 pb-2">
+                                            <span>
+                                                <?= $value ?>
+                                            </span>
+                                        </div>
                                     </div>
-                                </div>
                                 <?php } ?>
                             </div>
                         </div>
@@ -79,20 +79,20 @@ die();
 
                                 if ($key != 'id_posicion') { ?>
 
-                            <div class=" card col-lg-3 bg-black ms-5 me-1 mt-3 pt-2 pb-2 text-white">
-                                <strong>
-                                    <h5><label>
-                                            <?= str_replace("_", " ", $key) ?>
-                                        </label>
-                                    </h5>
-                                </strong>
-                                <div class=" card-floating bg-success mb-3 mb-md-0 text-white  mt-2 pt-2 pb-2">
-                                    <span>
-                                        <?= $value ?>
-                                    </span>
-                                </div>
-                            </div>
-                            <?php } ?>
+                                    <div class=" card col-lg-3 bg-secondary ms-5 me-1 mt-3 pt-2 pb-2 text-white">
+                                        <strong>
+                                            <h5><label>
+                                                    <?= str_replace("_", " ", $key) ?>
+                                                </label>
+                                            </h5>
+                                        </strong>
+                                        <div class=" card-floating bg-info mb-3 mb-md-0 text-black  mt-2 pt-2 pb-2">
+                                            <span>
+                                                <?= $value ?>
+                                            </span>
+                                        </div>
+                                    </div>
+                                <?php } ?>
                             <?php } ?>
                         </div>
 
@@ -115,39 +115,33 @@ die();
                                         </div>
                                     </div>
                                     <?php
-                                    if ($datosReporte["Tipo"] == 0) {
-                                        foreach ($datosReporte[0] as $key => $value) {
-                                            # code...
+                                        foreach ($datosReporte as $key => $value) {
+                                            if("pre_" == substr($key,0,4)){
+                                            ?>
+                                            <div class="col-12 card bg-dark text-light">
+                                                <ul class="list-group list-group-flush bg-info">
+                                                    <div class="row">
+                                                        <div class="col-9 bg-white text-dark p-2">
 
-
-                                    ?>
-
-                                    <div class="col-12 card bg-dark text-light">
-                                        <ul class="list-group list-group-flush bg-info">
-                                            <div class="row">
-                                                <div class="col-9 bg-white text-dark p-2">
-
-                                                    <strong>
-                                                        <h5><label for="nombreEstadistica">
-                                                                <?= str_replace("_", " ", $key) ?>
-                                                            </label>
-                                                        </h5>
-                                                    </strong>
-                                                </div>
-                                                <div class="col-3 bg-secondary ">
-                                                    <div class="card bg-dark text-light  m-1 pt-2 p-1">
-                                                        <span>
-                                                            <?= $value ?>
-                                                        </span>
+                                                            <strong>
+                                                                <h5><label for="nombreEstadistica">
+                                                                        <?= str_replace("_", " ",str_replace("pre_", " ", $key)) ?>
+                                                                    </label>
+                                                                </h5>
+                                                            </strong>
+                                                        </div>
+                                                        <div class="col-3 bg-secondary ">
+                                                            <div class="card bg-dark text-light  m-1 pt-2 p-1">
+                                                                <span>
+                                                                    <?= $value ?>
+                                                                </span>
+                                                            </div>
+                                                        </div>
                                                     </div>
-                                                </div>
+                                                </ul>
                                             </div>
-                                        </ul>
-                                    </div>
 
-                                    <?php
-
-
+                                            <?php
                                         }
                                     }
                                     ?>
@@ -165,38 +159,37 @@ die();
                                             </div>
                                         </div>
                                     </div>
+                                    <?php
+                                        foreach ($datosReporte as $key => $value) {
+                                            if("por_" == substr($key,0,4)){
+                                            ?>
+                                   <div class="col-12 card bg-dark text-light">
+                                                <ul class="list-group list-group-flush bg-info">
+                                                    <div class="row">
+                                                        <div class="col-9 bg-white text-dark p-2">
 
-                                    <div class="col-12 card bg-dark text-light">
-                                        <ul class="list-group list-group-flush bg-info">
-                                            <div class="row">
-                                                <div class="card-header bg-white fs-5">
-                                                    <div class="row mb-3">
-
-                                                        <div class="col-3 bg-info mt-3 border-3">
-                                                            Total
+                                                            <strong>
+                                                                <h5><label for="nombreEstadistica">
+                                                                        <?= str_replace("_", " ",str_replace("por_", " ", $key)) ?>
+                                                                    </label>
+                                                                </h5>
+                                                            </strong>
+                                                        </div>
+                                                        <div class="col-3 bg-secondary ">
+                                                            <div class="card bg-dark text-light  m-1 pt-2 p-1">
+                                                                <span>
+                                                                    <?= $value ?>
+                                                                </span>
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <div class="col-9 bg-white text-dark p-2">
-
-                                                    <strong>
-                                                        <h5><label for="nombreEstadistica">
-                                                                <?= str_replace("_", " ", $key) ?>
-                                                            </label>
-                                                        </h5>
-                                                    </strong>
-                                                </div>
-                                                <div class="col-3 bg-secondary ">
-                                                    <div class="card bg-dark text-light  m-1 pt-2 p-1">
-                                                        <span>
-                                                            <?= $value ?>
-                                                        </span>
-                                                    </div>
-                                                </div>
+                                                </ul>
                                             </div>
-                                        </ul>
-                                    </div>
 
+                                    <?php
+                                        }
+                                    }
+                                    ?>
                                 </div>
 
                             </div>
