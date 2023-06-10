@@ -31,6 +31,9 @@ class JugadorController
                 case 6:
                     $this->BorrarHistorial();
                     break;
+                case 7:
+                    $this->titulos();
+                    break;
                 default:
                     $this->index();
                     break;
@@ -62,7 +65,7 @@ class JugadorController
 
         if ($result) {
 
-            header("Location: ../views/jugadores/VerJugadores.php");
+            header("Location: ../views/jugadores/historial.php");
             exit();
         }
         return $result;
@@ -70,30 +73,55 @@ class JugadorController
 
     public function guardar()
     {
-        $data = [
-            // 'id_jugador' => $_POST['id_jugador'],
+
+        $datos = [
+            'id_jugador' => $_POST['id_jugador'],
             'fecha_inicial' => $_POST['fecha_inicial'],
             'fecha_terminacion' => $_POST['fecha_terminacion'],
             'id_equipo' => $_POST['id_equipo'],
 
         ];
-        var_dump($data);
-        die();
-        $result = $this->jugadorModel->store($data);
+
+        $result = $this->jugadorModel->guardar($datos);
 
         if ($result) {
 
-            header("Location: ../views/jugadores/guardar.php");
+            header("Location: ../views/jugadores/historial.php");
             exit();
         }
         return $result;
     }
+
+    public function titulos()
+    {
+
+        $datos = [
+            'id_jugador' => $_POST['id_jugador'],
+            'fecha' => $_POST['fecha'],
+            'id_copa' => $_POST['id_copa'],
+            'id_equipo' => $_POST['id_equipo'],
+
+        ];
+
+        $result = $this->jugadorModel->titulos($datos);
+
+        if ($result) {
+
+            header("Location: ../views/jugadores/titulos.php");
+            exit();
+        }
+        return $result;
+    }
+
 
     public function show()
     {
         $id = $_REQUEST['id'];
         header("Location:  ../views/jugadores/editar.php?id=$id");
     }
+
+
+
     public function update()
     {
         $datos = [
@@ -119,6 +147,7 @@ class JugadorController
         return $result;
     }
 
+
     public function delete()
     {
         $id = $_REQUEST['id'];
@@ -128,12 +157,14 @@ class JugadorController
             exit();
         }
     }
+
+
     public function BorrarHistorial()
     {
         $id = $_REQUEST['id'];
         $result = $this->jugadorModel->delete($id);
         if ($result) {
-            header("Location: ../views/jugadores/guardar.php");
+            header("Location: ../views/jugadores/historial.php");
             exit();
         }
     }
