@@ -142,12 +142,17 @@ $copas = $datos->copas();
                                                                 <span><?= $row->id_equipo ?></span>
                                                             </div>
                                                         </div>
+                                                        <div class="col-md-6 mt-3 text-success">
+                                                            <button class="btn btn-sm btn-outline-warning" id="btnAgregarHistorial">Añadir Historial</button>
+                                                        </div>
+                                                        <div class="col-md-6 mt-3 text-success">
+                                                            <button class="btn btn-sm btn-outline-warning" id="btnAgregarTitulos">Añadir Titulos</button>
+                                                        </div>
                                                     </div>
+
                                                 </div>
                                             </div>
                                             <!-- <button id="btnAgregarHistorial">Añadir Historial</button> -->
-                                            <button class="btn btn-sm btn-outline-warning" id="btnAgregarHistorial">Añadir Historial</button>
-                                            <button class="btn btn-sm btn-outline-warning" id="btnAgregarTitulos">Añadir Titulos</button>
 
                                     <?php }
                                     } ?>
@@ -161,6 +166,73 @@ $copas = $datos->copas();
             </div>
         </div>
     </div>
+
+    <?php
+
+    $datos = new JugadorModel();
+    $registros = $datos->getObtener();
+
+    ?>
+    <div id="layoutAuthentication">
+        <div id="layoutAuthentication_content">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-12">
+                        <div class="card shadow-lg border-0 rounded-lg mt-5">
+                            <div class="card-header bg-success">
+                                <h3 class="text-center text-light my-4 fs-4"> Historial Equipos</h3>
+                            </div>
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <h2>sdsa</h2>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Jugador</th>
+                                        <th scope="col">Fecha Inicial</th>
+                                        <th scope="col">Fecha Terminación</th>
+                                        <th scope="col">Equipo</th>
+                                        <th scope="col" colspan="2">Opción</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                    if ($registros) {
+                                        foreach ($registros as $row) {
+
+                                    ?>
+
+                                            <tr>
+
+                                                <td><?= $row->id ?></td>
+                                                <td><?= $row->id_jugador ?></td>
+                                                <td><?= $row->fecha_inicial ?></td>
+                                                <td><?= $row->fecha_terminacion ?></td>
+                                                <td><?= $row->id_equipo ?></td>
+                                                <!-- <th scope="col" >Opciones</th> -->
+
+                                                <td>
+                                                    <a class="btn btn-sm btn-outline-danger" href="../../Controllers/JugadorController.php?c=6&id=<?= $row->getId() ?>">Eliminar</a>
+                                                </td>
+                                            </tr>
+                                        <?php
+                                        }
+                                    } else {
+                                        ?>
+                                        <tr class="text-center">
+                                            <td colspan="6">Sin datos</td>
+                                        </tr>
+                                    <?php
+                                    }
+                                    ?>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
 
 </main>
 <script>

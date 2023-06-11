@@ -55,6 +55,10 @@ $copas = $datos->copas();
 
                                         <div class="mb-3">
                                             <div class="row">
+                                                <div class="form-floating col-md-6 mt-3">
+                                                    <input type="file" class="form-control" id="foto_jugador" name="foto_jugador" required />
+                                                    <label for="foto_jugador">Foto del Jugador</label>
+                                                </div>
 
                                                 <div class="form-floating col-md-6 mt-3">
                                                     <div class="form-floating mb-3 mb-md-0">
@@ -82,7 +86,7 @@ $copas = $datos->copas();
                                                         <input type="date" class="form-control" type="date" name="fecha_nacimiento" id="fecha_nacimiento" required>
                                                     </div>
                                                 </div>
-                                                
+
                                                 <div class="form-floating col-md-6 mt-3">
                                                     <select class="form-select" id="id_equipo" name="id_equipo" aria-label="Default select example" required>
                                                         <option selected value="">Seleccionar Equipo</option>
@@ -91,7 +95,7 @@ $copas = $datos->copas();
                                                         <?php endforeach ?>
                                                     </select>
                                                 </div>
-                                                
+
                                                 <div class="form-floating col-md-6 mt-3">
                                                     <select class="form-select" id="id_liga" name="id_liga" aria-label="Default select example" required>
                                                         <option selected value="">Seleccionar Liga</option>
@@ -100,7 +104,7 @@ $copas = $datos->copas();
                                                         <?php endforeach ?>
                                                     </select>
                                                 </div>
-                                                
+
                                                 <div class="form-floating col-md-6 mt-3">
                                                     <select class="form-select" id="id_contiente" name="id_contiente" aria-label="Default select example" required>
                                                         <option selected value="">Seleccionar Continente</option>
@@ -109,7 +113,7 @@ $copas = $datos->copas();
                                                         <?php endforeach ?>
                                                     </select>
                                                 </div>
-                                                
+
                                                 <div class="form-floating col-md-6 mt-3">
                                                     <select class="form-select" id="id_pais" name="id_pais" aria-label="Default select example" required>
                                                         <option selected value="">Seleccionar Pais</option>
@@ -118,7 +122,7 @@ $copas = $datos->copas();
                                                         <?php endforeach ?>
                                                     </select>
                                                 </div>
-                                                
+
                                                 <div class="form-floating col-md-6 mt-3">
                                                     <select class="form-select" id="id_posicion" name="id_posicion" aria-label="Default select example" required>
                                                         <option selected value="">Seleccionar Posicion</option>
@@ -127,7 +131,7 @@ $copas = $datos->copas();
                                                         <?php endforeach ?>
                                                     </select>
                                                 </div>
-                                                
+
                                                 <div class="form-floating col-md-6 mt-3">
                                                     <select class="form-select" id="id_perfil" name="id_perfil" aria-label="Default select example" required>
                                                         <option selected value="">Seleccionar Perfil</option>
@@ -136,13 +140,14 @@ $copas = $datos->copas();
                                                         <?php endforeach ?>
                                                     </select>
                                                 </div>
-                                                
+
                                             </div>
                                             <div class="mt-4 mb-0">
                                                 <div class="d-grid">
-                                                    <button class="btn btn-success btn-block" id="submitBtn" >Guardar Jugador</button>
+                                                    <button class="btn btn-success btn-block" id="submitBtn">Guardar Jugador</button>
                                                 </div>
                                             </div>
+                                            
                                         </div>
                                     </form>
                                 </div>
