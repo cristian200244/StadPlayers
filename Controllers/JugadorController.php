@@ -65,7 +65,7 @@ class JugadorController
 
         if ($result) {
 
-            header("Location: ../views/jugadores/historial.php");
+            header("Location: ../views/jugadores/VerJugadores.php");
             exit();
         }
         return $result;
@@ -75,6 +75,7 @@ class JugadorController
     {
 
         $datos = [
+            
             'id_jugador' => $_POST['id_jugador'],
             'fecha_inicial' => $_POST['fecha_inicial'],
             'fecha_terminacion' => $_POST['fecha_terminacion'],

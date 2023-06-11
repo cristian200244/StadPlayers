@@ -6,12 +6,13 @@ include_once(BASE_DIR . "../../Views/partials/aside.php");
 include_once '../../Models/conexionModel.php';
 include_once '../../Models/JugadorModel.php';
 
+include_once '../../Models/conexionModel.php';
+include_once '../../Models/JugadorModel.php';
+
 $id = $_GET['id'];
 
 $datos = new JugadorModel();
 $registros = $datos->getById($id);
-
-
 
 $equipos = $datos->equipos();
 $ligas = $datos->ligas();
@@ -20,6 +21,7 @@ $continentes = $datos->continentes();
 $posiciones = $datos->posiciones();
 $perfiles = $datos->perfiles();
 $copas = $datos->copas();
+
 
 
 ?>
@@ -143,11 +145,16 @@ $copas = $datos->copas();
                                                     </div>
                                                 </div>
                                             </div>
+                                            <!-- <button id="btnAgregarHistorial">Añadir Historial</button> -->
+                                            <button class="btn btn-sm btn-outline-warning" id="btnAgregarHistorial">Añadir Historial</button>
+                                            <button class="btn btn-sm btn-outline-warning" id="btnAgregarTitulos">Añadir Titulos</button>
 
                                     <?php }
                                     } ?>
                                 </div>
                             </div>
+
+
                         </div>
                     </div>
                 </div>
@@ -156,8 +163,22 @@ $copas = $datos->copas();
     </div>
 
 </main>
+<script>
+    document.getElementById('btnAgregarHistorial').addEventListener('click', function() {
+        var jugadorId = <?php echo $id; ?>; // Obtén el ID del jugador desde tu código PHP
 
+        // Redireccionar a la página de historial conservando el mismo ID
+        window.location.href = 'historial.php?id=' + jugadorId;
+    });
+</script>
+<script>
+    document.getElementById('btnAgregarTitulos').addEventListener('click', function() {
+        var jugadorId = <?php echo $id; ?>; // Obtén el ID del jugador desde tu código PHP
 
+        // Redireccionar a la página de historial conservando el mismo ID
+        window.location.href = 'titulos.php?id=' + jugadorId;
+    });
+</script>
 <?php
 include_once(BASE_DIR . "../../Views/partials/footer.php");
 ?>

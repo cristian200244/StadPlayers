@@ -1,6 +1,4 @@
 <?php
-
-
 include_once(__DIR__ . "../../../config/rutas.php");
 include_once(BASE_DIR . "../../Views/partials/header.php");
 include_once(BASE_DIR . "../../Views/partials/aside.php");
@@ -84,94 +82,69 @@ $copas = $datos->copas();
                                                         <input type="date" class="form-control" type="date" name="fecha_nacimiento" id="fecha_nacimiento" required>
                                                     </div>
                                                 </div>
-                                                <!-- <div class="col-md-6 mt-4">
-                                                <div class="form-floating mb-3 mb-md-0">
-                                                    <h2>Equipo</h2>
-                                                </div>
-                                             </div> -->
-
+                                                
                                                 <div class="form-floating col-md-6 mt-3">
-
                                                     <select class="form-select" id="id_equipo" name="id_equipo" aria-label="Default select example" required>
-                                                        <option selected>Seleccionar Equipo</option>
+                                                        <option selected value="">Seleccionar Equipo</option>
                                                         <?php foreach ($equipos as $equipo) :; ?>
-
-                                                            <option value="<?= $equipo->getId() ?>">
-                                                                <?= $equipo->getid_equipos() ?> </option>
-
+                                                            <option value="<?= $equipo->getId() ?>"><?= $equipo->getid_equipos() ?></option>
                                                         <?php endforeach ?>
                                                     </select>
                                                 </div>
+                                                
                                                 <div class="form-floating col-md-6 mt-3">
-
                                                     <select class="form-select" id="id_liga" name="id_liga" aria-label="Default select example" required>
-                                                        <option selected>Seleccionar Liga</option>
+                                                        <option selected value="">Seleccionar Liga</option>
                                                         <?php foreach ($ligas as $nombre) :; ?>
-
-                                                            <option value="<?= $nombre->getId() ?>">
-                                                                <?= $nombre->getid_ligas() ?> </option>
-
+                                                            <option value="<?= $nombre->getId() ?>"><?= $nombre->getid_ligas() ?></option>
                                                         <?php endforeach ?>
                                                     </select>
                                                 </div>
+                                                
                                                 <div class="form-floating col-md-6 mt-3">
-
                                                     <select class="form-select" id="id_contiente" name="id_contiente" aria-label="Default select example" required>
-                                                        <option selected>Seleccionar Continente</option>
+                                                        <option selected value="">Seleccionar Continente</option>
                                                         <?php foreach ($continentes as $nombre) :; ?>
-
-                                                            <option value="<?= $nombre->getId() ?>">
-                                                                <?= $nombre->getid_continentes() ?> </option>
-
+                                                            <option value="<?= $nombre->getId() ?>"><?= $nombre->getid_continentes() ?></option>
                                                         <?php endforeach ?>
                                                     </select>
                                                 </div>
+                                                
                                                 <div class="form-floating col-md-6 mt-3">
-
                                                     <select class="form-select" id="id_pais" name="id_pais" aria-label="Default select example" required>
-                                                        <option selected>Seleccionar Pais</option>
+                                                        <option selected value="">Seleccionar Pais</option>
                                                         <?php foreach ($paises as $nombre) :; ?>
-
-                                                            <option value="<?= $nombre->getId() ?>">
-                                                                <?= $nombre->getid_paises() ?> </option>
-
+                                                            <option value="<?= $nombre->getId() ?>"><?= $nombre->getid_paises() ?></option>
                                                         <?php endforeach ?>
                                                     </select>
                                                 </div>
+                                                
                                                 <div class="form-floating col-md-6 mt-3">
-
                                                     <select class="form-select" id="id_posicion" name="id_posicion" aria-label="Default select example" required>
-                                                        <option selected>Seleccionar Posicion</option>
+                                                        <option selected value="">Seleccionar Posicion</option>
                                                         <?php foreach ($posiciones as $nombre) :; ?>
-
-                                                            <option value="<?= $nombre->getId() ?>">
-                                                                <?= $nombre->getid_posicion() ?> </option>
-
+                                                            <option value="<?= $nombre->getId() ?>"><?= $nombre->getid_posicion() ?></option>
                                                         <?php endforeach ?>
                                                     </select>
                                                 </div>
+                                                
                                                 <div class="form-floating col-md-6 mt-3">
-
                                                     <select class="form-select" id="id_perfil" name="id_perfil" aria-label="Default select example" required>
-                                                        <option selected>Seleccionar Perfil</option>
+                                                        <option selected value="">Seleccionar Perfil</option>
                                                         <?php foreach ($perfiles as $nombre) :; ?>
-
-                                                            <option value="<?= $nombre->getId() ?>">
-                                                                <?= $nombre->getid_perfil() ?> </option>
-
+                                                            <option value="<?= $nombre->getId() ?>"><?= $nombre->getid_perfil() ?></option>
                                                         <?php endforeach ?>
                                                     </select>
                                                 </div>
-
+                                                
                                             </div>
                                             <div class="mt-4 mb-0">
                                                 <div class="d-grid">
-                                                    <button class="btn btn-success btn-block" id="submitBtn" >guardar Jugador</button>
+                                                    <button class="btn btn-success btn-block" id="submitBtn" >Guardar Jugador</button>
                                                 </div>
                                             </div>
                                         </div>
                                     </form>
-
                                 </div>
                             </div>
                         </div>
@@ -180,14 +153,24 @@ $copas = $datos->copas();
             </div>
         </div>
     </div>
-
-
-
 </main>
-
-
 
 <?php
 include_once(BASE_DIR . "../../Views/partials/footer.php");
-
 ?>
+
+<script>
+    document.getElementById("submitBtn").addEventListener("click", function(event) {
+        var equipo = document.getElementById("id_equipo").value;
+        var liga = document.getElementById("id_liga").value;
+        var continente = document.getElementById("id_contiente").value;
+        var pais = document.getElementById("id_pais").value;
+        var posicion = document.getElementById("id_posicion").value;
+        var perfil = document.getElementById("id_perfil").value;
+
+        if (equipo === "" || liga === "" || continente === "" || pais === "" || posicion === "" || perfil === "") {
+            event.preventDefault();
+            alert("Por favor, seleccione una opción en todos los campos obligatorios.");
+        }
+    });
+</script>

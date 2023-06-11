@@ -162,71 +162,6 @@ class JugadorModel extends stdClass
             die($e->getMessage());
         }
     }
-
-
-
-    public function guardar($datos)
-    {
-
-        try {
-            $sql = 'INSERT INTO historial_equipos (id_jugador, fecha_inicial, fecha_terminacion, id_equipo)
-            VALUES (:id_jugador, :fecha_inicial, :fecha_terminacion, :id_equipo)';
-
-            $prepare = $this->db->conect()->prepare($sql);
-            $query = $prepare->execute([
-                'id_jugador'         => $datos['id_jugador'],
-                'fecha_inicial'         => $datos['fecha_inicial'],
-                'fecha_terminacion'     => $datos['fecha_terminacion'],
-                'id_equipo'             => $datos['id_equipo']
-            ]);
-
-            if ($query) {
-                return true;
-            }
-        } catch (PDOException $e) {
-            echo $e->getMessage();
-        }
-
-        return false;
-    }
-
-
-    public function store($datos)
-    {
-
-        try {
-
-
-            $sql = 'INSERT INTO jugadores(nombre_completo, apodo, fecha_nacimiento, caracteristicas, id_equipo, id_liga, id_pais, id_contiente, id_posicion, id_perfil) VALUES(:nombre_completo, :apodo, :fecha_nacimiento, :caracteristicas, :id_equipo, :id_liga, :id_pais, :id_contiente, :id_posicion, :id_perfil)';
-
-            $prepare = $this->db->conect()->prepare($sql);
-            $query = $prepare->execute([
-
-                'nombre_completo'       => $datos['nombre_completo'],
-                'apodo'                 => $datos['apodo'],
-                'fecha_nacimiento'      => $datos['fecha_nacimiento'],
-                'caracteristicas'       => $datos['caracteristicas'],
-                'id_equipo'             => $datos['id_equipo'],
-                'id_liga'               => $datos['id_liga'],
-                'id_pais'               => $datos['id_pais'],
-                'id_contiente'          => $datos['id_contiente'],
-                'id_posicion'           => $datos['id_posicion'],
-                'id_perfil'             => $datos['id_perfil'],
-
-            ]);
-
-            if ($query) {
-
-                return true;
-            }
-        } catch (PDOException $e) {
-            echo $e->getMessage();
-
-            return false;
-        }
-    }
-
-
     public function getbyId($id)
     {
         $resultado = [];
@@ -265,6 +200,71 @@ class JugadorModel extends stdClass
             die($e->getMessage());
         }
     }
+
+
+    public function guardar($datos)
+    {
+
+        try {
+            $sql = 'INSERT INTO historial_equipos (id_jugador, fecha_inicial, fecha_terminacion, id_equipo)
+            VALUES (:id_jugador, :fecha_inicial, :fecha_terminacion, :id_equipo)';
+
+            $prepare = $this->db->conect()->prepare($sql);
+            $query = $prepare->execute([
+                'id_jugador'         => $datos['id_jugador'],
+                'fecha_inicial'         => $datos['fecha_inicial'],
+                'fecha_terminacion'     => $datos['fecha_terminacion'],
+                'id_equipo'             => $datos['id_equipo']
+            ]);
+
+            if ($query) {
+                return true;
+            }
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+
+        return false;
+    }
+
+
+
+    public function store($datos)
+    {
+
+        try {
+
+
+            $sql = 'INSERT INTO jugadores(nombre_completo, apodo, fecha_nacimiento, caracteristicas, id_equipo, id_liga, id_pais, id_contiente, id_posicion, id_perfil) VALUES(:nombre_completo, :apodo, :fecha_nacimiento, :caracteristicas, :id_equipo, :id_liga, :id_pais, :id_contiente, :id_posicion, :id_perfil)';
+
+            $prepare = $this->db->conect()->prepare($sql);
+            $query = $prepare->execute([
+
+                'nombre_completo'       => $datos['nombre_completo'],
+                'apodo'                 => $datos['apodo'],
+                'fecha_nacimiento'      => $datos['fecha_nacimiento'],
+                'caracteristicas'       => $datos['caracteristicas'],
+                'id_equipo'             => $datos['id_equipo'],
+                'id_liga'               => $datos['id_liga'],
+                'id_pais'               => $datos['id_pais'],
+                'id_contiente'          => $datos['id_contiente'],
+                'id_posicion'           => $datos['id_posicion'],
+                'id_perfil'             => $datos['id_perfil'],
+
+            ]);
+
+            if ($query) {
+
+                return true;
+            }
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+
+            return false;
+        }
+    }
+
+
 
 
 

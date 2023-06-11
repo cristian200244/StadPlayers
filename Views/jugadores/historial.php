@@ -1,11 +1,12 @@
 <?php
-
 include_once(__DIR__ . "../../../config/rutas.php");
 include_once(BASE_DIR . "../../Views/partials/header.php");
 include_once(BASE_DIR . "../../Views/partials/aside.php");
 
 include_once '../../Models/conexionModel.php';
 include_once '../../Models/JugadorModel.php';
+
+
 
 $datos = new JugadorModel();
 $registros = $datos->getObtener();
@@ -15,6 +16,7 @@ $jugadores = $datos->jugadores();
 ?>
 
 <main>
+
     <div class="container text-center">
         <div class="row">
             <div class="col">

@@ -60,6 +60,7 @@ $datos = new JugadorModel();
                                                             <a class="btn btn-sm btn-outline-warning" href="guardar.php?id=<?= $row->id ?>">Ver Jugador</a>
 
                                                             
+
                                                             -
 
                                                             <a class="btn btn-sm btn-outline-warning" href="../../Controllers/jugadorController.php?c=2&id=<?= $row->getId() ?>">Actualizar</a>
