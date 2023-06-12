@@ -5,8 +5,15 @@ document.addEventListener("DOMContentLoaded", function (event) {
   let arquero = document.getElementById('EstadArquero')
   let id_posicion = document.getElementById('id_posicion').value;
 
+  if(!document.getElementById("control")){
+    } else {
+        if(document.getElementById("control").value == 1){
+            OptNuevasEstadisticas.style.display = "block";  
+        }
+  }
 
-  if (id_posicion != 1)  {
+
+    if (id_posicion != 1)  {
         document.getElementById("TituloEstadJugador").textContent="Estadisticas del Jugador";
         predeterminadas.style.display = "block";
         arquero.style.display = "none";
@@ -15,7 +22,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
         document.getElementById("TituloEstadArquero").textContent="Estadisticas del Portero";
         predeterminadas.style.display = "block";
         arquero.style.display = "block";
-  }
+    }
 
 });
 
@@ -43,30 +50,26 @@ document.addEventListener("DOMContentLoaded", function (event) {
                     'Intentar De nuevo',
                     'error'
                     )}else{
-
-
-
-                        
                         Swal.fire({
                             background:'#000000',
-                            grow:'fullscreen',
+                            // grow:'fullscreen',
                             // Backdrop:true,
                             // timer:5000,
                             // timerProgressBar:true,
                             title: '<b style="color:#03FFFF  ">Bienvenido!</b>',
-                            html: '<b style="color:#FF5900 ">¡Ahora podrás iniciar sesión, haz click en OK!</b>',
+                            html: '<b style="color:#2ECC71  ">¡Ahora podrás iniciar sesión, haz click en OK!</b>',
                             textColor: '#3085d6',
                             imageUrl: 'https://mundoentrenamiento.com/wp-content/uploads/2021/01/big-data-en-el-futbol-moderno.jpg',
                             // icon: 'success',
-                            imageWidth: '70%',
-                            imageHeight: '90%',
+                            imageWidth: '80%',
+                            imageHeight: '60%',
                             imageAlt: 'Custom image',
                             // width: '70%',
                         }).then((result) => {
                             if (result.isConfirmed){
                                 window.location.href = "../../index.php";
                                 const data = new FormData(formulario);
-                                let resp =fetch("../../Controllers/UsuarioController.php?c=1&id=",{
+                                let resp = fetch("../../Controllers/UsuarioController.php?c=1&id=",{
                                     
                                     method:'POST',
                                     mode:'cors',

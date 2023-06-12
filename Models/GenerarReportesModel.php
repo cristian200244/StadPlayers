@@ -23,6 +23,8 @@ class ReportesModel
     public $minutos_jugados;
     public $partidos_jugados;
     public $total_minutos;
+    public $TotalPromedio;
+
     public $totalEstadisticasPre;
     public $totalEstadisticasPortero;
     public $id_posicion;
@@ -52,6 +54,7 @@ class ReportesModel
         $this->minutos_jugados;
         $this->partidos_jugados;
         $this->total_minutos;
+        $this->TotalPromedio;
         $this->totalEstadisticasPre;
         $this->totalEstadisticasPortero;
         $this->id_posicion;
@@ -70,8 +73,6 @@ class ReportesModel
     {
         return $this->nombre_completo;
     }
-
-
 
 
     //Metodos propios
@@ -109,6 +110,7 @@ class ReportesModel
         }
     }
 
+
     public function store($datos)
     {
         $sql = 'INSERT INTO generar_reporte(fecha_inicial, fecha_final, id_jugador, id_usuario)
@@ -133,6 +135,8 @@ class ReportesModel
         }
     }
 
+
+
     public function getReporteId($id)
     {
         $sql = "SELECT * 
@@ -155,9 +159,10 @@ class ReportesModel
         }
     }
 
+
+
     public function DatosJugadorReporte($datosJugador)
     {
-
         $sql = "SELECT gr.id, gr.fecha_inicial, gr.fecha_final, j.nombre_completo, j.apodo, e.equipo,l.nombre,p.descripcion, p.id AS id_posicion
                 FROM generar_reporte as gr 
                 JOIN jugadores as j ON gr.id_jugador = j.id
@@ -166,7 +171,6 @@ class ReportesModel
                 JOIN posiciones as p ON  j.id_posicion = p.id
                 WHERE gr.id = $datosJugador
         ";
-
         try {
 
             $query = $this->db->conect()->query($sql);
@@ -180,7 +184,6 @@ class ReportesModel
                 $item->posicion         = $row['descripcion'];
                 $item->id_posicion      = $row['id_posicion'];
             }
-
             return $item;
         } catch (PDOException $e) {
             die($e->getMessage());
@@ -190,8 +193,6 @@ class ReportesModel
 
     public function getTotalMinutos($totalMinutosJugados)
     {
-
-
         try {
             $sql = "SELECT  SUM(valor) AS min_jugados
             FROM estadisticas_count  AS ec
@@ -199,53 +200,70 @@ class ReportesModel
             ON ec.id_encuentro_estadistica = ee.id AND ee.id_jugador = ?
             WHERE id_estadistica = ? AND ee.fecha_del_partido BETWEEN ? AND ?
             ";
-
             $query = $this->db->conect()->prepare($sql);
-
             $query->execute([
-
                 $totalMinutosJugados->id_jugador,
                 9,
                 $totalMinutosJugados->fechaInicial,
                 $totalMinutosJugados->fechaFinal
                 //  1, 15, "2017-01-01", "2017-12-31"
-
             ]);
-
-
             $result = $query->fetchColumn();
             $total_minutos = ($result > 0) ? $result : 0;
-
             return $total_minutos;
+
         } catch (PDOException $e) {
             die($e->getMessage());
         }
     }
+
+
     public function getTotalPartidos($totalPartidosJugados)
     {
-
-
         try {
             $sql = "SELECT COUNT(*) AS total_partidos
             FROM estadisticas_encuentro  AS ee
             WHERE ee.id_jugador=? 
             AND ee.fecha_del_partido BETWEEN ? AND ?
             ";
-
             $query = $this->db->conect()->prepare($sql);
-
             $query->execute([
-
                 $totalPartidosJugados->id_jugador,
-
                 $totalPartidosJugados->fechaInicial,
                 $totalPartidosJugados->fechaFinal,
             ]);
-
             $result = $query->fetchColumn();
             $total_partidos = ($result > 0) ? $result : 0;
-
             return  $total_partidos;
+        } catch (PDOException $e) {
+            die($e->getMessage());
+        }
+    }
+
+
+    public function promedio($promedio){
+
+        try {
+            $params = [];
+            #Trae las estadísticas del jugador tipo otro y predeterminadas mayores a 0
+            $sql = "SELECT ROUND(AVG(valor),2) AS promedio
+            FROM estadisticas_count ec
+            WHERE ec.valor > 0 AND ec.id_estadistica != 9 AND
+            id_encuentro_estadistica 
+            IN (SELECT id 
+            FROM estadisticas_encuentro as ee 
+            WHERE  ee.id_jugador = ? AND ee.fecha_del_partido BETWEEN ? AND ?
+            )";
+
+            $query = $this->db->conect()->prepare($sql);
+            $query->execute([
+                $promedio->id_jugador,
+                $promedio->fechaInicial,
+                $promedio->fechaFinal,
+            ]);
+            $result = $query->fetchColumn();
+            $TotalPromedio = ($result > 0) ? $result : 0;
+            return  $TotalPromedio;
         } catch (PDOException $e) {
             die($e->getMessage());
         }
@@ -265,22 +283,20 @@ class ReportesModel
             GROUP BY e.nombre, e.id";
 
             $query = $this->db->conect()->prepare($sql);
-
             $query->execute([
                 $totalEstadisticasPre->id_jugador,
                 $totalEstadisticasPre->fechaInicial,
                 $totalEstadisticasPre->fechaFinal,
             ]);
-
             while ($row = $query->fetchObject()) {
                 $params["pre_" . $row->nombre] =  $row->valor;
             }
-
             return $params;
         } catch (PDOException $e) {
             die($e->getMessage());
         }
     }
+
 
     public function getTotalEstadPortero($totalEstadisticasPortero)
     {
@@ -296,17 +312,14 @@ class ReportesModel
             GROUP BY e.nombre, e.id";
 
             $query = $this->db->conect()->prepare($sql);
-
             $query->execute([
                 $totalEstadisticasPortero->id_jugador,
                 $totalEstadisticasPortero->fechaInicial,
                 $totalEstadisticasPortero->fechaFinal,
             ]);
-
             while ($row = $query->fetchObject()) {
                 $params["por_" . $row->nombre] =  $row->valor;
             }
-
             return $params;
         } catch (PDOException $e) {
             die($e->getMessage());
@@ -326,19 +339,14 @@ class ReportesModel
             AND valor > 0 AND e.predeterminada = 0 AND ec.id_estadistica != 9 
             GROUP BY e.nombre, e.id";
             $query = $this->db->conect()->prepare($sql);
-
             $query->execute([
                 $nuevasEstadisticas->id_jugador,
                 $nuevasEstadisticas->fechaInicial,
                 $nuevasEstadisticas->fechaFinal,
             ]);
-
             while ($row = $query->fetchObject()) {
                 $params["nueva_" . $row->nombre] =  $row->valor;
             }
-            // var_dump($params);
-            // die();
-
             return $params;
         } catch (PDOException $e) {
             die($e->getMessage());
@@ -348,11 +356,8 @@ class ReportesModel
 
     public function getPlayers()
     {
-
-
         $sql = "SELECT id, nombre_completo FROM jugadores WHERE id_usuario = $this->id_usuario";
         $query = $this->db->conect()->query($sql);
-
         try {
             $items = [];
             while ($row = $query->fetch()) {
@@ -363,7 +368,6 @@ class ReportesModel
 
                 array_push($items, $item);
             }
-
             return $items;
         } catch (PDOException $e) {
             die($e->getMessage());

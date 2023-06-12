@@ -64,6 +64,7 @@ class ReportesController
         $datosJugador             = $this->reportesModel->DatosJugadorReporte($id_reporte);
         $totalMinutosJugados      = $this->reportesModel->getTotalMinutos($reporte);
         $totalPartidosJugados     = $this->reportesModel->getTotalPartidos($reporte);
+        $promedio                 = $this->reportesModel->promedio($reporte);
         $totalEstadisticasPre     = $this->reportesModel->getTotalEstadPre($reporte);
         $totalEstadisticasPortero = $this->reportesModel->getTotalEstadPortero($reporte);
         $nuevasEstadisticas       = $this->reportesModel->getNuevaEstadistica($reporte);
@@ -72,15 +73,11 @@ class ReportesController
             http_build_query($reporte)
             . "&totalMinutosJugados="  . ($totalMinutosJugados)
             . "&totalPartidosJugados=" . ($totalPartidosJugados)
+            . "&promedio="             . ($promedio)
             . "&" . http_build_query($datosJugador)
             . "&" . http_build_query($totalEstadisticasPre)
             . "&" . http_build_query($totalEstadisticasPortero)
             . "&" . http_build_query($nuevasEstadisticas);
-
-        // var_dump($nuevasEstadisticas);
-        // die();
-
-
 
         header(
             "Location: ../Views/Reportes/VerReporteIndividual.php?" . $params
@@ -99,10 +96,7 @@ class ReportesController
         $items = [
             'fechaInicial' => ['fechaInicial'],
             'fechaFinal' => ['fechaFinal'],
-
         ];
-
-
         $this->reportesModel->getById($items);
         $result = $items;
         if ($result) {
