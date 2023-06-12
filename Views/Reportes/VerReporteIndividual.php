@@ -8,6 +8,7 @@ include_once(BASE_DIR . "../../Views/partials/aside.php");
 
 $data = new ReportesController();
 $datosReporte = $_REQUEST;
+
 // var_dump($datosReporte);
 // die();
 // foreach ($datosReporte as $k => $v) {
@@ -40,12 +41,12 @@ $DatosJugador = [
 
 <div class="imgReporteIndividual">
     <main>
-        <div class="container mt-5">
+        <div class="container" style="margin-top: 15%;">
             <div class="col-lg-11">
                 <div class="card shadow-lg border-0 bg-light rounded-lg mt-5">
 
 
-                    <div class="card d-flex bg-black  text-center py-3 px-3">
+                    <div class="card d-flex bg-white  text-center py-3 px-3">
                         <div class="card-header bg-danger">
                             <div class="row ">
                                 <div class="col-md-8">
@@ -54,47 +55,49 @@ $DatosJugador = [
                                 <?php
 
                                 # code...
-                                
+
                                 foreach ($encabezado as $key => $value) { ?>
-                                    <div class="col-md-2 text-light pt-2  ">
-                                        <strong>
-                                            <h6><label for="#">
-                                                    <?= str_replace("_", " ", $key) ?>
-                                                </label>
-                                            </h6>
-                                        </strong>
-                                        <div class="card bg-white text-success text-center mt-2 pt-2 pb-2">
-                                            <span>
-                                                <?= $value ?>
-                                            </span>
-                                        </div>
+                                <div class="col-md-2 text-light pt-2  ">
+                                    <strong>
+                                        <h6><label for="#">
+                                                <?= str_replace("_", " ", $key) ?>
+                                            </label>
+                                        </h6>
+                                    </strong>
+                                    <div class="card bg-white text-success text-center mt-2 pt-2 pb-2">
+                                        <span>
+                                            <?= $value ?>
+                                        </span>
                                     </div>
+                                </div>
                                 <?php } ?>
                             </div>
                         </div>
 
-                        <div class="row mb-3">
+                        <div class="row mb-3 ms-5">
                             <?php
                             foreach ($DatosJugador as $key => $value) {
 
                                 if ($key != 'id_posicion') { ?>
 
-                                    <div class=" card col-lg-3 bg-secondary ms-5 me-1 mt-3 pt-2 pb-2 text-white">
-                                        <strong>
-                                            <h5><label>
-                                                    <?= str_replace("_", " ", $key) ?>
-                                                </label>
-                                            </h5>
-                                        </strong>
-                                        <div class=" card-floating bg-info mb-3 mb-md-0 text-black  mt-2 pt-2 pb-2">
-                                            <span>
-                                                <?= $value ?>
-                                            </span>
-                                        </div>
-                                    </div>
-                                <?php } ?>
+                            <div class="card col-3 col-sm-3 bg-black ms-4 me-3  mt-3 pt-2 pb-2 text-white">
+                                <strong>
+                                    <h5><label>
+                                            <?= str_replace("_", " ", $key) ?>
+                                        </label>
+                                    </h5>
+                                </strong>
+                                <div class=" card-floating bg-success mb-3 mb-md-0 text-white  mt-2 pt-2 pb-2">
+                                    <span>
+                                        <?= $value ?>
+                                    </span>
+                                </div>
+
+                            </div>
+                            <?php } ?>
                             <?php } ?>
                         </div>
+
 
 
                         <div class="row mb-3">
@@ -115,33 +118,33 @@ $DatosJugador = [
                                         </div>
                                     </div>
                                     <?php
-                                        foreach ($datosReporte as $key => $value) {
-                                            if("pre_" == substr($key,0,4)){
-                                            ?>
-                                            <div class="col-12 card bg-dark text-light">
-                                                <ul class="list-group list-group-flush bg-info">
-                                                    <div class="row">
-                                                        <div class="col-9 bg-white text-dark p-2">
+                                    foreach ($datosReporte as $key => $value) {
+                                        if ("pre_" == substr($key, 0, 4)) {
+                                    ?>
+                                    <div class="col-12 card bg-dark text-light">
+                                        <ul class="list-group list-group-flush bg-info">
+                                            <div class="row">
+                                                <div class="col-9 bg-white text-dark p-2">
 
-                                                            <strong>
-                                                                <h5><label for="nombreEstadistica">
-                                                                        <?= str_replace("_", " ",str_replace("pre_", " ", $key)) ?>
-                                                                    </label>
-                                                                </h5>
-                                                            </strong>
-                                                        </div>
-                                                        <div class="col-3 bg-secondary ">
-                                                            <div class="card bg-dark text-light  m-1 pt-2 p-1">
-                                                                <span>
-                                                                    <?= $value ?>
-                                                                </span>
-                                                            </div>
-                                                        </div>
+                                                    <strong>
+                                                        <h5><label for="nombreEstadistica">
+                                                                <?= str_replace("_", " ", str_replace("pre_", " ", $key)) ?>
+                                                            </label>
+                                                        </h5>
+                                                    </strong>
+                                                </div>
+                                                <div class="col-3 bg-secondary ">
+                                                    <div class="card bg-dark text-light  m-1 pt-2 p-1">
+                                                        <span>
+                                                            <?= $value ?>
+                                                        </span>
                                                     </div>
-                                                </ul>
+                                                </div>
                                             </div>
+                                        </ul>
+                                    </div>
 
-                                            <?php
+                                    <?php
                                         }
                                     }
                                     ?>
@@ -160,47 +163,94 @@ $DatosJugador = [
                                         </div>
                                     </div>
                                     <?php
-                                        foreach ($datosReporte as $key => $value) {
-                                            if("por_" == substr($key,0,4)){
-                                            ?>
-                                   <div class="col-12 card bg-dark text-light">
-                                                <ul class="list-group list-group-flush bg-info">
-                                                    <div class="row">
-                                                        <div class="col-9 bg-white text-dark p-2">
+                                    foreach ($datosReporte as $key => $value) {
+                                        if ("por_" == substr($key, 0, 4)) {
+                                    ?>
+                                    <div class="col-12 card bg-dark text-light">
+                                        <ul class="list-group list-group-flush bg-info">
+                                            <div class="row">
+                                                <div class="col-9 bg-white text-dark p-2">
 
-                                                            <strong>
-                                                                <h5><label for="nombreEstadistica">
-                                                                        <?= str_replace("_", " ",str_replace("por_", " ", $key)) ?>
-                                                                    </label>
-                                                                </h5>
-                                                            </strong>
-                                                        </div>
-                                                        <div class="col-3 bg-secondary ">
-                                                            <div class="card bg-dark text-light  m-1 pt-2 p-1">
-                                                                <span>
-                                                                    <?= $value ?>
-                                                                </span>
-                                                            </div>
-                                                        </div>
+                                                    <strong>
+                                                        <h5><label for="nombreEstadistica">
+                                                                <?= str_replace("_", " ", str_replace("por_", " ", $key)) ?>
+                                                            </label>
+                                                        </h5>
+                                                    </strong>
+                                                </div>
+                                                <div class="col-3 bg-secondary ">
+                                                    <div class="card bg-dark text-light  m-1 pt-2 p-1">
+                                                        <span>
+                                                            <?= $value ?>
+                                                        </span>
                                                     </div>
-                                                </ul>
+                                                </div>
                                             </div>
+                                        </ul>
+                                    </div>
 
                                     <?php
                                         }
                                     }
                                     ?>
                                 </div>
-
                             </div>
 
-                        </div>
 
+                            <div class="col-lg-5 ms-3">
+                                <div class="row ms-3">
+                                    <div class="card shadow-lg bg-info me-3 border-0 rounded-lg mt-5  p-2"
+                                        id="EstadArquero">
+                                        <div class="card shadow-lg bg-primary border-0 rounded-lg mt-0 p-3 text-light ">
+                                            <div class="row">
+                                                <div class="col-9">
+                                                    Nuevas Estadìsticas
+                                                </div>
+                                                <div class="col-3 bg-warning text-dark ">
+                                                    Total
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <?php
+                                        foreach ($datosReporte as $key => $value) {
+                                            if ("nueva_" == substr($key, 0, 6)) {
+                                        ?>
+                                        <div class="col-12 card bg-dark text-light mt-2">
+                                            <ul class="list-group list-group-flush bg-info">
+                                                <div class="row">
+                                                    <div class="col-9 bg-white text-dark p-2">
+
+                                                        <strong>
+                                                            <h5><label for="nombreEstadistica">
+                                                                    <?= str_replace("_", " ", str_replace("nueva_", " ", $key)) ?>
+                                                                </label>
+                                                            </h5>
+
+                                                        </strong>
+                                                    </div>
+                                                    <div class="col-3 bg-secondary ">
+                                                        <div class="card bg-dark text-light  m-1 pt-2 p-1">
+                                                            <span>
+                                                                <?= $value ?>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </ul>
+                                        </div>
+
+                                        <?php
+                                            }
+                                        }
+                                        ?>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
                 </div>
             </div>
-
         </div>
 
 

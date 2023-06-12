@@ -172,13 +172,13 @@
 
 
                             <a class="nav-link" href="">
-                                <i class="fa-solid fa-eye fa-beat-fade" style="
-                                         color: rgb(255, 72, 31);
+                                <i class="fa-solid fa-book fa-beat-fade" style="
+                                         color:#37FF01;
                                          font-size: 14px;
                                          padding: 5%;
                                        ">
                                 </i>
-                                <h3>Otro</h3>
+                                <h3>Manual</h3>
                             </a>
                         </nav>
                     </div>
