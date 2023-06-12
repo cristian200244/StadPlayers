@@ -26,33 +26,21 @@ class UsuarioModel
 
     public function Store($datos)
     {
-        
+
         try {
-            $message = '';
+
             if (!empty($_POST['email']) && !empty($_POST['nickname']) && !empty($_POST['password'])) {
-                
+
                 $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
                 $sql = 'INSERT INTO usuarios ( email, nickname,password) VALUES (:email, :nickname, :password)';
                 $prepare = $this->db->conect()->prepare($sql);
-                
+
                 $query = $prepare->execute([
                     'email'    => $datos['email'],
                     'nickname' => $datos['nickname'],
                     'password' => $password,
                 ]);
-         
-
-                if ($query) {
-                    $message = ' Nuevo Usuario Creado Correctamente';
-                    header("Location: ../index.php");
-            
-                } else {
-                    $message = 'Hubo un erro al crear el Usuario';
-                }
-
-                if (!empty($message)) {
-                    print_r($this->message);
-                }
+                return true;
             }
         } catch (PDOException $e) {
             die($e->getMessage());

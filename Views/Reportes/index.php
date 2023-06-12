@@ -17,7 +17,7 @@ $registros = $reportes->getAll();
         <div class="card mb-4 p-3 ms-5 me-5 bg-white" style="margin-top:15%">
             <div class="card-header bg-success text-light text-center mt-3 p-3 ms-3 me-3">
                 <i class="fas fa-table me-1"></i>
-                Historial De Reportes Del Jugador
+                Historial De Reportes Del Usuario
             </div>
             <div class="card-body text-success">
 

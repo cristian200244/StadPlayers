@@ -12,6 +12,7 @@ class ReportesModel
     public $id;
     public $id_reporte;
     public $id_usuario;
+    public $id_jugador;
     public $nombre_completo;
     public $fechaInicial;
     public $fechaFinal;
@@ -23,14 +24,11 @@ class ReportesModel
     public $partidos_jugados;
     public $total_minutos;
     public $totalEstadisticasPre;
-    public $estadisticasPre;
     public $totalEstadisticasPortero;
-    public $estadPortero;
     public $id_posicion;
-    public $nueva_estadistica;
-    public $id_jugador;
+    public $nuevas_estadisticas;
     public $datos;
-    public $numEstadistica;
+    // public $numEstadistica;
     public $valor;
 
 
@@ -43,6 +41,7 @@ class ReportesModel
 
         $this->id_usuario = $_SESSION['id'];
         $this->id_reporte;
+        $this->id_jugador;
         $this->nombre_completo;
         $this->fechaInicial;
         $this->fechaFinal;
@@ -54,14 +53,11 @@ class ReportesModel
         $this->partidos_jugados;
         $this->total_minutos;
         $this->totalEstadisticasPre;
-        $this->estadisticasPre;
         $this->totalEstadisticasPortero;
-        $this->estadPortero;
         $this->id_posicion;
-        $this->nueva_estadistica;
-        $this->id_jugador;
+        $this->nuevas_estadisticas;
         $this->datos;
-        $this->numEstadistica;
+        // $this->numEstadistica;
         $this->valor;
     }
     //metodos mágicos
@@ -244,10 +240,6 @@ class ReportesModel
 
                 $totalPartidosJugados->fechaInicial,
                 $totalPartidosJugados->fechaFinal,
-
-                //  1, 15, "2017-01-01", "2017-12-31"
-
-
             ]);
 
             $result = $query->fetchColumn();
@@ -321,59 +313,33 @@ class ReportesModel
         }
     }
 
-    // $sql = "SELECT e.nombre, e.predeterminada, SUM(ec.valor) AS valor,j.id_posicion 
-    // FROM estadisticas AS e
-    // RIGHT JOIN estadisticas_count AS ec ON e.id = ec.id_estadistica 
-    // JOIN estadisticas_encuentro AS ee ON ec.id_encuentro_estadistica = ee.id AND ee.id_jugador = ? 
-    // JOIN jugadores AS j ON j.id = ee.id_jugador and j.id= ee.id_jugador
-    // WHERE ee.fecha_del_partido BETWEEN ? AND ?
-    // AND valor > 0 
-    // AND predeterminada =1
-    // AND ec.id_estadistica != 9 
-    // AND j.id_posicion =1 
-    // AND e.id >12
-    // AND e.tipo = 1
-    // GROUP BY e.nombre, e.id, e.predeterminada,j.id_posicion
-    // ";
 
-
-
-
-    public function getNuevaEstadistica($nuevaEstadistica)
+    public function getNuevaEstadistica($nuevasEstadisticas)
     {
         try {
-            $array = [];
+            $params = [];
             $sql = "SELECT e.nombre, SUM(ec.valor) AS valor
             FROM estadisticas AS e
-            RIGHT JOIN estadisticas_count AS ec ON e.id = ec.id_estadistica 
-            JOIN estadisticas_encuentro AS ee ON ec.id_encuentro_estadistica = ee.id AND ee.id_jugador =?
-            WHERE predeterminada=0 
-            AND ee.fecha_del_partido BETWEEN ? AND ?
+            RIGHT JOIN estadisticas_count AS ec ON e.id = ec.id_estadistica
+            JOIN estadisticas_encuentro AS ee ON ec.id_encuentro_estadistica = ee.id AND ee.id_jugador = ?
+            WHERE ee.fecha_del_partido BETWEEN ? AND ?
+            AND valor > 0 AND e.predeterminada = 0 AND ec.id_estadistica != 9 
             GROUP BY e.nombre, e.id";
             $query = $this->db->conect()->prepare($sql);
 
             $query->execute([
-                $nuevaEstadistica->id_jugador,
-                $nuevaEstadistica->fechaInicial,
-                $nuevaEstadistica->fechaFinal
-
-
+                $nuevasEstadisticas->id_jugador,
+                $nuevasEstadisticas->fechaInicial,
+                $nuevasEstadisticas->fechaFinal,
             ]);
 
             while ($row = $query->fetchObject()) {
-                $params[$row->nombre] = $row->valor;
-                if ($params[$row->nombre] = $row->valor) {
-                }
-                $array = [$params];
-                array_push($array);
+                $params["nueva_" . $row->nombre] =  $row->valor;
             }
-
-
-            $this->nueva_estadistica = $array;
-
-            // var_dump( $this->nueva_estadistica);
+            // var_dump($params);
             // die();
-            return $this->nueva_estadistica;
+
+            return $params;
         } catch (PDOException $e) {
             die($e->getMessage());
         }
@@ -404,13 +370,3 @@ class ReportesModel
         }
     }
 }
-
-
-
-// CONSULTA SUMAR TODAS LAS ESTADISTICAS
-// SELECT e.nombre, SUM(ec.valor)
-//  FROM estadisticas AS e
-//  RIGHT JOIN estadisticas_count AS ec ON e.id = ec.id_estadistica
-//  JOIN estadisticas_encuentro AS ee ON ec.id_encuentro_estadistica = ee.id AND ee.id_jugador = 1
-//  WHERE ee.fecha_del_partido BETWEEN "2017-01-01-" AND "2017-12-31"
-//  GROUP BY e.nombre, e.id

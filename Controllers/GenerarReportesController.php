@@ -58,10 +58,6 @@ class ReportesController
     }
     public function show()
     {
-
-        // $params = [];
-        // $datosReporte = [];
-
         $id_reporte = $_REQUEST['reporte'];
 
         $reporte                  = $this->reportesModel->getReporteId($id_reporte);
@@ -70,7 +66,7 @@ class ReportesController
         $totalPartidosJugados     = $this->reportesModel->getTotalPartidos($reporte);
         $totalEstadisticasPre     = $this->reportesModel->getTotalEstadPre($reporte);
         $totalEstadisticasPortero = $this->reportesModel->getTotalEstadPortero($reporte);
-        $nuevasEstadisticas         = $this->reportesModel->getNuevaEstadistica($reporte);
+        $nuevasEstadisticas       = $this->reportesModel->getNuevaEstadistica($reporte);
 
         $params =
             http_build_query($reporte)
@@ -78,17 +74,18 @@ class ReportesController
             . "&totalPartidosJugados=" . ($totalPartidosJugados)
             . "&" . http_build_query($datosJugador)
             . "&" . http_build_query($totalEstadisticasPre)
-            . "&" . http_build_query($totalEstadisticasPortero);
+            . "&" . http_build_query($totalEstadisticasPortero)
+            . "&" . http_build_query($nuevasEstadisticas);
+
+        // var_dump($nuevasEstadisticas);
+        // die();
+
+
 
         header(
             "Location: ../Views/Reportes/VerReporteIndividual.php?" . $params
         );
     }
-
-
-
-
-
 
     public function getDateId()
     {

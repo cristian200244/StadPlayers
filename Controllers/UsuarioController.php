@@ -41,14 +41,17 @@ class UsuarioController
   }
   public function Store()
   {
+
     $datos = [
       'email' => $_REQUEST['email'],
       'nickname' => $_REQUEST['nickname'],
       'password' => $_REQUEST['password'],
     ];
-   
+    // var_dump($datos);
+    // die();
     $result =  $this->usuarioModel->Store($datos);
   }
+
 
 
   public function InciarSesion()
@@ -64,14 +67,14 @@ class UsuarioController
       return $mensaje = "Nombre de Usuario o contraseña vacio";
       // echo '<div class="alert-danger"> </div>';
     } else {
-      $results =  $this->usuarioModel->getUser($datos);
+      $results = $this->usuarioModel->getUser($datos);
 
       if ($results) {
         session_start();
 
-        $_SESSION['id']       = $results['id'];
+        $_SESSION['id'] = $results['id'];
         $_SESSION['nickname'] = $results['nickname'];
-        $_SESSION['email']    = $results['email'];
+        $_SESSION['email'] = $results['email'];
 
         $message = '¡Bienvenido!';
         header('Location:../Views/main/MenuPrincipal.php');
@@ -94,19 +97,19 @@ class UsuarioController
 }
 // public function Session()
 // if (!isset($_SESSION['id'])) {
-//   header("Location:index.php");
+// header("Location:index.php");
 // }
-  // {
-  //   $user = new UsuarioModel;
-  //   $session = $user->getUserSession();
-  //   $user = null;
-  //   if (count($session) > 0) {
-  //     $user = $session;
-  //   }
-  //   if (!empty($user))
-  //     $message = ' Wellcome' . $user['email'] .
-  //       '<br>' . 'You are Successfully Logged In';
+// {
+// $user = new UsuarioModel;
+// $session = $user->getUserSession();
+// $user = null;
+// if (count($session) > 0) {
+// $user = $session;
+// }
+// if (!empty($user))
+// $message = ' Wellcome' . $user['email'] .
+// '<br>' . 'You are Successfully Logged In';
 
-  //   else
-  //     header('Location:../index.php');
-  // }
+// else
+// header('Location:../index.php');
+// }
