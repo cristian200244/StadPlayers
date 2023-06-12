@@ -77,7 +77,40 @@ class JugadorModel extends stdClass
     }
 
 
-    public function getTitulos()
+    public function getTitulos($id)
+    {
+        $items = [];
+
+        try {
+            $sql = "SELECT titulos_jugador.id, titulos_jugador.id_equipo, titulos_jugador.id_copa, titulos_jugador.id_jugador AS id_jugador, titulos_jugador.fecha, eq.equipo,c.nombre, j.nombre_completo
+            FROM titulos_jugador
+            JOIN equipos AS eq ON titulos_jugador.id_equipo = eq.id
+            JOIN copas AS c ON titulos_jugador.id_copa = c.id
+            JOIN jugadores AS j ON titulos_jugador.id_jugador = j.id
+            WHERE titulos_jugador.id_jugador = $id
+            ";
+
+            $query = $this->db->conect()->query($sql);
+            while ($row = $query->fetch()) {
+                $item                   = new JugadorModel();
+                $item->id                   = $row['id'];
+                $item->id_jugador           = $row['nombre_completo'];
+                $item->id_copa              = $row['nombre'];
+                $item->fecha                = $row['fecha'];
+                $item->fecha_terminacion    = $row['fecha_terminacion'];
+                $item->id_equipo            = $row['equipo'];
+
+                array_push($items, $item);
+            }
+
+            return $items;
+        } catch (PDOException $e) {
+            die($e->getMessage());
+        }
+    }
+
+
+    public function TitulosObtenidos()
     {
         $items = [];
 
@@ -87,6 +120,7 @@ class JugadorModel extends stdClass
             JOIN equipos AS eq ON titulos_jugador.id_equipo = eq.id
             JOIN copas AS c ON titulos_jugador.id_copa = c.id
             JOIN jugadores AS j ON titulos_jugador.id_jugador = j.id
+            
             ';
 
             $query = $this->db->conect()->query($sql);
@@ -107,6 +141,66 @@ class JugadorModel extends stdClass
             die($e->getMessage());
         }
     }
+
+
+    public function getObtener($id)
+    {
+        $items = [];
+
+        try {
+            $sql = "SELECT he.id, he.id_jugador AS id_jugador, he.fecha_inicial, he.fecha_terminacion, eq.equipo, j.nombre_completo
+            FROM historial_equipos AS he
+            JOIN equipos AS eq ON he.id_equipo = eq.id
+            JOIN jugadores AS j ON he.id_jugador = j.id
+            WHERE he.id_jugador = $id
+            ";
+
+            $query = $this->db->conect()->query($sql);
+            while ($row = $query->fetch()) {
+                $item                   = new JugadorModel();
+                $item->id                   = $row['id'];
+                $item->id_jugador           = $id;
+                $item->fecha_inicial        = $row['fecha_inicial'];
+                $item->fecha_terminacion    = $row['fecha_terminacion'];
+                $item->id_equipo            = $row['equipo'];
+
+                array_push($items, $item);
+            }
+
+            return $items;
+        } catch (PDOException $e) {
+            die($e->getMessage());
+        }
+    }
+
+    public function historial()
+    {
+        $items = [];
+
+        try {
+            $sql = 'SELECT he.id, he.id_jugador AS id_jugador, he.fecha_inicial, he.fecha_terminacion, eq.equipo, j.nombre_completo
+            FROM historial_equipos AS he
+            JOIN equipos AS eq ON he.id_equipo = eq.id
+            JOIN jugadores AS j ON he.id_jugador = j.id
+            ';
+
+            $query = $this->db->conect()->query($sql);
+            while ($row = $query->fetch()) {
+                $item                   = new JugadorModel();
+                $item->id                   = $row['id'];
+                $item->fecha_inicial        = $row['fecha_inicial'];
+                $item->fecha_terminacion    = $row['fecha_terminacion'];
+                $item->id_equipo            = $row['equipo'];
+
+                array_push($items, $item);
+            }
+
+            return $items;
+        } catch (PDOException $e) {
+            die($e->getMessage());
+        }
+    }
+
 
     public function titulos($datos)
     {
@@ -134,34 +228,8 @@ class JugadorModel extends stdClass
     }
 
 
-    public function getObtener()
-    {
-        $items = [];
 
-        try {
-            $sql = 'SELECT historial_equipos.id, historial_equipos.id_jugador AS id_jugador, historial_equipos.fecha_inicial, historial_equipos.fecha_terminacion, eq.equipo, j.nombre_completo
-            FROM historial_equipos
-            JOIN equipos AS eq ON historial_equipos.id_equipo = eq.id
-            JOIN jugadores AS j ON historial_equipos.id_jugador = j.id
-            ';
-
-            $query = $this->db->conect()->query($sql);
-            while ($row = $query->fetch()) {
-                $item                   = new JugadorModel();
-                $item->id                   = $row['id'];
-                $item->id_jugador           = $row['nombre_completo'];
-                $item->fecha_inicial        = $row['fecha_inicial'];
-                $item->fecha_terminacion    = $row['fecha_terminacion'];
-                $item->id_equipo            = $row['equipo'];
-
-                array_push($items, $item);
-            }
-
-            return $items;
-        } catch (PDOException $e) {
-            die($e->getMessage());
-        }
-    }
+  
     public function getbyId($id)
     {
         $resultado = [];
@@ -201,31 +269,33 @@ class JugadorModel extends stdClass
         }
     }
 
-
     public function guardar($datos)
     {
-
         try {
             $sql = 'INSERT INTO historial_equipos (id_jugador, fecha_inicial, fecha_terminacion, id_equipo)
-            VALUES (:id_jugador, :fecha_inicial, :fecha_terminacion, :id_equipo)';
-
+                    VALUES (:id_jugador, :fecha_inicial, :fecha_terminacion, :id_equipo)
+                    ON DUPLICATE KEY UPDATE
+                    fecha_inicial = VALUES(fecha_inicial),
+                    fecha_terminacion = VALUES(fecha_terminacion)';
+    
             $prepare = $this->db->conect()->prepare($sql);
             $query = $prepare->execute([
-                'id_jugador'         => $datos['id_jugador'],
-                'fecha_inicial'         => $datos['fecha_inicial'],
-                'fecha_terminacion'     => $datos['fecha_terminacion'],
-                'id_equipo'             => $datos['id_equipo']
+                'id_jugador' => $datos['id_jugador'],
+                'fecha_inicial' => $datos['fecha_inicial'],
+                'fecha_terminacion' => $datos['fecha_terminacion'],
+                'id_equipo' => $datos['id_equipo']
             ]);
-
+    
             if ($query) {
                 return true;
             }
         } catch (PDOException $e) {
             echo $e->getMessage();
         }
-
+    
         return false;
     }
+    
 
 
 

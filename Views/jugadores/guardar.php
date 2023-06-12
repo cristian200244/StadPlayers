@@ -6,21 +6,19 @@ include_once(BASE_DIR . "../../Views/partials/aside.php");
 include_once '../../Models/conexionModel.php';
 include_once '../../Models/JugadorModel.php';
 
-include_once '../../Models/conexionModel.php';
-include_once '../../Models/JugadorModel.php';
 
 $id = $_GET['id'];
 
 $datos = new JugadorModel();
 $registros = $datos->getById($id);
 
-$equipos = $datos->equipos();
-$ligas = $datos->ligas();
-$paises = $datos->paises();
-$continentes = $datos->continentes();
-$posiciones = $datos->posiciones();
-$perfiles = $datos->perfiles();
-$copas = $datos->copas();
+$equipos        = $datos->equipos();
+$ligas          = $datos->ligas();
+$paises         = $datos->paises();
+$continentes    = $datos->continentes();
+$posiciones     = $datos->posiciones();
+$perfiles       = $datos->perfiles();
+$copas          = $datos->copas();
 
 
 
@@ -40,7 +38,7 @@ $copas = $datos->copas();
                         <div class="col-lg-12">
                             <div class="card shadow-lg border-0 rounded-lg mt-5">
                                 <div class="card-header bg-success">
-                                    <h3 class="text-center text-light my-4 fs-4">Aquí va el nombre del jugador</h3>
+                                    <h3 class="text-center text-light my-4 fs-4"><?= $registros[0]->nombre_completo ?></h3>
                                 </div>
 
                                 <div class="card-body">
@@ -58,14 +56,7 @@ $copas = $datos->copas();
                                             <div class="mb-3">
                                                 <div class="row">
                                                     <div class="col-4">
-                                                        <div class="col-md-6 mt-3 text-success">
-                                                            <strong>
-                                                                <h5><label for="Nombre">Nombre del Jugador</label></h5>
-                                                            </strong>
-                                                            <div class="card bg-dark text-light mt-2 pt-2 pb-2">
-                                                                <span><?= $row->nombre_completo ?></span>
-                                                            </div>
-                                                        </div>
+
                                                         <div class="col-md-6 mt-3 text-success">
                                                             <strong>
                                                                 <h5><label for="Apodo">Apodo</label></h5>
@@ -152,7 +143,7 @@ $copas = $datos->copas();
 
                                                 </div>
                                             </div>
-                                            <!-- <button id="btnAgregarHistorial">Añadir Historial</button> -->
+
 
                                     <?php }
                                     } ?>
@@ -170,7 +161,7 @@ $copas = $datos->copas();
     <?php
 
     $datos = new JugadorModel();
-    $registros = $datos->getObtener();
+    $registros = $datos->getObtener($id);
 
     ?>
     <div id="layoutAuthentication">
@@ -185,7 +176,6 @@ $copas = $datos->copas();
                             <table class="table">
                                 <thead>
                                     <tr>
-                                        <h2>sdsa</h2>
                                         <th scope="col">#</th>
                                         <th scope="col">Jugador</th>
                                         <th scope="col">Fecha Inicial</th>
@@ -196,14 +186,16 @@ $copas = $datos->copas();
                                 </thead>
                                 <tbody>
                                     <?php
+                                    $pos = 1;
                                     if ($registros) {
+
                                         foreach ($registros as $row) {
 
                                     ?>
 
                                             <tr>
 
-                                                <td><?= $row->id ?></td>
+                                                <td><?= $pos ?></td>
                                                 <td><?= $row->id_jugador ?></td>
                                                 <td><?= $row->fecha_inicial ?></td>
                                                 <td><?= $row->fecha_terminacion ?></td>
@@ -215,6 +207,7 @@ $copas = $datos->copas();
                                                 </td>
                                             </tr>
                                         <?php
+                                            $pos++;
                                         }
                                     } else {
                                         ?>
@@ -232,9 +225,95 @@ $copas = $datos->copas();
             </div>
         </div>
     </div>
+
+
+    <?php
+
+    $datos = new JugadorModel();
+    $registros = $datos->getTitulos($id);
+
+    $equipos = $datos->equipos();
+    $jugadores = $datos->jugadores();
+    $copas = $datos->copas();
+    ?>
+
+
+    <div class="container text-center">
+        <div class="row">
+            <div class="col">
+                <h1>¡Bienvenido! Ahora Podrá ingresar sus Jugadores</h1>
+            </div>
+        </div>
+        <div id="layoutAuthentication">
+            <div id="layoutAuthentication_content">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-12">
+                            <div class="card shadow-lg border-0 rounded-lg mt-5">
+                                <div class="card-header bg-success">
+                                    <h3 class="text-center text-light my-4 fs-4">Titulos Obtenidos</h3>
+                                </div>
+
+
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+
+                                            <th scope="col">#</th>
+                                            <th scope="col">Jugador</th>
+                                            <th scope="col">Fecha</th>
+                                            <th scope="col">Copa</th>
+                                            <th scope="col">Equipo</th>
+                                            <th scope="col" colspan="2">Opción</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        $pos = 1;
+                                        if ($registros) {
+                                            foreach ($registros as $row) {
+
+                                        ?>
+
+                                                <tr>
+
+                                                    <td><?= $pos ?></td>
+                                                    <td><?= $row->id_jugador ?></td>
+                                                    <td><?= $row->fecha ?></td>
+                                                    <td><?= $row->id_copa ?></td>
+                                                    <td><?= $row->id_equipo ?></td>
+                                                    <!-- <th scope="col" >Opciones</th> -->
+
+                                                    <td>
+                                                        <a class="btn btn-sm btn-outline-danger" href="../../Controllers/JugadorController.php?c=6&id=<?= $row->getId() ?>">Eliminar</a>
+                                                    </td>
+                                                </tr>
+                                            <?php
+                                                $pos++;
+                                            }
+                                        } else {
+                                            ?>
+                                            <tr class="text-center">
+                                                <td colspan="6">Sin datos</td>
+                                            </tr>
+                                        <?php
+                                        }
+                                        ?>
+                                    </tbody>
+
+                                </table>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
 </main>
 
-</main>
 <script>
     document.getElementById('btnAgregarHistorial').addEventListener('click', function() {
         var jugadorId = <?php echo $id; ?>; // Obtén el ID del jugador desde tu código PHP
@@ -254,3 +333,7 @@ $copas = $datos->copas();
 <?php
 include_once(BASE_DIR . "../../Views/partials/footer.php");
 ?>
+
+<div class="col-md-6 mt-3 text-success">
+    <button class="btn btn-sm btn-outline-warning" id="btnAgregarHistorial">Añadir Historial</button>
+</div>

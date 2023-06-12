@@ -9,7 +9,7 @@ include_once(BASE_DIR . "../../Views/partials/aside.php");
 include_once '../../Models/JugadorModel.php';
 
 $datos = new JugadorModel();
- $registros = $datos->getAll();
+$registros = $datos->getAll();
 
 ?>
 
@@ -45,6 +45,7 @@ $datos = new JugadorModel();
                                         </thead>
                                         <tbody>
                                             <?php
+                                            $pos = 1;
                                             if ($registros) {
                                                 foreach ($registros as $row) {
 
@@ -52,14 +53,14 @@ $datos = new JugadorModel();
 
                                                     <tr>
 
-                                                        <td><?= $row->id ?></td>
+                                                        <td><?= $pos ?></td>
                                                         <td><?= $row->nombre_completo ?></td>
 
                                                         <!-- <th scope="col" >Opciones</th> -->
                                                         <td>
                                                             <a class="btn btn-sm btn-outline-warning" href="guardar.php?id=<?= $row->id ?>">Ver Jugador</a>
 
-                                                            
+
 
                                                             -
 
@@ -70,6 +71,7 @@ $datos = new JugadorModel();
                                                         </td>
                                                     </tr>
                                                 <?php
+                                                $pos++;
                                                 }
                                             } else {
                                                 ?>

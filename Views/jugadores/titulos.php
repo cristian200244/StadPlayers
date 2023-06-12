@@ -8,7 +8,7 @@ include_once '../../Models/conexionModel.php';
 include_once '../../Models/JugadorModel.php';
 
 $datos = new JugadorModel();
-$registros = $datos->getTitulos();
+$registros = $datos-> TitulosObtenidos();
 
 $equipos = $datos->equipos();
 $jugadores = $datos->jugadores();
@@ -144,11 +144,7 @@ $copas = $datos->copas();
                                             </div>
                                         </div>
                                     </form>
-                                    <div class="mt-4 mb-0">
-                                        <div class="d-grid">
-                                            <a href="VerJugadores.php" class="btn btn-primary">Ver Jugador</a>
-                                        </div>
-                                    </div>
+                               
                                 </div>
                             </div>
                         </div>
