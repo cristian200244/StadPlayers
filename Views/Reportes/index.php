@@ -48,13 +48,13 @@ $registros = $reportes->getAll();
                                 <form action="../../Controllers/GenerarReportesController.php" method="post">
                                     <input type="hidden" name="c" value="3">
                                     <button type=" submit" name="reporte" value="<?= $registro->id ?>"
-                                        class="btn btn-info">Ver</button>
+                                        class="btn btn-info btn-large">Ver Reporte</button>
 
 
 
 
-                                    <a type="button" href="<?= BASE_URL ?>/Views/Reportes/VerReporteIndividual.php"
-                                        class="btn btn-warning">Editar</a>
+                                    <!-- <a type="button" href="<?= BASE_URL ?>/Views/Reportes/VerReporteIndividual.php"
+                                        class="btn btn-warning">Editar</a> -->
                                     <a type="button" href="<?= BASE_URL ?>/Views/Reportes/VerReporteIndividual.php"
                                         class="btn btn-danger">Eliminar</a>
                                 </form>
