@@ -9,6 +9,7 @@ $data = new EstadisticasModel();
 $registros = $data->verStad();
 
 ?>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <div class="imgVer">
     <div class="container">
@@ -22,7 +23,7 @@ $registros = $data->verStad();
     <div class="container mt-5">
         <div class="row pt-5">
             <div class="col">
-                <table class="table table-dark table-striped text-primary fs-5">
+                <table class="table table-dark table-striped text-info fs-5">
                     <thead>
                         <tr class="fs-3">
                             <th scope="col">#</th>
@@ -36,23 +37,26 @@ $registros = $data->verStad();
                     </thead>
                     <tbody>
                         <?php
+                        $pos = 1;
                         if ($registros) {
                             foreach ($registros as $row) {
                         ?>
                                 <tr>
-                                    <td><?= $row->id ?></td>
+                                    <td><?= $pos ?></td>
                                     <td><?= $row->nombre_jugador ?></td>
                                     <td><?= $row->fecha_del_partido ?></td>
                                     <td><?= $row->nombre_tipo_partido ?></td>
                                     <td><?= $row->num_partido ?></td>
                                     <td><?= $row->equipo ?></td>
                                     <td>
-                                        <button class="btn btn-primary" type="button">Ver</button>
-                                        <button class="btn btn-success" type="button">Editar</button>
-                                        <button class="btn btn-danger" type="button">Eliminar</button>
+                                        <a class="btn btn-warning" href="../Estadisticas/ver.php?id=<?= $row->id ?>">Ver</a>
+
+                                        <a class="btn btn-danger" id="deleteJu" href="../../Controllers/EstadisticasController.php?c=4&id=<?= $row->id ?> " onclick="return alerta();">Eliminar</a>
+
                                     </td>
                                 </tr>
                             <?php
+                            $pos ++;
                             }
                         } else {
                             ?>
@@ -70,6 +74,39 @@ $registros = $data->verStad();
     </div>
 
 </div>
+
+<script>
+    function alerta() {
+        Swal.fire({
+            title: "Estas seguro?",
+            text: "Una vez eliminado, ¡no podrá recuperar este archivo!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonText: "Si, eliminar!",
+            cancelButtonText: "No, cancelar!",
+            reverseButtons: true
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire(
+                    "Deleted!",
+                    "La estadistica ha sido eliminada.",
+                    "success"
+                ).then(() => {
+                    window.location.href = "../../Controllers/EstadisticasController.php?c=4&id=<?= $row->id ?>";
+                });
+            } else if (result.dismiss === Swal.DismissReason.cancel) {
+                Swal.fire(
+                    "Cancelado",
+                    "Tu estadistica esta a salvo :)",
+                    "error"
+                );
+            }
+        });
+
+        return false;
+    }
+</script>
+
 
 
 <?php

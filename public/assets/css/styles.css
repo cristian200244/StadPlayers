@@ -207,6 +207,30 @@ form .containerTitulo {
   }
 }
 
+.imgVerr {
+
+  background: url(../../assets/img/jugador_11.3.jpg );
+  background-position: center;
+  height: calc(100vh - 85px);
+  margin-left: 0%;
+  margin-right: 0%;
+  padding-left: 0%;
+  padding-right: 0;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  height: 100vw;
+  width: 100%;
+
+}
+
+@media screen and (max-width: 972px) {
+  .imgVerr {
+    height: 100%;
+
+  }
+}
+
 
 
 .imgIngreEstad {

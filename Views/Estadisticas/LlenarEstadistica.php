@@ -24,7 +24,7 @@ $registros = $data->getUltimasEstadisticas();
                             </div>
                         </div>
                         <div class="col-lg-12">
-                            
+
                             <div class="card shadow-lg border-0 rounded-lg mt-5">
                                 <div class="card-header bg-success">
                                     <h3 class="text-center text-light my-4 fs-4">Ingresar Estadistica</h3>
@@ -59,7 +59,15 @@ $registros = $data->getUltimasEstadisticas();
 
                                     <hr class="my-4 border border-5 border-danger">
 
-                                    <a class="btn btn-success" href="../Estadisticas/NuevaEstadistica.php">Crear Nueva Estadistica</a>
+                                    <div class="mt-4 mb-0">
+                                        <div class="d-grid">
+                                            <a class="btn btn-success" href="../Estadisticas/NuevaEstadistica.php">Crear Nueva Estadistica</a>
+                                        </div>
+                                        <br>
+                                        <div class="d-grid">
+                                            <a class="btn btn-primary" href="../Estadisticas/index.php">Guardar y volver a escoger jugador</a>
+                                        </div>
+                                    </div>
 
                                 </div>
                             </div>

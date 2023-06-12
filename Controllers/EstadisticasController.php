@@ -23,6 +23,9 @@ class EstadisticasController
                 case 3:
                     self::stad();
                     break;
+                case 4:
+                    self::delete();
+                    break;
 
 
                 default:
@@ -102,8 +105,10 @@ class EstadisticasController
         $id = $_REQUEST['id'];
         $result = $this->estadistica->delete($id);
         if ($result) {
-            header("Location: ../Views/Estadisticas/index.php");
+            header("Location: ../Views/Estadisticas/VerEstadisticas.php");
             exit();
+        }else{
+            echo "No se pudo eliminar la estadistica, !Intentalo nuevamente";
         }
     }
 }
