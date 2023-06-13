@@ -61,8 +61,8 @@ document.addEventListener("DOMContentLoaded", function (event) {
                             textColor: '#3085d6',
                             imageUrl: 'https://mundoentrenamiento.com/wp-content/uploads/2021/01/big-data-en-el-futbol-moderno.jpg',
                             // icon: 'success',
-                            imageWidth: '80%',
-                            imageHeight: '60%',
+                            imageWidth: '60%',
+                            imageHeight: '40%',
                             imageAlt: 'Custom image',
                             // width: '70%',
                         }).then((result) => {
