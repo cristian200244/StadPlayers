@@ -75,7 +75,7 @@ class JugadorController
     {
 
         $datos = [
-            
+
             'id_jugador' => $_POST['id_jugador'],
             'fecha_inicial' => $_POST['fecha_inicial'],
             'fecha_terminacion' => $_POST['fecha_terminacion'],
@@ -86,11 +86,11 @@ class JugadorController
         $result = $this->jugadorModel->guardar($datos);
 
         if ($result) {
-
-            header("Location: ../views/jugadores/historial.php");
+            $id = $_REQUEST['id_jugador'];
+            header("Location: ../views/jugadores/historial.php?id=$id");
             exit();
         }
-        return $result;
+        return $result; 
     }
 
     public function titulos()
