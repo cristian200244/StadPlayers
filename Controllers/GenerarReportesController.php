@@ -23,8 +23,9 @@ class ReportesController
                     self::Store();
                     break;
                 case 2: //Eliminar
-                    // self::destroy();
-
+                    self::destroy();
+                    var_dump($controlador);
+                    die();
                     break;
                 case 3: //Ver por operacion
                     self::show();
@@ -55,6 +56,18 @@ class ReportesController
 
         $result =  $this->reportesModel->Store($datos);
         header("Location: ../views/Reportes/index.php");
+    }
+
+    public function destroy()
+    {
+        $id = $_REQUEST['id'];
+        // var_dump($id_reporte);
+        // die();
+        $data = $this->reportesModel->destroy($id);
+
+        // if ($data) {
+        //     header("Location: ../views/index.php");
+        // }
     }
     public function show()
     {

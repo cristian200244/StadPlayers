@@ -4,11 +4,11 @@ document.addEventListener("DOMContentLoaded", function (event) {
   let predeterminadas = document.getElementById('EstadisticasPre');
   let arquero = document.getElementById('EstadArquero')
   let id_posicion = document.getElementById('id_posicion').value;
-
+  
   if(!document.getElementById("control")){
-    } else {
-        if(document.getElementById("control").value == 1){
-            OptNuevasEstadisticas.style.display = "block";  
+} else {
+    if(document.getElementById("control").value == 1){
+        OptNuevasEstadisticas.style.display = "none";  
         }
   }
 
@@ -61,8 +61,8 @@ document.addEventListener("DOMContentLoaded", function (event) {
                             textColor: '#3085d6',
                             imageUrl: 'https://mundoentrenamiento.com/wp-content/uploads/2021/01/big-data-en-el-futbol-moderno.jpg',
                             // icon: 'success',
-                            imageWidth: '60%',
-                            imageHeight: '40%',
+                            imageWidth: '70%',
+                            imageHeight: '60%',
                             imageAlt: 'Custom image',
                             // width: '70%',
                         }).then((result) => {
@@ -94,84 +94,47 @@ document.addEventListener("DOMContentLoaded", function (event) {
         }
     }
 
-
-
-    
-  
-    
-
-            
-            
-          
-                    
-          
-         
-
-
-
-
-
-      
    
+    
+function EliminarReporte(id) {
+// alert(id);
 
-// function ConfirmNewUser(id) {
-//     let formulario = document.getElementById('datos');
-//     formulario.submit()
-//    let correo= document.getElementById('email').value
-//    let nickname= document.getElementById('nickname').value
-
-//    let password= document.getElementById('password').value
-// // document.datos.correo= correo
-//    alert(correo);
-//    if (!empty(correo) && !empty(nickname) && !empty(password)){
-
-//        Swal.fire({
-//            title: 'Seguro desea crear este Usuario?',
-//            text: "Podra eliminarlo si lo desea despues!",
-//            icon: 'info',
-//            showCancelButton: true,
-//            confirmButtonColor: '#3085d6',
-//            cancelButtonColor: '#d33',
-//            confirmButtonText: 'Sí, Crear!'
-//         }).then((result) => {
-//             if (result.isConfirmed) {
-//                 $.ajax({
-//                     url: "../../Controllers/UsuarioController.php?c=1&id="+correo+ nickname+password,
-//                     success: function (r) {
-                        
-//                     }
-//                 });
-//             }
-//             return false;
-//         })
-//     }
-      
-//    }
-
-function AlertDelete(id) {
-
-    Swal.fire({
-        title: 'Está seguro de eliminar el registro?',
-        text: "No podrás revertir ésto!",
-        icon: 'question',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Si, eliminar!'
-    }).then((result) => {
-        if (result.isConfirmed) {
-            $.ajax({
-                url: "../Controllers/calculadoraController.php?c=2&id=" + id,
-                success: function (r) {
-                    document.location.reload();
+            Swal.fire({
+                title: '¿Desea eliminar éste reporte?',
+                text: "¡Esta acción será definitiva!",
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Si, eliminar!'
+            })
+            .then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'El Reporte ha sido eliminado definitivamente',
+                        showConfirmButton: false,
+                    })
+                    .then((result) => {
+                        if (result.isConfirmed) {
+                    $.ajax({
+                        url: "../../Controllers/GenerarReportesController.php?c=2&id=" + id,
+                        success: function (r) {
+                            document.location.reload();
+                        }
+                    });
                 }
-            });
+            })
         }
-        return false;
-    });
-
-};
-   
+    
+                
+                return false;
+            }); 
+                timer: 2800
+        }
+        
+     
    
 
 
@@ -179,64 +142,4 @@ function AlertDelete(id) {
 
 
     
-    // }
-
-   
-    // $(function(){
-	// 	$('#register').click(function(e){
-
-	// 		var valid = this.form.checkValidity();
-
-	// 		if(valid){
-
-
-			
-	// 		var correo 		= $('#email').val();
-	// 		var nickname = $('#nickname').val();
-	// 		var password 	= $('#password').val();
-			
-			
-
-	// 			e.preventDefault();	
-
-	// 			$.ajax({
-	// 				type: 'POST',
-    //                 url: "../../Controllers/UsuarioController.php",
-	// 				data: StoreUser(),
-	// 				success: function(data){
-	// 				Swal.fire({
-	// 							'title': '¡Mensaje!',
-	// 							'text': data,
-    //                             'icon': 'success',
-    //                             'showConfirmButton': 'false',
-    //                             'timer': '1500'
-	// 							}).then(function() {
-    //             window.location = "../../index.php";
-    //         });
-							
-	// 				} ,
-                    
-	// 				error: function(data){
-	// 					Swal.fire({
-	// 							'title': 'Error',
-	// 							'text': data,
-	// 							'icon': 'error'
-	// 							})
-	// 				}
-	// 			});
-
-				
-	// 		}else{
-				
-	// 		}
-
-			
-
-
-
-	// 	});		
-
-		
-	// });
     
-   

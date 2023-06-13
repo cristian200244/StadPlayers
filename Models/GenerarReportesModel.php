@@ -40,7 +40,7 @@ class ReportesModel
 
         $this->db = new Database();
 
-
+        $this->id;
         $this->id_usuario = $_SESSION['id'];
         $this->id_reporte;
         $this->id_jugador;
@@ -99,10 +99,10 @@ class ReportesModel
                 $item->id = $row['id'];
                 $item->fechaInicial = $row['fecha_inicial'];
                 $item->fechaFinal = $row['fecha_final'];
-                $item->nombre_completo = $row['nombre_completo'];
-
                 array_push($items, $item);
+                $item->nombre_completo = $row['nombre_completo'];
             }
+
 
             return $items;
         } catch (PDOException $e) {
@@ -135,13 +135,33 @@ class ReportesModel
         }
     }
 
+    public function destroy($id)
+
+    {
+        $getall = new reportesModel();
+        $getall->getAll();
+
+        if ($getall) {
+
+            try {
+                $sql = "DELETE FROM generar_reporte WHERE id=$id";
+                $prepare = $this->db->conect()->prepare($sql);
+                $query = $prepare->execute([]);
 
 
+                if ($query) {
+                    return true;
+                }
+            } catch (PDOException $e) {
+                die($e->getMessage());
+            }
+        }
+    }
     public function getReporteId($id)
     {
         $sql = "SELECT * 
         FROM generar_reporte 
-        WHERE id = $id AND id_usuario =$this->id_usuario";
+        WHERE id = $id AND id_usuario= $this->id_usuario";
 
         try {
             $items = [];
@@ -170,7 +190,7 @@ class ReportesModel
                 JOIN ligas as l ON  j.id_liga = l.id
                 JOIN posiciones as p ON  j.id_posicion = p.id
                 WHERE gr.id = $datosJugador
-        ";
+";
         try {
 
             $query = $this->db->conect()->query($sql);
@@ -211,7 +231,6 @@ class ReportesModel
             $result = $query->fetchColumn();
             $total_minutos = ($result > 0) ? $result : 0;
             return $total_minutos;
-
         } catch (PDOException $e) {
             die($e->getMessage());
         }
@@ -241,7 +260,8 @@ class ReportesModel
     }
 
 
-    public function promedio($promedio){
+    public function promedio($promedio)
+    {
 
         try {
             $params = [];

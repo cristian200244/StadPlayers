@@ -10,6 +10,11 @@ include_once(BASE_DIR . "../../Views/partials/aside.php");
 
 $reportes = new ReportesModel();
 $registros = $reportes->getAll();
+// foreach ($registros as $k => $v) {
+//     print_r($v);
+//     echo "<hr>";
+// }
+
 ?>
 
 <div class="imgGenReport">
@@ -38,6 +43,7 @@ $registros = $reportes->getAll();
                         if (count($registros) > 0) {
                             $pos = 1;
                             foreach ($registros as $registro) {
+
                         ?>
                         <tr>
                             <td><?php echo $pos; ?></td>
@@ -46,17 +52,15 @@ $registros = $reportes->getAll();
                             <td><?php echo $registro->nombre_completo ?></td>
                             <td>
                                 <form action="../../Controllers/GenerarReportesController.php" method="post">
+
+
                                     <input type="hidden" name="c" value="3">
                                     <button type=" submit" name="reporte" value="<?= $registro->id ?>"
                                         class="btn btn-info btn-large">Ver Reporte</button>
 
+                                    <a type="submit" class="btn btn-danger" id="id_reporte"
+                                        onclick="EliminarReporte(<?= $registro->id ?>)">Eliminar</a>
 
-
-
-                                    <!-- <a type="button" href="<?= BASE_URL ?>/Views/Reportes/VerReporteIndividual.php"
-                                        class="btn btn-warning">Editar</a> -->
-                                    <a type="button" href="<?= BASE_URL ?>/Views/Reportes/VerReporteIndividual.php"
-                                        class="btn btn-danger">Eliminar</a>
                                 </form>
                             </td>
                         </tr>

@@ -198,7 +198,7 @@ $DatosJugador = [
                             </div>
 
 
-                            <div class="col-lg-5 ms-3" style="display: none;" id="OptNuevasEstadisticas">
+                            <div class="col-lg-5 ms-3" style="display:none;" id="OptNuevasEstadisticas">
                                 <div class="row ms-3">
                                     <div class="card shadow-lg bg-info me-3 border-warning rounded-lg mt-5  p-2">
                                         <div class="card shadow-lg bg-primary border-0 rounded-lg mt-0 p-3 text-light ">
@@ -212,10 +212,10 @@ $DatosJugador = [
                                             </div>
                                         </div>
                                         <?php
-                                        
+
                                         foreach ($datosReporte as $key => $value) {
                                             if ("nueva_" == substr($key, 0, 6)) {
-                                                
+
                                         ?>
                                                 <div class="col-12 card bg-dark text-light mt-2">
                                                     <ul class="list-group list-group-flush bg-info">
