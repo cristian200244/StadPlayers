@@ -21,29 +21,14 @@ class EstadisticasModel extends stdClass
     public $tipo;
     public $nombre_tipo_partido;
     public $equipo;
-    public $id_usuario;
     private $db;
 
 
     public function __construct()
     {
-
-
         $this->db = new DataBase();
 
     }
-
-    public function getByid()
-    {
-        if (isset($_SESSION['id'])) {
-            $this->id_usuario = $_SESSION['id'];
-            return $this->id_usuario;
-        } else {
-            // Manejar el caso cuando $_SESSION['id'] no está definido
-            return null;
-        }
-    }
-    
 
     public function getId()
     {
@@ -141,7 +126,14 @@ class EstadisticasModel extends stdClass
         }
     }
 
-
+    public function estado()
+    {
+        try {
+            //code...
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
+    }
 
 
     public function getTipoPartido()
@@ -208,13 +200,12 @@ class EstadisticasModel extends stdClass
         $items = [];
 
         try {
-            // $this->id_usuario = $_SESSION['id'];
             $sql = 'SELECT ee.id, ee.fecha_del_partido, tp.nombre AS nombre_tipo_partido, j.nombre_completo AS nombre_jugador, eq.equipo, np.num_partido
             FROM estadisticas_encuentro AS ee
             JOIN tipo_partido AS tp ON ee.id_tipo_partido = tp.id
             JOIN jugadores AS j ON ee.id_jugador = j.id
             JOIN equipos AS eq ON ee.id_equipo = eq.id
-            JOIN numero_partido AS np ON ee.numero_partido = np.id'  ;
+            JOIN numero_partido AS np ON ee.numero_partido = np.id ';
             $query = $this->db->conect()->query($sql);
 
             while ($registro = $query->fetch()) {
@@ -228,8 +219,6 @@ class EstadisticasModel extends stdClass
 
                 array_push($items, $item);
             }
-            // var_dump($item);
-            // die();
 
             return $items;
         } catch (PDOException $e) {
@@ -270,9 +259,10 @@ class EstadisticasModel extends stdClass
     // public function getById()
     // {
     //     $this->id_usuario = $_SESSION['id'];
-
     //     return  $this->id_usuario;
     // }
+
+    
     public function store($datos)
     {
         $fecha_del_partido = $datos['fecha_del_partido'];
@@ -299,9 +289,6 @@ class EstadisticasModel extends stdClass
                 'numero_partido'    => $numero_partido,
                 'id_usuario'        => $id_usuario,
             ]);
-
-            // var_dump($datos);
-            // die();
 
             $lastId = $connection->lastInsertId();
             $this->storeEstadisticasCount($lastId);

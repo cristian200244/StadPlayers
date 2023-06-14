@@ -31,7 +31,7 @@ include_once(BASE_DIR . "../../Views/partials/aside.php");
                                                 </div>
                                             </div>
                                             <div class="col-md-8 mt-3 mx-auto">
-                                                <input class="form-control text-center" type="text" id="nombre" name="nombre">
+                                                <input class="form-control text-center" type="text" id="nombre" name="nombre" autocomplete="off">
                                             </div>
 
                                             <div class="col-md-12 mt-3">
@@ -40,7 +40,7 @@ include_once(BASE_DIR . "../../Views/partials/aside.php");
                                                 </div>
                                             </div>
                                             <div class="col-md-8 mt-3 mx-auto">
-                                                <input class="form-control text-center" type="text" name="descripcion" id="descripcion">
+                                                <input class="form-control text-center" type="text" name="descripcion" id="descripcion" autocomplete="off">
                                             </div>
                                         </div>
                                         <button class="btn btn-warning btn-block text-secondary">Agregar A Las Estadisticas Predeterminadas</button>

@@ -30,19 +30,19 @@ $nPartido = $datos->NumeroPartido();
 <audio id="sound" src="../../public/assets/audio/error.mp3" preload="auto"></audio>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-<div class="imgGen">
+<div class="imgING">
 
     <div class="container my-3">
         <div class="row justify-content-center">
             <div class="col-lg-10">
                 <div class="card shadow-lg border-0 rounded-lg   justify-content-center" style="margin-top: 30%;">
-                    <div class="card-header bg-success text-light">
+                    <div class="card-header bg-danger text-light">
                         <h3 class="text-center font-weight-light fs-1 my-4">Estadisticas</h3>
                     </div>
-                    <div class="card-body text-black" style="background-color:#CFDFE0  ;">
+                    <div class="card-body bg-light text-black">
 
                         <form action="../../Controllers/EstadisticasController.php?c=1" method="POST">
-                            <div class="card d-flex justify-content-around  py-3 px-3">
+                            <div class="card d-flex justify-content-around  py-3 px-3 bg-primary">
                                 <div class="row mb-3 ">
                                     <div class="col-md-6 mt-3 ">
                                         <div class="form-floating  mb-3 mb-md-0 ">
@@ -50,7 +50,7 @@ $nPartido = $datos->NumeroPartido();
                                         </div>
                                     </div>
                                     <div class="form-floating col-md-6">
-                                        <select class="form-select" aria-label="Default select example"
+                                        <select class="form-select text-black" aria-label="Default select example"
                                             name="id_jugador" id="id_jugador">
                                             <option value="" disabled selected>Selecciona una opción</option>
                                             <?php foreach ($jugadores as $jugador) :; ?>
@@ -68,7 +68,7 @@ $nPartido = $datos->NumeroPartido();
                                         </div>
                                     </div>
                                     <div class=" form-floating col-md-6 mt-3">
-                                        <select class="form-select" aria-label="Default select example" name="id_equipo"
+                                        <select class="form-select text-black" aria-label="Default select example" name="id_equipo"
                                             id="id_equipo">
                                             <option value="" disabled selected>Selecciona una opción</option>
                                             <?php foreach ($equipos as $equipo) :; ?>
@@ -86,7 +86,7 @@ $nPartido = $datos->NumeroPartido();
                                         </div>
                                     </div>
                                     <div class=" form-floating col-md-6 mt-3">
-                                        <select class="form-select" aria-label="Default select example"
+                                        <select class="form-select text-black" aria-label="Default select example"
                                             name="id_tipo_partido" id="id_tipo_partido">
                                             <option value="" disabled selected>Selecciona una opción</option>
                                             <?php foreach ($tipoPartido as $tipo) :; ?>
@@ -103,7 +103,7 @@ $nPartido = $datos->NumeroPartido();
                                         </div>
                                     </div>
                                     <div class=" form-floating col-md-6 mt-3">
-                                        <select class="form-select" aria-label="Default select example"
+                                        <select class="form-select text-black" aria-label="Default select example"
                                             name="numero_partido" id="numero_partido">
                                             <option value="" disabled selected>Selecciona una opción</option>
                                             <?php foreach ($nPartido as $numero) :; ?>
@@ -123,7 +123,7 @@ $nPartido = $datos->NumeroPartido();
                                     </div>
                                     <div class=" form-floating col-md-6 mt-3">
                                         <div class="form-floating">
-                                            <input class="form-control" type="date" name="fecha_del_partido"
+                                            <input class="form-control text-black" type="date" name="fecha_del_partido"
                                                 id="fecha_del_partido" />
                                         </div>
 
@@ -136,7 +136,7 @@ $nPartido = $datos->NumeroPartido();
 
                             <div class="mt-4 mb-0">
                                 <div class="d-grid">
-                                    <button class="btn btn-success btn-block" id="submitBtn">Ingresar
+                                    <button class="btn btn-danger btn-block" id="submitBtn">Ingresar
                                         Estadísticas</button>
                                 </div>
                             </div>

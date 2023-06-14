@@ -210,10 +210,9 @@ form .containerTitulo {
   }
 }
 
+.imgING {
 
-.imgGen {
-
-  background: url(../../assets/img/futbol3.jpg.crdownload);
+  background: url(../../assets/img/estadio_3.jpg);
   background-position: center;
   height: calc(100vh - 85px);
   margin-left: 0%;
@@ -229,11 +228,14 @@ form .containerTitulo {
 }
 
 @media screen and (max-width: 972px) {
-  .imgGen {
+  .imgING {
     height: 100%;
 
   }
 }
+
+
+
 
 .imgVer {
 
