@@ -5,6 +5,7 @@ require_once 'conexionModel.php';
 class JugadorModel extends stdClass
 {
     public $id;
+    public $id_usuario;
     public $nombre_completo;
     public $apodo;
     public $fecha;
