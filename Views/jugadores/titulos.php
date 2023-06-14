@@ -80,8 +80,80 @@ $copas = $datos->copas();
                                                 </div>
                                             </div>
                                         </div>
-
                                     </form>
+                                    <a class="btn btn-primary" href="guardar.php?id=<?php echo $id; ?>">Regresar</a>
+                                </div>
+
+                                <div class="container text-center">
+
+                                    <?php
+
+                                    $datos = new JugadorModel();
+                                    $registros = $datos->ObtenerTitulos($id);
+
+                                    ?>
+                                    <div id="layoutAuthentication">
+                                        <div id="layoutAuthentication_content">
+                                            <div class="container">
+
+                                                <div class="row justify-content-center">
+                                                    <div class="col-lg-12">
+                                                        <div class="card shadow-lg border-0 rounded-lg mt-5">
+                                                            <div class="card-header bg-success">
+                                                                <h3 class="text-center text-light my-4 fs-4"> Historial De Equipos</h3>
+                                                            </div>
+                                                            <table class="table">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th scope="col">#</th>
+                                                                        <th scope="col">Jugador</th>
+                                                                        <th scope="col">Equipo</th>
+                                                                        <th scope="col">Copa Ganada</th>
+                                                                        <th scope="col">Fecha del Titulo Ganado</th>
+                                                                        <th scope="col" colspan="2">Opción</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <?php
+                                                                    $pos = 1;
+                                                                    if ($registros) {
+
+                                                                        foreach ($registros as $row) {
+
+                                                                    ?>
+
+                                                                            <tr>
+
+                                                                                <td><?= $pos ?></td>
+                                                                                <td><?= $row->id_jugador ?></td>
+                                                                                <td><?= $row->id_equipo ?></td>
+                                                                                <td><?= $row->id_copa ?></td>
+                                                                                <td><?= $row->fecha ?></td>
+                                                                                <!-- <th scope="col" >Opciones</th> -->
+
+                                                                                <td>
+                                                                                    <a class="btn btn-sm btn-outline-danger" href="../../Controllers/JugadorController.php?c=6&id=<?= $row->getId() ?>">Eliminar</a>
+                                                                                </td>
+                                                                            </tr>
+                                                                        <?php
+                                                                            $pos++;
+                                                                        }
+                                                                    } else {
+                                                                        ?>
+                                                                        <tr class="text-center">
+                                                                            <td colspan="6">Sin datos</td>
+                                                                        </tr>
+                                                                    <?php
+                                                                    }
+                                                                    ?>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -89,74 +161,7 @@ $copas = $datos->copas();
                 </div>
             </div>
         </div>
-    </div>
-    <?php
 
-    $datos = new JugadorModel();
-    $registros = $datos->ObtenerTitulos($id);
-
-    ?>
-    <div id="layoutAuthentication">
-        <div id="layoutAuthentication_content">
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-lg-12">
-                        <div class="card shadow-lg border-0 rounded-lg mt-5">
-                            <div class="card-header bg-success">
-                                <h3 class="text-center text-light my-4 fs-4"> Historial Equipos</h3>
-                            </div>
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">#</th>
-                                        <th scope="col">Jugador</th>
-                                        <th scope="col">Equipo</th>
-                                        <th scope="col">Copa Ganada</th>
-                                        <th scope="col">Fecha del Titulo Ganado</th>
-                                        <th scope="col" colspan="2">Opción</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php
-                                    $pos = 1;
-                                    if ($registros) {
-
-                                        foreach ($registros as $row) {
-
-                                    ?>
-
-                                            <tr>
-
-                                                <td><?= $pos ?></td>
-                                                <td><?= $row->id_jugador ?></td>
-                                                <td><?= $row->id_equipo ?></td>
-                                                <td><?= $row->id_copa ?></td>
-                                                <td><?= $row->fecha ?></td>
-                                                <!-- <th scope="col" >Opciones</th> -->
-
-                                                <td>
-                                                    <a class="btn btn-sm btn-outline-danger" href="../../Controllers/JugadorController.php?c=6&id=<?= $row->getId() ?>">Eliminar</a>
-                                                </td>
-                                            </tr>
-                                        <?php
-                                            $pos++;
-                                        }
-                                    } else {
-                                        ?>
-                                        <tr class="text-center">
-                                            <td colspan="6">Sin datos</td>
-                                        </tr>
-                                    <?php
-                                    }
-                                    ?>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 
 </main>
 <script>
