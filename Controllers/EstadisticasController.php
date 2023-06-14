@@ -10,7 +10,7 @@ class EstadisticasController
 
     public function __construct()
     {
-        session_start();
+        // session_start();
         $this->estadistica = new EstadisticasModel();
 
         if (isset($_REQUEST['c'])) {
