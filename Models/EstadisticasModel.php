@@ -28,33 +28,6 @@ class EstadisticasModel extends stdClass
     }
 
 
-    public function getbyId($id)
-    {
-        var_dump($id);
-        die();
-        $operacion = [];
-
-        try {
-            $sql = "SELECT nombre, valor FROM estadisticas JOIN estadisticas_count WHERE id = $id";
-            $query  = $this->db->conect()->query($sql);
-
-
-            while ($row = $query->fetch()) {
-                $item            = new EstadisticasModel();
-                $item->id        = $row['id'];
-                $item->nombre   = $row['nombre'];
-                $item->valor   = $row['valor'];
-
-                array_push($operacion, $item);
-            }
-
-            return $operacion;
-        } catch (PDOException $e) {
-            die($e->getMessage());
-        }
-    }
-
-
     public function getAll()
     {
         $items = [];
@@ -83,6 +56,9 @@ class EstadisticasModel extends stdClass
     }
 
 
+
+    
+    
 
     public function getNombreCompleto()
     {
@@ -142,6 +118,14 @@ class EstadisticasModel extends stdClass
         }
     }
 
+    public function estado()
+    {
+        try {
+            //code...
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
+    }
 
 
     public function getTipoPartido()
@@ -163,7 +147,7 @@ class EstadisticasModel extends stdClass
                 $item            = new EstadisticasModel();
                 $item->id        = $row['id'];
                 $item->nombre    = $row['nombre'];
-
+                
                 array_push($items, $item);
             }
 
@@ -193,12 +177,73 @@ class EstadisticasModel extends stdClass
                 $item                = new EstadisticasModel();
                 $item->id            = $row['id'];
                 $item->num_partido   = $row['num_partido'];
-
+                
                 array_push($items, $item);
             }
 
             return $items;
         } catch (PDOException  $e) {
+            die($e->getMessage());
+        }
+    }
+
+    public function verStad()
+    {
+        $items = [];
+
+        try {
+            $sql = 'SELECT ee.id, ee.fecha_del_partido, tp.nombre AS nombre_tipo_partido, j.nombre_completo AS nombre_jugador, eq.equipo, np.num_partido
+            FROM estadisticas_encuentro AS ee
+            JOIN tipo_partido AS tp ON ee.id_tipo_partido = tp.id
+            JOIN jugadores AS j ON ee.id_jugador = j.id
+            JOIN equipos AS eq ON ee.id_equipo = eq.id
+            JOIN numero_partido AS np ON ee.numero_partido = np.id ';
+            $query = $this->db->conect()->query($sql);
+
+            while ($registro = $query->fetch()) {
+                $item = new EstadisticasModel();
+                $item->id = $registro['id'];
+                $item->nombre_jugador = $registro['nombre_jugador'];
+                $item->fecha_del_partido = $registro['fecha_del_partido'];
+                $item->equipo = $registro['equipo'];
+                $item->nombre_tipo_partido = $registro['nombre_tipo_partido'];
+                $item->num_partido = $registro['num_partido'];
+
+                array_push($items, $item);
+            }
+
+            return $items;
+        } catch (PDOException $e) {
+            die($e->getMessage());
+        }
+    }
+
+
+    public function verValores($id)
+    {
+        $items = [];
+
+        try {
+            $sql = "SELECT j.nombre_completo AS nombre_jugador, es.nombre AS nombre, ec.valor
+            FROM estadisticas_count AS ec
+            JOIN estadisticas AS es ON ec.id_estadistica = es.id
+            JOIN estadisticas_encuentro AS ee ON ec.id_encuentro_estadistica = ee.id
+            JOIN jugadores AS j ON ee.id_jugador = j.id
+            WHERE ee.id = $id";
+
+            $query = $this->db->conect()->query($sql);
+
+            while ($registro = $query->fetch()) {
+                $item           = new EstadisticasModel();
+                $item->nombre   = $registro['nombre'];
+                $item->valor    = $registro['valor'];
+                $item->nombre_jugador   = $registro['nombre_jugador'];
+
+                array_push($items, $item);
+            }
+
+            return $items;
+        } catch (PDOException $e) {
             die($e->getMessage());
         }
     }
@@ -210,51 +255,166 @@ class EstadisticasModel extends stdClass
         $tipo_partido      = $datos['id_tipo_partido'];
         $jugador           = $datos['id_jugador'];
         $equipo            = $datos['id_equipo'];
-        $equipo_rival      = $datos['equipo_rival'];
         $numero_partido    = $datos['numero_partido'];
 
         try {
-            $sql = "INSERT INTO estadisticas_encuentro (fecha_del_partido, id_tipo_partido, id_jugador, id_equipo, equipo_rival, numero_partido) VALUES (:fecha_del_partido, :id_tipo_partido, :id_jugador, :id_equipo, :equipo_rival, :numero_partido)";
+            $sql = "INSERT INTO estadisticas_encuentro (fecha_del_partido, id_tipo_partido, id_jugador, id_equipo, numero_partido) VALUES (:fecha_del_partido, :id_tipo_partido, :id_jugador, :id_equipo, :numero_partido)";
 
-            $prepare = $this->db->conect()->prepare($sql);
-            $query = $prepare->execute([
+            $connection = $this->db->conect();
+            $prepare = $connection->prepare($sql);
+            $prepare->execute([
                 'fecha_del_partido' => $fecha_del_partido,
                 'id_tipo_partido'   => $tipo_partido,
                 'id_jugador'        => $jugador,
                 'id_equipo'         => $equipo,
-                'equipo_rival'      => $equipo_rival,
                 'numero_partido'    => $numero_partido
             ]);
 
-            if ($query) {
+            $lastId = $connection->lastInsertId();
+            $this->storeEstadisticasCount($lastId);
 
-                return true;
-            }
+            return true;
         } catch (PDOException $e) {
             echo $e->getMessage();
+            return false;
+        }
+    }
 
+    public function stad($datos)
+    {
+        try {
+            $id_posicion = 'SELECT id_posicio FROM jugadores ';
+
+            if ($id_posicion != 1) {
+                $tipo = 0;
+            } else {
+                $tipo = 1;
+            }
+            $sql = "INSERT INTO estadisticas (nombre, descripcion, predeterminada, tipo) VALUES (:nombre, :descripcion, :predeterminada, :tipo) ";
+
+            $connection = $this->db->conect();
+            $prepare = $connection->prepare($sql);
+            $prepare->execute([
+                'nombre' => $datos['nombre'],
+                'descripcion' => $datos['descripcion'],
+                'predeterminada' => 0,
+                'tipo' => $tipo
+            ]);
+
+            return true;
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+            return false;
+        }
+    }
+
+
+    public function getLastId()
+    {
+        try {
+            // Obtener el último id insertado
+            $lastId = $this->db->conect()->lastInsertId();
+            return $lastId;
+        } catch (PDOException $e) {
+            echo $e->getMessage();
             return false;
         }
     }
 
     public function storeEstadisticasCount($lastId)
     {
-        $sql = "INSERT INTO estadisticas_count (id_encuentro) VALUES ($lastId)";
-        $prepare = $this->db->conect()->prepare($sql);
-        $query = $prepare->execute([
-            'id'     =>$lastId['id'],
-        ]);
+        try {
 
-        if ($query) {
+            $id_posicion = $this->db->conect()->query("SELECT id_posicion FROM estadisticas_encuentro AS ee JOIN jugadores AS j ON j.id = ee.id_jugador WHERE ee.id = $lastId")->fetchColumn();
+
+            if ($id_posicion != 1) {
+                $sqlSelect = 'SELECT id, tipo FROM estadisticas WHERE tipo = 0';
+            } else {
+                $sqlSelect = 'SELECT id, tipo FROM estadisticas ORDER BY tipo DESC, id ASC';
+            }
+
+
+
+            $sqlInsert = 'INSERT INTO estadisticas_count (id_encuentro_estadistica, id_estadistica) VALUES (?, ?)';
+
+            // Obtener los datos de la tabla estadisticas
+            $querySelect = $this->db->conect()->query($sqlSelect);
+            $items = $querySelect->fetchAll(PDO::FETCH_ASSOC);
+
+            // Insertar los datos en la tabla estadisticas_count
+            $Insert = $this->db->conect()->prepare($sqlInsert);
+            foreach ($items as $item) {
+                $Insert->execute([
+                    $lastId,
+                    $item['id']
+                ]);
+            }
+
             return true;
-        }else {
+        } catch (PDOException $e) {
+            echo $e->getMessage();
             return false;
         }
-        
-
-        return $query; // Opcionalmente, puedes retornar el resultado de la operación si es necesario
-    
     }
+
+    public function getUltimasEstadisticas()
+    {
+        $items = [];
+
+        try {
+
+
+            $sql = 'SELECT ec.id AS id, e.nombre, e.tipo, ec.valor 
+                    FROM estadisticas_count AS ec
+                    JOIN estadisticas AS e ON e.id = ec.id_estadistica
+                    -- JOIN jugadores AS j ON j.id = ec.jugador_id
+                    WHERE ec.id_encuentro_estadistica = (SELECT MAX(id) FROM estadisticas_encuentro) 
+                    ';
+
+
+
+            $query = $this->db->conect()->prepare($sql);
+
+            $query->execute();
+
+            while ($registro = $query->fetch()) {
+                $item         = new EstadisticasModel();
+                $item->id     = $registro['id'];
+                $item->nombre = $registro['nombre'];
+                $item->valor  = $registro['valor'];
+                $item->tipo   = $registro['tipo'];
+
+                array_push($items, $item);
+            }
+
+            return $items;
+        } catch (PDOException $e) {
+            die($e->getMessage());
+        }
+    }
+
+    function obtenerJugadorId($nombreJugador)
+    {
+        try {
+            $sql = 'SELECT id_posicion FROM jugadores WHERE nombre = :nombre';
+
+            $query = $this->db->conect()->prepare($sql);
+            $query->execute(['nombre' => $nombreJugador]);
+
+            $resultado = $query->fetch();
+
+            if ($resultado) {
+                return $resultado['id_posicion'];
+            } else {
+                return null;
+            }
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+            return null;
+        }
+    }
+
+
 
     public function update($datos)
     {
@@ -279,5 +439,20 @@ class EstadisticasModel extends stdClass
 
     public function delete($id)
     {
+        try { 
+
+
+            $sql = "DELETE FROM estadisticas_encuentro WHERE id = :id";
+            $prepare = $this->db->conect()->prepare($sql);
+            $query = $prepare->execute([
+                'id'   => $id,
+            ]);
+
+            if ($query) {
+                return true;
+            }
+        } catch (PDOException $e) {
+            die($e->getMessage());
+        }
     }
 }

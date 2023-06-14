@@ -9,9 +9,11 @@
             </div>
             <div class="nav">
                 <div class="nav">
-                    <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#jugadores" aria-expanded="false" aria-controls="collapseLayouts">
+                    <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#jugadores"
+                        aria-expanded="false" aria-controls="collapseLayouts">
                         <div class="sb-nav-link-icon">
-                            <i class="fa-solid fa-users-rectangle fa-beat-fade" style="color:#00FFDA; font-size: 18px"></i>
+                            <i class="fa-solid fa-users-rectangle fa-beat-fade"
+                                style="color:#00FFDA; font-size: 18px"></i>
                         </div>
                         <h3>Jugadores</h3>
                         <div class="sb-sidenav-collapse-arrow">
@@ -19,7 +21,8 @@
                         </div>
                     </a>
 
-                    <div class="collapse" id="jugadores" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                    <div class="collapse" id="jugadores" aria-labelledby="headingOne"
+                        data-bs-parent="#sidenavAccordion">
                         <nav class="sb-sidenav-menu-nested nav">
                             <a class="nav-link" href="<?= BASE_URL ?>/Views/jugadores/index.php">
                                 <i class="fa-solid fa-address-book fa-bounce" style="
@@ -42,7 +45,8 @@
                         </nav>
                     </div>
 
-                    <a class="nav-link collapsed" href="" data-bs-toggle="collapse" data-bs-target="#estadisticas" aria-expanded="false" aria-controls="estadisticas">
+                    <a class="nav-link collapsed" href="" data-bs-toggle="collapse" data-bs-target="#estadisticas"
+                        aria-expanded="false" aria-controls="estadisticas">
 
                         <div class="sb-nav-link-icon">
                             <i class="fa-solid fa-address-card fa-beat-fade" style="
@@ -58,7 +62,8 @@
                         </div>
                     </a>
 
-                    <div class="collapse" id="estadisticas" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
+                    <div class="collapse" id="estadisticas" aria-labelledby="headingTwo"
+                        data-bs-parent="#sidenavAccordion">
 
                         <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
 
@@ -89,7 +94,8 @@
                         </nav>
                     </div>
 
-                    <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#reportes" aria-expanded="false" aria-controls="reportes">
+                    <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#reportes"
+                        aria-expanded="false" aria-controls="reportes">
 
                         <div class="sb-nav-link-icon">
                             <i class="fa-solid fa-file-prescription fa-beat" style="
@@ -110,7 +116,7 @@
 
                         <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
                             <div class="sb-sidenav-collapse-arrow">
-                                <a class="nav-link" href="<?= BASE_URL ?>/Views/Reportes/index.php">
+                                <a class="nav-link" href="<?= BASE_URL ?>/Views/Reportes/crear.php">
                                     <i class="fa-solid fa-file-signature fa-shake" style="
                                          color: rgb(255, 244, 31);
                                          font-size: 14px;
@@ -122,20 +128,21 @@
                             </div>
 
                             <div class="sb-sidenav-collapse-arrow">
-                                <a class="nav-link" href="<?= BASE_URL ?>/Views/Reportes/VerReportes.php">
+                                <a class="nav-link" href="<?= BASE_URL ?>/Views/Reportes/index.php">
                                     <i class="fa-solid fa-file-export fa-beat-fade" style="
                                          color: rgb(255, 72, 31);
                                          font-size: 14px;
                                          padding: 5%;
                                        ">
                                     </i>
-                                    <h3>Ver Reporte</h3>
+                                    <h3>Ver Reportes</h3>
                                 </a>
                             </div>
                         </nav>
                     </div>
 
-                    <a class="nav-link collapsed" href="<?= BASE_URL ?>/Views/Estadisticas/VerEstadisticas.php" data-bs-toggle="collapse" data-bs-target="#config" aria-expanded="false" aria-controls="config">
+                    <a class="nav-link collapsed" href="<?= BASE_URL ?>/Views/Estadisticas/VerEstadisticas.php"
+                        data-bs-toggle="collapse" data-bs-target="#config" aria-expanded="false" aria-controls="config">
 
                         <div class="sb-nav-link-icon">
                             <i class="fa-solid fa-rectangle-list fa-flip" style="
@@ -165,13 +172,13 @@
 
 
                             <a class="nav-link" href="">
-                                <i class="fa-solid fa-eye fa-beat-fade" style="
-                                         color: rgb(255, 72, 31);
+                                <i class="fa-solid fa-book fa-beat-fade" style="
+                                         color:#37FF01;
                                          font-size: 14px;
                                          padding: 5%;
                                        ">
                                 </i>
-                                <h3>Otro</h3>
+                                <h3>Manual</h3>
                             </a>
                         </nav>
                     </div>
@@ -186,4 +193,3 @@
     </nav>
 </div>
 <div id="layoutSidenav_content">
-    <main>

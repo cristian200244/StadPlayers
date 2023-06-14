@@ -45,8 +45,7 @@ include_once(__DIR__ . "../../../config/rutas.php");
         </div>
 
     </nav>
-
-    <section class="vh-110" style="background-color:#48C9B0;">
+    <div class="ImgCrearUsuario">
         <div class="container py-5 px-5 h-10 mt-0">
             <div class="row d-flex justify-content-center align-items-center h-100">
                 <div class="col-12 col-md-8 col-lg-6 col-xl-5">
@@ -62,22 +61,26 @@ include_once(__DIR__ . "../../../config/rutas.php");
                             </p>
                             <br><br> <br>
                             </strong>
-                            <form action="../../Controllers/UsuarioController.php" method="POST">
-                                <input type="hidden" name="c" value="1">
+                            <!-- ../../Controllers/UsuarioController.php -->
+                            <form id="datos">
+                                <!-- <input type="hidden" name="c" value="1"> -->
                                 <div class="form-group mb-2 px-2">
-                                    <input type="email" name="email" class="form-control form-control-lg" />
+                                    <input type="email" id="email" value=" " name="email" placeholder="Correo"
+                                        class="form-control form-control-lg" />
                                     <strong><label class="form-label" for="typeEmailX-2" style=" color:#9bdaff;">Ingresa
                                             un
                                             Correo</label></strong>
                                 </div>
                                 <div class="form-group mb-4">
-                                    <input class="form-control form-control-lg" type="text" name="nickname">
-                                    <strong><label class="form-label" for="email-2"
+                                    <input class="form-control form-control-lg" id="nickname" value=""
+                                        placeholder="Nickname" type="text" name="nickname">
+                                    <strong><label class="form-label" for="nickname"
                                             style="font-family:Russo One; color:#9bdaff;">Nickname</label></strong>
                                 </div>
 
                                 <div class="form-outline mb-2 px-2">
-                                    <input type="password" name="password" class="form-control form-control-lg" />
+                                    <input type="password" id="password" value="" name="password"
+                                        placeholder="Contraseña" class="form-control form-control-lg" />
                                     <strong> <label class="form-label" for="typePasswordX-2"
                                             style="font-family:Russo One; color:#9bdaff;">Elige una
                                             Contraseña</label></strong>
@@ -88,8 +91,8 @@ include_once(__DIR__ . "../../../config/rutas.php");
                                         style="font-family:Russo One; color:#9bdaff;">Confirma tu
                                         Contraseña</label></strong>
                             </div> -->
-                                <input type="submit" value="Crear" onclick="AlertaConfirmNewUser( )" id="register"
-                                    class="btn btn-outline-light">
+                                <input type="submit" class="btn btn-outline-light btn-lg px-2 fs-5" value="Enviar">
+                                </input>
 
                                 <!-- <a href="../../index.php" class="btn btn-danger">Cancelar</a> -->
                                 <!-- <div class="BotonIniciarSesion">
@@ -107,8 +110,8 @@ include_once(__DIR__ . "../../../config/rutas.php");
                 </div>
             </div>
         </div>
-    </section>
-
+        </section>
+    </div>
     <?php
-    include_once(BASE_DIR . "../../Views/main/footer.php");
+    include_once("../../Views/partials/footer.php");
     ?>
