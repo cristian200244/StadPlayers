@@ -19,19 +19,19 @@ $registros = $data->getUltimasEstadisticas();
                 <div class="container py-4">
                     <div class="row justify-content-center">
                         <div class="row pt-5 mt-5">
-                            <div class="col text-secondary">
+                            <div class="col text-info">
                                 <h1>¡Bienvenido! Ahora Podrá ingresar sus estadísticas</h1>
                             </div>
                         </div>
                         <div class="col-lg-12">
 
                             <div class="card shadow-lg border-0 rounded-lg mt-5">
-                                <div class="card-header bg-success">
+                                <div class="card-header bg-black text-info">
                                     <h3 class="text-center text-light my-4 fs-4">Ingresar Estadistica</h3>
                                 </div>
-                                <div class="card-body">
+                                <div class="card-body text-black" style="background-color:#FFA177  ">
 
-                                    <div class="row mb-3">
+                                    <div class=" row mb-3">
                                         <?php
                                         if ($registros) {
                                             foreach ($registros as $registro) { ?>
