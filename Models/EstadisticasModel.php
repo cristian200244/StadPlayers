@@ -3,7 +3,7 @@
 require_once __DIR__ . '../../config/config_example.php';
 require_once 'conexionModel.php';
 
-
+// session_start();
 
 class EstadisticasModel extends stdClass
 {
@@ -14,13 +14,27 @@ class EstadisticasModel extends stdClass
     public $valor;
     public $nombre_completo;
     public $equipo;
+    public $id_usuario;
     private $db;
 
 
     public function __construct()
     {
         $this->db = new DataBase();
+
     }
+
+    public function getByid()
+    {
+        if (isset($_SESSION['id'])) {
+            $this->id_usuario = $_SESSION['id'];
+            return $this->id_usuario;
+        } else {
+            // Manejar el caso cuando $_SESSION['id'] no está definido
+            return null;
+        }
+    }
+    
 
     public function getId()
     {
@@ -118,14 +132,7 @@ class EstadisticasModel extends stdClass
         }
     }
 
-    public function estado()
-    {
-        try {
-            //code...
-        } catch (\Throwable $th) {
-            //throw $th;
-        }
-    }
+
 
 
     public function getTipoPartido()
@@ -192,12 +199,13 @@ class EstadisticasModel extends stdClass
         $items = [];
 
         try {
+            // $this->id_usuario = $_SESSION['id'];
             $sql = 'SELECT ee.id, ee.fecha_del_partido, tp.nombre AS nombre_tipo_partido, j.nombre_completo AS nombre_jugador, eq.equipo, np.num_partido
             FROM estadisticas_encuentro AS ee
             JOIN tipo_partido AS tp ON ee.id_tipo_partido = tp.id
             JOIN jugadores AS j ON ee.id_jugador = j.id
             JOIN equipos AS eq ON ee.id_equipo = eq.id
-            JOIN numero_partido AS np ON ee.numero_partido = np.id ';
+            JOIN numero_partido AS np ON ee.numero_partido = np.id'  ;
             $query = $this->db->conect()->query($sql);
 
             while ($registro = $query->fetch()) {
@@ -211,6 +219,8 @@ class EstadisticasModel extends stdClass
 
                 array_push($items, $item);
             }
+            // var_dump($item);
+            // die();
 
             return $items;
         } catch (PDOException $e) {
@@ -251,15 +261,18 @@ class EstadisticasModel extends stdClass
 
     public function store($datos)
     {
-        $fecha_del_partido = $datos['fecha_del_partido'];
-        $tipo_partido      = $datos['id_tipo_partido'];
-        $jugador           = $datos['id_jugador'];
-        $equipo            = $datos['id_equipo'];
-        $numero_partido    = $datos['numero_partido'];
-
+        $fecha_del_partido = isset($datos['fecha_del_partido']) ? $datos['fecha_del_partido'] : null;
+        $tipo_partido      = isset($datos['id_tipo_partido']) ? $datos['id_tipo_partido'] : null;
+        $jugador           = isset($datos['id_jugador']) ? $datos['id_jugador'] : null;
+        $equipo            = isset($datos['id_equipo']) ? $datos['id_equipo'] : null;
+        $numero_partido    = isset($datos['numero_partido']) ? $datos['numero_partido'] : null;
+        $id_usuario        = isset($_SESSION['id']) ? $_SESSION['id'] : null;
+        
+        
+        
         try {
-            $sql = "INSERT INTO estadisticas_encuentro (fecha_del_partido, id_tipo_partido, id_jugador, id_equipo, numero_partido) VALUES (:fecha_del_partido, :id_tipo_partido, :id_jugador, :id_equipo, :numero_partido)";
-
+            $sql = "INSERT INTO estadisticas_encuentro (fecha_del_partido, id_tipo_partido, id_jugador, id_equipo, numero_partido, id_usuario) VALUES (:fecha_del_partido, :id_tipo_partido, :id_jugador, :id_equipo, :numero_partido, :id_usuario)";
+            
             $connection = $this->db->conect();
             $prepare = $connection->prepare($sql);
             $prepare->execute([
@@ -267,8 +280,12 @@ class EstadisticasModel extends stdClass
                 'id_tipo_partido'   => $tipo_partido,
                 'id_jugador'        => $jugador,
                 'id_equipo'         => $equipo,
-                'numero_partido'    => $numero_partido
+                'numero_partido'    => $numero_partido,
+                'id_usuario'        => $id_usuario
             ]);
+
+            // var_dump($datos);
+            // die();
 
             $lastId = $connection->lastInsertId();
             $this->storeEstadisticasCount($lastId);

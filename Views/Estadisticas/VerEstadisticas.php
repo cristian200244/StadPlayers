@@ -19,7 +19,7 @@ $registros = $data->verStad();
             </div>
         </div>
     </div>
-</div>
+
 
     <div class="container mt-5">
         <div class="row pt-5">
@@ -57,7 +57,7 @@ $registros = $data->verStad();
                                     </td>
                                 </tr>
                             <?php
-                            $pos ++;
+                                $pos++;
                             }
                         } else {
                             ?>
@@ -75,8 +75,6 @@ $registros = $data->verStad();
     </div>
 </div>
 
-
-</div>
 
 <script>
     function alerta() {
