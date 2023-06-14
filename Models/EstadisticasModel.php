@@ -9,10 +9,17 @@ class EstadisticasModel extends stdClass
 {
 
 
+
     public $id;
+    public $id_usuario;
     public $nombre;
+    public $num_partido;
     public $valor;
     public $nombre_completo;
+    public $nombre_jugador;
+    public $fecha_del_partido;
+    public $tipo;
+    public $nombre_tipo_partido;
     public $equipo;
     public $id_usuario;
     private $db;
@@ -20,6 +27,8 @@ class EstadisticasModel extends stdClass
 
     public function __construct()
     {
+
+
         $this->db = new DataBase();
 
     }
@@ -71,8 +80,8 @@ class EstadisticasModel extends stdClass
 
 
 
-    
-    
+
+
 
     public function getNombreCompleto()
     {
@@ -154,7 +163,7 @@ class EstadisticasModel extends stdClass
                 $item            = new EstadisticasModel();
                 $item->id        = $row['id'];
                 $item->nombre    = $row['nombre'];
-                
+
                 array_push($items, $item);
             }
 
@@ -184,7 +193,7 @@ class EstadisticasModel extends stdClass
                 $item                = new EstadisticasModel();
                 $item->id            = $row['id'];
                 $item->num_partido   = $row['num_partido'];
-                
+
                 array_push($items, $item);
             }
 
@@ -258,21 +267,28 @@ class EstadisticasModel extends stdClass
         }
     }
 
+    // public function getById()
+    // {
+    //     $this->id_usuario = $_SESSION['id'];
 
+    //     return  $this->id_usuario;
+    // }
     public function store($datos)
     {
-        $fecha_del_partido = isset($datos['fecha_del_partido']) ? $datos['fecha_del_partido'] : null;
-        $tipo_partido      = isset($datos['id_tipo_partido']) ? $datos['id_tipo_partido'] : null;
-        $jugador           = isset($datos['id_jugador']) ? $datos['id_jugador'] : null;
-        $equipo            = isset($datos['id_equipo']) ? $datos['id_equipo'] : null;
-        $numero_partido    = isset($datos['numero_partido']) ? $datos['numero_partido'] : null;
-        $id_usuario        = isset($_SESSION['id']) ? $_SESSION['id'] : null;
-        
-        
-        
+        $fecha_del_partido = $datos['fecha_del_partido'];
+        $tipo_partido      = $datos['id_tipo_partido'];
+        $jugador           = $datos['id_jugador'];
+        $equipo            = $datos['id_equipo'];
+        $numero_partido    = $datos['numero_partido'];
+        $id_usuario        = $_SESSION['id'];
+
+
+        // var_dump($datos);
+        // die();
+
         try {
-            $sql = "INSERT INTO estadisticas_encuentro (fecha_del_partido, id_tipo_partido, id_jugador, id_equipo, numero_partido, id_usuario) VALUES (:fecha_del_partido, :id_tipo_partido, :id_jugador, :id_equipo, :numero_partido, :id_usuario)";
-            
+            $sql = "INSERT INTO estadisticas_encuentro (fecha_del_partido, id_tipo_partido, id_jugador, id_equipo, numero_partido,id_usuario) VALUES (:fecha_del_partido, :id_tipo_partido, :id_jugador, :id_equipo, :numero_partido,:id_usuario)";
+
             $connection = $this->db->conect();
             $prepare = $connection->prepare($sql);
             $prepare->execute([
@@ -281,7 +297,7 @@ class EstadisticasModel extends stdClass
                 'id_jugador'        => $jugador,
                 'id_equipo'         => $equipo,
                 'numero_partido'    => $numero_partido,
-                'id_usuario'        => $id_usuario
+                'id_usuario'        => $id_usuario,
             ]);
 
             // var_dump($datos);
@@ -456,7 +472,7 @@ class EstadisticasModel extends stdClass
 
     public function delete($id)
     {
-        try { 
+        try {
 
 
             $sql = "DELETE FROM estadisticas_encuentro WHERE id = :id";

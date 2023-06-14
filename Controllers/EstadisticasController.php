@@ -1,7 +1,8 @@
 <?php
 
 require_once '../Models/EstadisticasModel.php';
-
+session_start();
+$estadistica = new EstadisticasController;
 
 $estadistica = new EstadisticasController;
 class EstadisticasController
@@ -47,19 +48,20 @@ class EstadisticasController
 
     public function store()
     {
-        $datos = new EstadisticasModel();
-        $id_usuario = $datos->getByid();    
-
-        // $id_usuario = $_SESSION['id'];
+        $id = new EstadisticasModel;
+        // $usuario = $id->getById();
+        $usuario = $_SESSION['id'];
         $datos = [
             'id_jugador'        => $_REQUEST['id_jugador'],
             'fecha_del_partido' => $_REQUEST['fecha_del_partido'],
             'id_tipo_partido'   => $_REQUEST['id_tipo_partido'],
             'id_equipo'         => $_REQUEST['id_equipo'],
             'numero_partido'    => $_REQUEST['numero_partido'],
-            'id_usuario'        => $id_usuario,
-        ];
+            'id_usuario'    =>  $usuario,
 
+        ];
+        // var_dump($datos);
+        // die();
         $result = $this->estadistica->store($datos);
 
         if ($result) {
