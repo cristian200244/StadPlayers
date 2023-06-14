@@ -161,7 +161,7 @@ form .containerTitulo {
 }
 .imgMenuPrincipal {
 
-  background: url(../../assets/img/laliga-header-logo-1600x900-1.jpg);
+  background: url(../../assets/img/stad_photo.jpg);
   height: calc(100vh - 85px);
   margin-left: 0%;
   margin-right: 0%;
@@ -210,10 +210,34 @@ form .containerTitulo {
   }
 }
 
+.imgRepIndividual {
+
+  background: url(../../assets/img/VerReporInd.jpg);
+  background-position: center;
+  height: calc(100vh - 85px);
+  margin-left: 0%;
+  margin-right: 0%;
+  padding-left: 0%;
+  padding-right: 0;
+  margin-top: auto;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  height: 200vw;
+  width: 100%;
+
+}
+
+@media screen and (max-width: 972px) {
+  .imgRepIndividual {
+    height: 120%;
+
+  }
+}
 
 .imgGen {
 
-  background: url(../../assets/img/futbol3.jpg.crdownload);
+  background: url(../../assets/img/generarEst.png);
   background-position: center;
   height: calc(100vh - 85px);
   margin-left: 0%;
@@ -287,7 +311,7 @@ form .containerTitulo {
 
 .imgIngreEstad {
 
-  background: url(../../assets/img/reportes6.png);
+  background: url(../../assets/img/ingreEstad.jpg);
   background-position: center;
   height: calc(100vh - 85px);
   margin-left: 0%;
@@ -298,7 +322,7 @@ form .containerTitulo {
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
-  height: 100vw;
+  height: 150vw;
   width: 100%;
 
 

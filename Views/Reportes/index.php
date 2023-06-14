@@ -19,14 +19,14 @@ $registros = $reportes->getAll();
 
 <div class="imgGenReport">
     <main>
-        <div class="card mb-4 p-3 ms-5 me-5 bg-white" style="margin-top:15%">
-            <div class="card-header bg-success text-light text-center mt-3 p-3 ms-3 me-3">
+        <div class="card mb-4 p-3 ms-5 me-5" style=" margin-top:15%; background-color:#FF785D;">
+            <div class="card-header bg-black text-info text-lg-center mt-3 p-4 ">
                 <i class="fas fa-table me-1"></i>
                 Historial De Reportes Del Usuario
             </div>
-            <div class="card-body text-success">
+            <div class="card-body text-black" style="background-color:#CFDFE0  ;">
 
-                <table id="datatablesSimple" class="text-success ">
+                <table id="datatablesSimple" class="text-black ">
                     <thead>
                         <tr>
                             <th scope="col">#</th>
