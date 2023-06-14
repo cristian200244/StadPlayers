@@ -138,6 +138,18 @@ $copas          = $datos->copas();
 
 
                                                     </div>
+                                                    <div class="container">
+                                                        <div class="row justify-content-center">
+                                                            <div class="col-md-6 mt-5">
+                                                                <a href="verjugadores.php" class="btn btn-primary btn-block">Ver Jugadores</a>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row justify-content-center">
+                                                            <div class="col-md-6 mt-5">
+                                                                <a href="index.php" class="btn btn-primary btn-block">Crear Jugador</a>
+                                                            </div>
+                                                        </div>                                                        
+                                                    </div>
                                                 </div>
 
 
