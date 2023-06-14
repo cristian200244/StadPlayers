@@ -46,13 +46,7 @@ $copas          = $datos->copas();
                                     if ($registros) {
                                         foreach ($registros as $row) { ?>
                                             <!-- div para la imagen -->
-                                            <div class="row ms-2">
-                                                <div class="col-2">
-                                                    <div class="card" style="width: 18rem;">
-                                                        <img src="..." class="card-img-top" alt="...">
-                                                    </div>
-                                                </div>
-                                            </div>
+                                        
                                             <div class="mb-3">
                                                 <div class="row">
                                                     <div class="col-4">
@@ -340,4 +334,3 @@ $copas          = $datos->copas();
 include_once(BASE_DIR . "../../Views/partials/footer.php");
 ?>
 
-<

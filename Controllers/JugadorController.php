@@ -1,5 +1,6 @@
 <?php
 require_once '../Models/JugadorModel.php';
+session_start();
 
 $jugadorController = new JugadorController();
 
@@ -48,6 +49,7 @@ class JugadorController
 
     public function store()
     {
+        $usuario = $_SESSION['id'];
         $datos = [
             'nombre_completo' => $_POST['nombre_completo'],
             'apodo' => $_POST['apodo'],
@@ -58,7 +60,8 @@ class JugadorController
             'id_pais' => $_POST['id_pais'],
             'id_contiente' => $_POST['id_contiente'],
             'id_posicion' => $_POST['id_posicion'],
-            'id_perfil' => $_POST['id_perfil']
+            'id_perfil' => $_POST['id_perfil'],
+            'id_usuario' => $usuario
         ];
 
         $result = $this->jugadorModel->store($datos);
