@@ -77,6 +77,12 @@ $jugadores = $datos->jugadores();
                                         </div>
 
                                     </form>
+                                    <div class="mt-4 mb-0">
+                                        <div class="d-grid">
+                                            <a class="btn btn-primary btn-block" href="guardar.php?id=<?php echo $id; ?>">Regresar</a>
+                                        </div>
+                                    </div>
+
 
                                     <div class="container text-center">
                                         <?php
