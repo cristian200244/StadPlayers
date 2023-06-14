@@ -210,6 +210,81 @@ form .containerTitulo {
   }
 }
 
+
+.imgGen {
+
+  background: url(../../assets/img/futbol3.jpg.crdownload);
+  background-position: center;
+  height: calc(100vh - 85px);
+  margin-left: 0%;
+  margin-right: 0%;
+  padding-left: 0%;
+  padding-right: 0;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  height: 100vw;
+  width: 100%;
+
+}
+
+@media screen and (max-width: 972px) {
+  .imgGen {
+    height: 100%;
+
+  }
+}
+
+.imgVer {
+
+  background: url(../../assets/img/futbol2.jpg);
+  background-position: center;
+  height: calc(100vh - 85px);
+  margin-left: 0%;
+  margin-right: 0%;
+  padding-left: 0%;
+  padding-right: 0;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  height: 100vw;
+  width: 100%;
+
+}
+
+@media screen and (max-width: 972px) {
+  .imgVer {
+    height: 100%;
+
+  }
+}
+
+.imgVerr {
+
+  background: url(../../assets/img/jugador_11.3.jpg );
+  background-position: center;
+  height: calc(100vh - 85px);
+  margin-left: 0%;
+  margin-right: 0%;
+  padding-left: 0%;
+  padding-right: 0;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  height: 100vw;
+  width: 100%;
+
+}
+
+@media screen and (max-width: 972px) {
+  .imgVerr {
+    height: 100%;
+
+  }
+}
+
+
+
 .imgIngreEstad {
 
   background: url(../../assets/img/reportes6.png);
@@ -231,37 +306,11 @@ form .containerTitulo {
 
 @media screen and (max-width: 972px) {
   .imgIngreEstad {
-    height: 120%;
+    height: 100%;
 
   }
 }
 
-.imgReporteIndividual {
-
-  background: url(../../assets/img/reporteIndividual.jpg);
-  background-position: center;
-  height: calc(100vh - 85px);
-  margin-left: 0%;
-  margin-right: 0%;
-  margin-bottom: 0%;
-  padding-left: 0%;
-  padding-right: 0;
-  margin-top: auto;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-size: cover;
-  height: 200vw;
-  width: 100%;
-
-
-}
-
-@media screen and (max-width: 972px) {
-  .imgReporteIndividual {
-    height: 120%;
-
-  }
-}
 .menu_Principal {
 
   margin-top: 20%;
@@ -13237,3 +13286,4 @@ body {
   font-size: 0.75rem;
   border-radius: 0.375rem !important;
 }
+
