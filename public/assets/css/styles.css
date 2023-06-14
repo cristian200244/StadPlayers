@@ -161,6 +161,89 @@ form .containerTitulo {
   }
 }
 
+.ImgJUGADOR {
+
+  background: url(../../assets/img/crearjugador.jpg);
+  background-position: center;
+  height: calc(100vh - 85px);
+  margin-left: 0%;
+  margin-right: 0%;
+  margin-bottom: 0%;
+  padding-left: 0%;
+  padding-right: 0;
+  margin-top: auto;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  height: 100vw;
+  width: 100%;
+
+
+}
+
+@media screen and (max-width: 972px) {
+  .ImgJUGADOR {
+    height: 120%;
+
+  }
+}
+
+
+.Imgverjugador {
+
+  background: url(../../assets/img/verjugador.jpg);
+  background-position: center;
+  height: calc(100vh - 85px);
+  margin-left: 0%;
+  margin-right: 0%;
+  margin-bottom: 0%;
+  padding-left: 0%;
+  padding-right: 0;
+  margin-top: auto;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  height: 100vw;
+  width: 100%;
+
+
+}
+
+@media screen and (max-width: 972px) {
+  .Imgverjugador {
+    height: 120%;
+
+  }
+}
+
+
+.Imginspeccionar {
+
+  background: url(../../assets/img/inspeccionar.jpg);
+  background-position: center;
+  height: calc(100vh - 85px);
+  margin-left: 0%;
+  margin-right: 0%;
+  margin-bottom: 0%;
+  padding-left: 0%;
+  padding-right: 0;
+  margin-top: auto;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  height: 100vw;
+  width: 100%;
+
+
+}
+
+@media screen and (max-width: 972px) {
+  .Imginspeccionar {
+    height: 120%;
+
+  }
+}
+
 .imgMenuPrincipal {
 
   background: url(../../assets/img/laliga-header-logo-1600x900-1.jpg);
