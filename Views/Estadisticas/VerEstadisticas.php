@@ -19,7 +19,7 @@ $registros = $data->verStad();
             </div>
         </div>
     </div>
-</div>
+
 
     <div class="container mt-5">
         <div class="row pt-5">
@@ -42,28 +42,42 @@ $registros = $data->verStad();
                         if ($registros) {
                             foreach ($registros as $row) {
                         ?>
-                                <tr>
-                                    <td><?= $pos ?></td>
-                                    <td><?= $row->nombre_jugador ?></td>
-                                    <td><?= $row->fecha_del_partido ?></td>
-                                    <td><?= $row->nombre_tipo_partido ?></td>
-                                    <td><?= $row->num_partido ?></td>
-                                    <td><?= $row->equipo ?></td>
-                                    <td>
-                                        <a class="btn btn-warning" href="../Estadisticas/ver.php?id=<?= $row->id ?>">Ver</a>
+                        <tr>
+                            <td>
+                                <?= $pos ?>
+                            </td>
+                            <td>
+                                <?= $row->nombre_jugador ?>
+                            </td>
+                            <td>
+                                <?= $row->fecha_del_partido ?>
+                            </td>
+                            <td>
+                                <?= $row->nombre_tipo_partido ?>
+                            </td>
+                            <td>
+                                <?= $row->num_partido ?>
+                            </td>
+                            <td>
+                                <?= $row->equipo ?>
+                            </td>
+                            <td>
+                                <a class="btn btn-warning" href="../Estadisticas/ver.php?id=<?= $row->id ?>">Ver</a>
 
-                                        <a class="btn btn-danger" id="deleteJu" href="../../Controllers/EstadisticasController.php?c=4&id=<?= $row->id ?> " onclick="return alerta();">Eliminar</a>
+                                <a class="btn btn-danger" id="deleteJu"
+                                    href="../../Controllers/EstadisticasController.php?c=4&id=<?= $row->id ?> "
+                                    onclick="return alerta();">Eliminar</a>
 
-                                    </td>
-                                </tr>
-                            <?php
-                            $pos ++;
+                            </td>
+                        </tr>
+                        <?php
+                                $pos++;
                             }
                         } else {
                             ?>
-                            <tr>
-                                <td colspan="7">No se encontraron registros</td>
-                            </tr>
+                        <tr>
+                            <td colspan="7">No se encontraron registros</td>
+                        </tr>
                         <?php
                         }
                         ?>
@@ -76,38 +90,39 @@ $registros = $data->verStad();
 </div>
 
 
-</div>
+
 
 <script>
-    function alerta() {
-        Swal.fire({
-            title: "Estas seguro?",
-            text: "Una vez eliminado, ¡no podrá recuperar este archivo!",
-            icon: "warning",
-            showCancelButton: true,
-            confirmButtonText: "Si, eliminar!",
-            cancelButtonText: "No, cancelar!",
-            reverseButtons: true
-        }).then((result) => {
-            if (result.isConfirmed) {
-                Swal.fire(
-                    "Deleted!",
-                    "La estadistica ha sido eliminada.",
-                    "success"
-                ).then(() => {
-                    window.location.href = "../../Controllers/EstadisticasController.php?c=4&id=<?= $row->id ?>";
-                });
-            } else if (result.dismiss === Swal.DismissReason.cancel) {
-                Swal.fire(
-                    "Cancelado",
-                    "Tu estadistica esta a salvo :)",
-                    "error"
-                );
-            }
-        });
+function alerta() {
+    Swal.fire({
+        title: "Estas seguro?",
+        text: "Una vez eliminado, ¡no podrá recuperar este archivo!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Si, eliminar!",
+        cancelButtonText: "No, cancelar!",
+        reverseButtons: true
+    }).then((result) => {
+        if (result.isConfirmed) {
+            Swal.fire(
+                "Deleted!",
+                "La estadistica ha sido eliminada.",
+                "success"
+            ).then(() => {
+                window.location.href =
+                    "../../Controllers/EstadisticasController.php?c=4&id=<?= $row->id ?>";
+            });
+        } else if (result.dismiss === Swal.DismissReason.cancel) {
+            Swal.fire(
+                "Cancelado",
+                "Tu estadistica esta a salvo :)",
+                "error"
+            );
+        }
+    });
 
-        return false;
-    }
+    return false;
+}
 </script>
 
 

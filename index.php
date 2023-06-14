@@ -1,7 +1,7 @@
 <?php
 include_once(__DIR__ . "../config/rutas.php");
+session_start();
 ?>
-
 
 <!DOCTYPE html>
 <html lang="es">

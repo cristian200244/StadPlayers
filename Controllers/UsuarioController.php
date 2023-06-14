@@ -56,16 +56,13 @@ class UsuarioController
 
   public function InciarSesion()
   {
-    //Lo que llega por REQUEST
+
     $datos = [
       'email' => $_REQUEST['email'],
       'password' => $_REQUEST['password'],
     ];
 
     if (empty($datos['email']) || empty($datos['password'])) {
-
-      return $mensaje = "Nombre de Usuario o contraseña vacio";
-      // echo '<div class="alert-danger"> </div>';
     } else {
       $results = $this->usuarioModel->getUser($datos);
 
@@ -73,14 +70,14 @@ class UsuarioController
         session_start();
 
         $_SESSION['id'] = $results['id'];
-        $_SESSION['nickname'] = $results['nickname'];
         $_SESSION['email'] = $results['email'];
+        $_SESSION['password'] = $results['password'];
 
-        $message = '¡Bienvenido!';
-        header('Location:../Views/main/MenuPrincipal.php');
+
+        header('Location: ../Views/main/MenuPrincipal.php');
       } else {
-        $message = '¡Lo sentimos! Los datos ingresados no concuerdan' . '<br>' .
-          '<div class="alert-danger"> ¡Error al Digtar o Usuario no existe!</div>';
+
+        echo "la loca de kevin tenia razón";
       }
     }
   }
