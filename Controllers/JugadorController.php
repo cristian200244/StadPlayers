@@ -29,10 +29,10 @@ class JugadorController
                     $this->guardar();
                     break;
                 case 6:
-                    $this->BorrarHistorial();
+                    $this->titulos();
                     break;
                 case 7:
-                    $this->titulos();
+                    $this->BorrarHistorial();
                     break;
                 default:
                     $this->index();
@@ -90,7 +90,7 @@ class JugadorController
             header("Location: ../views/jugadores/historial.php?id=$id");
             exit();
         }
-        return $result; 
+        return $result;
     }
 
     public function titulos()
@@ -107,8 +107,8 @@ class JugadorController
         $result = $this->jugadorModel->titulos($datos);
 
         if ($result) {
-
-            header("Location: ../views/jugadores/titulos.php");
+            $id = $_REQUEST['id_jugador'];
+            header("Location: ../views/jugadores/titulos.php?id=$id");
             exit();
         }
         return $result;

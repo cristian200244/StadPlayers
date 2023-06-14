@@ -230,10 +230,9 @@ $copas          = $datos->copas();
     <?php
 
     $datos = new JugadorModel();
-    $registros = $datos->getTitulos($id);
+    $registros = $datos->ObtenerTitulos($id);
 
     $equipos = $datos->equipos();
-    $jugadores = $datos->jugadores();
     $copas = $datos->copas();
     ?>
 
@@ -334,6 +333,4 @@ $copas          = $datos->copas();
 include_once(BASE_DIR . "../../Views/partials/footer.php");
 ?>
 
-<div class="col-md-6 mt-3 text-success">
-    <button class="btn btn-sm btn-outline-warning" id="btnAgregarHistorial">Añadir Historial</button>
-</div>
+<
