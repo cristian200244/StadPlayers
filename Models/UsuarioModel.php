@@ -50,13 +50,15 @@ class UsuarioModel
     {
         try {
 
-            $sql = 'SELECT id, email, nickname FROM usuarios WHERE email = :email AND password = :password';
+            $sql = 'SELECT id, Email, password FROM usuarios WHERE Email = :email AND password = :password';
+
             $query = $this->db->conect()->prepare($sql);
             $query->bindParam(':email', $_POST['email']);
             $query->bindParam(':password', $_POST['password']);
             $query->execute();
-
             $results = $query->fetch(PDO::FETCH_ASSOC);
+            // var_dump($results);
+            // die();
 
             return $results;
         } catch (PDOException $e) {

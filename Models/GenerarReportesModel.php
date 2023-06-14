@@ -79,9 +79,7 @@ class ReportesModel
     public function getById()
     {
         $this->id_usuario = $_SESSION['id'];
-        return $this->id_usuario; # code...
     }
-
     public function getAll()
     {
 
