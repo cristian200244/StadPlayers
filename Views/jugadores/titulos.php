@@ -95,11 +95,12 @@ $copas = $datos->copas();
                                     <div id="layoutAuthentication">
                                         <div id="layoutAuthentication_content">
                                             <div class="container">
+
                                                 <div class="row justify-content-center">
                                                     <div class="col-lg-12">
                                                         <div class="card shadow-lg border-0 rounded-lg mt-5">
                                                             <div class="card-header bg-success">
-                                                                <h3 class="text-center text-light my-4 fs-4"> Historial Equipos</h3>
+                                                                <h3 class="text-center text-light my-4 fs-4"> Historial De Equipos</h3>
                                                             </div>
                                                             <table class="table">
                                                                 <thead>

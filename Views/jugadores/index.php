@@ -54,10 +54,17 @@ $copas = $datos->copas();
                                                 <div class="col-md-4">
                                                     <div class="form-floating mt-3">
                                                         <div class="card" style="width: 100%;">
-                                                            <img id="previewImage" src="ruta/imagen/placeholder.jpg" class="card-img-top" alt="Foto del Jugador">
+                                                            <div class="card-image-container">
+                                                                <img id="previewImage" src="../../public/assets/img/jugadir.png" class="card-img-top" alt="Foto del Jugador">
+                                                            </div>
                                                             <div class="card-body">
-                                                                <input type="file" id="foto_jugador" name="foto_jugador" accept="image/*" onchange="previewFile()" required />
-                                                                <label class="custom-file-label" for="foto_jugador">Cargar foto</label>
+                                                                <div class="input-group">
+                                                                    <input type="file" id="imagen" name="imagen" accept="image/*" onchange="previewFile()" required class="form-control">
+                                                                    <label class="input-group-text btn btn-primary" for="imagen">Seleccionar archivo</label>
+                                                                </div>
+                                                                <div class="mt-2">
+                                                                    <span class="form-text">Formatos admitidos: JPG, PNG</span>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -160,7 +167,7 @@ $copas = $datos->copas();
                                             </div>
                                             <div class="mt-4 mb-0">
                                                 <div class="d-grid">
-                                                    <button class="btn btn-success btn-block" id="submitBtn">Guardar Jugador</button>
+                                                    <button class="btn btn-success btn-block" id="submitBtn">Guardar El Jugador</button>
                                                 </div>
                                             </div>
 
@@ -175,6 +182,9 @@ $copas = $datos->copas();
         </div>
     </div>
 </main>
+
+
+
 
 <script>
     document.getElementById("submitBtn").addEventListener("click", function(event) {
