@@ -124,10 +124,11 @@ class JugadorModel extends stdClass
     public function store($datos)
     {
 
+        $id_usuario = $_SESSION['id'];
         try {
 
 
-            $sql = 'INSERT INTO jugadores(nombre_completo, apodo, fecha_nacimiento, caracteristicas, id_equipo, id_liga, id_pais, id_contiente, id_posicion, id_perfil) VALUES(:nombre_completo, :apodo, :fecha_nacimiento, :caracteristicas, :id_equipo, :id_liga, :id_pais, :id_contiente, :id_posicion, :id_perfil)';
+            $sql = 'INSERT INTO jugadores(nombre_completo, apodo, fecha_nacimiento, caracteristicas, id_equipo, id_liga, id_pais, id_contiente, id_posicion, id_perfil, id_usuario) VALUES(:nombre_completo, :apodo, :fecha_nacimiento, :caracteristicas, :id_equipo, :id_liga, :id_pais, :id_contiente, :id_posicion, :id_perfil, :id_usuario)';
 
             $prepare = $this->db->conect()->prepare($sql);
             $query = $prepare->execute([
@@ -142,6 +143,7 @@ class JugadorModel extends stdClass
                 'id_contiente'          => $datos['id_contiente'],
                 'id_posicion'           => $datos['id_posicion'],
                 'id_perfil'             => $datos['id_perfil'],
+                'id_usuario'            => $id_usuario
 
             ]);
 

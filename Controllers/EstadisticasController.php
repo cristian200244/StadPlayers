@@ -10,6 +10,7 @@ class EstadisticasController
 
     public function __construct()
     {
+        session_start();
         $this->estadistica = new EstadisticasModel();
 
         if (isset($_REQUEST['c'])) {
@@ -47,17 +48,12 @@ class EstadisticasController
 
     public function store()
     {
-        $id = new EstadisticasModel;
-        // $usuario = $id->getById();
-        $usuario = $_SESSION['id'];
         $datos = [
             'id_jugador'        => $_REQUEST['id_jugador'],
             'fecha_del_partido' => $_REQUEST['fecha_del_partido'],
             'id_tipo_partido'   => $_REQUEST['id_tipo_partido'],
             'id_equipo'         => $_REQUEST['id_equipo'],
             'numero_partido'    => $_REQUEST['numero_partido'],
-            'id_usuario'    =>  $usuario,
-
         ];
         // var_dump($datos);
         // die();
