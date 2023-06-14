@@ -102,8 +102,8 @@ $DatosJugador = [
 
 
                         <div class="row mb-3">
-                            <div class="col-lg-6">
-                                <input type="hidden" id="id_posicion" name="id_posicion" value=" <?= $DatosJugador["id_posicion"] ?>">
+                            <div class="col-lg-6" style="display:none;" id="OptEstadisticas">
+                                <input type="hidden"id="id_posicion" name="id_posicion" value=" <?= $DatosJugador["id_posicion"] ?>">
                                 <div class="card shadow-lg bg-info  border-warning rounded-lg mt-5 p-4" id="EstadisticasPre">
                                     <div class="row mb-3">
                                         <div class="card-header bg-white fs-5">
@@ -117,6 +117,7 @@ $DatosJugador = [
                                             </div>
                                         </div>
                                     </div>
+                                    <input type="hidden" id="controlEstad" value="2">
                                     <?php
                                     foreach ($datosReporte as $key => $value) {
                                         if ("pre_" == substr($key, 0, 4)) {
@@ -143,7 +144,7 @@ $DatosJugador = [
                                                     </div>
                                                 </ul>
                                             </div>
-
+                                            <input type="hidden" id="controlPre" value="2">
                                     <?php
                                         }
                                     }
@@ -173,7 +174,7 @@ $DatosJugador = [
                                                         <div class="col-9 bg-white text-dark p-2">
 
                                                             <strong>
-                                                                <h5><label for="nombreEstadistica">
+                                                                <h5><label for="EstadisticasArquero">
                                                                         <?= str_replace("_", " ", str_replace("por_", " ", $key)) ?>
                                                                     </label>
                                                                 </h5>
@@ -199,6 +200,7 @@ $DatosJugador = [
 
 
                             <div class="col-lg-5 ms-3" style="display:none;" id="OptNuevasEstadisticas">
+
                                 <div class="row ms-3">
                                     <div class="card shadow-lg bg-info me-3 border-warning rounded-lg mt-5  p-2">
                                         <div class="card shadow-lg bg-primary border-0 rounded-lg mt-0 p-3 text-light ">
@@ -248,8 +250,43 @@ $DatosJugador = [
                                         ?>
                                     </div>
                                 </div>
+                                <div class="row mt-5 ms-3">
+                                    <div class="col-lg-12 mt-lg-5">
+                                        <div class="card mb-4">
+                                            <div class="card-header bg-danger text-light">
+                                                <i class="fas fa-chart-bar me-1"></i>
+                                                Grafica del Repote
+                                            </div>
+                                            <div class="card-body bg-white"><canvas id="myBarChart" width="100%" height="50"></canvas></div>
+                                            <div class="card-footer bg-danger small text-muted">
+                                                Generada
+                                                fecha del reporte
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <button type="button" class="btn btn-primary">Guardar</button>
+<div class="row mt-5 mt-5 ms-3">
+
+    <div class="card-header bg-dark text-light mt-3">
+        <i class="fa-solid fa-print fa-fade"></i>
+        Imprimir en
+    </div>
+
+    <div class="col-6 mt-3">
+        <button type="button" class="btn btn-danger btn-sm">
+            PDF</button>
+    </div>
+    <div class="col-6 mt-3">
+        <button type="button" class="btn btn-primary btn-xl">
+            Word</button>
+    </div>
+</div>
                             </div>
+
                         </div>
+
                     </div>
 
                 </div>
@@ -269,66 +306,5 @@ include_once(BASE_DIR . "../../Views/partials/footer.php");
 
 
 
-<!-- <div class="col-sm-5">
-                            <div class="row ms-3">
-                                <div class="card shadow-lg bg-primary border-0 rounded-lg mt-5 p-3 text-light ">
-                                    <div class="row">
-                                        <div class="col-9">
-                                            Nuevas Estadìsticas
-                                        </div>
-                                        <div class="col-3 bg-warning text-dark ">
-                                            Total
-                                        </div>
-                                    </div>
-                                </div>
-                                <ul class="list-group list-group-flush bg-primary">
 
-                                    <div class="row">
-                                        <div class="col-9">
-                                            <li class="list-group-item">nueva estadìstica</li>
-                                        </div>
-                                        <div class="col-3">
-                                            <div class="card bg-dark text-light pt-2 pb-2  me-2 "
-                                                style="margin-left: -24%;">
-                                                0</div>
-                                        </div>
-                                    </div>
 
-                                </ul>
-                            </div>
-
-                            <div class="row mt-5 ms-3">
-                                <div class="col-lg-12 mt-lg-5">
-                                    <div class="card mb-4">
-                                        <div class="card-header bg-success text-light">
-                                            <i class="fas fa-chart-bar me-1"></i>
-                                            Grafica del Repote
-                                        </div>
-                                        <div class="card-body bg-white"><canvas id="myBarChart" width="100%"
-                                                height="50"></canvas></div>
-                                        <div class="card-footer bg-success small text-muted">
-                                            Generada
-                                            fecha del reporte
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <button type="button" class="btn btn-primary">Guardar</button>
-                            <div class="row mt-5 mt-5 ms-3">
-
-                                <div class="card-header bg-dark text-light mt-5">
-                                    <i class="fa-solid fa-print fa-fade"></i>
-                                    Imprimir en
-                                </div>
-
-                                <div class="col-6 mt-3">
-                                    <button type="button" class="btn btn-danger btn-sm">
-                                        PDF</button>
-                                </div>
-                                <div class="col-6 mt-3">
-                                    <button type="button" class="btn btn-primary btn-xl">
-                                        Word</button>
-                                </div>
-                            </div>
-
-                        </div> -->

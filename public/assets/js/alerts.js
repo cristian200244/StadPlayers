@@ -8,7 +8,17 @@ document.addEventListener("DOMContentLoaded", function (event) {
   if(!document.getElementById("control")){
 } else {
     if(document.getElementById("control").value == 1){
-        OptNuevasEstadisticas.style.display = "none";  
+        OptNuevasEstadisticas.style.display = "block";  
+        }
+  }
+
+  if(!document.getElementById("controlPre")){
+} else {
+    if(document.getElementById("controlPre").value ==2){
+        OptEstadisticas.style.display = "block";  
+        } else{
+
+            
         }
   }
 
@@ -17,6 +27,11 @@ document.addEventListener("DOMContentLoaded", function (event) {
         document.getElementById("TituloEstadJugador").textContent="Estadisticas del Jugador";
         predeterminadas.style.display = "block";
         arquero.style.display = "none";
+     
+        var estadPre = document.getElementById("EstadisticasPre").value;
+        if ( estadPre ==0) {
+            predeterminadas.style.display = "none"; 
+        } 
     } else { //Cuando es portero
         document.getElementById("TituloEstadJugador").textContent="Estadisticas del Jugador";
         document.getElementById("TituloEstadArquero").textContent="Estadisticas del Portero";
@@ -116,22 +131,24 @@ function EliminarReporte(id) {
                         title: 'El Reporte ha sido eliminado definitivamente',
                         showConfirmButton: false,
                     })
-                    .then((result) => {
-                        if (result.isConfirmed) {
+                    .then(() => {
+                       
                     $.ajax({
                         url: "../../Controllers/GenerarReportesController.php?c=2&id=" + id,
                         success: function (r) {
                             document.location.reload();
                         }
                     });
-                }
-            })
+            
+            
+                    })}else if (result.dismiss === Swal.DismissReason.cancel) {
+                        Swal.fire('¡Reporte No Eliminado!', '', 'info')
         }
     
                 
-                return false;
-            }); 
-                timer: 2800
+    }); 
+    return false;
+        timer: 2800
         }
         
      
@@ -140,6 +157,4 @@ function EliminarReporte(id) {
 
     
 
-
-    
-    
+       
