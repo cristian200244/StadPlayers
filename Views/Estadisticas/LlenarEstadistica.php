@@ -18,7 +18,7 @@ $registros = $data->getUltimasEstadisticas();
             <div id="layoutAuthentication_content">
                 <div class="container py-4">
                     <div class="row justify-content-center">
-                        <div class="row pt-5">
+                        <div class="row pt-5 mt-5">
                             <div class="col text-secondary">
                                 <h1>¡Bienvenido! Ahora Podrá ingresar sus estadísticas</h1>
                             </div>

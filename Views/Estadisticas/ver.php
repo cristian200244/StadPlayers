@@ -21,7 +21,7 @@ $registros = $data->verValores($id);
                 <div class="row mb-3 d-flex justify-content-center pt-5">
                     <div class="col-lg-8 ">
 
-                        <div class="card  shadow-lg bg-info  border-0 rounded-lg mt-5 p-4  " id="EstadisticasPre">
+                        <div class="card  shadow-lg bg-primary  border-0 rounded-lg mt-5 p-4  " id="EstadisticasPre">
 
 
                             <div class="row mb-3">
@@ -29,12 +29,12 @@ $registros = $data->verValores($id);
                                 if (!empty($registros)) {
                                     $primerRegistro = $registros[0]; // Obtenemos el primer registro para obtener el nombre del jugador
                                 ?>
-                                    <div class="card-header bg-white fs-5">
+                                    <div class="card-header bg-light text-light fs-5">
                                         <div class="row mb-3">
                                             <div class="col-9 mt-3">
                                                 Estadísticas Del Jugador
                                             </div>
-                                            <div class="col-3 bg-info mt-3 border-3">
+                                            <div class="col-3 bg-dark text-warning mt-3 border-3">
                                                 <?php echo $primerRegistro->nombre_jugador; ?>
                                             </div>
                                         </div>
@@ -55,7 +55,7 @@ $registros = $data->verValores($id);
                                             <div class="col-9 bg-white text-dark p-2">
 
                                                 <strong>
-                                                    <h5><label for="nombreEstadistica">
+                                                    <h5><label for="nombreEstadistica" >
                                                             <?php echo $registro->nombre; ?>
                                                         </label>
                                                     </h5>
@@ -76,7 +76,7 @@ $registros = $data->verValores($id);
 
                             }
                             ?>
-                            <a class="btn btn-dark mt-3" href="../Estadisticas/verEstadisticas.php">Regresar</a>
+                            <a class="btn btn-danger mt-3" href="../Estadisticas/verEstadisticas.php">Regresar</a>
                         </div>
                     </div>
 
