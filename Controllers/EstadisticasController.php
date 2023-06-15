@@ -2,7 +2,6 @@
 
 require_once '../Models/EstadisticasModel.php';
 $estadistica = new EstadisticasController;
-session_start();
 
 class EstadisticasController
 {
@@ -10,6 +9,7 @@ class EstadisticasController
     
     public function __construct()
     {
+        session_start();
         $this->estadistica = new EstadisticasModel();
 
         if (isset($_REQUEST['c'])) {
