@@ -68,9 +68,9 @@ $registros = $data->verStad();
                                     href="../../Controllers/EstadisticasController.php?c=4&id=<?= $row->id ?> "
                                     onclick="return alerta();">Eliminar</a>
 
-                            </td>
-                        </tr>
-                        <?php
+                                    </td>
+                                </tr>
+                            <?php
                                 $pos++;
                             }
                         } else {

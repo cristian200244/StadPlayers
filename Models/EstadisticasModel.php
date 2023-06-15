@@ -3,7 +3,7 @@
 require_once __DIR__ . '../../config/config_example.php';
 require_once 'conexionModel.php';
 
-
+// session_start();
 
 class EstadisticasModel extends stdClass
 {
@@ -25,9 +25,8 @@ class EstadisticasModel extends stdClass
 
     public function __construct()
     {
-
-
         $this->db = new DataBase();
+
     }
 
     public function getId()
@@ -259,9 +258,10 @@ class EstadisticasModel extends stdClass
     // public function getById()
     // {
     //     $this->id_usuario = $_SESSION['id'];
-
     //     return  $this->id_usuario;
     // }
+
+    
     public function store($datos)
     {
         $fecha_del_partido = $datos['fecha_del_partido'];
