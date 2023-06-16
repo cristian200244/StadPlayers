@@ -52,27 +52,29 @@ class UsuarioController
     $result =  $this->usuarioModel->Store($datos);
   }
 
-
-
   public function InciarSesion()
   {
 
     $datos = [
-      'email' => $_REQUEST['email'],
-      'password' => $_REQUEST['password'],
+      'email'     => $_REQUEST['email'],
+      'password'  => $_REQUEST['password'],
     ];
+
 
     if (empty($datos['email']) || empty($datos['password'])) {
     } else {
+
       $results = $this->usuarioModel->getUser($datos);
 
       if ($results) {
         session_start();
 
-        $_SESSION['id'] = $results['id'];
-        $_SESSION['email'] = $results['email'];
-        $_SESSION['password'] = $results['password'];
+        var_dump($results);
 
+        echo "<hr>";
+
+        $_SESSION['id']       = $results->id;
+        $_SESSION['email']    = $results->Email;
 
         header('Location: ../Views/main/MenuPrincipal.php');
       } else {

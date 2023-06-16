@@ -29,9 +29,9 @@ class UsuarioModel
 
         try {
 
-            if (!empty($_POST['email']) && !empty($_POST['nickname']) && !empty($_POST['password'])) {
+            if (!empty($_POST['email']) && !empty($_POST['nickname']) && !empty($_POST['password']) && strlen($_POST['password']) >= 8) {
 
-                $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
+                $password = md5($_POST['password']);
                 $sql = 'INSERT INTO usuarios ( email, nickname,password) VALUES (:email, :nickname, :password)';
                 $prepare = $this->db->conect()->prepare($sql);
 
@@ -48,17 +48,18 @@ class UsuarioModel
     }
     public function getUser($datos)
     {
+
+        $pass = md5($datos['password']);
         try {
 
             $sql = 'SELECT id, Email, password FROM usuarios WHERE Email = :email AND password = :password';
 
             $query = $this->db->conect()->prepare($sql);
-            $query->bindParam(':email', $_POST['email']);
-            $query->bindParam(':password', $_POST['password']);
+            $query->bindParam(':email', $datos['email']);
+            $query->bindParam(':password', $pass);
             $query->execute();
-            $results = $query->fetch(PDO::FETCH_ASSOC);
-            // var_dump($results);
-            // die();
+
+            $results = $query->fetchObject();
 
             return $results;
         } catch (PDOException $e) {
