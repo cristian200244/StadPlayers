@@ -45,15 +45,15 @@ $copas = $datos->copas();
                         <div class="row justify-content-center">
                             <div class="col-lg-12">
                                 <div class="card shadow-lg border-0 rounded-lg mt-5">
-                                    <div class="card-header bg-danger">
+                                    <div class="card-header bg-success">
                                         <h3 class="text-center text-light my-4 fs-4">Ingresar Jugadores</h3>
                                     </div>
 
-                                    <div class="bg-red-strong card-body">
+                                    <div class="card-body">
                                         <form action="../../Controllers/JugadorController.php" method="POST">
                                             <input type="hidden" name="c" value="1">
 
-                                            <div class="mb-3 ">
+                                            <div class="mb-3">
                                                 <div class="row">
 
 
