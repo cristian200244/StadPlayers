@@ -24,7 +24,8 @@ class ReportesController
                     break;
                 case 2: //Eliminar
                     self::destroy();
-                 
+                    var_dump($controlador);
+                    die();
                     break;
                 case 3: //Ver por operacion
                     self::show();
