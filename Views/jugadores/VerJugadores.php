@@ -58,14 +58,14 @@ $registros = $datos->getAll();
 
                                                             <!-- <th scope="col" >Opciones</th> -->
                                                             <td>
-                                                                <a class="btn btn-sm btn-outline-warning" href="guardar.php?id=<?= $row->id ?>">Ver Jugador</a>
+                                                                <a class="btn btn-warning" href="guardar.php?id=<?= $row->id ?>">Ver Jugador</a>
 
                                                                 -
 
-                                                                <a class="btn btn-sm btn-outline-warning" href="../../Controllers/jugadorController.php?c=2&id=<?= $row->getId() ?>">Actualizar</a>
+                                                                <a class="btn btn-success" href="../../Controllers/jugadorController.php?c=2&id=<?= $row->getId() ?>">Actualizar</a>
                                                                 -
 
-                                                                <a class="btn btn-sm btn-outline-danger " href="../../Controllers/JugadorController.php?c=4&id=<?= $row->getId() ?>">Eliminar</a>
+                                                                <a class="btn btn-danger " href="../../Controllers/JugadorController.php?c=4&id=<?= $row->getId() ?>">Eliminar</a>
                                                             </td>
                                                         </tr>
                                                     <?php
