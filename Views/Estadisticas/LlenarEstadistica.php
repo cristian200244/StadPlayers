@@ -29,7 +29,7 @@ $registros = $data->getUltimasEstadisticas();
                                 <div class="card-header bg-black text-info">
                                     <h3 class="text-center text-light my-4 fs-4">Ingresar Estadistica</h3>
                                 </div>
-                                <div class="card-body text-black" style="background-color:#FFA177  ">
+                                <div class="card-body text-black" style="background-color: #CDDDEC">
 
                                     <div class=" row mb-3">
                                         <?php
