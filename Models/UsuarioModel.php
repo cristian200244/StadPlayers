@@ -26,7 +26,6 @@ class UsuarioModel
 
     public function Store($datos)
     {
-
         try {
 
             if (!empty($_POST['email']) && !empty($_POST['nickname']) && !empty($_POST['password']) && strlen($_POST['password']) >= 8) {
@@ -49,7 +48,14 @@ class UsuarioModel
     public function getUser($datos)
     {
 
+
         $pass = md5($datos['password']);
+        // $pass = $datos['password'];
+
+
+        // var_dump($pass);
+        // die();
+
         try {
 
             $sql = 'SELECT id, Email, password FROM usuarios WHERE Email = :email AND password = :password';
@@ -60,6 +66,8 @@ class UsuarioModel
             $query->execute();
 
             $results = $query->fetchObject();
+
+
 
             return $results;
         } catch (PDOException $e) {

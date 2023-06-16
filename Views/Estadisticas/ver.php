@@ -1,4 +1,10 @@
 <?php
+// session_start();
+// if (!isset($_SESSION['id'])) {
+
+//     header("Location:../../index.php");
+// }
+
 include_once(__DIR__ . "../../../config/rutas.php");
 include_once(BASE_DIR . "../../Views/partials/header.php");
 include_once(BASE_DIR . "../../Views/partials/aside.php");
@@ -25,7 +31,7 @@ $registros = $data->verValores($id);
 
 
                             <div class="row mb-3">
-                            <?php
+                                <?php
                                 if (!empty($registros)) {
                                     $primerRegistro = $registros[0]; // Obtenemos el primer registro para obtener el nombre del jugador
                                 ?>
@@ -55,7 +61,7 @@ $registros = $data->verValores($id);
                                             <div class="col-9 bg-white text-dark p-2">
 
                                                 <strong>
-                                                    <h5><label for="nombreEstadistica" >
+                                                    <h5><label for="nombreEstadistica">
                                                             <?php echo $registro->nombre; ?>
                                                         </label>
                                                     </h5>

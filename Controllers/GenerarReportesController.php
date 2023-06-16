@@ -9,6 +9,7 @@ $usuario = new ReportesController();
 
 class ReportesController
 {
+    public $id_usuario;
     private $reportesModel;
     public $reporte;
     public function __construct()
@@ -24,7 +25,7 @@ class ReportesController
                     break;
                 case 2: //Eliminar
                     self::destroy();
-                 
+
                     break;
                 case 3: //Ver por operacion
                     self::show();

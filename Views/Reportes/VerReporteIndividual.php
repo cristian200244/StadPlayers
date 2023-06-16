@@ -1,4 +1,9 @@
 <?php
+// session_start();
+// if (!isset($_SESSION['id'])) {
+
+//     header("Location:../../index.php");
+// }
 
 include_once(__DIR__ . "../../../config/rutas.php");
 include_once __DIR__ . "../../../Models/GenerarReportesModel.php";
@@ -41,17 +46,15 @@ $DatosJugador = [
 ?>
 
 
-<div class="imgRepIndividual">
+<div class="imgVerReporteIndividual">
     <div class="container" style="margin-top: 15%;">
         <div class="col-lg-11">
             <div class="card shadow-lg border-0 bg-black rounded-lg mt-5">
-
-
-                <div class="card d-flex   text-center py-3 px-3" style="background-color:#34495E">
-                    <div class="card-header bg-danger">
-                        <div class="row ">
-                            <div class="col-md-8">
-                                <h3 class="text-start text-light my-4 fs-4 ms-5">Reporte del Jugador</h3>
+                <div class="card d-flex   text-center py-3 px-3" style="background-color:#D6EAF8  ">
+                    <div class="card-header" style="background-color:#4A235A">
+                        <div class=" row ">
+                            <div class=" col-md-8">
+                                <h3 class="text-start text-white my-4 fs-4 ms-5">Reporte del Jugador</h3>
                             </div>
                             <?php
 
@@ -81,15 +84,16 @@ $DatosJugador = [
 
                             if ($key != 'id_posicion') { ?>
 
-                        <div
-                            class="card col-3 col-sm-3 bg-secondary ms-4 me-3  mt-3 pt-2 pb-2 text-white  border-success">
+                        <div class="card col-3 col-sm-3  ms-4 me-3  mt-3 pt-2 pb-2 text-white  border-success"
+                            style="background-color:#34495E  ">
                             <strong>
                                 <h5><label>
                                         <?= str_replace("_", " ", $key) ?>
                                     </label>
                                 </h5>
                             </strong>
-                            <div class=" card-floating bg-white mb-3 mb-md-0 text-black  mt-2 pt-2 pb-2">
+                            <div class=" card-floating  mb-3 mb-md-0 text-black  mt-2 pt-2 pb-2"
+                                style="background-color:#F4ECF7">
                                 <span>
                                     <?= $value ?>
                                 </span>
@@ -274,7 +278,8 @@ $DatosJugador = [
                                 </div>
                             </div>
 
-                            <button type="button" class="btn btn-primary">Guardar</button>
+                            <a type="button" class="btn btn-info"
+                                href="<?= BASE_URL ?>/Views/Reportes/index.php">Volver</a>
                             <div class="row mt-5 mt-5 ms-3">
 
                                 <div class="card-header bg-dark text-light mt-3">
@@ -299,7 +304,6 @@ $DatosJugador = [
             </div>
         </div>
     </div>
-    </main>
 </div>
 
 <?php

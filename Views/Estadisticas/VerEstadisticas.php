@@ -1,4 +1,10 @@
 <?php
+// session_start();
+// if (!isset($_SESSION['id'])) {
+
+//     header("Location:../../index.php");
+// }
+
 include_once(__DIR__ . "../../../config/rutas.php");
 include_once(BASE_DIR . "../../Views/partials/header.php");
 include_once(BASE_DIR . "../../Views/partials/aside.php");
@@ -68,9 +74,9 @@ $registros = $data->verStad();
                                     href="../../Controllers/EstadisticasController.php?c=4&id=<?= $row->id ?> "
                                     onclick="return alerta();">Eliminar</a>
 
-                                    </td>
-                                </tr>
-                            <?php
+                            </td>
+                        </tr>
+                        <?php
                                 $pos++;
                             }
                         } else {

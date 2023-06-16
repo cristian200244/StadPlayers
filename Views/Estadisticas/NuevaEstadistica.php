@@ -1,4 +1,9 @@
 <?php
+// session_start();
+// if (!isset($_SESSION['id'])) {
+
+//     header("Location:../../index.php");
+// }
 
 include_once(__DIR__ . "../../../config/rutas.php");
 include_once(BASE_DIR . "../../Views/partials/header.php");
@@ -45,17 +50,17 @@ include_once(BASE_DIR . "../../Views/partials/aside.php");
                                         </div>
 
                                         <div class="mt-4 mb-0">
-                                        <div class="d-grid">
-                                            <button class="btn btn-primary btn-block text-blackx">Agregar Estadisitca</button>
+                                            <div class="d-grid">
+                                                <button class="btn btn-primary btn-block text-blackx">Agregar Estadisitca</button>
 
+                                            </div>
+                                            <br>
+                                            <div class="d-grid">
+                                                <a class="btn btn-success" href="../Estadisticas/LlenarEstadistica.php">Regresar</a>
+                                            </div>
                                         </div>
-                                        <br>
-                                        <div class="d-grid">
-                                            <a class="btn btn-success" href="../Estadisticas/LlenarEstadistica.php">Regresar</a>
-                                        </div>
-                                    </div>
-                                            
-                                        
+
+
                                     </div>
                                 </div>
                             </div>

@@ -1,4 +1,9 @@
 <?php
+// session_start();
+// if (!isset($_SESSION['id'])) {
+
+//     header("Location:../../index.php");
+// }
 
 include_once(__DIR__ . "../../../config/rutas.php");
 include_once(BASE_DIR . "../../Views/partials/header.php");
@@ -92,7 +97,8 @@ $copas = $datos->copas();
                                             <div class="form-floating col-md-6 mt-2">
                                                 <div class="form-floating pt-2">
                                                     <input type="datetime-local" class="form-control" name="fecha_nacimiento" id="fecha_nacimiento" value="<?= date('Y-m-d\TH:i:s', strtotime($fecha_nacimiento)) ?>" required>
-                                                    <label for="fecha_nacimiento" class="form-label">Fecha de nacimiento</label>
+                                                    <label for="fecha_nacimiento" class="form-label">Fecha de
+                                                        nacimiento</label>
                                                 </div>
                                             </div>
 

@@ -299,9 +299,9 @@ form .containerTitulo {
 }
 
 
-.imgGenReport {
+.imgGenerarReporte{
 
-  background: url(../../assets/img/reportesfutbol2.jpg);
+  background: url(../../assets/img/GenerarReporte.jpg);
   background-position: center;
   height: calc(100vh - 85px);
   margin-left: 0%;
@@ -318,12 +318,62 @@ form .containerTitulo {
 }
 
 @media screen and (max-width: 972px) {
-  .imgGenReport {
+  .imgGenerarReporte {
     height: 120%;
 
   }
 }
 
+
+.imgReportesIndex{
+
+  background: url(../../assets/img/ReportesIndex.jpg);
+  background-position: center;
+  height: calc(100vh - 85px);
+  margin-left: 0%;
+  margin-right: 0%;
+  padding-left: 0%;
+  padding-right: 0;
+  margin-top: auto;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  height: 200vw;
+  width: 100%;
+
+}
+
+@media screen and (max-width: 972px) {
+  .imgReportesIndex{
+    height: 120%;
+
+  }
+}
+
+.imgVerReporteIndividual{
+
+  background: url(../../assets/img/reporteIndividual.jpg);
+  background-position: center;
+  height: calc(100vh - 85px);
+  margin-left: 0%;
+  margin-right: 0%;
+  padding-left: 0%;
+  padding-right: 0;
+  margin-top: auto;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  height: 200vw;
+  width: 100%;
+
+}
+
+@media screen and (max-width: 972px) {
+  .imgVerReporteIndividual{
+    height: 120%;
+
+  }
+}
 .imgING {
 
   background: url(../../assets/img/estadio_3.jpg);

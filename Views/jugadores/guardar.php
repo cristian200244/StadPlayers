@@ -1,4 +1,11 @@
 <?php
+// session_start();
+// if (!isset($_SESSION['id'])) {
+
+//     header("Location:../../index.php");
+// }
+
+
 include_once(__DIR__ . "../../../config/rutas.php");
 include_once(BASE_DIR . "../../Views/partials/header.php");
 include_once(BASE_DIR . "../../Views/partials/aside.php");
@@ -148,7 +155,7 @@ $copas          = $datos->copas();
                                                             <div class="col-md-6 mt-5">
                                                                 <a href="index.php" class="btn btn-primary btn-block">Crear Jugador</a>
                                                             </div>
-                                                        </div>                                                        
+                                                        </div>
                                                     </div>
                                                 </div>
 
