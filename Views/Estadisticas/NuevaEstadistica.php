@@ -20,30 +20,31 @@ include_once(BASE_DIR . "../../Views/partials/aside.php");
 
                             <div class="col-lg-12 mt-5">
                                 <div class="card shadow-lg border-0 rounded-lg mt-5">
-                                    <div class="card-header bg-primary">
+                                    <div class="card-header bg-black text-black">
                                         <h3 class="text-center text-light my-4 fs-4">Crear Nueva Estadistica</h3>
                                     </div>
-                                    <div class="card-body">
-                                        <div class="row align-items-center mb-3">
+                                    <div class="card-body" style="background-color:#FFA177">
+                                        <div class=" row align-items-center mb-3">
                                             <div class="col-md-12 mt-3">
-                                                <div class="form-floating mb-3 mb-md-0 text-center" >
+                                                <div class="form-floating mb-3 mb-md-0 text-center">
                                                     <h4>Nombre De La Nueva Estadistica</h4>
                                                 </div>
                                             </div>
                                             <div class="col-md-8 mt-3 mx-auto">
-                                                <input class="form-control text-center" type="text" id="nombre" name="nombre">
+                                                <input class="form-control text-center" type="text" id="nombre" name="nombre" autocomplete="off">
                                             </div>
 
                                             <div class="col-md-12 mt-3">
-                                                <div class="form-floating mb-3 mb-md-0 text-center" >
+                                                <div class="form-floating mb-3 mb-md-0 text-center">
                                                     <h4>Descripccion De La Nueva Estadistica</h4>
                                                 </div>
                                             </div>
                                             <div class="col-md-8 mt-3 mx-auto">
-                                                <input class="form-control text-center" type="text" name="descripcion" id="descripcion">
+                                                <input class="form-control text-center" type="text" name="descripcion" id="descripcion" autocomplete="off">
                                             </div>
                                         </div>
-                                        <button class="btn btn-warning btn-block text-secondary">Agregar A Las Estadisticas Predeterminadas</button>
+                                        <button class=" btn btn-primary btn-block ">Agregar
+                                        </button>
                                     </div>
                                 </div>
                             </div>

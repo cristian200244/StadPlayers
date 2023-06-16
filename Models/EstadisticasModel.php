@@ -3,16 +3,16 @@
 require_once __DIR__ . '../../config/config_example.php';
 require_once 'conexionModel.php';
 
-
+// session_start();
 
 class EstadisticasModel extends stdClass
 {
 
 
+
     public $id;
     public $id_usuario;
     public $nombre;
-    public $numero_partido;
     public $valor;
     public $nombre_completo;
     public $nombre_jugador;
@@ -26,6 +26,7 @@ class EstadisticasModel extends stdClass
     public function __construct()
     {
         $this->db = new DataBase();
+
     }
 
     public function getId()
@@ -63,8 +64,8 @@ class EstadisticasModel extends stdClass
 
 
 
-    
-    
+
+
 
     public function getNombreCompleto()
     {
@@ -153,7 +154,7 @@ class EstadisticasModel extends stdClass
                 $item            = new EstadisticasModel();
                 $item->id        = $row['id'];
                 $item->nombre    = $row['nombre'];
-                
+
                 array_push($items, $item);
             }
 
@@ -183,7 +184,7 @@ class EstadisticasModel extends stdClass
                 $item                = new EstadisticasModel();
                 $item->id            = $row['id'];
                 $item->num_partido   = $row['num_partido'];
-                
+
                 array_push($items, $item);
             }
 
@@ -254,7 +255,13 @@ class EstadisticasModel extends stdClass
         }
     }
 
+    // public function getById()
+    // {
+    //     $this->id_usuario = $_SESSION['id'];
+    //     return  $this->id_usuario;
+    // }
 
+    
     public function store($datos)
     {
         $fecha_del_partido = $datos['fecha_del_partido'];
@@ -262,10 +269,9 @@ class EstadisticasModel extends stdClass
         $jugador           = $datos['id_jugador'];
         $equipo            = $datos['id_equipo'];
         $numero_partido    = $datos['numero_partido'];
-        $id_usuario        = $_SESSION['id'];
 
         try {
-            $sql = "INSERT INTO estadisticas_encuentro (fecha_del_partido, id_tipo_partido, id_jugador, id_equipo, numero_partido, id_usuario) VALUES (:fecha_del_partido, :id_tipo_partido, :id_jugador, :id_equipo, :numero_partido, :id_usuario)";
+            $sql = "INSERT INTO estadisticas_encuentro (fecha_del_partido, id_tipo_partido, id_jugador, id_equipo, numero_partido) VALUES (:fecha_del_partido, :id_tipo_partido, :id_jugador, :id_equipo, :numero_partido)";
 
             $connection = $this->db->conect();
             $prepare = $connection->prepare($sql);
@@ -274,8 +280,7 @@ class EstadisticasModel extends stdClass
                 'id_tipo_partido'   => $tipo_partido,
                 'id_jugador'        => $jugador,
                 'id_equipo'         => $equipo,
-                'numero_partido'    => $numero_partido,
-                'id_usuario'    => $id_usuario
+                'numero_partido'    => $numero_partido
             ]);
 
             $lastId = $connection->lastInsertId();
@@ -447,7 +452,7 @@ class EstadisticasModel extends stdClass
 
     public function delete($id)
     {
-        try { 
+        try {
 
 
             $sql = "DELETE FROM estadisticas_encuentro WHERE id = :id";
