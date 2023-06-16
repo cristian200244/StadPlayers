@@ -504,12 +504,12 @@ public function titulosGanados()
     {
         $items = [];
         try {
-            $sql = 'SELECT  id, nombre_continente FROM paises';
+            $sql = 'SELECT  id, nombre FROM continentes';
             $query = $this->db->conect()->query($sql);
             while ($row = $query->fetch()) {
                 $item = new JugadorModel();
                 $item->id = $row['id'];
-                $item->nombre = $row['nombre_continente'];
+                $item->nombre = $row['nombre'];
 
 
                 array_push($items, $item);
