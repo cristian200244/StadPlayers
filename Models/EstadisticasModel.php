@@ -269,10 +269,9 @@ class EstadisticasModel extends stdClass
         $jugador           = $datos['id_jugador'];
         $equipo            = $datos['id_equipo'];
         $numero_partido    = $datos['numero_partido'];
-        $id_usuario        = $_SESSION['id'];
 
         try {
-            $sql = "INSERT INTO estadisticas_encuentro (fecha_del_partido, id_tipo_partido, id_jugador, id_equipo, numero_partido, id_usuario) VALUES (:fecha_del_partido, :id_tipo_partido, :id_jugador, :id_equipo, :numero_partido, :id_usuario)";
+            $sql = "INSERT INTO estadisticas_encuentro (fecha_del_partido, id_tipo_partido, id_jugador, id_equipo, numero_partido) VALUES (:fecha_del_partido, :id_tipo_partido, :id_jugador, :id_equipo, :numero_partido)";
 
             $connection = $this->db->conect();
             $prepare = $connection->prepare($sql);
@@ -281,8 +280,7 @@ class EstadisticasModel extends stdClass
                 'id_tipo_partido'   => $tipo_partido,
                 'id_jugador'        => $jugador,
                 'id_equipo'         => $equipo,
-                'numero_partido'    => $numero_partido,
-                'id_usuario'        => $id_usuario
+                'numero_partido'    => $numero_partido
             ]);
 
             $lastId = $connection->lastInsertId();

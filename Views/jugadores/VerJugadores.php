@@ -17,7 +17,7 @@ $registros = $datos->getAll();
 <main>
     <div class="Imgverjugador">
 
-        <div class="container text-center ">
+        <div class="container text-center">
             <div class="row">
                 <div class="col">
                     <h1>¡Bienvenido! Ahora Podrá ingresar sus Jugadores</h1>
@@ -25,24 +25,24 @@ $registros = $datos->getAll();
             </div>
             <div id="layoutAuthentication">
                 <div id="layoutAuthentication_content">
-                    <div class="container mt-5">
+                    <div class="container">
                         <div class="row justify-content-center">
                             <div class="col-lg-12">
                                 <div class="card shadow-lg border-0 rounded-lg mt-5">
-                                    <div class="card-header bg-black">
-                                        <h3 class="text-center text-info my-4 fs-4">Aqui va el nombre del jugador</h3>
+                                    <div class="card-header bg-success">
+                                        <h3 class="text-center text-light my-4 fs-4">Aqui va el nombre del jugador</h3>
                                     </div>
 
-                                    <div class="card-body bg-danger">
-                                        <table class="table bg-info table-striped">
+                                    <div class="card-body">
+                                        <table class="table">
                                             <thead>
                                                 <tr>
-                                                    <h2 class="text-white">Jugadores Creados</h2>
-                                                    <th class="" scope="col">#</th>
+                                                    <h2>Jugadores Creados</h2>
+                                                    <th scope="col">#</th>
                                                     <th scope="col">Nombre Completo</th>
                                                     <th scope="col" colspan="3">Opcion</th>
                                                 </tr>
-                                            </thead>    
+                                            </thead>
                                             <tbody>
                                                 <?php
                                                 $pos = 1;
@@ -59,6 +59,8 @@ $registros = $datos->getAll();
                                                             <!-- <th scope="col" >Opciones</th> -->
                                                             <td>
                                                                 <a class="btn btn-sm btn-outline-warning" href="guardar.php?id=<?= $row->id ?>">Ver Jugador</a>
+
+
 
                                                                 -
 

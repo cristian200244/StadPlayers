@@ -36,13 +36,13 @@ $nPartido = $datos->NumeroPartido();
         <div class="row justify-content-center">
             <div class="col-lg-10">
                 <div class="card shadow-lg border-0 rounded-lg   justify-content-center" style="margin-top: 30%;">
-                    <div class="card-header bg-black text-light">
+                    <div class="card-header bg-danger text-light">
                         <h3 class="text-center font-weight-light fs-1 my-4">Estadisticas</h3>
                     </div>
-                    <div class="card-body text-black" style="background-color: #35423D;">
+                    <div class="card-body bg-light text-black">
 
                         <form action="../../Controllers/EstadisticasController.php?c=1" method="POST">
-                            <div class="card d-flex justify-content-around  py-3 px-3 "  style="background-color: #355878;">
+                            <div class="card d-flex justify-content-around  py-3 px-3 bg-primary">
                                 <div class="row mb-3 ">
                                     <div class="col-md-6 mt-3 ">
                                         <div class="form-floating  mb-3 mb-md-0 ">
