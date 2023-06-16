@@ -19,17 +19,17 @@ $registros = $data->getUltimasEstadisticas();
                 <div class="container py-4">
                     <div class="row justify-content-center">
                         <div class="row pt-5 mt-5">
-                            <div class="col text-info">
+                            <div class="col text-white">
                                 <h1>¡Bienvenido! Ahora Podrá ingresar sus estadísticas</h1>
                             </div>
                         </div>
                         <div class="col-lg-12">
 
                             <div class="card shadow-lg border-0 rounded-lg mt-5">
-                                <div class="card-header bg-black text-info">
+                                <div class="card-header bg-black">
                                     <h3 class="text-center text-light my-4 fs-4">Ingresar Estadistica</h3>
                                 </div>
-                                <div class="card-body text-black" style="background-color:#FFA177  ">
+                                <div class="card-body text-black" style="background-color: #CDDDEC;">
 
                                     <div class=" row mb-3">
                                         <?php
@@ -66,7 +66,7 @@ $registros = $data->getUltimasEstadisticas();
 
                                     <div class="mt-4 mb-0">
                                         <div class="d-grid">
-                                            <a class="btn btn-success" href="../Estadisticas/NuevaEstadistica.php">Crear
+                                            <a class="btn btn-dark" href="../Estadisticas/NuevaEstadistica.php">Crear
                                                 Nueva Estadistica</a>
                                         </div>
                                         <br>
