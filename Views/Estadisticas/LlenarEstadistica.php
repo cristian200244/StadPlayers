@@ -19,7 +19,7 @@ $registros = $data->getUltimasEstadisticas();
                 <div class="container py-4">
                     <div class="row justify-content-center">
                         <div class="row pt-5 mt-5">
-                            <div class="col text-info">
+                            <div class="col text-white">
                                 <h1>¡Bienvenido! Ahora Podrá ingresar sus estadísticas</h1>
                             </div>
                         </div>
