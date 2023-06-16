@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 16-06-2023 a las 00:10:54
+-- Tiempo de generación: 16-06-2023 a las 03:57:58
 -- Versión del servidor: 8.0.32
 -- Versión de PHP: 8.1.10
 
@@ -566,7 +566,8 @@ CREATE TABLE `historial_equipos` (
 --
 
 INSERT INTO `historial_equipos` (`id`, `fecha_inicial`, `fecha_terminacion`, `id_equipo`, `id_jugador`) VALUES
-(6, '2011-02-10 00:00:00', '2012-05-20 00:00:00', 5, 12);
+(6, '2011-02-10 00:00:00', '2012-05-20 00:00:00', 5, 12),
+(7, '2021-02-10 00:00:00', '2022-03-30 00:00:00', 7, 8);
 
 -- --------------------------------------------------------
 
@@ -603,7 +604,10 @@ INSERT INTO `jugadores` (`id`, `nombre_completo`, `apodo`, `fecha_nacimiento`, `
 (9, 'Guillermo Nigote', 'El Nadies', '2008-07-06', NULL, 3, 7, 5, 8, 4, 9, 2),
 (10, 'Elvio Lao', 'El suave', '2005-08-10', NULL, 2, 4, 5, 6, 4, 10, 2),
 (11, 'Aquiles Castro', 'La Gillotina', '2008-09-17', NULL, 2, 5, 3, 7, 5, 11, 1),
-(12, 'santiago cristancho', 'el cofla', '2004-02-10', 'el puntual', 1, 6, 3, 6, 4, 3, 3);
+(12, 'santiago cristancho', 'el cofla', '2004-02-10', 'el puntual', 1, 6, 3, 6, 4, 3, 3),
+(13, 'Aquiles Castro Bueno', 'La guillotina', '2002-02-10', 'Rápido y inmisericorde', 21, 7, 2, 6, 5, 6, 1),
+(14, 'Guillermo Nigote', 'El titere', '2011-02-10', 'Invisible', 21, 2, 1, 2, 1, 1, 2),
+(17, 'Santiago del paso', 'la loca', '2004-06-22', 'loca por naturaleza', 21, 6, 3, 7, 3, 7, 2);
 
 -- --------------------------------------------------------
 
@@ -654,23 +658,22 @@ INSERT INTO `numero_partido` (`id`, `num_partido`) VALUES
 
 CREATE TABLE `paises` (
   `id` bigint UNSIGNED NOT NULL,
-  `nombre_pais` varchar(80) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish2_ci NOT NULL,
-  `nombre_continente` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish2_ci NOT NULL
+  `nombre_pais` varchar(80) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish2_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
 
 --
 -- Volcado de datos para la tabla `paises`
 --
 
-INSERT INTO `paises` (`id`, `nombre_pais`, `nombre_continente`) VALUES
-(1, 'Argentina', 'America'),
-(2, 'Colombia', 'America'),
-(3, 'Brasil', 'America'),
-(4, 'Alemania', 'Europa'),
-(5, 'Francia', 'Europa'),
-(6, 'Inglaterra', 'Europa'),
-(7, 'Senegal', 'Africa'),
-(8, 'Camerun', 'Africa');
+INSERT INTO `paises` (`id`, `nombre_pais`) VALUES
+(1, 'Argentina'),
+(2, 'Colombia'),
+(3, 'Brasil'),
+(4, 'Alemania'),
+(5, 'Francia'),
+(6, 'Inglaterra'),
+(7, 'Senegal'),
+(8, 'Camerun');
 
 -- --------------------------------------------------------
 
@@ -784,7 +787,9 @@ CREATE TABLE `usuarios` (
 INSERT INTO `usuarios` (`id`, `Email`, `nickname`, `password`) VALUES
 (1, 'josecanseco@gmail', 'jose45', '123456'),
 (2, 'asher@gmail', 'perritoal100%', '7777777'),
-(3, 'canela@cansanciogmail.com', 'saltarina123', '333333');
+(3, 'canela@cansanciogmail.com', 'saltarina123', '333333'),
+(21, 'pepita@gmail.com', 'peputa', 'e10adc3949ba59abbe56e057f20f883e'),
+(22, 'santiago@gmail.com', 'santi23', '25f9e794323b453885f5181f1b624d0b');
 
 --
 -- Índices para tablas volcadas
@@ -962,13 +967,13 @@ ALTER TABLE `generar_reporte`
 -- AUTO_INCREMENT de la tabla `historial_equipos`
 --
 ALTER TABLE `historial_equipos`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `jugadores`
 --
 ALTER TABLE `jugadores`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT de la tabla `ligas`
@@ -1016,7 +1021,7 @@ ALTER TABLE `titulos_jugador`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- Restricciones para tablas volcadas
@@ -1056,7 +1061,7 @@ ALTER TABLE `historial_equipos`
 -- Filtros para la tabla `jugadores`
 --
 ALTER TABLE `jugadores`
-  ADD CONSTRAINT `FK_continente_jugadores_id` FOREIGN KEY (`id_contiente`) REFERENCES `continentes` (`id`),
+  ADD CONSTRAINT `FK_continente_jugadores_id` FOREIGN KEY (`id_contiente`) REFERENCES `continentes` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   ADD CONSTRAINT `FK_equipo_jugadores_id` FOREIGN KEY (`id_equipo`) REFERENCES `equipos` (`id`),
   ADD CONSTRAINT `FK_jugador_usuarios_id` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id`),
   ADD CONSTRAINT `FK_liga_jugadores_id` FOREIGN KEY (`id_liga`) REFERENCES `ligas` (`id`),
