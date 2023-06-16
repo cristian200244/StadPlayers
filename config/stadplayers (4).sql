@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 14-06-2023 a las 01:38:47
+-- Tiempo de generación: 16-06-2023 a las 00:10:54
 -- Versión del servidor: 8.0.32
 -- Versión de PHP: 8.1.10
 
@@ -29,8 +29,8 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `continentes` (
   `id` bigint UNSIGNED NOT NULL,
-  `nombre` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_spanish2_ci;
+  `nombre` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish2_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
 
 --
 -- Volcado de datos para la tabla `continentes`
@@ -51,8 +51,8 @@ INSERT INTO `continentes` (`id`, `nombre`) VALUES
 
 CREATE TABLE `copas` (
   `id` bigint UNSIGNED NOT NULL,
-  `nombre` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_spanish2_ci;
+  `nombre` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish2_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
 
 --
 -- Volcado de datos para la tabla `copas`
@@ -78,8 +78,8 @@ INSERT INTO `copas` (`id`, `nombre`) VALUES
 
 CREATE TABLE `equipos` (
   `id` bigint UNSIGNED NOT NULL,
-  `equipo` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_spanish2_ci;
+  `equipo` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish2_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
 
 --
 -- Volcado de datos para la tabla `equipos`
@@ -103,11 +103,11 @@ INSERT INTO `equipos` (`id`, `equipo`) VALUES
 
 CREATE TABLE `estadisticas` (
   `id` bigint UNSIGNED NOT NULL,
-  `nombre` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `descripcion` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `nombre` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish2_ci NOT NULL,
+  `descripcion` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish2_ci NOT NULL,
   `predeterminada` int DEFAULT '0',
   `tipo` int NOT NULL COMMENT 'tipo de jugador\r\n'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_spanish2_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
 
 --
 -- Volcado de datos para la tabla `estadisticas`
@@ -143,7 +143,7 @@ CREATE TABLE `estadisticas_count` (
   `valor` int DEFAULT '0',
   `id_estadistica` bigint UNSIGNED NOT NULL,
   `id_encuentro_estadistica` bigint UNSIGNED NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_spanish2_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
 
 --
 -- Volcado de datos para la tabla `estadisticas_count`
@@ -429,7 +429,52 @@ INSERT INTO `estadisticas_count` (`id`, `valor`, `id_estadistica`, `id_encuentro
 (350, 0, 14, 24),
 (351, 0, 15, 24),
 (352, 1, 16, 24),
-(353, 7, 18, 24);
+(353, 7, 18, 24),
+(354, 2, 1, 25),
+(355, 1, 2, 25),
+(356, 1, 3, 25),
+(357, 2, 4, 25),
+(358, 3, 5, 25),
+(359, 1, 6, 25),
+(360, 1, 7, 25),
+(361, 0, 8, 25),
+(362, 1, 9, 25),
+(363, 1, 10, 25),
+(364, 1, 11, 25),
+(365, 0, 12, 25),
+(366, 0, 16, 25),
+(367, 0, 18, 25),
+(368, 0, 13, 26),
+(369, 0, 14, 26),
+(370, 0, 15, 26),
+(371, 0, 1, 26),
+(372, 0, 2, 26),
+(373, 0, 3, 26),
+(374, 0, 4, 26),
+(375, 0, 5, 26),
+(376, 0, 6, 26),
+(377, 0, 7, 26),
+(378, 0, 8, 26),
+(379, 0, 9, 26),
+(380, 0, 10, 26),
+(381, 0, 11, 26),
+(382, 0, 12, 26),
+(383, 0, 16, 26),
+(384, 0, 18, 26),
+(385, 0, 1, 27),
+(386, 0, 2, 27),
+(387, 0, 3, 27),
+(388, 0, 4, 27),
+(389, 0, 5, 27),
+(390, 0, 6, 27),
+(391, 0, 7, 27),
+(392, 0, 8, 27),
+(393, 0, 9, 27),
+(394, 0, 10, 27),
+(395, 0, 11, 27),
+(396, 0, 12, 27),
+(397, 0, 16, 27),
+(398, 0, 18, 27);
 
 -- --------------------------------------------------------
 
@@ -440,38 +485,41 @@ INSERT INTO `estadisticas_count` (`id`, `valor`, `id_estadistica`, `id_encuentro
 CREATE TABLE `estadisticas_encuentro` (
   `id` bigint UNSIGNED NOT NULL,
   `fecha_del_partido` date NOT NULL,
+  `numero_partido` bigint NOT NULL,
   `id_tipo_partido` bigint UNSIGNED NOT NULL,
   `id_jugador` bigint UNSIGNED NOT NULL,
   `id_equipo` bigint UNSIGNED NOT NULL,
-  `numero_partido` bigint NOT NULL,
-  `id_usuario` bigint NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_spanish2_ci;
+  `id_usuario` bigint UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
 
 --
 -- Volcado de datos para la tabla `estadisticas_encuentro`
 --
 
-INSERT INTO `estadisticas_encuentro` (`id`, `fecha_del_partido`, `id_tipo_partido`, `id_jugador`, `id_equipo`, `numero_partido`, `id_usuario`) VALUES
-(1, '2017-04-26', 1, 1, 1, 0, 0),
-(2, '2018-07-10', 2, 2, 3, 0, 0),
-(3, '2023-05-10', 3, 2, 5, 0, 0),
-(4, '2023-06-12', 1, 6, 1, 0, 0),
-(5, '2023-06-25', 1, 6, 1, 0, 0),
-(6, '2023-08-03', 1, 6, 1, 0, 0),
-(7, '2023-10-10', 1, 6, 1, 0, 0),
-(8, '2022-02-02', 1, 1, 3, 0, 0),
-(9, '2022-05-12', 1, 1, 4, 0, 0),
-(10, '2022-07-27', 1, 1, 5, 0, 0),
-(11, '2022-09-08', 1, 1, 6, 0, 0),
-(12, '2023-03-28', 1, 1, 1, 0, 0),
-(13, '2021-02-10', 1, 2, 2, 0, 0),
-(14, '2021-04-13', 1, 2, 3, 0, 0),
-(19, '2021-05-02', 1, 5, 1, 0, 0),
-(20, '2022-05-10', 1, 5, 1, 0, 0),
-(21, '2023-11-13', 1, 5, 1, 0, 0),
-(22, '2022-02-20', 2, 6, 6, 0, 0),
-(23, '2022-03-10', 2, 6, 6, 0, 0),
-(24, '2023-05-28', 3, 6, 6, 0, 0);
+INSERT INTO `estadisticas_encuentro` (`id`, `fecha_del_partido`, `numero_partido`, `id_tipo_partido`, `id_jugador`, `id_equipo`, `id_usuario`) VALUES
+(1, '2017-04-26', 0, 1, 1, 1, 1),
+(2, '2018-07-10', 0, 2, 2, 3, 1),
+(3, '2023-05-10', 0, 3, 2, 5, 1),
+(4, '2023-06-12', 0, 1, 6, 1, 2),
+(5, '2023-06-25', 0, 1, 6, 1, 2),
+(6, '2023-08-03', 0, 1, 6, 1, 2),
+(7, '2023-10-10', 0, 1, 6, 1, 2),
+(8, '2022-02-02', 0, 1, 1, 3, 3),
+(9, '2022-05-12', 0, 1, 1, 4, 3),
+(10, '2022-07-27', 0, 1, 1, 5, 3),
+(11, '2022-09-08', 0, 1, 1, 6, 3),
+(12, '2023-03-28', 0, 1, 1, 1, 3),
+(13, '2021-02-10', 0, 1, 2, 2, 1),
+(14, '2021-04-13', 0, 1, 2, 3, 1),
+(19, '2021-05-02', 0, 1, 5, 1, 2),
+(20, '2022-05-10', 0, 1, 5, 1, 2),
+(21, '2023-11-13', 0, 1, 5, 1, 2),
+(22, '2022-02-20', 0, 2, 6, 6, 1),
+(23, '2022-03-10', 0, 2, 6, 6, 1),
+(24, '2023-05-28', 0, 3, 6, 6, 3),
+(25, '2023-05-16', 1, 1, 6, 1, 1),
+(26, '2023-06-13', 1, 3, 5, 4, 1),
+(27, '2012-12-12', 1, 1, 1, 2, 1);
 
 -- --------------------------------------------------------
 
@@ -485,7 +533,7 @@ CREATE TABLE `generar_reporte` (
   `fecha_final` date NOT NULL,
   `id_jugador` bigint UNSIGNED NOT NULL,
   `id_usuario` bigint UNSIGNED NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
 
 --
 -- Volcado de datos para la tabla `generar_reporte`
@@ -511,7 +559,14 @@ CREATE TABLE `historial_equipos` (
   `fecha_terminacion` datetime NOT NULL,
   `id_equipo` bigint UNSIGNED NOT NULL,
   `id_jugador` bigint UNSIGNED NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_spanish2_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
+
+--
+-- Volcado de datos para la tabla `historial_equipos`
+--
+
+INSERT INTO `historial_equipos` (`id`, `fecha_inicial`, `fecha_terminacion`, `id_equipo`, `id_jugador`) VALUES
+(6, '2011-02-10 00:00:00', '2012-05-20 00:00:00', 5, 12);
 
 -- --------------------------------------------------------
 
@@ -521,10 +576,10 @@ CREATE TABLE `historial_equipos` (
 
 CREATE TABLE `jugadores` (
   `id` bigint UNSIGNED NOT NULL,
-  `nombre_completo` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `apodo` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `nombre_completo` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish2_ci NOT NULL,
+  `apodo` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish2_ci DEFAULT NULL,
   `fecha_nacimiento` date NOT NULL,
-  `caracteristicas` text CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish2_ci,
+  `caracteristicas` text CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish2_ci,
   `id_usuario` bigint UNSIGNED NOT NULL,
   `id_equipo` bigint UNSIGNED NOT NULL,
   `id_liga` bigint UNSIGNED NOT NULL,
@@ -532,7 +587,7 @@ CREATE TABLE `jugadores` (
   `id_contiente` bigint UNSIGNED NOT NULL,
   `id_posicion` bigint UNSIGNED NOT NULL,
   `id_perfil` bigint UNSIGNED NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_spanish2_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
 
 --
 -- Volcado de datos para la tabla `jugadores`
@@ -547,7 +602,8 @@ INSERT INTO `jugadores` (`id`, `nombre_completo`, `apodo`, `fecha_nacimiento`, `
 (8, 'Alan Brito Delgado', 'El Flaco', '2003-05-02', NULL, 3, 3, 2, 4, 1, 5, 2),
 (9, 'Guillermo Nigote', 'El Nadies', '2008-07-06', NULL, 3, 7, 5, 8, 4, 9, 2),
 (10, 'Elvio Lao', 'El suave', '2005-08-10', NULL, 2, 4, 5, 6, 4, 10, 2),
-(11, 'Aquiles Castro', 'La Gillotina', '2008-09-17', NULL, 2, 5, 3, 7, 5, 11, 1);
+(11, 'Aquiles Castro', 'La Gillotina', '2008-09-17', NULL, 2, 5, 3, 7, 5, 11, 1),
+(12, 'santiago cristancho', 'el cofla', '2004-02-10', 'el puntual', 1, 6, 3, 6, 4, 3, 3);
 
 -- --------------------------------------------------------
 
@@ -557,8 +613,8 @@ INSERT INTO `jugadores` (`id`, `nombre_completo`, `apodo`, `fecha_nacimiento`, `
 
 CREATE TABLE `ligas` (
   `id` bigint UNSIGNED NOT NULL,
-  `nombre` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_spanish2_ci;
+  `nombre` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish2_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
 
 --
 -- Volcado de datos para la tabla `ligas`
@@ -581,7 +637,14 @@ INSERT INTO `ligas` (`id`, `nombre`) VALUES
 CREATE TABLE `numero_partido` (
   `id` bigint NOT NULL,
   `num_partido` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
+
+--
+-- Volcado de datos para la tabla `numero_partido`
+--
+
+INSERT INTO `numero_partido` (`id`, `num_partido`) VALUES
+(1, 1);
 
 -- --------------------------------------------------------
 
@@ -591,9 +654,9 @@ CREATE TABLE `numero_partido` (
 
 CREATE TABLE `paises` (
   `id` bigint UNSIGNED NOT NULL,
-  `nombre_pais` varchar(80) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `nombre_continente` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_spanish2_ci;
+  `nombre_pais` varchar(80) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish2_ci NOT NULL,
+  `nombre_continente` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish2_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
 
 --
 -- Volcado de datos para la tabla `paises`
@@ -617,8 +680,8 @@ INSERT INTO `paises` (`id`, `nombre_pais`, `nombre_continente`) VALUES
 
 CREATE TABLE `perfiles` (
   `id` bigint UNSIGNED NOT NULL,
-  `nombre` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_spanish2_ci;
+  `nombre` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish2_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
 
 --
 -- Volcado de datos para la tabla `perfiles`
@@ -637,8 +700,8 @@ INSERT INTO `perfiles` (`id`, `nombre`) VALUES
 
 CREATE TABLE `posiciones` (
   `id` bigint UNSIGNED NOT NULL,
-  `descripcion` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_spanish2_ci;
+  `descripcion` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish2_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
 
 --
 -- Volcado de datos para la tabla `posiciones`
@@ -667,8 +730,8 @@ INSERT INTO `posiciones` (`id`, `descripcion`) VALUES
 
 CREATE TABLE `tipo_partido` (
   `id` bigint UNSIGNED NOT NULL,
-  `nombre` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_spanish2_ci;
+  `nombre` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish2_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
 
 --
 -- Volcado de datos para la tabla `tipo_partido`
@@ -692,7 +755,14 @@ CREATE TABLE `titulos_jugador` (
   `id_equipo` bigint UNSIGNED NOT NULL,
   `id_copa` bigint UNSIGNED NOT NULL,
   `id_jugador` bigint UNSIGNED NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_spanish2_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
+
+--
+-- Volcado de datos para la tabla `titulos_jugador`
+--
+
+INSERT INTO `titulos_jugador` (`id`, `fecha`, `id_equipo`, `id_copa`, `id_jugador`) VALUES
+(7, '2011-06-20 00:00:00', 4, 7, 12);
 
 -- --------------------------------------------------------
 
@@ -702,10 +772,10 @@ CREATE TABLE `titulos_jugador` (
 
 CREATE TABLE `usuarios` (
   `id` bigint UNSIGNED NOT NULL,
-  `Email` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `nickname` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `password` varchar(150) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_spanish2_ci;
+  `Email` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish2_ci NOT NULL,
+  `nickname` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish2_ci DEFAULT NULL,
+  `password` varchar(150) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish2_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
 
 --
 -- Volcado de datos para la tabla `usuarios`
@@ -714,9 +784,7 @@ CREATE TABLE `usuarios` (
 INSERT INTO `usuarios` (`id`, `Email`, `nickname`, `password`) VALUES
 (1, 'josecanseco@gmail', 'jose45', '123456'),
 (2, 'asher@gmail', 'perritoal100%', '7777777'),
-(3, 'canela@cansanciogmail.com', 'saltarina123', '333333'),
-(8, 'danitalareina@gmail.com', 'danita12', 'Array'),
-(16, 'josecanseco@gmail', 'danita12', '$2y$10$8/aRIlISzzaoQcT73WxfHuF9RCPkEqhzf2J93yS4.HtaJc78ucGl2');
+(3, 'canela@cansanciogmail.com', 'saltarina123', '333333');
 
 --
 -- Índices para tablas volcadas
@@ -761,7 +829,8 @@ ALTER TABLE `estadisticas_encuentro`
   ADD PRIMARY KEY (`id`),
   ADD KEY `id_tipo_partido` (`id_tipo_partido`),
   ADD KEY `id_jugador` (`id_jugador`),
-  ADD KEY `id_equipo` (`id_equipo`);
+  ADD KEY `id_equipo` (`id_equipo`),
+  ADD KEY `id_usuario` (`id_usuario`);
 
 --
 -- Indices de la tabla `generar_reporte`
@@ -851,19 +920,19 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `continentes`
 --
 ALTER TABLE `continentes`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `copas`
 --
 ALTER TABLE `copas`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de la tabla `equipos`
 --
 ALTER TABLE `equipos`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `estadisticas`
@@ -875,43 +944,43 @@ ALTER TABLE `estadisticas`
 -- AUTO_INCREMENT de la tabla `estadisticas_count`
 --
 ALTER TABLE `estadisticas_count`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=354;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=399;
 
 --
 -- AUTO_INCREMENT de la tabla `estadisticas_encuentro`
 --
 ALTER TABLE `estadisticas_encuentro`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT de la tabla `generar_reporte`
 --
 ALTER TABLE `generar_reporte`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
 -- AUTO_INCREMENT de la tabla `historial_equipos`
 --
 ALTER TABLE `historial_equipos`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `jugadores`
 --
 ALTER TABLE `jugadores`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT de la tabla `ligas`
 --
 ALTER TABLE `ligas`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `numero_partido`
 --
 ALTER TABLE `numero_partido`
-  MODIFY `id` bigint NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `paises`
@@ -941,13 +1010,13 @@ ALTER TABLE `tipo_partido`
 -- AUTO_INCREMENT de la tabla `titulos_jugador`
 --
 ALTER TABLE `titulos_jugador`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- Restricciones para tablas volcadas
@@ -958,49 +1027,50 @@ ALTER TABLE `usuarios`
 --
 ALTER TABLE `estadisticas_count`
   ADD CONSTRAINT `FK_encuentro_estad_id_count_estadisticas_id` FOREIGN KEY (`id_encuentro_estadistica`) REFERENCES `estadisticas_encuentro` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `FK_estadistica_id_count_estadisticas_id` FOREIGN KEY (`id_estadistica`) REFERENCES `estadisticas` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+  ADD CONSTRAINT `FK_estadistica_id_count_estadisticas_id` FOREIGN KEY (`id_estadistica`) REFERENCES `estadisticas` (`id`);
 
 --
 -- Filtros para la tabla `estadisticas_encuentro`
 --
 ALTER TABLE `estadisticas_encuentro`
-  ADD CONSTRAINT `FK_equipo_id_encuentro_estadisticas_id` FOREIGN KEY (`id_equipo`) REFERENCES `equipos` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-  ADD CONSTRAINT `FK_jugador_id_encuentro_estadisticas_id` FOREIGN KEY (`id_jugador`) REFERENCES `jugadores` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-  ADD CONSTRAINT `FK_tipo_partido_id_encuentro_estadisticas_id` FOREIGN KEY (`id_tipo_partido`) REFERENCES `tipo_partido` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+  ADD CONSTRAINT `FK_equipo_id_encuentro_estadisticas_id` FOREIGN KEY (`id_equipo`) REFERENCES `equipos` (`id`),
+  ADD CONSTRAINT `FK_id_usuario_encuentro_estadisticas_id` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  ADD CONSTRAINT `FK_jugador_id_encuentro_estadisticas_id` FOREIGN KEY (`id_jugador`) REFERENCES `jugadores` (`id`),
+  ADD CONSTRAINT `FK_tipo_partido_id_encuentro_estadisticas_id` FOREIGN KEY (`id_tipo_partido`) REFERENCES `tipo_partido` (`id`);
 
 --
 -- Filtros para la tabla `generar_reporte`
 --
 ALTER TABLE `generar_reporte`
-  ADD CONSTRAINT `FK_jugador_id_generar_reporte_id` FOREIGN KEY (`id_jugador`) REFERENCES `jugadores` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-  ADD CONSTRAINT `FK_usuario_id_generar_reporte_id` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+  ADD CONSTRAINT `FK_jugador_id_generar_reporte_id` FOREIGN KEY (`id_jugador`) REFERENCES `jugadores` (`id`),
+  ADD CONSTRAINT `FK_usuario_id_generar_reporte_id` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id`);
 
 --
 -- Filtros para la tabla `historial_equipos`
 --
 ALTER TABLE `historial_equipos`
-  ADD CONSTRAINT `FK_equipo_id_historial_equipos_id` FOREIGN KEY (`id_equipo`) REFERENCES `equipos` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-  ADD CONSTRAINT `FK_jugador_id_historial_equipos_id` FOREIGN KEY (`id_jugador`) REFERENCES `jugadores` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+  ADD CONSTRAINT `FK_equipo_id_historial_equipos_id` FOREIGN KEY (`id_equipo`) REFERENCES `equipos` (`id`),
+  ADD CONSTRAINT `FK_jugador_id_historial_equipos_id` FOREIGN KEY (`id_jugador`) REFERENCES `jugadores` (`id`);
 
 --
 -- Filtros para la tabla `jugadores`
 --
 ALTER TABLE `jugadores`
-  ADD CONSTRAINT `FK_continente_jugadores_id` FOREIGN KEY (`id_contiente`) REFERENCES `continentes` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-  ADD CONSTRAINT `FK_equipo_jugadores_id` FOREIGN KEY (`id_equipo`) REFERENCES `equipos` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-  ADD CONSTRAINT `FK_jugador_usuarios_id` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-  ADD CONSTRAINT `FK_liga_jugadores_id` FOREIGN KEY (`id_liga`) REFERENCES `ligas` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-  ADD CONSTRAINT `FK_pais_jugadores_id` FOREIGN KEY (`id_pais`) REFERENCES `paises` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-  ADD CONSTRAINT `FK_perfil_jugadores_id` FOREIGN KEY (`id_perfil`) REFERENCES `perfiles` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-  ADD CONSTRAINT `FK_posicion_jugadores_id` FOREIGN KEY (`id_posicion`) REFERENCES `posiciones` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+  ADD CONSTRAINT `FK_continente_jugadores_id` FOREIGN KEY (`id_contiente`) REFERENCES `continentes` (`id`),
+  ADD CONSTRAINT `FK_equipo_jugadores_id` FOREIGN KEY (`id_equipo`) REFERENCES `equipos` (`id`),
+  ADD CONSTRAINT `FK_jugador_usuarios_id` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id`),
+  ADD CONSTRAINT `FK_liga_jugadores_id` FOREIGN KEY (`id_liga`) REFERENCES `ligas` (`id`),
+  ADD CONSTRAINT `FK_pais_jugadores_id` FOREIGN KEY (`id_pais`) REFERENCES `paises` (`id`),
+  ADD CONSTRAINT `FK_perfil_jugadores_id` FOREIGN KEY (`id_perfil`) REFERENCES `perfiles` (`id`),
+  ADD CONSTRAINT `FK_posicion_jugadores_id` FOREIGN KEY (`id_posicion`) REFERENCES `posiciones` (`id`);
 
 --
 -- Filtros para la tabla `titulos_jugador`
 --
 ALTER TABLE `titulos_jugador`
-  ADD CONSTRAINT `FK_copas_id_titulos_jugador_id` FOREIGN KEY (`id_copa`) REFERENCES `copas` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-  ADD CONSTRAINT `FK_equipos_id_titulos_jugador_id` FOREIGN KEY (`id_equipo`) REFERENCES `equipos` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-  ADD CONSTRAINT `FK_jugador_id_titulos_jugador_id` FOREIGN KEY (`id_jugador`) REFERENCES `jugadores` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+  ADD CONSTRAINT `FK_copas_id_titulos_jugador_id` FOREIGN KEY (`id_copa`) REFERENCES `copas` (`id`),
+  ADD CONSTRAINT `FK_equipos_id_titulos_jugador_id` FOREIGN KEY (`id_equipo`) REFERENCES `equipos` (`id`),
+  ADD CONSTRAINT `FK_jugador_id_titulos_jugador_id` FOREIGN KEY (`id_jugador`) REFERENCES `jugadores` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
