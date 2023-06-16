@@ -56,8 +56,8 @@ $copas = $datos->copas();
                                                                     </div>
                                                                     <div class="form-floating mt-3">
                                                                         <select class="form-select" id="id_copa" name="id_copa" aria-label="Default select example" required>
-                                                                            <option selected>Seleccionar Equipo</option>
-                                                                            <?php foreach ($equipos as $nombre) : ?>
+                                                                            <option selected>Seleccionar Titulo Ganado</option>
+                                                                            <?php foreach ($copas as $nombre) : ?>
                                                                                 <option value="<?= $nombre->getId() ?>">
                                                                                     <?= $nombre->getid_copa() ?> </option>
                                                                             <?php endforeach; ?>
