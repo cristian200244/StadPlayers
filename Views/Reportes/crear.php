@@ -26,7 +26,7 @@ $jugadores = $reportes->getPlayers();
                         <h3 class="text-center font-weight-light my-4">Generar Reporte</h3>
                     </div>
                     <div class="card-body text-black" style="background-color:#CFDFE0  ;">
-                        <div class="card d-flex justify-content-around  py-3 px-3 " style="background-color:#AED6F1 ">
+                        <div class="card d-flex justify-content-around  py-3 px-3 " style="background-color: #355878; ">
                             <form action="../../Controllers/GenerarReportesController.php" method="POST">
                                 <input type="hidden" name="c" value="1">
                                 <div class="row mb-3">
@@ -73,7 +73,7 @@ $jugadores = $reportes->getPlayers();
                                 </div>
                                 <div class="mt-4 mb-0">
                                     <div class="d-grid">
-                                        <button type="submit" class="btn btn-primary btn-block ">Generar</button>
+                                        <button type="submit" class="btn btn-danger btn-block ">Generar</button>
                                     </div>
                                 </div>
                             </form>

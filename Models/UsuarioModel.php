@@ -49,8 +49,8 @@ class UsuarioModel
     {
 
 
-        $pass = md5($datos['password']);
-        // $pass = $datos['password'];
+        // $pass = md5($datos['password']);
+        $pass = $datos['password'];
 
 
         // var_dump($pass);

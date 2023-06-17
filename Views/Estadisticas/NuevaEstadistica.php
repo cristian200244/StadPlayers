@@ -28,7 +28,7 @@ include_once(BASE_DIR . "../../Views/partials/aside.php");
                                     <div class="card-header bg-black ">
                                         <h3 class="text-center text-light my-4 fs-4">Crear Nueva Estadistica</h3>
                                     </div>
-                                    <div class="card-body text-black" style="background-color: #CDA078;">
+                                    <div class="card-body text-black" style="background-color:#CDDDEC ;">
                                         <div class="row align-items-center mb-3">
                                             <div class="col-md-12 mt-3">
                                                 <div class="form-floating mb-3 mb-md-0 text-center">

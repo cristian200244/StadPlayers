@@ -31,7 +31,7 @@ $copas          = $datos->copas();
 
 ?>
 
-<main>
+
     <div class="Imginspeccionar">
         <div class="container text-center">
             <div class="row">
@@ -328,10 +328,13 @@ $copas          = $datos->copas();
             </div>
         </div>
     </div>
+<?php
+include_once(BASE_DIR . "../../Views/partials/footer.php");
+?>
 
 
 
-</main>
+
 
 
 
@@ -351,6 +354,3 @@ $copas          = $datos->copas();
         window.location.href = 'titulos.php?id=' + jugadorId;
     });
 </script>
-<?php
-include_once(BASE_DIR . "../../Views/partials/footer.php");
-?>

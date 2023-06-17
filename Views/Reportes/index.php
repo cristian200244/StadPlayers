@@ -24,14 +24,14 @@ $registros = $reportes->getAll();
 
 <div class="imgReportesIndex">
     <main>
-        <div class="card mb-4 p-3 ms-5 me-5" style=" margin-top:15%; background-color:#FF785D;">
+        <div class="card mb-4 p-3 ms-5 me-5" style=" margin-top:15%; background-color: #355878;">
             <div class="card-header bg-black text-info text-lg-center mt-3 p-4 ">
                 <i class="fas fa-table me-1"></i>
                 Historial De Reportes Del Usuario
             </div>
-            <div class="card-body text-black" style="background-color:#CFDFE0  ;">
+            <div class="card-body text-black" style="background-color:#CDDDEC;">
 
-                <table id="datatablesSimple" class="text-black ">
+                <table id="datatablesSimple" class="text-white " style="background-color:#145370;">
                     <thead>
                         <tr>
                             <th scope="col">#</th>
@@ -79,7 +79,7 @@ $registros = $reportes->getAll();
                         <?php } ?>
                     </tbody>
                 </table>
-                <a type="button" class="btn btn-info btn-lg btn-block"
+                <a type="button" class="btn btn-primary btn-lg btn-block"
                     href="<?= BASE_URL ?>/Views/Reportes/crear.php">Generar Reporte</a>
             </div>
 

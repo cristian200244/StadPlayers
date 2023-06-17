@@ -45,7 +45,7 @@ $nPartido = $datos->NumeroPartido();
                     <div class="card-header bg-black text-light">
                         <h3 class="text-center font-weight-light fs-1 my-4">Estadisticas</h3>
                     </div>
-                    <div class="card-body text-black" style="background-color: #35423D;">
+                    <div class="card-body text-white" style="background-color:#CDDDEC ;">
 
                         <form action="../../Controllers/EstadisticasController.php?c=1" method="POST">
                             <div class="card d-flex justify-content-around  py-3 px-3 " style="background-color: #355878;">

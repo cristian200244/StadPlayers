@@ -11,6 +11,17 @@
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  */
 
+ canvas {
+  border: 1px dotted rgb(58, 53, 53);
+}
+
+.chart-container {
+  position: relative;
+  margin: auto;
+  height: 80vh;
+  width: 80vw;
+  size: 80%;
+}
 
 .BotonIniciarSesion button {
   font-family: "Russo One";
@@ -203,7 +214,7 @@ form .containerTitulo {
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
-  height: 100vw;
+  height: 200vw;
   width: 100%;
 
 
@@ -211,7 +222,7 @@ form .containerTitulo {
 
 @media screen and (max-width: 972px) {
   .Imgverjugador {
-    height: 120%;
+    height: 150%;
 
   }
 }
@@ -231,7 +242,7 @@ form .containerTitulo {
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
-  height: 100vw;
+  height: 200vw;
   width: 100%;
 
 
