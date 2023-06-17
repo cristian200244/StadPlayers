@@ -109,6 +109,8 @@ class EstadisticasController
     public function delete()
     {
         $id = $_REQUEST['id'];
+        // var_dump($_REQUEST);
+        // die();
         $result = $this->estadistica->delete($id);
         if ($result) {
             header("Location: ../Views/Estadisticas/VerEstadisticas.php");
