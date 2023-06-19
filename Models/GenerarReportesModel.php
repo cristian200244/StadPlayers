@@ -3,9 +3,10 @@ include_once __DIR__ . '../../Config/config_example.php';
 include_once dirname(__FILE__) . '../../Config/rutas.php';
 require_once("conexionModel.php");
 
+
 session_start();
 
-class ReportesModel
+class  ReportesModel
 {
 
     private $db;
@@ -30,7 +31,7 @@ class ReportesModel
     public $id_posicion;
     public $nuevas_estadisticas;
     public $datos;
-    // public $numEstadistica;
+
     public $valor;
 
 
@@ -38,10 +39,11 @@ class ReportesModel
     {
         //Instanciar la base de datos en el constructor para poder realizar consultas
 
+
         $this->db = new Database();
 
         $this->id;
-        $this->id_usuario = $_SESSION['id'];
+        $this->id_usuario;
         $this->id_reporte;
         $this->id_jugador;
         $this->nombre_completo;
@@ -63,7 +65,11 @@ class ReportesModel
         // $this->numEstadistica;
         $this->valor;
     }
-    //metodos mágicos
+
+
+
+
+
     public function getId()
     {
         return $this->id;
@@ -80,19 +86,41 @@ class ReportesModel
     {
         $this->id_usuario = $_SESSION['id'];
     }
+
+    public function getPlayers()
+    {
+        $this->id_usuario = $_SESSION['id'];
+        $sql = "SELECT id, nombre_completo, id_usuario FROM jugadores WHERE id_usuario ='$this->id_usuario'";
+        try {
+            $items = [];
+            $query = $this->db->conect()->query($sql);
+            while ($row = $query->fetch()) {
+                $item = new ReportesModel();
+                $item->id = $row['id'];
+                $item->nombre_completo = $row['nombre_completo'];
+                $item->id_usuario = $this->id_usuario;
+                array_push($items, $item);
+            }
+            return $items;
+        } catch (PDOException $e) {
+            die($e->getMessage());
+        }
+    }
     public function getAll()
     {
-
-        $sql = 'SELECT gr.id, gr.fecha_inicial, gr.fecha_final, j.nombre_completo
+        $this->id_usuario = $_SESSION['id'];
+        $sql = "SELECT gr.id, gr.fecha_inicial, gr.fecha_final, j.nombre_completo
         FROM generar_reporte as gr
         JOIN jugadores as j ON gr.id_jugador = j.id
-        WHERE gr.id_usuario =' . $this->id_usuario;
+        WHERE gr.id_usuario ='$this->id_usuario'";
 
         try {
             $items = [];
             $query = $this->db->conect()->query($sql);
 
             while ($row = $query->fetch()) {
+                // var_dump($row);
+                // die();
                 $item = new ReportesModel();
                 $item->id = $row['id'];
                 $item->fechaInicial = $row['fecha_inicial'];
@@ -100,7 +128,6 @@ class ReportesModel
                 array_push($items, $item);
                 $item->nombre_completo = $row['nombre_completo'];
             }
-
 
             return $items;
         } catch (PDOException $e) {
@@ -157,9 +184,10 @@ class ReportesModel
     }
     public function getReporteId($id)
     {
+        $this->id_usuario = $_SESSION['id'];
         $sql = "SELECT * 
         FROM generar_reporte 
-        WHERE id = $id AND id_usuario= $this->id_usuario";
+        WHERE id = $id AND id_usuario='$this->id_usuario'";
 
         try {
             $items = [];
@@ -366,27 +394,6 @@ class ReportesModel
                 $params["nueva_" . $row->nombre] =  $row->valor;
             }
             return $params;
-        } catch (PDOException $e) {
-            die($e->getMessage());
-        }
-    }
-
-
-    public function getPlayers()
-    {
-        $sql = "SELECT id, nombre_completo FROM jugadores WHERE id_usuario = $this->id_usuario";
-        $query = $this->db->conect()->query($sql);
-        try {
-            $items = [];
-            while ($row = $query->fetch()) {
-                $item = new ReportesModel();
-                $item->id = $row['id'];
-                $item->nombre_completo = $row['nombre_completo'];
-                $item->id_usuario = $this->id_usuario;
-
-                array_push($items, $item);
-            }
-            return $items;
         } catch (PDOException $e) {
             die($e->getMessage());
         }

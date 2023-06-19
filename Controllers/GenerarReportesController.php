@@ -11,6 +11,13 @@ class ReportesController
 {
     public $id_usuario;
     private $reportesModel;
+    private $smg;
+    public $consultaPromedio;
+    public $consultaTotalMinutos;
+    public $consultaTotalPartidos;
+    public  $consultaEstadisticasPre;
+    public  $consultaEstadisticasPor;
+    public    $consultaEstadisticasnuevas;
     public $reporte;
     public function __construct()
     {
@@ -38,11 +45,12 @@ class ReportesController
 
                     break;
                 case 6:
-                    //   self::CerrarSesion();
+                    self::DatosChart();
                     break;
             }
         }
     }
+
     public function Store()
     {
         $id_usuario =  $_SESSION['id'];
@@ -71,7 +79,11 @@ class ReportesController
     }
     public function show()
     {
-        $id_reporte = $_REQUEST['reporte'];
+
+        $id_reporte = $_REQUEST['id'];
+
+        // var_dump($id_reporte);
+        // die();
 
         $reporte                  = $this->reportesModel->getReporteId($id_reporte);
         $datosJugador             = $this->reportesModel->DatosJugadorReporte($id_reporte);
@@ -81,7 +93,8 @@ class ReportesController
         $totalEstadisticasPre     = $this->reportesModel->getTotalEstadPre($reporte);
         $totalEstadisticasPortero = $this->reportesModel->getTotalEstadPortero($reporte);
         $nuevasEstadisticas       = $this->reportesModel->getNuevaEstadistica($reporte);
-
+        // var_dump($totalEstadisticasPre);
+        // die();
         $params =
             http_build_query($reporte)
             . "&totalMinutosJugados="  . ($totalMinutosJugados)
@@ -97,11 +110,33 @@ class ReportesController
         );
     }
 
+    public function DatosChart()
+
+    {
+        $id_reporte = $_REQUEST['id'];
+        $reporte   = $this->reportesModel->getReporteId($id_reporte);
+        $smg = new ReportesModel();
+        // $consultaTotalPartidos       = $smg->getTotalPartidos($reporte);
+        // $consultaTotalMinutos        = $smg->getTotalMinutos($reporte);
+        // $consultaPromedio            = $smg->promedio($reporte);
+        $consultaEstadisticasPre     = $smg->getTotalEstadPre($reporte);
+        // $consultaEstadisticasPor     = $smg->getTotalEstadPortero($reporte);
+        // $consultaEstadisticasnuevas  = $smg->getNuevaEstadistica($reporte);
+
+        // echo json_encode($consultaTotalMinutos);
+        // echo json_encode($consultaTotalPartidos);
+        // echo json_encode($consultaPromedio);
+        echo json_encode($consultaEstadisticasPre);
+        // echo json_encode($consultaEstadisticasPor);
+        // echo json_encode($consultaEstadisticasnuevas);
+    }
+
     public function getDateId()
     {
         $id_usuario = $_SESSION['id'];
 
-        return $this->reportesModel->getById($id_usuario);
+        return $this->reportesModel->getPlayers($id_usuario) .
+            $this->reportesModel->getById($id_usuario);
     }
 
     public function fechasReporte($items)

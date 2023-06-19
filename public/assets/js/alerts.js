@@ -9,8 +9,6 @@ if (document.querySelector("#datos")) {
     }
 
     async function fntGuardar() {
-        // alert("la cagó parce, se le olvidó un dato");
-        // return;
 
         let correo = document.querySelector('#email').value;
         let nickname = document.querySelector('#nickname').value;
@@ -75,7 +73,7 @@ if (document.querySelector("#datos")) {
 
 
 function EliminarReporte(id) {
-    // alert(id);
+
 
     Swal.fire({
         title: '¿Desea eliminar éste reporte?',

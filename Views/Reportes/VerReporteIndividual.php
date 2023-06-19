@@ -47,10 +47,10 @@ $DatosJugador = [
 
 
 <div class="imgVerReporteIndividual">
-    <div class="container" style="margin-top: 15%; width:80%">
+    <div class="container" style="margin-top: 15%; width:100%">
         <div class="col-lg-12">
-            <div class="card shadow-lg border-0 bg-black rounded-lg mt-5">
-                <div class="card d-flex  text-center py-3 px-3" style="background-color:#D6EAF8  ">
+            <div class="card shadow-lg col-lg-12 border-0 bg-black rounded-lg mt-5">
+                <div class="card d-flex text-center py-3 px-3" style="background-color:#D6EAF8  ">
                     <div class="card-header" style="background-color:#4A235A">
                         <div class=" row ">
                             <div class=" col-md-8">
@@ -59,21 +59,21 @@ $DatosJugador = [
                             <?php
 
                             # code...
-                            
+
                             foreach ($encabezado as $key => $value) { ?>
-                                <div class="col-md-2 text-light pt-2  ">
-                                    <strong>
-                                        <h6><label for="#">
-                                                <?= str_replace("_", " ", $key) ?>
-                                            </label>
-                                        </h6>
-                                    </strong>
-                                    <div class="card bg-white text-success text-center mt-2 pt-2 pb-2">
-                                        <span>
-                                            <?= $value ?>
-                                        </span>
-                                    </div>
+                            <div class="col-md-2 text-light pt-2  ">
+                                <strong>
+                                    <h6><label for="#">
+                                            <?= str_replace("_", " ", $key) ?>
+                                        </label>
+                                    </h6>
+                                </strong>
+                                <div class="card bg-white text-success text-center mt-2 pt-2 pb-2">
+                                    <span>
+                                        <?= $value ?>
+                                    </span>
                                 </div>
+                            </div>
                             <?php } ?>
                         </div>
                     </div>
@@ -84,23 +84,23 @@ $DatosJugador = [
 
                             if ($key != 'id_posicion') { ?>
 
-                                <div class="card shadow-lg col-sm-3  ms-4 me-3  mt-3 pt-2 pb-2 text-white  border-success"
-                                    style="background-color:#34495E  ">
-                                    <strong>
-                                        <h5><label>
-                                                <?= str_replace("_", " ", $key) ?>
-                                            </label>
-                                        </h5>
-                                    </strong>
-                                    <div class=" card-floating  mb-3 mb-md-0 text-black  mt-2 pt-2 pb-2"
-                                        style="background-color:#F4ECF7">
-                                        <span>
-                                            <?= $value ?>
-                                        </span>
-                                    </div>
+                        <div class="card shadow-lg col-sm-3  ms-4 me-3  mt-3 pt-2 pb-2 text-white  border-success"
+                            style="background-color:#34495E  ">
+                            <strong>
+                                <h5><label>
+                                        <?= str_replace("_", " ", $key) ?>
+                                    </label>
+                                </h5>
+                            </strong>
+                            <div class=" card-floating  mb-3 mb-md-0 text-black  mt-2 pt-2 pb-2"
+                                style="background-color:#F4ECF7">
+                                <span>
+                                    <?= $value ?>
+                                </span>
+                            </div>
 
-                                </div>
-                            <?php } ?>
+                        </div>
+                        <?php } ?>
                         <?php } ?>
                     </div>
 
@@ -111,14 +111,15 @@ $DatosJugador = [
                         <div class="col-lg-5" style="display:none;" id="OptEstadisticas">
                             <input type="hidden" id="id_posicion" name="id_posicion"
                                 value=" <?= $DatosJugador["id_posicion"] ?>">
-                            <div class=" bg-info  border-warning rounded-lg mt-5 p-4" id="EstadisticasPre">
+                            <div class=" card shadow-lg bg-info border-warning  mt-5 p-4" id="EstadisticasPre">
                                 <div class="row mb-3">
                                     <div class="card-header bg-white fs-5">
                                         <div class="row mb-3">
-                                            <div class="col-9 mt-3">
+                                            <div class="col-8 mt-3">
                                                 <span id="TituloEstadJugador"></span>
                                             </div>
-                                            <div class="col-3 bg-info mt-3 border-3">
+                                            <div
+                                                class="card shadow-lg bg-dark mt-4 ms-4 p-2 text-white col-3 bg-info  border-3">
                                                 Total
                                             </div>
                                         </div>
@@ -128,43 +129,44 @@ $DatosJugador = [
                                 <?php
                                 foreach ($datosReporte as $key => $value) {
                                     if ("pre_" == substr($key, 0, 4)) {
-                                        ?>
-                                        <div class="col-12 card bg-dark text-light">
-                                            <ul class="list-group list-group-flush bg-info">
-                                                <div class="row">
-                                                    <div class="col-9 bg-white text-dark p-2">
+                                ?>
+                                <div class="col-12 card bg-dark text-light">
+                                    <ul class="list-group list-group-flush bg-info">
+                                        <div class="row">
+                                            <div class="col-9 bg-white text-dark p-2">
 
-                                                        <strong>
-                                                            <h5><label for="nombreEstadistica">
-                                                                    <?= str_replace("_", " ", str_replace("pre_", " ", $key)) ?>
-                                                                </label>
-                                                            </h5>
-                                                        </strong>
-                                                    </div>
-                                                    <div class="col-3 bg-secondary ">
-                                                        <div class="card bg-dark text-light  m-1 pt-2 p-1">
-                                                            <span>
-                                                                <?= $value ?>
-                                                            </span>
-                                                        </div>
-                                                    </div>
+                                                <strong>
+                                                    <h5><label for="nombreEstadistica">
+                                                            <?= str_replace("_", " ", str_replace("pre_", " ", $key)) ?>
+                                                        </label>
+                                                    </h5>
+                                                </strong>
+                                            </div>
+                                            <div class="col-3 bg-secondary ">
+                                                <div class="card bg-dark text-light  m-1 pt-2 p-1">
+                                                    <span>
+                                                        <?= $value ?>
+                                                    </span>
                                                 </div>
-                                            </ul>
+                                            </div>
                                         </div>
-                                        <input type="hidden" id="controlPre" value="2">
-                                        <?php
+                                    </ul>
+                                </div>
+                                <input type="hidden" id="controlPre" value="2">
+                                <?php
                                     }
                                 }
                                 ?>
                             </div>
                             <div class="card shadow-lg bg-info border-warning  rounded-lg mt-5 p-4" id="EstadArquero">
                                 <div class="row mb-3">
-                                    <div class="card-header bg-white fs-5">
+                                    <div class="card shadow-lg bg-primary border-0 rounded-lg bg-white fs-5">
                                         <div class="row mb-3">
-                                            <div class="col-9 mt-3">
+                                            <div class="col-8 mt-3">
                                                 <span id="TituloEstadArquero"></span>
                                             </div>
-                                            <div class="col-3 bg-info mt-3 border-3">
+                                            <div
+                                                class="card shadow-lg bg-dark mt-4 ms-4 p-2 text-white col-3 bg-info  border-3">
                                                 Total
                                             </div>
                                         </div>
@@ -174,31 +176,31 @@ $DatosJugador = [
 
                                 foreach ($datosReporte as $key => $value) {
                                     if ("por_" == substr($key, 0, 4)) {
-                                        ?>
-                                        <div class="col-12 card bg-dark text-light">
-                                            <ul class="list-group list-group-flush bg-info">
-                                                <div class="row">
-                                                    <div class="col-9 bg-white text-dark p-2">
+                                ?>
+                                <div class="col-12 card bg-dark text-light">
+                                    <ul class="list-group list-group-flush bg-info">
+                                        <div class="row">
+                                            <div class="col-9 bg-white text-dark p-2">
 
-                                                        <strong>
-                                                            <h5><label for="EstadisticasArquero">
-                                                                    <?= str_replace("_", " ", str_replace("por_", " ", $key)) ?>
-                                                                </label>
-                                                            </h5>
-                                                        </strong>
-                                                    </div>
-                                                    <div class="col-3 bg-secondary ">
-                                                        <div class="card bg-dark text-light  m-1 pt-2 p-1">
-                                                            <span>
-                                                                <?= $value ?>
-                                                            </span>
-                                                        </div>
-                                                    </div>
+                                                <strong>
+                                                    <h5><label for="EstadisticasArquero">
+                                                            <?= str_replace("_", " ", str_replace("por_", " ", $key)) ?>
+                                                        </label>
+                                                    </h5>
+                                                </strong>
+                                            </div>
+                                            <div class="col-3 bg-secondary ">
+                                                <div class="card bg-dark text-light  m-1 pt-2 p-1">
+                                                    <span>
+                                                        <?= $value ?>
+                                                    </span>
                                                 </div>
-                                            </ul>
+                                            </div>
                                         </div>
+                                    </ul>
+                                </div>
 
-                                        <?php
+                                <?php
                                     }
                                 }
                                 ?>
@@ -206,15 +208,16 @@ $DatosJugador = [
                         </div>
 
 
-                        <div class=" container-fluid px-4 col-lg-5">
+                        <div class=" container-fluid px-4 col-lg-7">
                             <div class="row ms-3" style="display:none;" id="OptNuevasEstadisticas">
-                                <div class="card shadow-lg bg-info me-3 border-warning rounded-lg mt-5  p-2">
-                                    <div class="card shadow-lg bg-primary border-0 rounded-lg mt-0 p-3 text-light ">
+                                <div class="card shadow-lg bg-info border-warning border-0 rounded-lg mt-5 p-4">
+                                    <div class="card shadow-lg bg-primary text-white border-0 rounded-lg ">
                                         <div class="row">
-                                            <div class="col-9">
+                                            <div class="col-8 mt-3">
                                                 Nuevas Estadìsticas
                                             </div>
-                                            <div class="col-3 bg-warning text-dark ">
+                                            <div
+                                                class="card col-3 shadow-lg bg-warning  mt-2 mb-2 ms-2 p-2 text-black bg-info border-3">
                                                 Total
                                             </div>
                                         </div>
@@ -224,97 +227,80 @@ $DatosJugador = [
                                     foreach ($datosReporte as $key => $value) {
                                         if ("nueva_" == substr($key, 0, 6)) {
 
-                                            ?>
-                                            <div class="col-12 card bg-dark text-light mt-2">
-                                                <ul class="list-group list-group-flush bg-info">
-                                                    <div class="row">
-                                                        <div class="col-9 bg-white text-dark p-2">
+                                    ?>
+                                    <div class="col-12 card bg-dark text-light mt-2">
+                                        <ul class="list-group list-group-flush bg-info">
+                                            <div class="row">
+                                                <div class="col-9 bg-white text-dark p-2">
 
-                                                            <strong>
-                                                                <h5><label for="nombreEstadistica">
-                                                                        <?= str_replace("_", " ", str_replace("nueva_", " ", $key)) ?>
-                                                                    </label>
-                                                                </h5>
+                                                    <strong>
+                                                        <h5><label for="nombreEstadistica">
+                                                                <?= str_replace("_", " ", str_replace("nueva_", " ", $key)) ?>
+                                                            </label>
+                                                        </h5>
 
-                                                            </strong>
-                                                        </div>
-                                                        <div class="col-3 bg-secondary ">
-                                                            <div class="card bg-dark text-light  m-1 pt-2 p-1">
-                                                                <span>
-                                                                    <?= $value ?>
-                                                                </span>
-                                                            </div>
-                                                        </div>
+                                                    </strong>
+                                                </div>
+                                                <div class="col-3 bg-secondary">
+                                                    <div class="card bg-dark text-light  m-1 pt-2 p-1">
+                                                        <span>
+                                                            <?= $value ?>
+                                                        </span>
                                                     </div>
-                                                </ul>
+                                                </div>
                                             </div>
+                                        </ul>
+                                    </div>
 
-                                            <input type="hidden" id="control" value="1">
-                                            <?php
+                                    <input type="hidden" id="control" value="1">
+                                    <?php
                                         }
                                     }
                                     ?>
                                 </div>
                             </div>
 
+                            <div class="col-lg-12 mt-lg-4">
 
-                         
-
-                                <!-- <div class="col-lg-12 mt-lg-5">
-                                        <div class="card mb-4" style="background-color: #FFF38F;"> -->
-                                <!-- <div class="card-header bg-danger text-light">
-                                                <i class="fas fa-chart-bar me-1"></i>
-                                                Grafica del Repote
-                                            </div> -->
-                                <div class="chart-container col-lg-7 mt-5">
-                                    <canvas id="myChartJugadores"></canvas>
+                                <div class="card mb-4 bg-white">
+                                    <div class="card-header bg-secondary text-white m-2 p-3 fs-5">
+                                        <i class="fas fa-chart-bar me-1 fs-5"></i>
+                                        Gráfica de Rendimiento
+                                    </div>
+                                    <div class="card-body">
+                                        <canvas id="myChart" width="400vw" height="400vh"></canvas>
+                                    </div>
+                                    <div class="card-footer small text-muted bg-secondary m-2 p-2">Generada La Fecha Del
+                                        Reporte
+                                    </div>
                                 </div>
 
-
-                                <!-- <div class="card-body bg-white"><canvas id="myBarChart" width="100%"
-                                                    height="50"></canvas></div> 
-                                             <div class="card-footer bg-danger small text-muted">
-                                                Generada
-                                                fecha del reporte
-                                            </div>  -->
-                                <!-- </div>
-                                        </div> -->
-                                <!-- </div> -->
-
-                     
-                        </div>
-
-                    </div>
-
-
-
-                    <a type="button " class="btn btn-info mt-5 "
-                        href="<?= BASE_URL ?>/Views/Reportes/index.php">Volver</a>
-                    <div class="row mt-5 mt-5 ms-3">
-
-                        <div class="card-header bg-dark text-light mt-3">
-                            <i class="fa-solid fa-print fa-fade"></i>
-                            Imprimir en
-                        </div>
-
-                        <div class="col-6 mt-3">
-                            <button type="button" class="btn btn-danger btn-sm">
-                                PDF</button>
-                        </div>
-                        <div class="col-6 mt-3">
-                            <button type="button" class="btn btn-primary btn-xl">
-                                Word</button>
+                            </div>
+                            <a type="button " class="btn btn-info mt-5 "
+                                href="<?= BASE_URL ?>/Views/Reportes/index.php">Volver</a>
+                            <div class="row mt-5 mt-5 ms-3">
+                                <div class="card-header bg-dark text-light  me-1 mt-3">
+                                    <i class="fa-solid fa-print fa-fade"></i>
+                                    Imprimir en
+                                </div>
+                                <div class="col-6 mt-3">
+                                    <button type="button" class="btn btn-danger btn-sm">
+                                        PDF</button>
+                                </div>
+                                <div class="col-6 mt-3">
+                                    <button type="button" class="btn btn-primary btn-xl">
+                                        Word</button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <!-- <canvas id="myChartJugadores"></canvas> -->
             </div>
         </div>
-
     </div>
 </div>
-</div>
-</div>
+
+
 
 <?php
 include_once(BASE_DIR . "../../Views/partials/footer.php");

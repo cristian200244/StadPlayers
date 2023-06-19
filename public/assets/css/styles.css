@@ -13,7 +13,7 @@
 
  canvas {
   border: 1px dotted rgb(58, 53, 53);
-}
+} 
 
 .chart-container {
   position: relative;
@@ -21,7 +21,7 @@
   height: 80vh;
   width: 80vw;
   size: 80%;
-}
+} 
 
 .BotonIniciarSesion button {
   font-family: "Russo One";

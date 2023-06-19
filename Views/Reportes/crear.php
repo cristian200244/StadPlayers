@@ -15,6 +15,7 @@ include_once(BASE_DIR . "../../Views/partials/aside.php");
 
 $reportes = new ReportesModel();
 $jugadores = $reportes->getPlayers();
+
 ?>
 
 <div class="imgGenerarReporte">

@@ -60,8 +60,10 @@ $registros = $reportes->getAll();
 
 
                                     <input type="hidden" name="c" value="3">
-                                    <button type=" submit" name="reporte" value="<?= $registro->id ?>"
-                                        class="btn btn-warning btn-large">Ver Reporte</button>
+                                    <button type="  submit" name="id" value="<?= $registro->id ?>" id="id"
+                                        onclick="CargarDatosGraficos(<?= $registro->id ?>)"
+                                        class="btn btn-warning btn-large">Ver
+                                        Reporte</button>
 
                                     <a type="submit" class="btn btn-danger" id="id_reporte"
                                         onclick="EliminarReporte(<?= $registro->id ?>)">Eliminar</a>
