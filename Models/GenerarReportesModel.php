@@ -309,6 +309,8 @@ class  ReportesModel
             ]);
             $result = $query->fetchColumn();
             $TotalPromedio = ($result > 0) ? $result : 0;
+            // var_dump($TotalPromedio);
+            // die();
             return  $TotalPromedio;
         } catch (PDOException $e) {
             die($e->getMessage());
@@ -335,6 +337,8 @@ class  ReportesModel
                 $totalEstadisticasPre->fechaFinal,
             ]);
             while ($row = $query->fetchObject()) {
+                // var_dump($row);
+                // die();
                 $params["pre_" . $row->nombre] =  $row->valor;
             }
             return $params;

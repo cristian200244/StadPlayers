@@ -17,7 +17,7 @@ class ReportesController
     public $consultaTotalPartidos;
     public  $consultaEstadisticasPre;
     public  $consultaEstadisticasPor;
-    public    $consultaEstadisticasnuevas;
+    public  $consultaEstadisticasnuevas;
     public $reporte;
     public function __construct()
     {
@@ -116,19 +116,22 @@ class ReportesController
         $id_reporte = $_REQUEST['id'];
         $reporte   = $this->reportesModel->getReporteId($id_reporte);
         $smg = new ReportesModel();
-        // $consultaTotalPartidos       = $smg->getTotalPartidos($reporte);
-        // $consultaTotalMinutos        = $smg->getTotalMinutos($reporte);
-        // $consultaPromedio            = $smg->promedio($reporte);
-        $consultaEstadisticasPre     = $smg->getTotalEstadPre($reporte);
-        // $consultaEstadisticasPor     = $smg->getTotalEstadPortero($reporte);
-        // $consultaEstadisticasnuevas  = $smg->getNuevaEstadistica($reporte);
+        $consultaTotalPartidos          = $smg->getTotalPartidos($reporte);
+        $consultaTotalMinutos           = $smg->getTotalMinutos($reporte);
+        $consultaPromedio               = $smg->promedio($reporte);
+        $consultaEstadisticasPre        = $smg->getTotalEstadPre($reporte);
+        $consultaEstadisticasPor        = $smg->getTotalEstadPortero($reporte);
+        $consultaEstadisticasnuevas     = $smg->getNuevaEstadistica($reporte);
 
-        // echo json_encode($consultaTotalMinutos);
-        // echo json_encode($consultaTotalPartidos);
-        // echo json_encode($consultaPromedio);
+        echo json_encode(
+            $consultaTotalPartidos     . "\n" .
+                $consultaTotalMinutos  . "\n" .
+                $consultaPromedio      . "\n"
+
+        );
         echo json_encode($consultaEstadisticasPre);
-        // echo json_encode($consultaEstadisticasPor);
-        // echo json_encode($consultaEstadisticasnuevas);
+        echo json_encode($consultaEstadisticasPor);
+        echo json_encode($consultaEstadisticasnuevas);
     }
 
     public function getDateId()
