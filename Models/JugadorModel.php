@@ -619,4 +619,38 @@ public function titulosGanados()
             die($e->getMessage());
         }
     }
+    public function deleteHistorial($id)
+    {
+        try {
+            $sql = "DELETE FROM historial_equipos WHERE id = :id";
+            $prepare = $this->db->conect()->prepare($sql);
+            $query = $prepare->execute([
+                'id'   => $id,
+            ]);
+
+            if ($query) {
+                return true;
+            }
+        } catch (PDOException $e) {
+            die($e->getMessage());
+        }
+    }
+
+    
+    public function deletetitulos($id)
+    {
+        try {
+            $sql = "DELETE FROM titulos_jugador WHERE id = :id";
+            $prepare = $this->db->conect()->prepare($sql);
+            $query = $prepare->execute([
+                'id'   => $id,
+            ]);
+
+            if ($query) {
+                return true;
+            }
+        } catch (PDOException $e) {
+            die($e->getMessage());
+        }
+    }
 }

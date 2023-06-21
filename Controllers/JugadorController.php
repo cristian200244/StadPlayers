@@ -33,7 +33,10 @@ class JugadorController
                     $this->titulos();
                     break;
                 case 7:
-                    $this->BorrarHistorial();
+                    $this->deleteHistorial();
+                    break;
+                case 8:
+                    $this->deletetitulos();
                     break;
                 default:
                     $this->index();
@@ -49,9 +52,9 @@ class JugadorController
 
     public function store()
     {
-        
+
         $datos = [
-            
+
             'nombre_completo' => $_POST['nombre_completo'],
             'apodo' => $_POST['apodo'],
             'fecha_nacimiento' => $_POST['fecha_nacimiento'],
@@ -64,7 +67,7 @@ class JugadorController
             'id_posicion' => $_POST['id_posicion'],
             'id_perfil' => $_POST['id_perfil'],
         ];
-        
+
         var_dump($datos);
         die();
         $result = $this->jugadorModel->store($datos);
@@ -168,34 +171,27 @@ class JugadorController
     }
 
 
-    public function BorrarHistorial()
+ 
+    public function deleteHistorial()
     {
         $id = $_REQUEST['id'];
-        $result = $this->jugadorModel->delete($id);
+        $result = $this->jugadorModel->deleteHistorial($id);
         if ($result) {
-            header("Location: ../views/jugadores/historial.php");
+            header("Location: " . $_SERVER['HTTP_REFERER']);
             exit();
         }
     }
+
+    public function deletetitulos()
+    {
+        $id = $_REQUEST['id'];
+        $result = $this->jugadorModel->deletetitulos($id);
+        if ($result) {
+            header("Location: " . $_SERVER['HTTP_REFERER']);
+            exit();
+        }
+    }
+    
 }
 
-    // public function titulos()
-    // {
-    //     $datos = [
-    //         'fecha' => $_POST['fecha'],
-    //         'fecha_inicial' => $_POST['fecha_inicial'],
-    //         'fecha_terminacion' => $_POST['fecha_terminacion'],
-    //         'id_jugador' => $_POST['id_equipo'],
-    //         'id_copa' => $_POST['id_copa']
-    //     ];
-
-    //     var_dump($datos);
-    //     die();
-
-    //     $result = $this->jugadorModel->titulos($datos);
-
-    //     if ($result) {
-    //         header("Location: ../views/jugadores/index.php");
-    //         exit();
-    //     }
-    // }
+  

@@ -131,7 +131,7 @@ $jugadores = $datos->jugadores();
                                                                             <!-- <th scope="col" >Opciones</th> -->
 
                                                                             <td>
-                                                                                <a class="btn btn-sm btn-outline-danger" href="../../Controllers/JugadorController.php?c=6&id=<?= $row->getId() ?>">Eliminar</a>
+                                                                                <a class="btn btn-danger" href="../../Controllers/JugadorController.php?c=7&id=<?= $row->getId() ?>">Eliminar</a>
                                                                             </td>
                                                                         </tr>
                                                                     <?php

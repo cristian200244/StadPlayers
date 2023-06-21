@@ -20,8 +20,6 @@ $posiciones     = $datos->posiciones();
 $perfiles       = $datos->perfiles();
 $copas          = $datos->copas();
 
-
-
 ?>
 
 
@@ -139,7 +137,7 @@ $copas          = $datos->copas();
 
                                                     <div class="col-md-6 mt-3 text-black">
                                                         <div class="col-md-12 mt-3">
-                                                            <a href="verjugadores.php" class="btn btn-primary btn-block">Ver Jugadores</a>
+                                                            <a href="verjugadores.php" class="btn btn-warning">Ver Jugadores</a>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6 mt-3 text-black">
@@ -202,7 +200,7 @@ $copas          = $datos->copas();
                                                                             <!-- <th scope="col" >Opciones</th> -->
 
                                                                             <td>
-                                                                                <a class="btn btn-danger" href="../../Controllers/JugadorController.php?c=6&id=<?= $row->getId() ?>">Eliminar</a>
+                                                                                <a class="btn btn-danger" href="../../Controllers/JugadorController.php?c=7&id=<?= $row->getId() ?>">Eliminar</a>
                                                                             </td>
                                                                         </tr>
                                                                     <?php
@@ -275,7 +273,7 @@ $copas          = $datos->copas();
                                                                                                 <!-- <th scope="col" >Opciones</th> -->
 
                                                                                                 <td>
-                                                                                                    <a class="btn btn-danger" href="../../Controllers/JugadorController.php?c=6&id=<?= $row->getId() ?>">Eliminar</a>
+                                                                                                    <a class="btn btn-danger" href="../../Controllers/JugadorController.php?c=8&id=<?= $row->getId() ?>">Eliminar</a>
                                                                                                 </td>
                                                                                             </tr>
                                                                                         <?php
