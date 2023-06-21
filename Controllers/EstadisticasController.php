@@ -6,7 +6,7 @@ $estadistica = new EstadisticasController;
 class EstadisticasController
 {
     private $estadistica;
-    
+
     public function __construct()
     {
         session_start();
@@ -26,6 +26,9 @@ class EstadisticasController
                 case 4:
                     self::delete();
                     break;
+                case 5:
+                    self::config();
+                    break;
 
 
                 default:
@@ -42,7 +45,32 @@ class EstadisticasController
         return $this->estadistica->getAll();
     }
 
-
+    public function config()
+    {
+        if (empty($_POST['agre_equipo']) || empty($_POST['agre_copa']) || empty($_POST['agre_pais']) || empty($_POST['agre_liga']) || empty($_POST['agre_tipo_partido'])) {
+            echo "Error', 'Por favor, complete todos los campos.', 'error";
+            return; // No se realiza la inserción en la base de datos si algún campo está vacío
+        }
+    
+        $data = [
+            'equipo' => $_POST['agre_equipo'],
+            'copa' => $_POST['agre_copa'],
+            'pais' => $_POST['agre_pais'],
+            'liga' => $_POST['agre_liga'],
+            'tipoPartido' => $_POST['agre_tipo_partido']
+        ];
+    
+        $result = $this->estadistica->config($data);
+    
+        if ($result) {
+            header("Location: ../Views/Configuraciones/index.php");
+            exit();
+        }
+    
+        return $result;
+    }
+    
+    
 
 
     public function store()
@@ -52,7 +80,7 @@ class EstadisticasController
         //  $usuario = $id->getById();
         $usuario = $_SESSION['id'];
         $datos = [
-            
+
             'id_jugador'        => $_REQUEST['id_jugador'],
             'fecha_del_partido' => $_REQUEST['fecha_del_partido'],
             'id_tipo_partido'   => $_REQUEST['id_tipo_partido'],

@@ -31,8 +31,8 @@ class UsuarioModel
 
             if (!empty($_POST['email']) && !empty($_POST['nickname']) && !empty($_POST['password']) && strlen($_POST['password']) >= 8) {
 
-                // $password = md5($_POST['password']);
-                $password = ($_POST['password']);
+                $password = md5($_POST['password']);
+                
                 $sql = 'INSERT INTO usuarios ( email, nickname,password) VALUES (:email, :nickname, :password)';
                 $prepare = $this->db->conect()->prepare($sql);
 
@@ -50,7 +50,7 @@ class UsuarioModel
     public function getUser($datos)
     {
 
-        $pass = md5($datos['password']);
+        $pass = ($_POST['password']);
         try {
 
             $sql = 'SELECT id, Email, password FROM usuarios WHERE Email = :email AND password = :password';
