@@ -19,7 +19,7 @@ $registros = $datos->getAll();
 ?>
 
 
-<main>
+
     <div class="Imgverjugador">
 
         <div class="container text-center ">
@@ -95,7 +95,7 @@ $registros = $datos->getAll();
             </div>
         </div>
     </div>
-</main>
+
 
 
 

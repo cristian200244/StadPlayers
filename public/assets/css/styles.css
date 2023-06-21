@@ -228,6 +228,33 @@ form .containerTitulo {
 }
 
 
+.Imghistorial {
+
+  background: url(../../assets/img/historialJugador.jpg);
+  background-position: center;
+  height: calc(100vh - 85px);
+  margin-left: 0%;
+  margin-right: 0%;
+  margin-bottom: 0%;
+  padding-left: 0%;
+  padding-right: 0;
+  margin-top: auto;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  height: 100vw;
+  width: 100%;
+
+
+}
+
+@media screen and (max-width: 972px) {
+  .Imghistorial {
+    height: 120%;
+
+  }
+}
+
 .Imginspeccionar {
 
   background: url(../../assets/img/inspeccionar.jpg);
@@ -13782,7 +13809,7 @@ body {
 }
 
 .bg-colorr {
-  background-color: rgb(52, 152, 219 ) !important;
+  background-color: rgb(52, 152, 219) !important;
 }
 
 .bg-colorbody {
@@ -13791,6 +13818,26 @@ body {
 
 .bg-color1 {
   background-color: rgb(133, 146, 158) !important;
+}
+
+.bg-color2 {
+  background-color: rgb(250, 219, 216) !important;
+}
+
+.bg-color3 {
+  background-color: rgb(236, 112, 99) !important;
+}
+
+.bg-color4 {
+  background-color: rgb(242, 243, 244) !important;
+}
+
+.bg-color5 {
+  background-color: rgb(93, 109, 126) !important;
+}
+
+.bg-color6 {
+  background-color: rgb(229, 231, 233) !important;
 }
 
 
