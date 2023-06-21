@@ -249,7 +249,7 @@ $copas          = $datos->copas();
 
                                                                                         <th scope="col">#</th>
                                                                                         <th scope="col">Jugador</th>
-                                                                                        <th scope="col">Fecha</th>
+                                                                                        <th scope="col">Fecha Obtencion Titulo</th>
                                                                                         <th scope="col">Copa</th>
                                                                                         <th scope="col">Equipo</th>
                                                                                         <th scope="col" colspan="2">Opción</th>

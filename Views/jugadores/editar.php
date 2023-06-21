@@ -10,7 +10,7 @@ include_once '../../Models/JugadorModel.php';
 
 
 $datos = new JugadorModel();
-$registros = $datos->getbyId($_REQUEST['id']);
+$registros = $datos->editar($_REQUEST['id']);
 
 foreach ($registros as $resultado) {
     $id                 = $resultado->getId();
@@ -48,7 +48,7 @@ $datos = new JugadorModel();
 $copas = $datos->copas();
 ?>
 
-<div class="Imginspeccionar">
+<div class="ImgJUGADOR">
     <div class="container text-center">
         <div class="row">
             <div class="col">
@@ -69,7 +69,7 @@ $copas = $datos->copas();
                                         <input type="hidden" name="c" value="3">
                                         <input type="hidden" name="id" value="<?= $id ?>">
                                         <div class="mb-3 ">
-                                            <div class="row">
+                                            <div class="row bg-color1 text-primary">
 
                                                 <div class="form-floating col-md-6 mt-3">
                                                     <div class="form-floating mb-3 mb-md-0">
@@ -80,13 +80,13 @@ $copas = $datos->copas();
 
                                                 <div class="form-floating col-md-6 mt-3">
                                                     <div class="form-floating mb-3 mb-md-0">
-                                                        <input type="text" class="form-control" id="apodo" placeholder="Apodo" name="apodo" value="<?= $apodo ?>" required />
+                                                        <input type="text" class="form-control" id="apodo" placeholder="Apodo" name="apodo" value="<?= $apodo ?>" />
                                                         <label for="apodo">Apodo</label>
                                                     </div>
                                                 </div>
                                                 <div class="form-floating col-md-6 mt-3">
                                                     <div class="form-floating mb-3 mb-md-0">
-                                                        <input type="text" class="form-control" id="caracteristicas" placeholder="caracteristicas" name="caracteristicas" value="<?= $caracteristicas ?>" required />
+                                                        <input type="text" class="form-control" id="caracteristicas" placeholder="caracteristicas" name="caracteristicas" value="<?= $caracteristicas ?>" />
                                                         <label for="caracteristicas"> caracterisitcas</label>
                                                     </div>
                                                 </div>
@@ -102,13 +102,13 @@ $copas = $datos->copas();
                                                 <div class="form-floating col-md-6 mt-3">
                                                     <select class="form-select" id="id_equipo" name="id_equipo" aria-label="Default select example" required>
                                                         <?php foreach ($equipos as $equipo) : ?>
-                                                            <?php if ($equipo->getId() == $equipos) : ?>
+                                                            <?php if ($equipo->getId() == $id_equipo) : ?>
                                                                 <option value="<?= $equipo->getId() ?>" selected>
-                                                                    <?= $equipo->getid_perfil() ?>
+                                                                    <?= $equipo->getid_equipos() ?>
                                                                 </option>
                                                             <?php else : ?>
                                                                 <option value="<?= $equipo->getId() ?>">
-                                                                    <?= $equipo->getid_perfil() ?>
+                                                                    <?= $equipo->getid_equipos() ?>
                                                                 </option>
                                                             <?php endif ?>
                                                         <?php endforeach ?>
@@ -122,11 +122,11 @@ $copas = $datos->copas();
                                                         <?php foreach ($ligas as $nombre) : ?>
                                                             <?php if ($nombre->getId() == $ligas) : ?>
                                                                 <option value="<?= $nombre->getId() ?>" selected>
-                                                                    <?= $nombre->getid_perfil() ?>
+                                                                    <?= $nombre->getid_ligas() ?>
                                                                 </option>
                                                             <?php else : ?>
                                                                 <option value="<?= $nombre->getId() ?>">
-                                                                    <?= $nombre->getid_perfil() ?>
+                                                                    <?= $nombre->getid_ligas() ?>
                                                                 </option>
                                                             <?php endif ?>
                                                         <?php endforeach ?>
@@ -138,11 +138,11 @@ $copas = $datos->copas();
                                                         <?php foreach ($continentes as $nombre) : ?>
                                                             <?php if ($nombre->getId() == $id_contiente) : ?>
                                                                 <option value="<?= $nombre->getId() ?>" selected>
-                                                                    <?= $nombre->getid_perfil() ?>
+                                                                    <?= $nombre->getid_continentes() ?>
                                                                 </option>
                                                             <?php else : ?>
                                                                 <option value="<?= $nombre->getId() ?>">
-                                                                    <?= $nombre->getid_perfil() ?>
+                                                                    <?= $nombre->getid_continentes() ?>
                                                                 </option>
                                                             <?php endif ?>
                                                         <?php endforeach ?>
@@ -154,11 +154,11 @@ $copas = $datos->copas();
                                                         <?php foreach ($paises as $nombre) : ?>
                                                             <?php if ($nombre->getId() == $id_pais) : ?>
                                                                 <option value="<?= $nombre->getId() ?>" selected>
-                                                                    <?= $nombre->getid_perfil() ?>
+                                                                    <?= $nombre->getid_paises() ?>
                                                                 </option>
                                                             <?php else : ?>
                                                                 <option value="<?= $nombre->getId() ?>">
-                                                                    <?= $nombre->getid_perfil() ?>
+                                                                    <?= $nombre->getid_paises() ?>
                                                                 </option>
                                                             <?php endif ?>
                                                         <?php endforeach ?>
@@ -171,11 +171,11 @@ $copas = $datos->copas();
                                                         <?php foreach ($posiciones as $nombre) : ?>
                                                             <?php if ($nombre->getId() == $id_posicion) : ?>
                                                                 <option value="<?= $nombre->getId() ?>" selected>
-                                                                    <?= $nombre->getid_perfil() ?>
+                                                                    <?= $nombre->getid_posicion() ?>
                                                                 </option>
                                                             <?php else : ?>
                                                                 <option value="<?= $nombre->getId() ?>">
-                                                                    <?= $nombre->getid_perfil() ?>
+                                                                    <?= $nombre->getid_posicion() ?>
                                                                 </option>
                                                             <?php endif ?>
                                                         <?php endforeach ?>

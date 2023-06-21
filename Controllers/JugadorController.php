@@ -151,7 +151,8 @@ class JugadorController
         ];
 
         $result = $this->jugadorModel->update($datos);
-
+        // var_dump($datos);
+        // die();
         if ($result) {
             header("Location: ../views/jugadores/verJugadores.php");
             exit();
@@ -171,7 +172,7 @@ class JugadorController
     }
 
 
- 
+
     public function deleteHistorial()
     {
         $id = $_REQUEST['id'];
@@ -191,7 +192,4 @@ class JugadorController
             exit();
         }
     }
-    
 }
-
-  
