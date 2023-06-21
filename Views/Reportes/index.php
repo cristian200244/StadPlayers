@@ -61,7 +61,6 @@ $registros = $reportes->getAll();
 
                                     <input type="hidden" name="c" value="3">
                                     <button type="submit" name="id" value="<?= $registro->id ?>" id="id"
-                                        onclick="CargarDatosGraficos(<?= $registro->id ?>)"
                                         class="btn btn-warning btn-large">Ver
                                         Reporte</button>
 
@@ -88,7 +87,52 @@ $registros = $reportes->getAll();
         </div>
     </main>
 </div>
+<script>
 
+
+
+function EliminarReporte(id) {
+
+
+Swal.fire({
+    title: '¿Desea eliminar éste reporte?',
+    text: "¡Esta acción será definitiva!",
+    icon: 'question',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Si, eliminar!'
+})
+    .then((result) => {
+        if (result.isConfirmed) {
+            Swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: 'El Reporte ha sido eliminado definitivamente',
+                showConfirmButton: false,
+            })
+                .then(() => {
+
+                    $.ajax({
+                        url: "../../Controllers/GenerarReportesController.php?c=2&id=" + id,
+                        success: function (r) {
+                            document.location.reload();
+                        }
+                    });
+
+
+                })
+        } else if (result.dismiss === Swal.DismissReason.cancel) {
+            Swal.fire('¡Reporte No Eliminado!', '', 'info')
+        }
+
+
+    });
+return false;
+timer: 2800
+}
+
+</script>
 <?php
 include_once(BASE_DIR . "../../Views/partials/footer.php");
 ?>

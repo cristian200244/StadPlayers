@@ -12,12 +12,12 @@ class ReportesController
     public $id_usuario;
     private $reportesModel;
     private $smg;
-    public $consultaPromedio;
-    public $consultaTotalMinutos;
-    public $consultaTotalPartidos;
     public  $consultaEstadisticasPre;
-    public  $consultaEstadisticasPor;
-    public  $consultaEstadisticasnuevas;
+    // public $consultaPromedio;
+    // public $consultaTotalMinutos;
+    // public $consultaTotalPartidos;
+    // public  $consultaEstadisticasPor;
+    // public  $consultaEstadisticasnuevas;
     public $reporte;
     public function __construct()
     {
@@ -42,10 +42,10 @@ class ReportesController
                     // self::update();
                     break;
                 case 5:
+                    self::ChartEstadisticasPre();
 
                     break;
                 case 6:
-                    self::DatosChart();
                     break;
             }
         }
@@ -69,21 +69,13 @@ class ReportesController
     public function destroy()
     {
         $id = $_REQUEST['id'];
-        // var_dump($id_reporte);
-        // die();
         $data = $this->reportesModel->destroy($id);
-
-        // if ($data) {
-        //     header("Location: ../views/index.php");
-        // }
     }
+
     public function show()
     {
 
         $id_reporte = $_REQUEST['id'];
-
-        // var_dump($id_reporte);
-        // die();
 
         $reporte                  = $this->reportesModel->getReporteId($id_reporte);
         $datosJugador             = $this->reportesModel->DatosJugadorReporte($id_reporte);
@@ -93,8 +85,7 @@ class ReportesController
         $totalEstadisticasPre     = $this->reportesModel->getTotalEstadPre($reporte);
         $totalEstadisticasPortero = $this->reportesModel->getTotalEstadPortero($reporte);
         $nuevasEstadisticas       = $this->reportesModel->getNuevaEstadistica($reporte);
-        // var_dump($totalEstadisticasPre);
-        // die();
+
         $params =
             http_build_query($reporte)
             . "&totalMinutosJugados="  . ($totalMinutosJugados)
@@ -110,28 +101,25 @@ class ReportesController
         );
     }
 
-    public function DatosChart()
+    public function ChartEstadisticasPre()
 
     {
         $id_reporte = $_REQUEST['id'];
         $reporte   = $this->reportesModel->getReporteId($id_reporte);
         $smg = new ReportesModel();
-        $consultaTotalPartidos          = $smg->getTotalPartidos($reporte);
-        $consultaTotalMinutos           = $smg->getTotalMinutos($reporte);
-        $consultaPromedio               = $smg->promedio($reporte);
-        $consultaEstadisticasPre        = $smg->getTotalEstadPre($reporte);
-        $consultaEstadisticasPor        = $smg->getTotalEstadPortero($reporte);
-        $consultaEstadisticasnuevas     = $smg->getNuevaEstadistica($reporte);
 
-        echo json_encode(
-            $consultaTotalPartidos     . "\n" .
-                $consultaTotalMinutos  . "\n" .
-                $consultaPromedio      . "\n"
+        $consultaEstadisticasPre = $smg->getTotalEstadPre($reporte);
 
-        );
-        echo json_encode($consultaEstadisticasPre);
-        echo json_encode($consultaEstadisticasPor);
-        echo json_encode($consultaEstadisticasnuevas);
+        $labels = array_keys($consultaEstadisticasPre);
+        $data   = array_values($consultaEstadisticasPre);
+
+        $result = [
+            "labels" => $labels,
+            "data"   => $data,
+        ];
+
+
+        echo json_encode($result);
     }
 
     public function getDateId()

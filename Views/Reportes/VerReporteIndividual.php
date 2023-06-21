@@ -14,8 +14,9 @@ include_once(BASE_DIR . "../../Views/partials/aside.php");
 $data = new ReportesController();
 $datosReporte = $_REQUEST;
 
-// var_dump($datosReporte);
+// var_dump($datosReporte["id"]);
 // die();
+
 // foreach ($datosReporte as $k => $v) {
 //     print_r($k . "=>" . $v);
 //     echo "<hr>";
@@ -102,12 +103,10 @@ $DatosJugador = [
                         <?php } ?>
                     </div>
 
-
-
-
                     <div class="row mb-3">
                         <div class="col-lg-5" style="display:none;" id="OptEstadisticas">
                             <input type="hidden" id="id_posicion" name="id_posicion" value=" <?= $DatosJugador["id_posicion"] ?>">
+                            <input type="hidden" id="id_reporte" name="id_reporte" value=" <?= $datosReporte["id"] ?>">
                             <div class=" card shadow-lg bg-info border-warning  mt-5 p-4" id="EstadisticasPre">
                                 <div class="row mb-3">
                                     <div class="card-header bg-white fs-5">
@@ -292,7 +291,97 @@ $DatosJugador = [
         </div>
     </div>
 </div>
+<script>
+    window.addEventListener('DOMContentLoaded', event => {
+        (async () => {
+            const id = document.getElementById("id_reporte").value;
 
+            console.log(id)
+            // Llamar a nuestra API. Puedes usar cualquier librería para la llamada, yo uso fetch, que viene nativamente en JS
+            const respuestaRaw = await fetch("../../Controllers/GenerarReportesController.php?c=5&id=" + id);
+
+            // Decodificar como JSON
+            const respuesta = await respuestaRaw.json();
+
+            // console.log(respuesta.labels);
+            // console.log(respuesta.data);
+            // return;
+            // Ahora ya tenemos las etiquetas y datos dentro de "respuesta"
+            // Obtener una referencia al elemento canvas del DOM
+            const $grafica = document.querySelector("#myChart");
+            const labels = respuesta.labels; // <- Aquí estamos pasando el valor traído usando AJAX
+            // Podemos tener varios conjuntos de datos. Comencemos con uno
+            const datos = {
+                label: "Estadísticas",
+                // Pasar los datos igualmente desde PHP
+                data: respuesta.data, // <- Aquí estamos pasando el valor traído usando AJAX
+                backgroundColor: 'rgba(54, 162, 235, 0.2)', // Color de fondo
+                borderColor: 'rgba(54, 162, 235, 1)', // Color del borde
+                borderWidth: 1, // Ancho del borde
+            };
+            new Chart($grafica, {
+                type: 'PolarArea', // Tipo de gráfica
+                data: {
+                    labels: labels,
+                    datasets: [
+                        datos,
+                        // Aquí más datos...
+                    ]
+                },
+                options: {
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }],
+                    },
+                }
+            });
+        })();
+
+        // Función Show & hidde
+
+        //código a ejecutar cuando existe la certeza de que el DOM está listo para recibir acciones
+
+        let predeterminadas = document.getElementById('EstadisticasPre');
+        let arquero = document.getElementById('EstadArquero')
+        let id_posicion = document.getElementById('id_posicion').value;
+
+        if (!document.getElementById("control")) {} else {
+            if (document.getElementById("control").value == 1) {
+                OptNuevasEstadisticas.style.display = "block";
+            }
+        }
+
+        if (!document.getElementById("controlPre")) {} else {
+            if (document.getElementById("controlPre").value == 2) {
+                OptEstadisticas.style.display = "block";
+            } else {
+
+
+            }
+        }
+
+
+        if (id_posicion != 1) {
+            document.getElementById("TituloEstadJugador").textContent = "Estadisticas del Jugador";
+            predeterminadas.style.display = "block";
+            arquero.style.display = "none";
+
+            var estadPre = document.getElementById("EstadisticasPre").value;
+            if (estadPre == 0) {
+                predeterminadas.style.display = "none";
+            }
+        } else { //Cuando es portero
+            document.getElementById("TituloEstadJugador").textContent = "Estadisticas del Jugador";
+            document.getElementById("TituloEstadArquero").textContent = "Estadisticas del Portero";
+            predeterminadas.style.display = "block";
+            arquero.style.display = "block";
+        }
+
+    });
+</script>
 
 
 <?php
