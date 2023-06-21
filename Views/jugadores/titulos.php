@@ -30,7 +30,7 @@ $copas = $datos->copas();
                             <div class="col-lg-12">
                                 <div class="card shadow-lg border-0 rounded-lg mt-5">
                                     <div class="card-header bg-success">
-                                        <h3 class="text-center text-light my-4 fs-4">Ingresar Historial Equipo</h3>
+                                        <h3 class="text-center text-light my-4 fs-4">Ingresar Titulos Obtenidos</h3>
                                     </div>
                                     <div class="card-body">
                                         <form action="../../Controllers/JugadorController.php" method="POST">
@@ -105,7 +105,7 @@ $copas = $datos->copas();
                                                         <div class="col-lg-12">
                                                             <div class="card shadow-lg border-0 rounded-lg mt-5">
                                                                 <div class="card-header bg-success">
-                                                                    <h3 class="text-center text-light my-4 fs-4"> Historial De Equipos</h3>
+                                                                    <h3 class="text-center text-light my-4 fs-4"> Titulos Obtenidos</h3>
                                                                 </div>
                                                                 <table class="table">
                                                                     <thead>
