@@ -182,4 +182,6 @@ $jugadores = $datos->jugadores();
     });
 </script>
 
-<?php include_once(BASE_DIR . "../../Views/partials/footer.php"); ?>
+<?php
+include_once(BASE_DIR . "../../Views/partials/footer.php");
+?>

@@ -80,7 +80,7 @@ $copas = $datos->copas();
                                                 <div class="form-floating col-md-6 mt-2">
                                                     <div class="form-floating pt-2">
                                                         <label for="fecha_nacimiento" id="fecha_nacimiento" class="form-label ">Fecha de nacimiento</label>
-                                                        <input type="datetime" class="form-control" type="date" name="fecha_nacimiento" id="fecha_nacimiento" required>
+                                                        <input type="date" class="form-control" type="date" name="fecha_nacimiento" id="fecha_nacimiento" required>
                                                     </div>
                                                 </div>
 

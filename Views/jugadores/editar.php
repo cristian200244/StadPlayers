@@ -200,8 +200,10 @@ $copas = $datos->copas();
 
 
                                             </div>
-                                            <div class="mb-3">
-                                                <button type="submit" class="btn btn-primary mb-3">Guardar</button>
+                                            <div class="mt-4 mb-0">
+                                                <div class="d-grid">
+                                                    <button class="btn btn-dark  btn-block" id="submitBtn">Guardar Jugador</button>
+                                                </div>
                                             </div>
                                         </div>
                                     </form>
@@ -215,6 +217,22 @@ $copas = $datos->copas();
     </div>
 
 </div>
+
+<script>
+    document.getElementById("submitBtn").addEventListener("click", function(event) {
+        var equipo = document.getElementById("id_equipo").value;
+        var liga = document.getElementById("id_liga").value;
+        var continente = document.getElementById("id_contiente").value;
+        var pais = document.getElementById("id_pais").value;
+        var posicion = document.getElementById("id_posicion").value;
+        var perfil = document.getElementById("id_perfil").value;
+
+        if (equipo === "" || liga === "" || continente === "" || pais === "" || posicion === "" || perfil === "") {
+            event.preventDefault();
+            alert("Por favor, seleccione una opción en todos los campos obligatorios.");
+        }
+    });
+</script>
 
 <?php
 include_once(BASE_DIR . "../../Views/partials/footer.php");
