@@ -26,7 +26,6 @@ class EstadisticasModel extends stdClass
     public function __construct()
     {
         $this->db = new DataBase();
-
     }
 
     public function getId()
@@ -63,10 +62,6 @@ class EstadisticasModel extends stdClass
     }
 
 
-
-
-
-
     public function getNombreCompleto()
     {
         return $this->nombre_completo;
@@ -79,7 +74,7 @@ class EstadisticasModel extends stdClass
         $items = [];
 
         try {
-            $sql = 'SELECT id, nombre_completo FROM jugadores';
+            $sql = 'SELECT id, nombre_completo FROM jugadores ';
 
             $query = $this->db->conect()->query($sql);
 
@@ -97,7 +92,7 @@ class EstadisticasModel extends stdClass
     }
 
 
-
+    // trae lo que hay en la db equipos
     public function  getEquipo()
     {
         return $this->equipo;
@@ -125,14 +120,62 @@ class EstadisticasModel extends stdClass
         }
     }
 
-    public function estado()
+    // trae lo que hay en la db copas
+
+    public function  getCopas()
     {
+        return $this->nombre;
+    }
+
+    public function copas()
+    {
+        $items = [];
+
         try {
-            //code...
-        } catch (\Throwable $th) {
-            //throw $th;
+            $sql = 'SELECT id, nombre FROM copas';
+            $query = $this->db->conect()->query($sql);
+            while ($row = $query->fetch()) {
+                $item           = new EstadisticasModel();
+                $item->id       = $row['id'];
+                $item->nombre   = $row['nombre'];
+
+                array_push($items, $item);
+            }
+            return $items;
+        } catch (PDOException $e) {
+            die($e->getMessage());
         }
     }
+
+        // trae lo que hay en la db paises
+
+        public function  getPaises()
+        {
+            return $this->nombre_pais;
+        }
+    
+        public function paises()
+        {
+            $items = [];
+        
+            try {
+                $sql = 'SELECT id, nombre_pais FROM paises';
+                $query = $this->db->conect()->query($sql);
+                while ($row = $query->fetch()) {
+                    $item           = new EstadisticasModel();
+                    $item->id       = $row['id'];
+                    $item->nombre_pais   = $row['nombre_pais'];
+        
+                    array_push($items, $item);
+                }
+                return $items;
+            } catch (PDOException $e) {
+                die($e->getMessage());
+            }
+        }
+        
+
+
 
 
     public function getTipoPartido()
@@ -261,7 +304,7 @@ class EstadisticasModel extends stdClass
     //     return  $this->id_usuario;
     // }
 
-    
+
     public function store($datos)
     {
         $fecha_del_partido = $datos['fecha_del_partido'];
@@ -294,6 +337,69 @@ class EstadisticasModel extends stdClass
             return false;
         }
     }
+
+    public function configEquipo($equipo)
+    {
+        try {
+            $sql = "INSERT INTO equipos (equipo) VALUES (:equipo)";
+            $prepare = $this->db->conect()->prepare($sql);
+            $prepare->execute(['equipo' => $equipo]);
+            return true;
+        } catch (PDOException $e) {
+            die($e->getMessage());
+        }
+    }
+
+    public function configCopa($copa)
+    {
+        try {
+            $sql = "INSERT INTO copas (nombre) VALUES (:copa)";
+            $prepare = $this->db->conect()->prepare($sql);
+            $prepare->execute(['copa' => $copa]);
+            return true;
+        } catch (PDOException $e) {
+            die($e->getMessage());
+        }
+    }
+
+    public function configPais($pais)
+    {
+        try {
+            $sql = "INSERT INTO paises (nombre_pais) VALUES (:pais)";
+            $prepare = $this->db->conect()->prepare($sql);
+            $prepare->execute(['pais' => $pais]);
+            return true;
+        } catch (PDOException $e) {
+            die($e->getMessage());
+        }
+    }
+
+    public function configLiga($liga)
+    {
+        try {
+            $sql = "INSERT INTO ligas (nombre) VALUES (:liga)";
+            $prepare = $this->db->conect()->prepare($sql);
+            $prepare->execute(['liga' => $liga]);
+            return true;
+        } catch (PDOException $e) {
+            die($e->getMessage());
+        }
+    }
+
+    public function configTipoPartido($tipoPartido)
+    {
+        try {
+            $sql = "INSERT INTO tipo_partido (nombre) VALUES (:tipoPartido)";
+            $prepare = $this->db->conect()->prepare($sql);
+            $prepare->execute(['tipoPartido' => $tipoPartido]);
+            return true;
+        } catch (PDOException $e) {
+            die($e->getMessage());
+        }
+    }
+
+
+
 
     public function stad($datos)
     {

@@ -6,7 +6,7 @@ $estadistica = new EstadisticasController;
 class EstadisticasController
 {
     private $estadistica;
-    
+
     public function __construct()
     {
         session_start();
@@ -26,6 +26,9 @@ class EstadisticasController
                 case 4:
                     self::delete();
                     break;
+                case 5:
+                    self::config();
+                    break;
 
 
                 default:
@@ -40,11 +43,45 @@ class EstadisticasController
     public function index()
     {
         return $this->estadistica->getAll();
+    }    
+    
+    public function config()
+{
+    $equipo = $_POST['agre_equipo'];
+    $copa = $_POST['agre_copa'];
+    $pais = $_POST['agre_pais'];
+    $liga = $_POST['agre_liga'];
+    $tipoPartido = $_POST['agre_tipo_partido'];
+
+    // Verificar que al menos un campo tenga valor
+    if (empty($equipo) && empty($copa) && empty($pais) && empty($liga) && empty($tipoPartido)) {
+        echo "Error: Debe completar al menos un campo.";
+        return;
     }
 
+    // Realizar la inserción en la tabla correspondiente
+    if (!empty($equipo)) {
+        $this->estadistica->configEquipo($equipo);
+    }
+    if (!empty($copa)) {
+        $this->estadistica->configCopa($copa);
+    }
+    if (!empty($pais)) {
+        $this->estadistica->configPais($pais);
+    }
+    if (!empty($liga)) {
+        $this->estadistica->configLiga($liga);
+    }
+    if (!empty($tipoPartido)) {
+        $this->estadistica->configTipoPartido($tipoPartido);
+    }
 
+    header("Location: ../Views/Configuraciones/index.php");
+    exit();
+}
 
-
+    
+    
     public function store()
     {
 
@@ -52,7 +89,7 @@ class EstadisticasController
         //  $usuario = $id->getById();
         $usuario = $_SESSION['id'];
         $datos = [
-            
+
             'id_jugador'        => $_REQUEST['id_jugador'],
             'fecha_del_partido' => $_REQUEST['fecha_del_partido'],
             'id_tipo_partido'   => $_REQUEST['id_tipo_partido'],
@@ -109,6 +146,8 @@ class EstadisticasController
     public function delete()
     {
         $id = $_REQUEST['id'];
+        // var_dump($_REQUEST);
+        // die();
         $result = $this->estadistica->delete($id);
         if ($result) {
             header("Location: ../Views/Estadisticas/VerEstadisticas.php");
