@@ -46,6 +46,7 @@ class ReportesController
 
                     break;
                 case 6:
+                    self:: showPdf();
                     break;
             }
         }
@@ -105,12 +106,18 @@ class ReportesController
 
     {
         $id_reporte = $_REQUEST['id'];
-        $reporte   = $this->reportesModel->getReporteId($id_reporte);
-        $smg = new ReportesModel();
+        $reporte    = $this->reportesModel->getReporteId($id_reporte);
+        $smg        = new ReportesModel();
 
         $consultaEstadisticasPre = $smg->getTotalEstadPre($reporte);
+        $data_labels = array_keys($consultaEstadisticasPre);
+        $labels = [];
 
-        $labels = array_keys($consultaEstadisticasPre);
+        foreach ($data_labels as $key => $v) {
+            $val = str_replace("pre_", "", $v);
+            array_push($labels, $val);
+        }
+
         $data   = array_values($consultaEstadisticasPre);
 
         $result = [
@@ -143,4 +150,34 @@ class ReportesController
             exit();
         }
     }
+
+    public function showPdf()
+    {
+        $id_reporte = $_REQUEST['id'];
+        $reporte    = $this->reportesModel->getReporteId($id_reporte);
+        $smg        = new ReportesModel();
+
+
+        $reporte                  = $this->smg->getReporteId($id_reporte);
+        $datosJugador             = $this->smg->DatosJugadorReporte($id_reporte);
+        $totalMinutosJugados      = $this->smg->getTotalMinutos($reporte);
+        $totalPartidosJugados     = $this->smg->getTotalPartidos($reporte);
+        $promedio                 = $this->smg->promedio($reporte);
+        $totalEstadisticasPre     = $this->smg->getTotalEstadPre($reporte);
+        $totalEstadisticasPortero = $this->smg->getTotalEstadPortero($reporte);
+        $nuevasEstadisticas       = $this->smg->getNuevaEstadistica($reporte);
+
+        $params =
+            http_build_query($reporte)
+            . "&totalMinutosJugados="  . ($totalMinutosJugados)
+            . "&totalPartidosJugados=" . ($totalPartidosJugados)
+            . "&promedio="             . ($promedio)
+            . "&" . http_build_query($datosJugador)
+            . "&" . http_build_query($totalEstadisticasPre)
+            . "&" . http_build_query($totalEstadisticasPortero)
+            . "&" . http_build_query($nuevasEstadisticas);
+
+       return  $params;
+    }
+
 }
