@@ -52,9 +52,10 @@ class JugadorController
 
     public function store()
     {
-
+        $usuario = $_SESSION['id'];
+        
         $datos = [
-
+            
             'nombre_completo' => $_POST['nombre_completo'],
             'apodo' => $_POST['apodo'],
             'fecha_nacimiento' => $_POST['fecha_nacimiento'],
@@ -66,21 +67,23 @@ class JugadorController
             'id_contiente' => $_POST['id_contiente'],
             'id_posicion' => $_POST['id_posicion'],
             'id_perfil' => $_POST['id_perfil'],
+            'id_usuario' => $usuario
         ];
 
-        var_dump($datos);
-        die();
+        
+       
         $result = $this->jugadorModel->store($datos);
 
         if ($result) {
+
+            header("Location: ../views/jugadores/VerJugadores.php");
             $id = $_REQUEST['id_usuario'];
-            header("Location: ../views/jugadores/VerJugadores.php?id=$id");
+            
             exit();
         }
 
         return $result;
     }
-
 
     public function guardar()
     {

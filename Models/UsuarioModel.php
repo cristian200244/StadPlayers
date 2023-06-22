@@ -4,7 +4,7 @@ require_once("conexionModel.php");
 
 class UsuarioModel
 {
-
+    public $id;
     public $email;
     public $nickname;
     public $password;
@@ -26,6 +26,7 @@ class UsuarioModel
 
     public function Store($datos)
     {
+
         try {
 
             if (!empty($_POST['email']) && !empty($_POST['nickname']) && !empty($_POST['password']) && strlen($_POST['password']) >= 8) {
@@ -48,14 +49,7 @@ class UsuarioModel
     public function getUser($datos)
     {
 
-
-        // $pass = md5($datos['password']);
-        $pass = $datos['password'];
-
-
-        // var_dump($pass);
-        // die();
-
+        $pass = md5($datos['password']);
         try {
 
             $sql = 'SELECT id, Email, password FROM usuarios WHERE Email = :email AND password = :password';
@@ -67,9 +61,34 @@ class UsuarioModel
 
             $results = $query->fetchObject();
 
-
-
             return $results;
+        } catch (PDOException $e) {
+            die($e->getMessage());
+        }
+    }
+    
+    public function getAll()
+    {
+        $items = [];
+
+        try {
+            $sql = 'SELECT u.id, u.email, u.nickname, u.password
+            FROM usuarios u';
+
+            $query  = $this->db->conect()->query($sql);
+
+            while ($row = $query->fetch()) {
+                $item                       =   new UsuarioModel();
+                $item->id                   =  $row['id'];
+                $item->email                =  $row['email'];
+                $item->nickname             =  $row['nickname'];
+                $item->password             =  $row['password'];
+                
+
+                array_push($items, $item);
+            }
+
+            return $items;
         } catch (PDOException $e) {
             die($e->getMessage());
         }

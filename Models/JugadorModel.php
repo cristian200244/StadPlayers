@@ -156,7 +156,7 @@ class JugadorModel extends stdClass
     public function store($datos)
     {
 
-        $id_usuario = $_SESSION['id'];
+        $id_usuario        = $_SESSION['id'];
         try {
 
 
