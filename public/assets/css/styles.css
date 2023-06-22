@@ -11,6 +11,17 @@
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  */
 
+ canvas {
+  border: 1px dotted rgb(58, 53, 53);
+} 
+
+.chart-container {
+  position: relative;
+  margin: auto;
+  height: 80vh;
+  width: 80vw;
+  size: 80%;
+} 
 
 .BotonIniciarSesion button {
   font-family: "Russo One";
@@ -203,7 +214,7 @@ form .containerTitulo {
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
-  height: 100vw;
+  height: 200vw;
   width: 100%;
 
 
@@ -211,11 +222,38 @@ form .containerTitulo {
 
 @media screen and (max-width: 972px) {
   .Imgverjugador {
-    height: 120%;
+    height: 150%;
 
   }
 }
 
+
+.Imghistorial {
+
+  background: url(../../assets/img/historialJugador.jpg);
+  background-position: center;
+  height: calc(100vh - 85px);
+  margin-left: 0%;
+  margin-right: 0%;
+  margin-bottom: 0%;
+  padding-left: 0%;
+  padding-right: 0;
+  margin-top: auto;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  height: 100vw;
+  width: 100%;
+
+
+}
+
+@media screen and (max-width: 972px) {
+  .Imghistorial {
+    height: 120%;
+
+  }
+}
 
 .Imginspeccionar {
 
@@ -231,7 +269,7 @@ form .containerTitulo {
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
-  height: 100vw;
+  height: 200vw;
   width: 100%;
 
 
@@ -299,9 +337,9 @@ form .containerTitulo {
 }
 
 
-.imgGenReport {
+.imgGenerarReporte{
 
-  background: url(../../assets/img/reportesfutbol2.jpg);
+  background: url(../../assets/img/GenerarReporte.jpg);
   background-position: center;
   height: calc(100vh - 85px);
   margin-left: 0%;
@@ -318,12 +356,62 @@ form .containerTitulo {
 }
 
 @media screen and (max-width: 972px) {
-  .imgGenReport {
+  .imgGenerarReporte {
     height: 120%;
 
   }
 }
 
+
+.imgReportesIndex{
+
+  background: url(../../assets/img/ReportesIndex.jpg);
+  background-position: center;
+  height: calc(100vh - 85px);
+  margin-left: 0%;
+  margin-right: 0%;
+  padding-left: 0%;
+  padding-right: 0;
+  margin-top: auto;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  height: 200vw;
+  width: 100%;
+
+}
+
+@media screen and (max-width: 972px) {
+  .imgReportesIndex{
+    height: 120%;
+
+  }
+}
+
+.imgVerReporteIndividual{
+
+  background: url(../../assets/img/reporteIndividual.jpg);
+  background-position: center;
+  height: calc(100vh - 85px);
+  margin-left: 0%;
+  margin-right: 0%;
+  padding-left: 0%;
+  padding-right: 0;
+  margin-top: auto;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  height: 200vw;
+  width: 100%;
+
+}
+
+@media screen and (max-width: 972px) {
+  .imgVerReporteIndividual{
+    height: 120%;
+
+  }
+}
 .imgING {
 
   background: url(../../assets/img/estadio_3.jpg);
@@ -13747,7 +13835,7 @@ body {
 }
 
 .bg-colorr {
-  background-color: rgb(52, 152, 219 ) !important;
+  background-color: rgb(52, 152, 219) !important;
 }
 
 .bg-colorbody {
@@ -13756,6 +13844,26 @@ body {
 
 .bg-color1 {
   background-color: rgb(133, 146, 158) !important;
+}
+
+.bg-color2 {
+  background-color: rgb(250, 219, 216) !important;
+}
+
+.bg-color3 {
+  background-color: rgb(236, 112, 99) !important;
+}
+
+.bg-color4 {
+  background-color: rgb(242, 243, 244) !important;
+}
+
+.bg-color5 {
+  background-color: rgb(93, 109, 126) !important;
+}
+
+.bg-color6 {
+  background-color: rgb(229, 231, 233) !important;
 }
 
 

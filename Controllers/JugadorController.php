@@ -33,7 +33,10 @@ class JugadorController
                     $this->titulos();
                     break;
                 case 7:
-                    $this->BorrarHistorial();
+                    $this->deleteHistorial();
+                    break;
+                case 8:
+                    $this->deletetitulos();
                     break;
                 default:
                     $this->index();
@@ -50,11 +53,14 @@ class JugadorController
     public function store()
     {
         $usuario = $_SESSION['id'];
+        
         $datos = [
+            
             'nombre_completo' => $_POST['nombre_completo'],
             'apodo' => $_POST['apodo'],
             'fecha_nacimiento' => $_POST['fecha_nacimiento'],
             'caracteristicas' => $_POST['caracteristicas'],
+            'id_usuario' => $_POST['id_usuario'],
             'id_equipo' => $_POST['id_equipo'],
             'id_liga' => $_POST['id_liga'],
             'id_pais' => $_POST['id_pais'],
@@ -64,13 +70,18 @@ class JugadorController
             'id_usuario' => $usuario
         ];
 
+        
+       
         $result = $this->jugadorModel->store($datos);
 
         if ($result) {
 
             header("Location: ../views/jugadores/VerJugadores.php");
+            $id = $_REQUEST['id_usuario'];
+            
             exit();
         }
+
         return $result;
     }
 
@@ -143,7 +154,8 @@ class JugadorController
         ];
 
         $result = $this->jugadorModel->update($datos);
-
+        // var_dump($datos);
+        // die();
         if ($result) {
             header("Location: ../views/jugadores/verJugadores.php");
             exit();
@@ -163,34 +175,24 @@ class JugadorController
     }
 
 
-    public function BorrarHistorial()
+
+    public function deleteHistorial()
     {
         $id = $_REQUEST['id'];
-        $result = $this->jugadorModel->delete($id);
+        $result = $this->jugadorModel->deleteHistorial($id);
         if ($result) {
-            header("Location: ../views/jugadores/historial.php");
+            header("Location: " . $_SERVER['HTTP_REFERER']);
+            exit();
+        }
+    }
+
+    public function deletetitulos()
+    {
+        $id = $_REQUEST['id'];
+        $result = $this->jugadorModel->deletetitulos($id);
+        if ($result) {
+            header("Location: " . $_SERVER['HTTP_REFERER']);
             exit();
         }
     }
 }
-
-    // public function titulos()
-    // {
-    //     $datos = [
-    //         'fecha' => $_POST['fecha'],
-    //         'fecha_inicial' => $_POST['fecha_inicial'],
-    //         'fecha_terminacion' => $_POST['fecha_terminacion'],
-    //         'id_jugador' => $_POST['id_equipo'],
-    //         'id_copa' => $_POST['id_copa']
-    //     ];
-
-    //     var_dump($datos);
-    //     die();
-
-    //     $result = $this->jugadorModel->titulos($datos);
-
-    //     if ($result) {
-    //         header("Location: ../views/jugadores/index.php");
-    //         exit();
-    //     }
-    // }

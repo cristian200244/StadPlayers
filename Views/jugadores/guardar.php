@@ -1,4 +1,11 @@
 <?php
+// session_start();
+// if (!isset($_SESSION['id'])) {
+
+//     header("Location:../../index.php");
+// }
+
+
 include_once(__DIR__ . "../../../config/rutas.php");
 include_once(BASE_DIR . "../../Views/partials/header.php");
 include_once(BASE_DIR . "../../Views/partials/aside.php");
@@ -24,7 +31,7 @@ $copas          = $datos->copas();
 
 ?>
 
-<main>
+
     <div class="Imginspeccionar">
         <div class="container text-center">
             <div class="row">
@@ -148,7 +155,7 @@ $copas          = $datos->copas();
                                                             <div class="col-md-6 mt-5">
                                                                 <a href="index.php" class="btn btn-primary btn-block">Crear Jugador</a>
                                                             </div>
-                                                        </div>                                                        
+                                                        </div>
                                                     </div>
                                                 </div>
 
@@ -321,10 +328,13 @@ $copas          = $datos->copas();
             </div>
         </div>
     </div>
+<?php
+include_once(BASE_DIR . "../../Views/partials/footer.php");
+?>
 
 
 
-</main>
+
 
 
 
@@ -344,6 +354,3 @@ $copas          = $datos->copas();
         window.location.href = 'titulos.php?id=' + jugadorId;
     });
 </script>
-<?php
-include_once(BASE_DIR . "../../Views/partials/footer.php");
-?>

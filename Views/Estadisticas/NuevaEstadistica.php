@@ -1,4 +1,9 @@
 <?php
+// session_start();
+// if (!isset($_SESSION['id'])) {
+
+//     header("Location:../../index.php");
+// }
 
 include_once(__DIR__ . "../../../config/rutas.php");
 include_once(BASE_DIR . "../../Views/partials/header.php");
@@ -23,7 +28,7 @@ include_once(BASE_DIR . "../../Views/partials/aside.php");
                                     <div class="card-header bg-black ">
                                         <h3 class="text-center text-light my-4 fs-4">Crear Nueva Estadistica</h3>
                                     </div>
-                                    <div class="card-body text-black" style="background-color: #CDA078;">
+                                    <div class="card-body text-black" style="background-color:#CDDDEC ;">
                                         <div class="row align-items-center mb-3">
                                             <div class="col-md-12 mt-3">
                                                 <div class="form-floating mb-3 mb-md-0 text-center">
@@ -45,17 +50,17 @@ include_once(BASE_DIR . "../../Views/partials/aside.php");
                                         </div>
 
                                         <div class="mt-4 mb-0">
-                                        <div class="d-grid">
-                                            <button class="btn btn-primary btn-block text-blackx">Agregar Estadisitca</button>
+                                            <div class="d-grid">
+                                                <button class="btn btn-primary btn-block text-blackx">Agregar Estadisitca</button>
 
+                                            </div>
+                                            <br>
+                                            <div class="d-grid">
+                                                <a class="btn btn-success" href="../Estadisticas/LlenarEstadistica.php">Regresar</a>
+                                            </div>
                                         </div>
-                                        <br>
-                                        <div class="d-grid">
-                                            <a class="btn btn-success" href="../Estadisticas/LlenarEstadistica.php">Regresar</a>
-                                        </div>
-                                    </div>
-                                            
-                                        
+
+
                                     </div>
                                 </div>
                             </div>

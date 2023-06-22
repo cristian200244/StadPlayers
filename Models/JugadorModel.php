@@ -78,6 +78,38 @@ class JugadorModel extends stdClass
     }
 
 
+    
+    public function editar($id)
+    {
+        $operacion = [];
+
+        try {
+            $sql = "SELECT * FROM jugadores WHERE id = $id";
+            $query  = $this->db->conect()->query($sql);
+
+
+            while ($row = $query->fetch()) {
+                $item            = new JugadorModel();
+                $item->id        = $row['id'];
+                $item->nombre_completo  = $row['nombre_completo'];
+                $item->apodo            = $row['apodo'];
+                $item->fecha_nacimiento = $row['fecha_nacimiento'];
+                $item->caracteristicas  = $row['caracteristicas'];
+                $item->id_posicion      = $row['id_posicion'];
+                $item->id_equipo        = $row['id_equipo'];
+                $item->id_liga          = $row['id_liga'];
+                $item->id_pais          = $row['id_pais'];
+                $item->id_contiente     = $row['id_contiente'];
+                $item->id_perfil        = $row['id_perfil'];
+
+                array_push($operacion, $item);
+            }
+
+            return $operacion;
+        } catch (PDOException $e) {
+            die($e->getMessage());
+        }
+    }
     // trae los dator por el id 
 
     public function getbyId($id)
@@ -124,7 +156,7 @@ class JugadorModel extends stdClass
     public function store($datos)
     {
 
-        $id_usuario = $_SESSION['id'];
+        $id_usuario        = $_SESSION['id'];
         try {
 
 
@@ -615,6 +647,40 @@ public function titulosGanados()
                 array_push($items, $item);
             }
             return $items;
+        } catch (PDOException $e) {
+            die($e->getMessage());
+        }
+    }
+    public function deleteHistorial($id)
+    {
+        try {
+            $sql = "DELETE FROM historial_equipos WHERE id = :id";
+            $prepare = $this->db->conect()->prepare($sql);
+            $query = $prepare->execute([
+                'id'   => $id,
+            ]);
+
+            if ($query) {
+                return true;
+            }
+        } catch (PDOException $e) {
+            die($e->getMessage());
+        }
+    }
+
+
+    public function deletetitulos($id)
+    {
+        try {
+            $sql = "DELETE FROM titulos_jugador WHERE id = :id";
+            $prepare = $this->db->conect()->prepare($sql);
+            $query = $prepare->execute([
+                'id'   => $id,
+            ]);
+
+            if ($query) {
+                return true;
+            }
         } catch (PDOException $e) {
             die($e->getMessage());
         }

@@ -4,7 +4,7 @@ require_once("conexionModel.php");
 
 class UsuarioModel
 {
-
+    public $id;
     public $email;
     public $nickname;
     public $password;
@@ -63,6 +63,33 @@ class UsuarioModel
             $results = $query->fetchObject();
 
             return $results;
+        } catch (PDOException $e) {
+            die($e->getMessage());
+        }
+    }
+    
+    public function getAll()
+    {
+        $items = [];
+
+        try {
+            $sql = 'SELECT u.id, u.email, u.nickname, u.password
+            FROM usuarios u';
+
+            $query  = $this->db->conect()->query($sql);
+
+            while ($row = $query->fetch()) {
+                $item                       =   new UsuarioModel();
+                $item->id                   =  $row['id'];
+                $item->email                =  $row['email'];
+                $item->nickname             =  $row['nickname'];
+                $item->password             =  $row['password'];
+                
+
+                array_push($items, $item);
+            }
+
+            return $items;
         } catch (PDOException $e) {
             die($e->getMessage());
         }

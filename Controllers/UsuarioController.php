@@ -47,8 +47,7 @@ class UsuarioController
       'nickname' => $_REQUEST['nickname'],
       'password' => $_REQUEST['password'],
     ];
-    // var_dump($datos);
-    // die();
+
     $result =  $this->usuarioModel->Store($datos);
   }
 
@@ -61,6 +60,13 @@ class UsuarioController
     ];
 
 
+
+    // var_dump($datos);
+    // die();
+
+    // echo "<hr>";
+
+
     if (empty($datos['email']) || empty($datos['password'])) {
     } else {
 
@@ -68,10 +74,6 @@ class UsuarioController
 
       if ($results) {
         session_start();
-
-        var_dump($results);
-
-        echo "<hr>";
 
         $_SESSION['id']       = $results->id;
         $_SESSION['email']    = $results->Email;
@@ -94,21 +96,3 @@ class UsuarioController
 
   }
 }
-// public function Session()
-// if (!isset($_SESSION['id'])) {
-// header("Location:index.php");
-// }
-// {
-// $user = new UsuarioModel;
-// $session = $user->getUserSession();
-// $user = null;
-// if (count($session) > 0) {
-// $user = $session;
-// }
-// if (!empty($user))
-// $message = ' Wellcome' . $user['email'] .
-// '<br>' . 'You are Successfully Logged In';
-
-// else
-// header('Location:../index.php');
-// }

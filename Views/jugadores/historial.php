@@ -1,4 +1,10 @@
 <?php
+// session_start();
+// if (!isset($_SESSION['id'])) {
+
+//     header("Location:../../index.php");
+// }
+
 include_once(__DIR__ . "../../../config/rutas.php");
 include_once(BASE_DIR . "../../Views/partials/header.php");
 include_once(BASE_DIR . "../../Views/partials/aside.php");
@@ -41,27 +47,39 @@ $jugadores = $datos->jugadores();
                                                         <div class="card">
                                                             <div class="card-body">
                                                                 <div class="card-header bg-success">
-                                                                    <h5 class="text-center text-light my-4 fs-4">Historial Equipos</h5>
+                                                                    <h5 class="text-center text-light my-4 fs-4">
+                                                                        Historial Equipos</h5>
                                                                 </div>
                                                                 <div class="form-floating mt-3">
-                                                                    <select class="form-select" id="id_equipo" name="id_equipo" aria-label="Default select example" required>
+                                                                    <select class="form-select" id="id_equipo"
+                                                                        name="id_equipo"
+                                                                        aria-label="Default select example" required>
                                                                         <option selected>Seleccionar Equipo</option>
                                                                         <?php foreach ($equipos as $equipo) : ?>
-                                                                            <option value="<?= $equipo->getId() ?>">
-                                                                                <?= $equipo->getid_equipos() ?> </option>
+                                                                        <option value="<?= $equipo->getId() ?>">
+                                                                            <?= $equipo->getid_equipos() ?> </option>
                                                                         <?php endforeach; ?>
                                                                     </select>
                                                                 </div>
                                                                 <div class="mt-3">
                                                                     <div class="form-floating pt-2">
-                                                                        <label for="fecha_inicial" id="fecha_inicial" class="form-label">Fecha Inicial</label>
-                                                                        <input type="date" class="form-control" placeholder="Fecha Inicial" name="fecha_inicial" id="fecha_inicial" required>
+                                                                        <label for="fecha_inicial" id="fecha_inicial"
+                                                                            class="form-label">Fecha Inicial</label>
+                                                                        <input type="date" class="form-control"
+                                                                            placeholder="Fecha Inicial"
+                                                                            name="fecha_inicial" id="fecha_inicial"
+                                                                            required>
                                                                     </div>
                                                                 </div>
                                                                 <div class="mt-3">
                                                                     <div class="form-floating pt-2">
-                                                                        <label for="fecha_terminacion" id="fecha_terminacion" class="form-label">Fecha Terminación</label>
-                                                                        <input type="date" class="form-control" placeholder="Fecha Terminación" name="fecha_terminacion" id="fecha_terminacion" required>
+                                                                        <label for="fecha_terminacion"
+                                                                            id="fecha_terminacion"
+                                                                            class="form-label">Fecha Terminación</label>
+                                                                        <input type="date" class="form-control"
+                                                                            placeholder="Fecha Terminación"
+                                                                            name="fecha_terminacion"
+                                                                            id="fecha_terminacion" required>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -69,7 +87,8 @@ $jugadores = $datos->jugadores();
                                                     </div>
                                                     <div class="mt-4 mb-0">
                                                         <div class="d-grid">
-                                                            <button class="btn btn-success btn-block" id="submitBtn">Guardar Historial</button>
+                                                            <button class="btn btn-success btn-block"
+                                                                id="submitBtn">Guardar Historial</button>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -79,7 +98,8 @@ $jugadores = $datos->jugadores();
                                     </form>
                                     <div class="mt-4 mb-0">
                                         <div class="d-grid">
-                                            <a class="btn btn-primary btn-block" href="guardar.php?id=<?php echo $id; ?>">Regresar</a>
+                                            <a class="btn btn-primary btn-block"
+                                                href="guardar.php?id=<?php echo $id; ?>">Regresar</a>
                                         </div>
                                     </div>
 
@@ -98,7 +118,8 @@ $jugadores = $datos->jugadores();
                                                         <div class="col-lg-12">
                                                             <div class="card shadow-lg border-0 rounded-lg mt-5">
                                                                 <div class="card-header bg-success">
-                                                                    <h3 class="text-center text-light my-4 fs-4"> Historial Equipos</h3>
+                                                                    <h3 class="text-center text-light my-4 fs-4">
+                                                                        Historial Equipos</h3>
                                                                 </div>
                                                                 <table class="table">
                                                                     <thead>
@@ -120,27 +141,28 @@ $jugadores = $datos->jugadores();
 
                                                                         ?>
 
-                                                                                <tr>
+                                                                        <tr>
 
-                                                                                    <td><?= $pos ?></td>
-                                                                                    <td><?= $row->id_jugador ?></td>
-                                                                                    <td><?= $row->fecha_inicial ?></td>
-                                                                                    <td><?= $row->fecha_terminacion ?></td>
-                                                                                    <td><?= $row->id_equipo ?></td>
-                                                                                    <!-- <th scope="col" >Opciones</th> -->
+                                                                            <td><?= $pos ?></td>
+                                                                            <td><?= $row->id_jugador ?></td>
+                                                                            <td><?= $row->fecha_inicial ?></td>
+                                                                            <td><?= $row->fecha_terminacion ?></td>
+                                                                            <td><?= $row->id_equipo ?></td>
+                                                                            <!-- <th scope="col" >Opciones</th> -->
 
-                                                                                    <td>
-                                                                                        <a class="btn btn-sm btn-outline-danger" href="../../Controllers/JugadorController.php?c=6&id=<?= $row->getId() ?>">Eliminar</a>
-                                                                                    </td>
-                                                                                </tr>
-                                                                            <?php
+                                                                            <td>
+                                                                                <a class="btn btn-sm btn-outline-danger"
+                                                                                    href="../../Controllers/JugadorController.php?c=6&id=<?= $row->getId() ?>">Eliminar</a>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <?php
                                                                                 $pos++;
                                                                             }
                                                                         } else {
                                                                             ?>
-                                                                            <tr class="text-center">
-                                                                                <td colspan="6">Sin datos</td>
-                                                                            </tr>
+                                                                        <tr class="text-center">
+                                                                            <td colspan="6">Sin datos</td>
+                                                                        </tr>
                                                                         <?php
                                                                         }
                                                                         ?>
@@ -165,22 +187,24 @@ $jugadores = $datos->jugadores();
 
 
 <script>
-    document.getElementById('submitBtn').addEventListener('click', function() {
-        var jugadorId = <?php echo $id; ?>; // Obtén el ID del jugador desde tu código PHP
+document.getElementById('submitBtn').addEventListener('click', function() {
+    var jugadorId = <?php echo $id; ?>; // Obtén el ID del jugador desde tu código PHP
 
-        // Redireccionar a la página de historial conservando el mismo ID
-        window.location.href = 'historial.php?id=' + jugadorId;
-    });
+    // Redireccionar a la página de historial conservando el mismo ID
+    window.location.href = 'historial.php?id=' + jugadorId;
+});
 </script>
 
 
 <script>
-    document.getElementById('submitBtn').addEventListener('click', function() {
-        var jugadorId = <?php echo $id; ?>; // Obtén el ID del jugador desde tu código PHP
+document.getElementById('submitBtn').addEventListener('click', function() {
+    var jugadorId = <?php echo $id; ?>; // Obtén el ID del jugador desde tu código PHP
 
-        // Redireccionar a la página de historial conservando el mismo ID
-        window.location.href = 'historial.php?id=' + jugadorId;
-    });
+    // Redireccionar a la página de historial conservando el mismo ID
+    window.location.href = 'historial.php?id=' + jugadorId;
+});
 </script>
 
-<?php include_once(BASE_DIR . "../../Views/partials/footer.php"); ?>
+<?php
+include_once(BASE_DIR . "../../Views/partials/footer.php");
+?>

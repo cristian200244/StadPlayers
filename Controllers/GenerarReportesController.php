@@ -9,7 +9,15 @@ $usuario = new ReportesController();
 
 class ReportesController
 {
+    public $id_usuario;
     private $reportesModel;
+    private $smg;
+    public  $consultaEstadisticasPre;
+    // public $consultaPromedio;
+    // public $consultaTotalMinutos;
+    // public $consultaTotalPartidos;
+    // public  $consultaEstadisticasPor;
+    // public  $consultaEstadisticasnuevas;
     public $reporte;
     public function __construct()
     {
@@ -24,7 +32,7 @@ class ReportesController
                     break;
                 case 2: //Eliminar
                     self::destroy();
-                 
+
                     break;
                 case 3: //Ver por operacion
                     self::show();
@@ -34,14 +42,16 @@ class ReportesController
                     // self::update();
                     break;
                 case 5:
+                    self::ChartEstadisticasPre();
 
                     break;
                 case 6:
-                    //   self::CerrarSesion();
+                    self:: showPdf();
                     break;
             }
         }
     }
+
     public function Store()
     {
         $id_usuario =  $_SESSION['id'];
@@ -60,17 +70,13 @@ class ReportesController
     public function destroy()
     {
         $id = $_REQUEST['id'];
-        // var_dump($id_reporte);
-        // die();
         $data = $this->reportesModel->destroy($id);
-
-        // if ($data) {
-        //     header("Location: ../views/index.php");
-        // }
     }
+
     public function show()
     {
-        $id_reporte = $_REQUEST['reporte'];
+
+        $id_reporte = $_REQUEST['id'];
 
         $reporte                  = $this->reportesModel->getReporteId($id_reporte);
         $datosJugador             = $this->reportesModel->DatosJugadorReporte($id_reporte);
@@ -96,11 +102,39 @@ class ReportesController
         );
     }
 
+    public function ChartEstadisticasPre()
+
+    {
+        $id_reporte = $_REQUEST['id'];
+        $reporte    = $this->reportesModel->getReporteId($id_reporte);
+        $smg        = new ReportesModel();
+
+        $consultaEstadisticasPre = $smg->getTotalEstadPre($reporte);
+        $data_labels = array_keys($consultaEstadisticasPre);
+        $labels = [];
+
+        foreach ($data_labels as $key => $v) {
+            $val = str_replace("pre_", "", $v);
+            array_push($labels, $val);
+        }
+
+        $data   = array_values($consultaEstadisticasPre);
+
+        $result = [
+            "labels" => $labels,
+            "data"   => $data,
+        ];
+
+
+        echo json_encode($result);
+    }
+
     public function getDateId()
     {
         $id_usuario = $_SESSION['id'];
 
-        return $this->reportesModel->getById($id_usuario);
+        return $this->reportesModel->getPlayers($id_usuario) .
+            $this->reportesModel->getById($id_usuario);
     }
 
     public function fechasReporte($items)
@@ -116,4 +150,34 @@ class ReportesController
             exit();
         }
     }
+
+    public function showPdf()
+    {
+        $id_reporte = $_REQUEST['id'];
+        $reporte    = $this->reportesModel->getReporteId($id_reporte);
+        $smg        = new ReportesModel();
+
+
+        $reporte                  = $this->smg->getReporteId($id_reporte);
+        $datosJugador             = $this->smg->DatosJugadorReporte($id_reporte);
+        $totalMinutosJugados      = $this->smg->getTotalMinutos($reporte);
+        $totalPartidosJugados     = $this->smg->getTotalPartidos($reporte);
+        $promedio                 = $this->smg->promedio($reporte);
+        $totalEstadisticasPre     = $this->smg->getTotalEstadPre($reporte);
+        $totalEstadisticasPortero = $this->smg->getTotalEstadPortero($reporte);
+        $nuevasEstadisticas       = $this->smg->getNuevaEstadistica($reporte);
+
+        $params =
+            http_build_query($reporte)
+            . "&totalMinutosJugados="  . ($totalMinutosJugados)
+            . "&totalPartidosJugados=" . ($totalPartidosJugados)
+            . "&promedio="             . ($promedio)
+            . "&" . http_build_query($datosJugador)
+            . "&" . http_build_query($totalEstadisticasPre)
+            . "&" . http_build_query($totalEstadisticasPortero)
+            . "&" . http_build_query($nuevasEstadisticas);
+
+       return  $params;
+    }
+
 }
