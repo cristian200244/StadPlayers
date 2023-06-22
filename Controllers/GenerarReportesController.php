@@ -133,7 +133,7 @@ class ReportesController
     {
         $id_usuario = $_SESSION['id'];
 
-        return $this->reportesModel->getPlayers($id_usuario) .
+        return $this->reportesModel->getPlayers() .
             $this->reportesModel->getById($id_usuario);
     }
 
