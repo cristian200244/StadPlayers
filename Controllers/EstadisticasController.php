@@ -43,36 +43,45 @@ class EstadisticasController
     public function index()
     {
         return $this->estadistica->getAll();
-    }
-
+    }    
+    
     public function config()
-    {
-        if (empty($_POST['agre_equipo']) || empty($_POST['agre_copa']) || empty($_POST['agre_pais']) || empty($_POST['agre_liga']) || empty($_POST['agre_tipo_partido'])) {
-            echo "Error', 'Por favor, complete todos los campos.', 'error";
-            return; // No se realiza la inserción en la base de datos si algún campo está vacío
-        }
-    
-        $data = [
-            'equipo' => $_POST['agre_equipo'],
-            'copa' => $_POST['agre_copa'],
-            'pais' => $_POST['agre_pais'],
-            'liga' => $_POST['agre_liga'],
-            'tipoPartido' => $_POST['agre_tipo_partido']
-        ];
-    
-        $result = $this->estadistica->config($data);
-    
-        if ($result) {
-            header("Location: ../Views/Configuraciones/index.php");
-            exit();
-        }
-    
-        return $result;
+{
+    $equipo = $_POST['agre_equipo'];
+    $copa = $_POST['agre_copa'];
+    $pais = $_POST['agre_pais'];
+    $liga = $_POST['agre_liga'];
+    $tipoPartido = $_POST['agre_tipo_partido'];
+
+    // Verificar que al menos un campo tenga valor
+    if (empty($equipo) && empty($copa) && empty($pais) && empty($liga) && empty($tipoPartido)) {
+        echo "Error: Debe completar al menos un campo.";
+        return;
     }
+
+    // Realizar la inserción en la tabla correspondiente
+    if (!empty($equipo)) {
+        $this->estadistica->configEquipo($equipo);
+    }
+    if (!empty($copa)) {
+        $this->estadistica->configCopa($copa);
+    }
+    if (!empty($pais)) {
+        $this->estadistica->configPais($pais);
+    }
+    if (!empty($liga)) {
+        $this->estadistica->configLiga($liga);
+    }
+    if (!empty($tipoPartido)) {
+        $this->estadistica->configTipoPartido($tipoPartido);
+    }
+
+    header("Location: ../Views/Configuraciones/index.php");
+    exit();
+}
+
     
     
-
-
     public function store()
     {
 

@@ -24,24 +24,39 @@ include_once __DIR__ . "../../../Models/EstadisticasModel.php";
                                     <div class="col">
                                         <label for="agre_equipo" class="text-center">Agregar Equipo</label>
                                         <input type="text" name="agre_equipo" id="agre_equipo" class="rounded w-100">
+                                        <div class="col mt-4">
+                                            <a href="verEquipos.php"class="btn btn-warning btn-block" id="btn_equipos">Ver equipos</a>
+                                        </div>
                                     </div>
                                     <div class="col">
                                         <label for="agre_copa" class="text-center">Agregar Copa</label>
                                         <input type="text" name="agre_copa" id="agre_copa" class="rounded w-100">
+                                        <div class="col mt-4">
+                                            <a href="verCopas.php"class="btn btn-warning btn-block" id="btn_equipos">Ver copas</a>
+                                        </div>
                                     </div>
                                     <div class="col">
                                         <label for="agre_pais" class="text-center">Agregar Pais</label>
                                         <input type="text" name="agre_pais" id="agre_pais" class="rounded w-100">
+                                        <div class="col mt-4">
+                                            <a href="verPaises.php"class="btn btn-warning btn-block" id="btn_equipos">Ver paises</a>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-4">
                                         <label for="agre_liga" class="text-center">Agregar Liga</label>
                                         <input type="text" name="agre_liga" id="agre_liga" class="rounded w-100">
+                                        <div class="col mt-4">
+                                            <a href=""class="btn btn-warning btn-block" id="btn_equipos">Ver tipos ligas</a>
+                                        </div>
                                     </div>
                                     <div class="col-4">
                                         <label for="agre_tipo_partido" class="text-center">Agregar Tipo Partido</label>
                                         <input type="text" name="agre_tipo_partido" id="agre_tipo_partido" class="rounded w-100">
+                                        <div class="col mt-4">
+                                            <a href=""class="btn btn-warning btn-block" id="btn_equipos">Ver tipos de partido</a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -64,14 +79,15 @@ include_once __DIR__ . "../../../Models/EstadisticasModel.php";
         var liga = document.getElementById('agre_liga').value;
         var tipoPartido = document.getElementById('agre_tipo_partido').value;
 
-        if (equipo === '' || copa === '' || pais === '' || liga === '' || tipoPartido === '') {
-            swal("Error", "Por favor, complete todos los campos.", "error");
+        if (equipo === '' && copa === '' && pais === '' && liga === '' && tipoPartido === '') {
+            swal("Error", "Por favor, complete al menos uno de los campos.", "error");
             return false;
         }
 
         return true;
     }
 </script>
+
 
 
 
