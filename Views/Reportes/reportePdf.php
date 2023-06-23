@@ -1,10 +1,14 @@
+
 <?php
-ob_start();
-// session_start();
 // if (!isset($_SESSION['id'])) {
 
 //     header("Location:../../index.php");
+// }else{
+//     if($_SESSION['usuario']=="ok") {
+
+//     $nombreUsuario=$_SESSION["nombreUsuario"];}
 // }
+ob_start();
 
 include_once(__DIR__ . "../../../config/rutas.php");
 include_once __DIR__ . "../../../Models/GenerarReportesModel.php";
@@ -62,6 +66,7 @@ $datosJugador = [
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- <link href="../../public/assets/css/styles.css" rel="stylesheet" /> -->
+    
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
 
@@ -70,10 +75,8 @@ $datosJugador = [
 
 <body>
     <div class="container">
-
-        <table class="table table-striped w-auto">
-
-            <!--Table head-->
+    <img class="" src="// http://<?php echo $_SERVER['HTTP_HOST']; ?>/StadPlayers/Public/assets/img/tituloStadplayers.jpg<?php echo $libro[''];?>" width="100" alt=""srcset="" >
+        <table class="table table-striped">
             <thead>
                 <tr>
 
@@ -91,7 +94,8 @@ $datosJugador = [
 
             <tbody>
 
-                <?php
+
+            <?php
                 foreach ($datosJugador as $key => $dato) {
 
                     if ($key != 'id_posicion') { ?>
@@ -106,9 +110,8 @@ $datosJugador = [
         </table>
 
 
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
-</script>
 
 </html>
 
@@ -118,6 +121,9 @@ include_once(BASE_DIR . "../../Views/partials/footer.php");
 <?php
 // include_once(BASE_DIR . "../../Views/partials/header.php");
 // include_once(BASE_DIR . "../../Views/partials/aside.php");
+// session_start();
+
+
 
 $html = ob_get_clean();
 
@@ -127,7 +133,6 @@ require_once '../../dompdf/autoload.inc.php';
 use Dompdf\Dompdf;
 
 $dompdf = new Dompdf();
-
 $options = $dompdf->getOptions();
 $options->set(array('isRemoteEnable' => true));
 $dompdf->setOptions($options);
@@ -145,6 +150,5 @@ $dompdf->stream("archivo-.pdf", array("Attachment" => false));
 // $dompdf->setPaper('A4','Landscape');
 // si no se quiere mostrar el contenido en format de carta o
 // estas creando certifidados necesita mostrarlos en fora horzontal se puede usar esta función.
-?>
 
-<img class="img-thumbnail rounded" src="// http://<?php echo $_SERVER['HTTP_HOST']; ?>/sitioweb/img/<?php echo $libro['imagen']; ?>
+?>

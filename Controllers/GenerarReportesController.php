@@ -182,11 +182,11 @@ class ReportesController
         // var_dump($params);
         // die();
 
-        // header(
-        //     "Location: ../Views/Reportes/reportePdf.php?" . $params
-        // );
         header(
-            "Location: ../Views/Reportes/fpdfReporte.php?" . $params
+            "Location: ../Views/Reportes/reportePdf.php?" . $params
         );
+        // header(
+        //     "Location: ../Views/Reportes/fpdfReporte.php?" . $params
+        // );
     }
 }
