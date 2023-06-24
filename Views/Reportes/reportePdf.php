@@ -1,4 +1,4 @@
- <?php
+<?php
     // if (!isset($_SESSION['id'])) {
 
     //     header("Location:../../index.php");
@@ -54,7 +54,7 @@
     // var_dump($datosJugador);
     // echo "<hr>";
     // die();
-
+    ob_start();
     ?>
 
  <!DOCTYPE html>
@@ -65,30 +65,85 @@
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
      <!-- <link href="../../public/assets/css/styles.css" rel="stylesheet" /> -->
      <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
-     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js" integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30=" crossorigin="anonymous"></script>
      <title>StadplayerPDF</title>
 
      <style>
-     @page {
-         margin-left: 4cm;
-         margin-right: 4cm;
+         @page {
+             margin-left: 4cm;
+             margin-right: 4cm;
 
-         ;
-     }
+             ;
+         }
 
-     table {
 
-         font-family: Russo One;
-     }
+         table {
+
+             font-family: Russo One;
+         }
+         header {
+            margin-right:7cm;
+             width:100%"
+         }
      </style>
+
+<script>
+     window.addEventListener('DOMContentLoaded', event => {
+
+         // Función Show & hidde
+
+         let predeterminadas = document.getElementById('EstadisticasPre');
+         let arquero = document.getElementById('EstadArquero')
+         let id_posicion = document.getElementById('id_posicion').value;
+
+         if (!document.getElementById("control")) {} else {
+             if (document.getElementById("control").value == 1) {
+                 OptNuevasEstadisticas.style.display = "block";
+             }
+         }
+
+         if (!document.getElementById("controlPre")) {} else {
+             if (document.getElementById("controlPre").value == 2) {
+                 OptEstadisticas.style.display = "block";
+             } else {
+
+
+             }
+         }
+
+
+         if (id_posicion != 1) {
+             document.getElementById("TituloEstadJugador").textContent = "Estadisticas del Jugador";
+             predeterminadas.style.display = "block";
+             arquero.style.display = "none";
+
+             var estadPre = document.getElementById("EstadisticasPre").value;
+             if (estadPre == 0) {
+                 predeterminadas.style.display = "none";
+             }
+         } else { //Cuando es portero
+             document.getElementById("TituloEstadJugador").textContent = "Estadisticas del Jugador";
+             document.getElementById("TituloEstadArquero").textContent = "Estadisticas del Portero";
+             predeterminadas.style.display = "block";
+             arquero.style.display = "block";
+         }
+
+     });
+ </script>
  </head>
 
  <body>
-     <div class="container">
-         <img src="<?php echo $imagenBase64 ?>" />
+    <header>
+    <img src="../../public\assets\img\tituloPdf.png" />
 
-         <table width="500px" cellpadding="5px" border="1" style="background-color: #FBDFFD;">
+    </header>
+   
+     <div class="container">
+
+         <table width="500px" cellpadding="5px" border="1" style="background-color:#03D27D;">
              <thead style="background-color:#000000; color: white;">
                  <tr>
                      <th>Fecha Inicial</th>
@@ -99,13 +154,13 @@
                  <?php
                     foreach ($encabezado as $key => $dato) {
                         if ($key != 'id_posicion') { ?>
-                 <td><?php str_replace("_", " ", $key)  ?><?= $dato ?></td>
-                 <?php } ?>
+                         <td><?php str_replace("_", " ", $key)  ?><?= $dato ?></td>
+                     <?php } ?>
                  <?php } ?>
              </tbody>
          </table>
 
-         <table width="500px" cellpadding="5px" border="1" style="background-color: #FBDFFD;">
+         <table width="500px" cellpadding="5px" border="1" style="background-color: #03CCD2 ;">
              <thead style="background-color:#000000; color: white;">
                  <tr>
                      <th>Nombre del Jugador</th>
@@ -122,63 +177,73 @@
                  <?php
                     foreach ($datosJugador as $key => $dato) {
                         if ($key != 'id_posicion') { ?>
-                 <td><?php str_replace("_", " ", $key)  ?><?= $dato ?></td>
-                 <?php } ?>
+                         <td><?php str_replace("_", " ", $key)  ?><?= $dato ?></td>
+                     <?php } ?>
                  <?php } ?>
              </tbody>
          </table>
      </div>
      <br> <br>
      <div class="container">
+     <div class="col-lg-5" style="display:block;" id="OptEstadisticas">
+        <input type="hidden" id="controlEstad" value="2">
+             <input type="hidden" id="id_posicion" name="id_posicion" value=" <?= $DatosJugador["id_posicion"] ?>">
+             <table width="230px" cellpadding="5px" border="1" style="background-color: #E393A8 ; text-align: center;">
+                 <thead style="background-color:#000000; color: white;">
+                     <tr>
+                         <th>Estadisticas</th>
 
-         <table width="230px" cellpadding="5px" border="1" style="background-color: #FBDFFD; text-align: center;">
-             <thead style="background-color:#000000; color: white;">
-                 <tr>
-                     <th>Estadísticas</th>
-                     <th>Total</th>
-                 </tr>
-             </thead>
-             <tbody>
-                 <?php
-                    foreach ($datosPdf as $key => $value) {
-                        if ("pre_" == substr($key, 0, 4)) {
-                    ?>
-                 <tr>
-                     <td> <?= str_replace("_", " ", str_replace("pre_", " ", $key)) ?></td>
-                     <td> <?= str_replace("_", " ", str_replace("pre_", " ", $value)) ?></td>
-                 </tr>
-                 <?php } ?>
-                 <?php } ?>
-             </tbody>
-         </table>
-
-         <br> <br>
-
-
-         <table width="200px" cellpadding="5px" border="1" style="background-color: #FBDFFD; 
-             text-align: center;margin-left:53% ; margin-top: -70%;">
-             <thead style="background-color:#000000; color: white;">
-                 <tr>
-                     <th>Estadísticas Nuevas</th>
-                     <th>Total</th>
-                 </tr>
-             </thead>
-             <tbody>
-                 <?php
-                    foreach ($datosPdf as $key => $value) {
-                        if ("nueva_" == substr($key, 0, 6)) {
-                    ?>
-                 <tr>
-                     <td> <?= str_replace("_", " ", str_replace("nueva_", " ", $key)) ?></td>
-                     <td> <?= str_replace("_", " ", str_replace("nueva_", " ", $value)) ?></td>
-                 </tr>
-                 <?php } ?>
-                 <?php } ?>
-             </tbody>
-         </table>
+                         <th>Total</th>
+                     </tr>
+                 </thead>
+                 <tbody>
+               
+                     <?php
+                        foreach ($datosPdf as $key => $value) {
+                            if ("pre_" == substr($key, 0, 4)) {
+                        ?>
+                             <tr>
+                                 <td> <?= str_replace("_", " ", str_replace("pre_", " ", $key)) ?></td>
+                                 <td> <?= str_replace("_", " ", str_replace("pre_", " ", $value)) ?></td>
+                             </tr>
+                         <?php } ?>
+                     <?php } ?>
+                    </tbody>
+                    
+                </table>
+                <input type="hidden" id="controlPre" value="2">
+         </div>
 
      </div>
      <br> <br>
+
+
+     <table width="200px" cellpadding="5px" border="1" style="background-color:#93C4E3; 
+             text-align: center;margin-left:53% ; margin-top: -70%;">
+         <thead style="background-color:#000000; color: white;">
+             <tr>
+                 <th>Estadísticas Nuevas</th>
+                 <th>Total</th>
+             </tr>
+         </thead>
+         <tbody>
+             <?php
+                foreach ($datosPdf as $key => $value) {
+                    if ("nueva_" == substr($key, 0, 6)) {
+                ?>
+                     <tr>
+                         <td> <?= str_replace("_", " ", str_replace("nueva_", " ", $key)) ?></td>
+                         <td> <?= str_replace("_", " ", str_replace("nueva_", " ", $value)) ?></td>
+                     </tr>
+                 <?php } ?>
+             <?php } ?>
+         </tbody>
+     </table>
+     <br> <br>
+
+     
+
+</div>
      <div class="container">
 
          <table width="200px" cellpadding="5px" border="1" style="background-color: #FBDFFD; text-align: center;">
@@ -197,25 +262,24 @@
                     foreach ($datosPdf as $key => $value) {
                         if ("por_" == substr($key, 0, 4)) {
                     ?>
-                 <tr>
-                     <td> <?= str_replace("_", " ", str_replace("por_", " ", $key)) ?></td>
-                     <td> <?= $value ?></td>
-                 </tr>
-                 <?php } ?>
+                         <tr>
+                             <td> <?= str_replace("_", " ", str_replace("por_", " ", $key)) ?></td>
+                             <td> <?= $value ?></td>
+                         </tr>
+                     <?php } ?>
                  <?php } ?>
              </tbody>
          </table>
      </div>
  </body>
 
+
+
+
  </html>
 
 
- <?php
 
-    $nombreImagen = "Stadplayers.jpg";
-    $imagenBase64 = "data:image/png;base64," . base64_encode(file_get_contents($nombreImagen));
-    ?>
  <?php
     // include_once(BASE_DIR . "../../Views/partials/header.php");
     // include_once(BASE_DIR . "../../Views/partials/aside.php");
@@ -225,16 +289,21 @@
 
 
 
-    // require_once '../../dompdf/autoload.inc.php';
-    include_once "../../dompdf/vendor/autoload.php";
-
+  
+    require_once '../../dompdf_1-1-1/dompdf/autoload.inc.php';
+    // include_once "../../dompdf_1.1.1/vendor/autoload.php";
     use Dompdf\Dompdf;
 
-    $dompdf = new Dompdf();
-    // include "../../public/assets/img/Stadplayers.jpg";
     $html = ob_get_clean();
+    $dompdf = new Dompdf();
+    $options = $dompdf->getOptions();
+    $options->set(array('isRemoteEnable' => true));
+    $dompdf->setOptions($options);
     $dompdf->loadHtml($html);
+    $dompdf->setPaper('A4','Letter');
     $dompdf->render();
-    header("Content-type: application/pdf");
-    header("Content-Disposition: inline; filename=documento.pdf");
+    $dompdf->stream("StadPlayersPDF", array("Attachment" => 0));
+    // include "../../public/assets/img/Stadplayers.jpg";
+    // header("Content-type: application/pdf");
+    // header("Content-Disposition: inline; filename=documento.pdf");
     echo $dompdf->output();
