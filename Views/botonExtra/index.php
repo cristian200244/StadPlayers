@@ -1,109 +1,121 @@
 <?php
-
 include_once(__DIR__ . "../../../config/rutas.php");
 include_once(BASE_DIR . "../../Views/partials/header.php");
 include_once(BASE_DIR . "../../Views/partials/aside.php");
 
-
 include_once '../../Models/conexionModel.php';
 include_once '../../Models/UsuarioModel.php';
 
-// $id = $_GET['id'];
-
 $datos = new UsuarioModel();
 $registros = $datos->getAll();
+
+function obtenerIniciales($nickname)
+{
+    $iniciales = '';
+    $palabras = explode(' ', $nickname);
+
+    foreach ($palabras as $palabra) {
+        $iniciales .= strtoupper(substr($palabra, 0, 1));
+    }
+
+    return $iniciales;
+}
 ?>
 
 <div class="ImgJUGADOR">
-        <div class="container text-center">
-                <div class="row">
-                        <div class="col">
-                                <h1>¡Bienvenido! Ahora podrá ingresar sus jugadores</h1>
-                        </div>
-                </div>
-                <div id="layoutAuthentication">
-                        <div id="layoutAuthentication_content">
-                                <div class="container mt-5">
-                                        <div class="row justify-content-center">
-                                                <div class="col-lg-12">
-                                                        <div class="card shadow-lg border-0 rounded-lg mt-5">
-                                                                <div class="card-header bg-colorr">
-                                                                        <h3 class="text-center text-light my-4 fs-4">Ver Usuario</h3>
-                                                                </div>
-
-                                                                <div class="card-body bg-colorbody ">
-
-
-                                                                        <div class="mb-3 bg-color1 text-primary">
-                                                                                <div class="row">
-
-                                                                                </div>
-                                                                                <div class="mt-4 mb-0">
-                                                                                        <div class="d-grid">
-                                                                                                <table class="table">
-                                                                                                        <thead>
-                                                                                                                <tr>
-
-                                                                                                                        <th scope="col">#</th>
-                                                                                                                        <th scope="col">email</th>
-                                                                                                                        <th scope="col">nickname</th>
-                                                                                                                        <th scope="col">password</th>
-                                                                                                                        <th scope="col"></th>
-                                                                                                                        <th scope="col" colspan="2">Opcion</th>
-                                                                                                                </tr>
-                                                                                                        </thead>
-                                                                                                        <tbody>
-                                                                                                                <?php
-                                                                                                                if ($registros) {
-                                                                                                                        foreach ($registros as $row) {
-
-                                                                                                                ?>
-
-                                                                                                                                <tr>
-
-                                                                                                                                        <td><?= $row->id ?></td>
-                                                                                                                                        <td><?= $row->email ?></td>
-                                                                                                                                        <td><?= $row->nickname ?></td>
-                                                                                                                                        <td><?= $row->password ?></td>
-
-                                                                                                                                        <!-- <th scope="col" >Opciones</th> -->
-
-                                                                                                                                        <td>
-                                                                                                                                                <a class="btn btn-sm btn-outline-warning" href="../Controllers/calculadoraController.php?c=2&id=<?= $row->getId() ?>">Actualizar</a>
-                                                                                                                                        </td>
-                                                                                                                                        <td>
-                                                                                                                                                <a class="btn btn-sm btn-outline-danger " href="../Controllers/calculadoraController.php?c=4&id=<?= $row->getId() ?>">Eliminar</a>
-                                                                                                                                        </td>
-                                                                                                                                </tr>
-                                                                                                                        <?php
-                                                                                                                        }
-                                                                                                                } else {
-                                                                                                                        ?>
-                                                                                                                        <tr class=" text-center">
-                                                                                                                                <td colspan="6">Sin datos</td>
-                                                                                                                        </tr>
-                                                                                                                <?php
-                                                                                                                }
-                                                                                                                ?>
-                                                                                                        </tbody>
-                                                                                                </table>
-                                                                                        </div>
-                                                                                        <button class="btn btn-dark btn-block" id="submitBtn">Guardar Jugador</button>
-                                                                                </div>
-                                                                        </div>
-                                                                </div>
-
-                                                        </div>
-                                                </div>
-                                        </div>
-                                </div>
-                        </div>
-                </div>
+    <div class="container text-center">
+        <div class="row">
+            <div class="col">
+                <h1>¡Bienvenido! Ahora podrá ingresar sus jugadores</h1>
+            </div>
         </div>
+        <div id="layoutAuthentication">
+            <div id="layoutAuthentication_content">
+                <div class="container mt-5">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-12">
+                            <div class="card shadow-lg border-0 rounded-lg mt-5">
+                                <div class="card-header bg-colorr">
+                                    <h3 class="text-center text-light my-4 fs-4">Ver Usuario</h3>
+                                </div>
+                                <div class="card-body bg-colorbody">
+                                    <?php
+                                    if ($registros) {
+                                        foreach ($registros as $row) {
+                                            $nickname = $row->nickname;
+                                            $initials = obtenerIniciales($nickname);
+                                            $avatarUrl = "https://place-hold.it/50?text=$initials";
+                                            ?>
+                                            <div class="mb-3 bg-color1 text-primary">
+                                                <div class="row">
+                                                    <div class="col-md-2 mt-3">
+                                                        <div class="avatar-circle">
+                                                            <h1><?= $initials ?></h1>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4 mt-3 text-black">
+                                                        <div class="card bg-dark text-light mt-2 pt-2 pb-2">
+                                                            <strong>Email:</strong>
+                                                            <br>
+                                                            <?= $row->email ?>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4 mt-3 text-black">
+                                                        <div class="card bg-dark text-light mt-2 pt-2 pb-2">
+                                                            <strong>Nickname:</strong>
+                                                            <br>
+                                                            <?= $row->nickname ?>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                               
+                                            </div>
+                                            <?php
+                                        }
+                                    } else {
+                                        ?>
+                                        <div class="mb-3 bg-color1 text-primary text-center">
+                                            Sin datos
+                                        </div>
+                                        <?php
+                                    }
+                                    ?>
+                                    <a class="btn btn-sm btn-outline-primary" href="../jugadores/index.php">Regresar</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
+<style>
+    .avatar-circle {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        background-color: #ccc;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto;
+    }
+
+    .avatar-circle h1 {
+        font-size: 80px;
+        color: #fff;
+        text-transform: uppercase;
+        margin: 0;
+    }
+
+    .card {
+        padding: 10px;
+        text-align: center;
+    }
+</style>
 
 <?php
 include_once(BASE_DIR . "../../Views/partials/footer.php");
-
 ?>
