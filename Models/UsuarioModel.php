@@ -6,6 +6,7 @@ class UsuarioModel
 {
     public $id;
     public $email;
+    public $DbEmail;
     public $nickname;
     public $password;
     public $message;
@@ -19,6 +20,7 @@ class UsuarioModel
         $this->password;
         $this->message;
         $this->results;
+        $this->DbEmail;
         //Instanciar la base de datos en el constructor para poder realizar consultas
         $this->db = new Database();
     }
@@ -67,7 +69,7 @@ class UsuarioModel
             die($e->getMessage());
         }
     }
-    
+
     public function getAll()
     {
         $items = [];
@@ -84,7 +86,7 @@ class UsuarioModel
                 $item->email                =  $row['email'];
                 $item->nickname             =  $row['nickname'];
                 $item->password             =  $row['password'];
-                
+
 
                 array_push($items, $item);
             }
@@ -94,4 +96,43 @@ class UsuarioModel
             die($e->getMessage());
         }
     }
+
+    public function getEmail($email)
+    {
+        $this->email = $email;
+        // var_dump($this->email);
+        // die();
+
+        try {
+            $sql = 'SELECT * FROM usuarios WHERE Email = :email';
+            $query = $this->db->conect()->prepare($sql);
+
+            $query->bindParam(':email', $this->email);
+            $query->execute();
+            $results = $query->fetchObject();
+
+            // var_dump($results);
+            // die();
+            if ($results) {
+
+                $token = uniqid(md5(time()));
+
+                $inser_query = "INSERT INTO olvido_password(email,token) VALUES('$this->email','$token')";
+                $res  = $this->db->conect()->query($inser_query);
+
+                echo "Has Click <a href='../../Views/Usuario/nuevacontraseña.php?token=$token'>Aquí<a/>para restaurar tu contraseña ";
+            } else {
+
+                echo "Usuario No Existe";
+            }
+        } catch (PDOException $e) {
+            die($e->getMessage());
+        }
+    }
 }
+
+    
+
+    
+
+// lalocadekevin@gmail.com

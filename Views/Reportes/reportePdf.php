@@ -1,309 +1,525 @@
 <?php
-    // if (!isset($_SESSION['id'])) {
+// if (!isset($_SESSION['id'])) {
 
-    //     header("Location:../../index.php");
-    // }else{
-    //     if($_SESSION['usuario']=="ok") {
+//     header("Location:../../index.php");
+// }else{
+//     if($_SESSION['usuario']=="ok") {
 
-    //     $nombreUsuario=$_SESSION["nombreUsuario"];}
-    // }
-    ob_start();
-    include_once(__DIR__ . "../../../config/rutas.php");
-    include_once __DIR__ . "../../../Models/GenerarReportesModel.php";
-    require_once __DIR__ . '../../../Controllers/GenerarReportesController.php';
-    // include_once(BASE_DIR . "../../Views/partials/header.php");
-
-
-    $data = new ReportesController();
-    $datosPdf = $_REQUEST;
+//     $nombreUsuario=$_SESSION["nombreUsuario"];}
+// }
+ob_start();
+include_once(__DIR__ . "../../../config/rutas.php");
+include_once __DIR__ . "../../../Models/GenerarReportesModel.php";
+require_once __DIR__ . '../../../Controllers/GenerarReportesController.php';
+// include_once(BASE_DIR . "../../Views/partials/header.php");
 
 
-    // var_dump($datosPdf);
-    // die();
-
-    // var_dump($datosReporte["id"]);
-    // die();
-    // 
-    // foreach ($datosPdf as $k => $v) {
-    //     print_r($k . "=>" . $v);
-    //     echo "<hr>";
-    // }
+$data = new ReportesController();
+$datosPdf = $_REQUEST;
 
 
-    // die();
+// var_dump($datosPdf);
+// die();
 
-    $encabezado = [
-
-        "Fecha_Inicial" => $_REQUEST["fechaInicial"],
-        "Fecha_Final" => $_REQUEST["fechaFinal"]
-    ];
-
-    $datosJugador = [
-        "Nombre" => $_REQUEST["nombre_completo"],
-        "Apodo" => $_REQUEST["apodo"],
-        "Equipo" => $_REQUEST["equipo"],
-        "Liga" => $_REQUEST["liga"],
-        "Posicion" => $_REQUEST["posicion"],
-        "Total_Minutos" => $_REQUEST["totalMinutosJugados"],
-        "Partidos_Jugados" => $_REQUEST["totalPartidosJugados"],
-        "promedio" => $_REQUEST["promedio"],
-        "id_posicion" => $_REQUEST["id_posicion"],
-
-    ];
-
-    // var_dump($datosJugador);
-    // echo "<hr>";
-    // die();
-    ob_start();
-    ?>
-
- <!DOCTYPE html>
- <html lang="es">
-
- <head>
-     <meta charset="UTF-8">
-     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <!-- <link href="../../public/assets/css/styles.css" rel="stylesheet" /> -->
-     <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
-     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js" integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30=" crossorigin="anonymous"></script>
-     <title>StadplayerPDF</title>
-
-     <style>
-         @page {
-             margin-left: 4cm;
-             margin-right: 4cm;
-
-             ;
-         }
+// var_dump($datosReporte["id"]);
+// die();
+// 
+// foreach ($datosPdf as $k => $v) {
+//     print_r($k . "=>" . $v);
+//     echo "<hr>";
+// }
 
 
-         table {
+// die();
 
-             font-family: Russo One;
-         }
-         header {
-            margin-right:7cm;
-             width:100%"
-         }
-     </style>
+$encabezado = [
 
-<script>
-     window.addEventListener('DOMContentLoaded', event => {
+    "Fecha_Inicial" => $_REQUEST["fechaInicial"],
+    "Fecha_Final" => $_REQUEST["fechaFinal"]
+];
 
-         // Función Show & hidde
+$datosJugador = [
+    "Nombre" => $_REQUEST["nombre_completo"],
+    "Apodo" => $_REQUEST["apodo"],
+    "Equipo" => $_REQUEST["equipo"],
+    "Liga" => $_REQUEST["liga"],
+    "Posicion" => $_REQUEST["posicion"],
+    "Total_Minutos" => $_REQUEST["totalMinutosJugados"],
+    "Partidos_Jugados" => $_REQUEST["totalPartidosJugados"],
+    "promedio" => $_REQUEST["promedio"],
+    "id_posicion" => $_REQUEST["id_posicion"],
 
-         let predeterminadas = document.getElementById('EstadisticasPre');
-         let arquero = document.getElementById('EstadArquero')
-         let id_posicion = document.getElementById('id_posicion').value;
+];
 
-         if (!document.getElementById("control")) {} else {
-             if (document.getElementById("control").value == 1) {
-                 OptNuevasEstadisticas.style.display = "block";
-             }
-         }
+// var_dump($datosJugador);
+// echo "<hr>";
+// die();
+ob_start();
+?>
 
-         if (!document.getElementById("controlPre")) {} else {
-             if (document.getElementById("controlPre").value == 2) {
-                 OptEstadisticas.style.display = "block";
-             } else {
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link href="../../public/assets/css/styles.css" rel="stylesheet" /> -->
+
+    <title>StadplayerPDF</title>
+
+    <style>
+    #header {
+        width: 100%;
+        position: fixed;
+        top: 0cm;
+        left: 0cm;
+        background-color: #000000 F;
+    }
+
+    #header #img {
+        border-radius: 10px;
+        margin-left: 24%;
+        margin-top: 3%;
+        align-items: center;
+    }
+
+    body {
+        background-color: #265065;
+        border-radius: 5px;
+    }
 
 
-             }
-         }
+
+    @page {
+        margin-left: 0.2cm;
+        margin-right: 0.2cm;
+        margin-top: 0.2cm;
+        margin-bottom: 0.2cm;
+
+    }
+
+    .titulo {
+        margin-top: -2%;
+        font-family: Russo One;
+        text-align: center;
+        color: white;
+        font-weight: bold;
 
 
-         if (id_posicion != 1) {
-             document.getElementById("TituloEstadJugador").textContent = "Estadisticas del Jugador";
-             predeterminadas.style.display = "block";
-             arquero.style.display = "none";
+    }
 
-             var estadPre = document.getElementById("EstadisticasPre").value;
-             if (estadPre == 0) {
-                 predeterminadas.style.display = "none";
-             }
-         } else { //Cuando es portero
-             document.getElementById("TituloEstadJugador").textContent = "Estadisticas del Jugador";
-             document.getElementById("TituloEstadArquero").textContent = "Estadisticas del Portero";
-             predeterminadas.style.display = "block";
-             arquero.style.display = "block";
-         }
+    table {
 
-     });
- </script>
- </head>
+        font-family: Russo One;
+    }
 
- <body>
-    <header>
-    <img src="../../public\assets\img\tituloPdf.png" />
 
-    </header>
-   
-     <div class="container">
 
-         <table width="500px" cellpadding="5px" border="1" style="background-color:#03D27D;">
-             <thead style="background-color:#000000; color: white;">
-                 <tr>
-                     <th>Fecha Inicial</th>
-                     <th>Fecha Final</th>
-                 </tr>
-             </thead>
-             <tbody>
-                 <?php
+    #footer {
+        left: 0cm;
+        bottom: 0cm;
+        position: fixed;
+        width: 100%;
+        height: 6%;
+        background-color: #CCFFFE;
+    }
+
+    .text h4 {
+
+        text-align: right;
+        margin-right: 3%;
+        top: 1cm;
+        bottom: 0cm;
+        border-radius: 5px;
+        color: black;
+
+    }
+
+    .fechas {
+        margin-top: 28%;
+        margin-left: 70%;
+        width: 200px;
+        padding: 6px;
+        border: 1;
+        background-color: #000000;
+        border-radius: 5px;
+
+    }
+
+    .fechas table th {
+        padding: 5px;
+        background-color: #FFFFFF;
+        color: black;
+        text-align: center;
+        border-radius: 3px;
+        font-weight: bold;
+    }
+
+    .fechas table tbody {
+        padding: 2px;
+        /* background-color: #FFFFFF; */
+        color: white;
+        text-align: center;
+        border-radius: 3px;
+        font-weight: bold;
+    }
+
+
+    .datosJugador {
+        margin-top: 2%;
+        margin-left: 1.5%;
+        width: 95%;
+        padding: 7px;
+        border: 1;
+        background-color: #06EAD4;
+        border-radius: 5px;
+        font-weight: bold;
+    }
+
+    .datosJugador th {
+        margin-top: 1%;
+        margin-left: 3%;
+        width: 95%;
+        padding: 3px;
+        border: 1;
+        background-color: #000000;
+        color: white;
+        border-radius: 7px;
+        font-weight: bold;
+    }
+
+    .datosJugador tbody {
+        padding: 3px;
+        background-color: white;
+        color: black;
+        text-align: center;
+        font-weight: bold;
+    }
+
+    .datosJug {
+        border-radius: 10px;
+        padding: 6px;
+    }
+
+
+    .estadisticasPre {
+        width: 37%;
+        text-align: center;
+        margin-top: 4%;
+        margin-left: 12%;
+        padding: 3px;
+        border: 1;
+        background-color: #FCE9EE;
+        color: white;
+        border-radius: 12px;
+    }
+
+    .nombreEstadPre {
+        margin-left: 3%;
+        width: 25%;
+        border-radius: 8px;
+        padding: 7px;
+    }
+
+    .nombreEstadPreValue {
+        border-radius: 15px;
+        width: 5%;
+        border-radius: 17px;
+        padding: 10px;
+    }
+
+    .estadisticasPre th {
+        border-radius: 5px;
+        width: 5%;
+        text-align: center;
+        margin-top: 1%;
+        margin-left: 3%;
+        padding: 8px;
+        border: 1;
+        background-color: #000000;
+        color: white;
+    }
+
+    .estadisticasPre tbody {
+        width: 10%;
+        text-align: center;
+        margin-top: 1%;
+        font-weight: bold;
+        margin-left: 3%;
+        padding: 8px;
+        border: 1;
+        background-color: #06EAD4;
+        color: black;
+        border-radius: 3px;
+    }
+
+
+    .estadArquero {
+        width: 30%;
+        text-align: center;
+        margin-top: -272%;
+        margin-left: 60%;
+        padding: 3px;
+        border: 1;
+        background-color: #FCE9EE;
+        color: white;
+        border-radius: 12px;
+
+    }
+
+    .nombreEstadArquero {
+        margin-left: 3%;
+        width: 35%;
+        border-radius: 8px;
+        padding: 7px;
+    }
+
+    .nombreEstadArqueroValue {
+        border-radius: 15px;
+        width: 5%;
+        border-radius: 17px;
+        padding: 10px;
+    }
+
+    .estadArquero th {
+        border-radius: 5px;
+        width: 5%;
+        text-align: center;
+        margin-top: 1%;
+        margin-left: 3%;
+        padding: 8px;
+        border: 1;
+        background-color: #000000;
+        color: white;
+    }
+
+
+    .estadArquero tbody {
+        width: 15%;
+        text-align: center;
+        margin-top: 1%;
+        font-weight: bold;
+        margin-left: 3%;
+        padding: 8px;
+        border: 1;
+        background-color: #72C4FF;
+        ;
+        color: black;
+        border-radius: 3px;
+    }
+
+
+    .estadNuevas {
+        width: 25%;
+        text-align: center;
+        margin-top: 5%;
+        margin-left: 62%;
+        padding: 3px;
+        border: 1;
+        background-color: #FCE9EE;
+        color: white;
+        border-radius: 12px;
+    }
+
+    .nombreEstadNueva {
+        margin-left: 3%;
+        width: 25%;
+        border-radius: 8px;
+        padding: 7px;
+    }
+
+    .nombreEstadNuevaValue {
+        border-radius: 15px;
+        width: 5%;
+        border-radius: 17px;
+        padding: 10px;
+    }
+
+    .estadNuevas th {
+        border-radius: 5px;
+        width: 5%;
+        text-align: center;
+        margin-top: 1%;
+        margin-left: 3%;
+        padding: 8px;
+        border: 1;
+        background-color: #000000;
+        color: white;
+
+
+
+
+    }
+
+    .estadNuevas tbody {
+
+        width: 10%;
+        text-align: center;
+        margin-top: 1%;
+        font-weight: bold;
+        margin-left: 3%;
+        padding: 8px;
+        border: 1;
+        background-color: #C3B2FF;
+        color: black;
+        border-radius: 3px;
+    }
+    </style>
+</head>
+
+<body>
+    <div id="header">
+        <div id="img">
+            <img src="../../public\assets\img\tituloPdf.png" width="70%" />
+
+        </div>
+        <div class="titulo">
+            <h1> Reporte del Jugador</h1>
+        </div>
+    </div>
+    <br> <br>
+    <div class="container">
+        <div class="fechas">
+            <strong>
+            </strong>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Fecha Inicial</th>
+                        <th>Fecha Final</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
                     foreach ($encabezado as $key => $dato) {
                         if ($key != 'id_posicion') { ?>
-                         <td><?php str_replace("_", " ", $key)  ?><?= $dato ?></td>
-                     <?php } ?>
-                 <?php } ?>
-             </tbody>
-         </table>
-
-         <table width="500px" cellpadding="5px" border="1" style="background-color: #03CCD2 ;">
-             <thead style="background-color:#000000; color: white;">
-                 <tr>
-                     <th>Nombre del Jugador</th>
-                     <th>Apodo</th>
-                     <th>Equipo</th>
-                     <th>Liga</th>
-                     <th>Posición</th>
-                     <th>Total Minutos</th>
-                     <th>Partidos Jugados</th>
-                     <th>promedio</th>
-                 </tr>
-             </thead>
-             <tbody>
-                 <?php
+                    <td><?php str_replace("_", " ", $key)  ?><?= $dato ?></td>
+                    <?php } ?>
+                    <?php } ?>
+                </tbody>
+            </table>
+        </div>
+        <div class="datosJugador">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Apodo</th>
+                        <th>Equipo</th>
+                        <th>Liga</th>
+                        <th>Posición</th>
+                        <th>Total Minutos</th>
+                        <th>Partidos Jugados</th>
+                        <th>promedio</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
                     foreach ($datosJugador as $key => $dato) {
                         if ($key != 'id_posicion') { ?>
-                         <td><?php str_replace("_", " ", $key)  ?><?= $dato ?></td>
-                     <?php } ?>
-                 <?php } ?>
-             </tbody>
-         </table>
-     </div>
-     <br> <br>
-     <div class="container">
-     <div class="col-lg-5" style="display:block;" id="OptEstadisticas">
-        <input type="hidden" id="controlEstad" value="2">
-             <input type="hidden" id="id_posicion" name="id_posicion" value=" <?= $DatosJugador["id_posicion"] ?>">
-             <table width="230px" cellpadding="5px" border="1" style="background-color: #E393A8 ; text-align: center;">
-                 <thead style="background-color:#000000; color: white;">
-                     <tr>
-                         <th>Estadisticas</th>
+                    <td class="datosJug"><?php str_replace("_", " ", $key)  ?><?= $dato ?></td>
+                    <?php } ?>
+                    <?php } ?>
+                </tbody>
+            </table>
+        </div>
 
-                         <th>Total</th>
-                     </tr>
-                 </thead>
-                 <tbody>
-               
-                     <?php
-                        foreach ($datosPdf as $key => $value) {
-                            if ("pre_" == substr($key, 0, 4)) {
-                        ?>
-                             <tr>
-                                 <td> <?= str_replace("_", " ", str_replace("pre_", " ", $key)) ?></td>
-                                 <td> <?= str_replace("_", " ", str_replace("pre_", " ", $value)) ?></td>
-                             </tr>
-                         <?php } ?>
-                     <?php } ?>
-                    </tbody>
-                    
-                </table>
-                <input type="hidden" id="controlPre" value="2">
-         </div>
+        <div class="estadisticasPre">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Estadisticas</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody>
 
-     </div>
-     <br> <br>
-
-
-     <table width="200px" cellpadding="5px" border="1" style="background-color:#93C4E3; 
-             text-align: center;margin-left:53% ; margin-top: -70%;">
-         <thead style="background-color:#000000; color: white;">
-             <tr>
-                 <th>Estadísticas Nuevas</th>
-                 <th>Total</th>
-             </tr>
-         </thead>
-         <tbody>
-             <?php
-                foreach ($datosPdf as $key => $value) {
-                    if ("nueva_" == substr($key, 0, 6)) {
-                ?>
-                     <tr>
-                         <td> <?= str_replace("_", " ", str_replace("nueva_", " ", $key)) ?></td>
-                         <td> <?= str_replace("_", " ", str_replace("nueva_", " ", $value)) ?></td>
-                     </tr>
-                 <?php } ?>
-             <?php } ?>
-         </tbody>
-     </table>
-     <br> <br>
-
-     
-
-</div>
-     <div class="container">
-
-         <table width="200px" cellpadding="5px" border="1" style="background-color: #FBDFFD; text-align: center;">
-             <thead style="background-color:#000000; color: white;">
-                 <tr>
-                     <th>Estadísticas de Arquero</th>
-                     <th>Total</th>
-                 </tr>
-             </thead>
-             <tbody>
-                 <div class="col-8 mt-3">
-                     <span id="TituloEstadArquero"></span>
-                 </div>
-                 <?php
-
+                    <?php
+                    foreach ($datosPdf as $key => $value) {
+                        if ("pre_" == substr($key, 0, 4)) {
+                    ?>
+                    <tr>
+                        <td class="nombreEstadPre"> <?= str_replace("_", " ", str_replace("pre_", " ", $key)) ?></td>
+                        <td class="nombreEstadPreValue"> <?= $value ?></td>
+                    </tr>
+                    <?php } ?>
+                    <?php } ?>
+                </tbody>
+            </table>
+        </div>
+        <div class="estadArquero">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Estadísticas de Arquero</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
                     foreach ($datosPdf as $key => $value) {
                         if ("por_" == substr($key, 0, 4)) {
                     ?>
-                         <tr>
-                             <td> <?= str_replace("_", " ", str_replace("por_", " ", $key)) ?></td>
-                             <td> <?= $value ?></td>
-                         </tr>
-                     <?php } ?>
-                 <?php } ?>
-             </tbody>
-         </table>
-     </div>
- </body>
+                    <tr>
+                        <td class="nombreEstadArquero"> <?= str_replace("_", " ", str_replace("por_", " ", $key)) ?>
+                        </td>
+                        <td class="nombreEstadArqueroValue"> <?= $value ?></td>
+                    </tr>
+                    <?php } ?>
+                    <?php } ?>
+                </tbody>
+            </table>
+        </div>
+        <div class="estadNuevas">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Estadísticas Nuevas</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                    foreach ($datosPdf as $key => $value) {
+                        if ("nueva_" == substr($key, 0, 6)) {
+                    ?>
+                    <tr>
+                        <td class="nombreEstadNueva"> <?= str_replace("_", " ", str_replace("nueva_", " ", $key)) ?>
+                        </td>
+                        <td class="nombreEstadNuevaValue"> <?= $value ?></td>
+                    </tr>
+                    <?php } ?>
+                    <?php } ?>
+                </tbody>
+            </table>
+        </div>
+        <div id="footer">
+            <div class="text">
+                <h4>@Derechos Reservados ADSI 2023</h4>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
 
 
 
+<?php
+require_once '../../dompdf_1-1-1/dompdf/autoload.inc.php';
 
- </html>
+use Dompdf\Dompdf;
 
-
-
- <?php
-    // include_once(BASE_DIR . "../../Views/partials/header.php");
-    // include_once(BASE_DIR . "../../Views/partials/aside.php");
-    // session_start();
-
-
-
-
-
-  
-    require_once '../../dompdf_1-1-1/dompdf/autoload.inc.php';
-    // include_once "../../dompdf_1.1.1/vendor/autoload.php";
-    use Dompdf\Dompdf;
-
-    $html = ob_get_clean();
-    $dompdf = new Dompdf();
-    $options = $dompdf->getOptions();
-    $options->set(array('isRemoteEnable' => true));
-    $dompdf->setOptions($options);
-    $dompdf->loadHtml($html);
-    $dompdf->setPaper('A4','Letter');
-    $dompdf->render();
-    $dompdf->stream("StadPlayersPDF", array("Attachment" => 0));
-    // include "../../public/assets/img/Stadplayers.jpg";
-    // header("Content-type: application/pdf");
-    // header("Content-Disposition: inline; filename=documento.pdf");
-    echo $dompdf->output();
+$html = ob_get_clean();
+$dompdf = new Dompdf();
+$options = $dompdf->getOptions();
+$options->set(array('isRemoteEnable' => true));
+$dompdf->setOptions($options);
+$dompdf->loadHtml($html);
+$dompdf->setPaper('A4', 'letter');
+$dompdf->render();
+$dompdf->stream("StadPlayersPDF", array("Attachment" => 1));
+// include "../../public/assets/img/Stadplayers.jpg";
+// header("Content-type: application/pdf");
+// header("Content-Disposition: inline; filename=documento.pdf");
+echo $dompdf->output();

@@ -9,10 +9,14 @@ $usuario = new UsuarioController();
 class UsuarioController
 {
   private $usuarioModel;
+  public $email;
+  public $DbEmail;
   public function __construct()
   {
 
     $this->usuarioModel = new UsuarioModel();
+    $this->email;
+    $this->DbEmail;
 
     if (isset($_REQUEST['c'])) {
       $controlador = $_REQUEST['c'];
@@ -25,7 +29,7 @@ class UsuarioController
 
           break;
         case 3: //Ver por operacion
-          // self::show();
+          self::recuperarContraseña();
           break;
         case 4:
           // self::update();
@@ -81,10 +85,12 @@ class UsuarioController
         header('Location: ../Views/main/MenuPrincipal.php');
       } else {
 
-        echo "la loca de kevin tenia razón";
+        echo "¡Ups! Algo salió mal.";
       }
     }
   }
+
+
   public function cerrarSesion()
   {
     session_start();
@@ -94,5 +100,28 @@ class UsuarioController
 
     // error_reporting(0);
 
+  }
+
+  public function recuperarContraseña()
+  {
+
+    $data = implode(",", $_POST);
+    if (empty($data)) {
+      echo "Campo vacio";
+    } else {
+      $email = $data;
+      $result =  $this->usuarioModel->getEmail($email);
+      // var_dump($email);
+      // die();
+      // if (empty($email)) {
+
+      //   echo "Campo vacio";
+      // } else {
+
+      //   $result = $this->usuarioModel->getEmail($email);
+      //   if ($result) {
+      //   }
+      // }
+    }
   }
 }
