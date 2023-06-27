@@ -15,13 +15,18 @@ session_start();
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Russo One&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+        integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 alejoecheverry33@gmail.com
 
 <body class="sb-nav-fixed">
+
+
     <nav class="sb-topnavLogin navbar navbar-expand navbar-black">
-        <div class=" containerTituloLogin d-flex   mx-auto  d-md-inline-block  " style="margin-left:35%; margin-right:20%">
+        <div class=" containerTituloLogin d-flex   mx-auto  d-md-inline-block  "
+            style="margin-left:35%; margin-right:20%">
             <font color="aqua" style="
 text-decoration: underline;
 text-decoration-color: rgb(255, 0, 0);
@@ -59,11 +64,14 @@ text-decoration-color: aqua">
                                             link para restaurar su contraseña.
                                         </div>
 
-                                        <input class="form-control mb-3" type="email" name="email" id="email" placeholder="Ingrese su correo">
+                                        <input class="form-control mb-3" type="email" name="email" id="email"
+                                            placeholder="Ingrese su correo">
                                         </input>
 
-                                        <div class="BotonIniciarSesion d-flex align-items-center justify-content-center mt-4 mb-4 ">
-                                            <input type="submit" name="submit_btn" value="recuperar" class="btn btn-dark">
+                                        <div
+                                            class="BotonIniciarSesion d-flex align-items-center justify-content-center mt-4 mb-4 ">
+                                            <input type="submit" name="submit_btn" value="recuperar"
+                                                class="btn btn-dark">
                                             </input>
                                         </div>
                                 </form>
@@ -91,26 +99,25 @@ text-decoration-color: aqua">
     include_once("../../Views/partials/footer.php");
     ?>
     <script type="text/javascript">
-        $(document).ready(function() {
-            $("#olvideContraseña").on('submit', function(e) {
-                e.preventDefault();
-                // var email = document.getElementById("email").value;
-                var email = $("#email").val();
-                // alert(email);
-                $.ajax({
-                    type: "POST",
-                    // url: "olvideContraseña.php",
-                    url: "../../Controllers/UsuarioController.php?c=3&id=",
-                    data: {
-                        email: email
-                    },
+    $(document).ready(function() {
+        $("#olvideContraseña").on('submit', function(e) {
+            e.preventDefault();
+            var email = $("#email").val();
 
-                    success: function(data) {
-                        $(".form-message").css("display", "block");
+            $.ajax({
+                type: "POST",
+                url: "olvideContraseña.php",
+                // url: "../../Controllers/UsuarioController.php?c=3&id=",
+                data: {
+                    email: email
+                },
 
-                        $(".form-message").html(data);
-                    }
-                });
+                success: function(data) {
+
+                    $(".form-message").css("display", "block");
+                    $(".form-message").html(data);
+                }
             });
         });
+    });
     </script>

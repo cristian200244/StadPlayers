@@ -1,6 +1,6 @@
 <?php
 include_once(__DIR__ . "../../../config/rutas.php");
-session_start();
+
 ?>
 
 <head>
@@ -21,6 +21,42 @@ session_start();
 </head>
 
 <body class="sb-nav-fixed">
+
+    <?php
+    include_once("../../Models/conexionModel.php");
+    include_once '../../Models/UsuarioModel.php';
+    $token = new UsuarioModel();
+    $db = new Database();
+
+
+
+
+
+    $items = [];
+    $TokenEmail = '';
+    if (isset($_GET['token'])) {
+        $token = $_GET['token'];
+
+        $sql = "SELECT email FROM olvido_password WHERE token = '$token'";
+        try {
+            $items = [];
+            $query = $db->conect()->query($sql);
+            while ($row = $query->fetchObject()) {
+                $item               = new UsuarioModel();
+                $item->email   = $row->email;
+
+                foreach ($row as $key => $value) {
+                    $TokenEmail = $value;
+                    // var_dump($TokenEmail);
+                    // die();
+                }
+            }
+        } catch (PDOException $e) {
+            die($e->getMessage());
+        }
+    }
+
+    ?>
     <nav class="sb-topnavLogin navbar navbar-expand navbar-black">
         <div class=" containerTituloLogin d-flex   mx-auto  d-md-inline-block  "
             style="margin-left:35%; margin-right:20%">
@@ -51,11 +87,12 @@ text-decoration-color: aqua">
                                         <h3 class="text-center font-weight-light my-4">Login</h3>
                                     </div>
                                     <div class="card-body">
-                                        <form>
-
+                                        <form id="NuevaContraseña">
+                                            <div class="form-message" id="msg">
+                                            </div>
                                             <div class="form-floating mb-3">
                                                 <input class="form-control" id="email" type="email" name="email"
-                                                    placeholder="correo" />
+                                                    value="<?php echo  $TokenEmail; ?>" placeholder="correo" />
 
                                             </div>
                                             <div class="form-floating mb-3">
@@ -64,24 +101,24 @@ text-decoration-color: aqua">
                                                 <label for="inputPassword">Password</label>
                                             </div>
                                             <div class="form-floating mb-3">
-                                                <input class="form-control" id="password" type="password"
+                                                <input class="form-control" id="confirmPassword" type="password"
                                                     name="ConfirmPassword" placeholder="Confirmar Contraseña" />
                                                 <label for="inputPassword">Password</label>
                                             </div>
-                                            <div class="form-check mb-3">
-                                                <input class="form-check-input" id="inputRememberPassword"
-                                                    type="checkbox" value="" />
-                                                <label class="form-check-label" for="inputRememberPassword">Remember
-                                                    Password</label>
-                                            </div>
-                                            <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
-                                                <a class="small" href="password.html">Forgot Password?</a>
-                                                <a class="btn btn-primary" href="index.html">Login</a>
+
+                                            <div class="d-flex align-items-center justify-content-center mt-4 mb-0">
+
+                                                <div
+                                                    class="BotonIniciarSesion d-flex justify-content-center mt-4 mb-4 ">
+                                                    <input type="submit" name="submit_btn" value="recuperar"
+                                                        class="btn btn-dark">
+                                                    </input>
+                                                </div>
                                             </div>
                                         </form>
                                     </div>
                                     <div class="card-footer text-center py-3">
-                                        <div class="small"><a href="register.html">Need an account? Sign up!</a></div>
+
                                     </div>
                                 </div>
                             </div>
@@ -95,3 +132,33 @@ text-decoration-color: aqua">
     <?php
     include_once("../../Views/partials/footer.php");
     ?>
+    <script type="text/javascript">
+    $(document).ready(function() {
+
+        $("#NuevaContraseña").on('submit', function(e) {
+
+            e.preventDefault();
+            var email = $("#email").val();
+            var password = $("#password").val();
+            var confirmPassword = $("#confirmPassword").val();
+            // alert(email + password + confirmPassword);
+            $.ajax({
+                type: "POST",
+                url: "restaurarContraseña.php",
+                // url: "../../Controllers/UsuarioController.php?c=3&id=",
+                data: {
+                    email: email,
+                    password: password,
+                    confirmPassword: confirmPassword
+                },
+
+                success: function(data) {
+                    $(".form-message").css("display", "block");
+
+                    $(".form-message").html(data);
+                    $("#NuevaContraseña")[0].reset();
+                }
+            });
+        });
+    });
+    </script>

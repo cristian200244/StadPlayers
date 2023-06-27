@@ -29,7 +29,7 @@ class UsuarioController
 
           break;
         case 3: //Ver por operacion
-          self::recuperarContraseña();
+          // self::recuperarContraseña();
           break;
         case 4:
           // self::update();
@@ -102,26 +102,15 @@ class UsuarioController
 
   }
 
-  public function recuperarContraseña()
-  {
+  // public function recuperarContraseña()
+  // {
 
-    $data = implode(",", $_POST);
-    if (empty($data)) {
-      echo "Campo vacio";
-    } else {
-      $email = $data;
-      $result =  $this->usuarioModel->getEmail($email);
-      // var_dump($email);
-      // die();
-      // if (empty($email)) {
-
-      //   echo "Campo vacio";
-      // } else {
-
-      //   $result = $this->usuarioModel->getEmail($email);
-      //   if ($result) {
-      //   }
-      // }
-    }
-  }
+  //   $data = implode(",", $_POST);
+  //   if (empty($data)) {
+  //     echo "Campo vacio";
+  //   } else {
+  //     $email = $data;
+  //     $result =  $this->usuarioModel->getEmail($email);
+  //   }
+  // }
 }
