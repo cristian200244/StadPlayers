@@ -1,6 +1,5 @@
 <?php
 include_once(__DIR__ . "../../../config/rutas.php");
-session_start();
 ?>
 
 <head>
@@ -19,7 +18,6 @@ session_start();
         integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
-alejoecheverry33@gmail.com
 
 <body class="sb-nav-fixed">
 
@@ -48,16 +46,45 @@ text-decoration-color: aqua">
                 <div id="layoutAuthentication_content">
                     <div class="row justify-content-center">
                         <div class="col-lg-5">
-                            <div class="card shadow-lg bg-black border-0 rounded-lg mt-5">
-                                <div class="card-header" style="background-color:#00ECD4   ;">
+                            <div class="card shadow-lg  border-0 rounded-lg mt-5" style="background-color: #4C356A">
+                                <div class="card-header" style="background-color:#FFFFFF
+;">
                                     <h3 class="text-center text-black font-weight-light my-4">Recuperar
                                         Contraseña
                                     </h3>
                                 </div>
+                                <?php
+                                include_once 'olvideContraseña.php';
+                                if (isset($_POST['respuesta'])) {
+
+                                    // var_dump($_POST['respuesta']);
+                                    // die();
+
+
+                                    // $respuesta = $_POST['respuesta'];
+
+
+                                ?>
+                                <script>
+                                Swal.fire({
+                                    title: 'Sweet!',
+                                    text: ' <?php $respuesta ?>',
+                                    imageUrl: 'https://unsplash.it/400/200',
+                                    imageWidth: 400,
+                                    imageHeight: 200,
+                                    imageAlt: 'Custom image',
+                                })
+                                </script>
+                                <?php
+                                }
+
+                                ?>
+
                                 <form autocomplete="off" id="olvideContraseña">
                                     <div class="card-body">
-                                        <div class="form-message" id="msg">
-                                        </div>
+                                        <!-- <div class="form-message" id="msg"> -->
+
+                                        <!-- </div> -->
                                         <div class="small mb-3 text-muted">Ingrese su correo electronico y le
                                             enviaremos
                                             un
@@ -75,18 +102,18 @@ text-decoration-color: aqua">
                                             </input>
                                         </div>
                                 </form>
-                                <!-- <div class="card-footer text-center py-3" style="background-color:#00ECD4 ;">
-                                <div class="BotonIniciarSesion ">
-                                    <button name="submit" class="btn btn-dark">
-                                        <span></span>
-                                        <span></span>
-                                        <span></span>
-                                        <span></span>
-                                        <div class="small"><a href="signUp.php">Deseas Crear Una cuenta?
+                                <div class="card-footer text-center py-3" style="background-color:#00ECD4 ;">
+                                    <div class="BotonIr ">
+                                        <button name="submit" class="btn btn-white">
+                                            <span></span>
+                                            <span></span>
+                                            <span></span>
+                                            <span></span>
+                                            <a class="small" href="signUp.php">Deseas Crear Una cuenta?
                                                 Ir!</a>
-                                    </button>
+                                        </button>
+                                    </div>
                                 </div>
-                            </div> -->
                             </div>
                         </div>
                     </div>
