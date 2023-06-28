@@ -19,7 +19,7 @@ session_start();
         integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
-alejoecheverry33@gmail.com
+
 
 <body class="sb-nav-fixed">
 
@@ -106,7 +106,7 @@ text-decoration-color: aqua">
 
             $.ajax({
                 type: "POST",
-                url: "olvideContraseña.php",
+                url: "ForgotPassword.php",
                 // url: "../../Controllers/UsuarioController.php?c=3&id=",
                 data: {
                     email: email

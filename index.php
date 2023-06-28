@@ -88,14 +88,14 @@ text-decoration-color: aqua">
                             <form id="forgetForm" method="POST">
                                 <div id="errorMessge" class="alert hidden">
                                 </div>
-                                <div class="form-check d-flex justify-content-start mb-2 mt-4">
+                                <!-- <div class="form-check d-flex justify-content-start mb-2 mt-4">
                                     <input class="form-check-input" type="checkbox" value="" />
                                     <label class="form-check-label" for="form1Example3"
                                         style="font-family:Russo One; color: #9bdaff; padding-left: 2%;">
                                         Recuperar
                                         Contraseña
                                     </label>
-                                </div>
+                                </div> -->
                                 <div class="d-flex align-items-center justify-content-center mt-4 mb-0">
                                     <div class="BotonRecuperarContraseña ">
                                         <button name="submit" class="btn btn-white">
@@ -111,9 +111,9 @@ text-decoration-color: aqua">
                                 </div>
                             </form>
                             <hr class="my-4">
-                            <button class="btn btn-lg btn-block btn-primary"
+                            <!-- <button class="btn btn-lg btn-block btn-primary"
                                 style="background-color: #dd4b39;font-family:Russo One;" type="submit"><i
-                                    class="fab fa-google me-2"></i> Iniciar Sesión con Google </button>
+                                    class="fab fa-google me-2"></i> Iniciar Sesión con Google </button> -->
                             <br>
                             <br>
                             <a class="btn btn-primary btn-lg btn-block" href="<?= BASE_URL ?>/Views/usuario/signUp.php"
