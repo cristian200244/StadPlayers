@@ -41,18 +41,23 @@ if (isset($_POST['email'])) {
                 $to = $email;
                 $subject = "Link de Recuperación de contraseña";
                 $msg = 'Has Click <a href="http://localhost/StadPlayers/Views/Usuario/nuevacontraseña.php?token=' . $token . '">Aquí<a/>para restaurar tu contraseña ';
-                // $message = "Email:" . $email . "\n\n" . " " . $msg;
+                $message = "Email:" . $email . "\n\n" . " " . $msg;
                 $message = $msg;
                 $headers = "MIME-Version:1.0" . "\r\n";
                 $headers .= 'Content-type: text/html; charset=UTF-8' . "\r\n";
                 $headers .= "From: " . $email;
 
                 if (mail($to, $subject, $message, $headers)) {
-
-
-                    $_POST['respuesta'] = "se ha enviado un Link de restablecer contraseña a tu correo";
-                    // $respuesta = $_POST['respuesta'];
-                    // var_dump($respuesta);
+                    $array = [];
+                    $mensaje = 'se ha enviado un Link de restablecer contraseña a tu correo';
+                    $array = explode(' ',  $mensaje);
+                    foreach ($array as $value) {
+                        $string = $value;
+                        array_push($array, $string);
+                    }
+                    $data   = ["msj" => $array];
+                    json_encode($data) . "\n";
+                    // var_dump(json_encode($data));
                     // die();
                 } else {
                     echo "¡Ups! Algo salió mal al enviar, Intenta de Nuevo";
@@ -60,10 +65,6 @@ if (isset($_POST['email'])) {
 
                 // echo "Has Click <a href='../../Views/Usuario/nuevacontraseña.php?token=$token'>Aquí<a/>para restaurar tu contraseña ";
             } else {
-
-
-
-
 
                 echo "Usuario No Existe";
             }

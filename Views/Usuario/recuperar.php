@@ -1,5 +1,6 @@
 <?php
 include_once(__DIR__ . "../../../config/rutas.php");
+include_once 'olvideContraseña.php';
 ?>
 
 <head>
@@ -47,44 +48,46 @@ text-decoration-color: aqua">
                     <div class="row justify-content-center">
                         <div class="col-lg-5">
                             <div class="card shadow-lg  border-0 rounded-lg mt-5" style="background-color: #4C356A">
-                                <div class="card-header" style="background-color:#FFFFFF
-;">
+                                <div class="card-header" style="background-color:#FFFFFF;">
                                     <h3 class="text-center text-black font-weight-light my-4">Recuperar
                                         Contraseña
                                     </h3>
                                 </div>
-                                <?php
-                                include_once 'olvideContraseña.php';
-                                if (isset($_POST['respuesta'])) {
 
-                                    // var_dump($_POST['respuesta']);
-                                    // die();
-
-
-                                    // $respuesta = $_POST['respuesta'];
-
-
-                                ?>
                                 <script>
-                                Swal.fire({
-                                    title: 'Sweet!',
-                                    text: ' <?php $respuesta ?>',
-                                    imageUrl: 'https://unsplash.it/400/200',
-                                    imageWidth: 400,
-                                    imageHeight: 200,
-                                    imageAlt: 'Custom image',
-                                })
+                                <?php include_once 'olvideContraseña.php'; ?>
+
+                                window.addEventListener('DOMContentLoaded', event => {
+                                    (async () => {
+                                        // const id = document.getElementById("id_reporte").value;
+                                        const respuestaRaw = await fetch("olvideContraseña.php");
+
+                                        // Decodificar como JSON
+                                        const respuesta = await respuestaRaw.json();
+                                        const labels = respuesta.msj;
+                                        // obj = JSON.parse(data);
+                                        alert(labels);
+                                        return
+
+
+
+                                        // var mensaje = '';
+                                        // Swal.fire({
+                                        //     title: 'Sweet!',
+                                        //     text: ,
+                                        //     imageUrl: 'https://unsplash.it/400/200',
+                                        //     imageWidth: 400,
+                                        //     imageHeight: 200,
+                                        //     imageAlt: 'Custom image',
+                                        // })
+
+                                    })
+                                });
                                 </script>
-                                <?php
-                                }
-
-                                ?>
-
                                 <form autocomplete="off" id="olvideContraseña">
-                                    <div class="card-body">
-                                        <!-- <div class="form-message" id="msg"> -->
 
-                                        <!-- </div> -->
+                                    <div class="card-body">
+
                                         <div class="small mb-3 text-muted">Ingrese su correo electronico y le
                                             enviaremos
                                             un
