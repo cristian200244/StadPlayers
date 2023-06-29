@@ -1,6 +1,6 @@
 <?php
 include_once(__DIR__ . "../../../config/rutas.php");
-include_once 'olvideContraseña.php';
+
 ?>
 
 <head>
@@ -55,7 +55,7 @@ text-decoration-color: aqua">
                                 </div>
 
                                 <script>
-                                <?php include_once 'olvideContraseña.php'; ?>
+                                <?php include_once '/olvideContraseña.php'; ?>
 
                                 window.addEventListener('DOMContentLoaded', event => {
                                     (async () => {
