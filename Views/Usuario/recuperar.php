@@ -53,22 +53,25 @@ text-decoration-color: aqua">
                                         Contraseña
                                     </h3>
                                 </div>
+                                       <div class="form-message" id="msg"> 
+
                                 <?php
                                 include_once 'olvideContraseña.php';
-                                if (isset($_POST['respuesta'])) {
+                                // session_start();
+                                if (isset($_SESSION['msj'])) {
 
                                     // var_dump($_POST['respuesta']);
                                     // die();
-
-
-                                    // $respuesta = $_POST['respuesta'];
-
-
-                                ?>
+                                    
+                                    
+                                    $respuesta =$_SESSION['msj'];
+                                    
+                                    
+                                    ?>
                                 <script>
                                 Swal.fire({
                                     title: 'Sweet!',
-                                    text: ' <?php $respuesta ?>',
+                                    text: ' <?=$respuesta?>',
                                     imageUrl: 'https://unsplash.it/400/200',
                                     imageWidth: 400,
                                     imageHeight: 200,
@@ -77,8 +80,9 @@ text-decoration-color: aqua">
                                 </script>
                                 <?php
                                 }
-
+                                
                                 ?>
+                                </div>
 
                                 <form autocomplete="off" id="olvideContraseña">
                                     <div class="card-body">

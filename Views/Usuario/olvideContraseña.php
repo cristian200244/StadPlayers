@@ -5,7 +5,7 @@ include_once("../../Models/conexionModel.php");
 include_once '../../Models/UsuarioModel.php';
 $usuario = new UsuarioModel();
 $db = new Database();
-
+session_start();
 // $email = implode(",", $_POST);
 
 
@@ -41,24 +41,22 @@ if (isset($_POST['email'])) {
                 $to = $email;
                 $subject = "Link de Recuperación de contraseña";
                 $msg = 'Has Click <a href="http://localhost/StadPlayers/Views/Usuario/nuevacontraseña.php?token=' . $token . '">Aquí<a/>para restaurar tu contraseña ';
-                // $message = "Email:" . $email . "\n\n" . " " . $msg;
-                $message = $msg;
-                $headers = "MIME-Version:1.0" . "\r\n";
+                $message = "Email: " . $email . "\n\n" . " " . $msg;
+                // $message = $msg;
+                $headers = "MIME-Version: 1.0" . "\r\n";
                 $headers .= 'Content-type: text/html; charset=UTF-8' . "\r\n";
                 $headers .= "From: " . $email;
 
                 if (mail($to, $subject, $message, $headers)) {
 
-
-                    $_POST['respuesta'] = "se ha enviado un Link de restablecer contraseña a tu correo";
-                    // $respuesta = $_POST['respuesta'];
-                    // var_dump($respuesta);
-                    // die();
+                    $_SESSION['msj'] = "se ha enviado un Link de restablecer contraseña a tu correo";
+                   
+                
                 } else {
                     echo "¡Ups! Algo salió mal al enviar, Intenta de Nuevo";
                 }
 
-                // echo "Has Click <a href='../../Views/Usuario/nuevacontraseña.php?token=$token'>Aquí<a/>para restaurar tu contraseña ";
+                 echo "Has Click <a href='../../Views/Usuario/nuevacontraseña.php?token=$token'>Aquí<a/>para restaurar tu contraseña ";
             } else {
 
 
