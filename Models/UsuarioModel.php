@@ -34,24 +34,25 @@ class UsuarioModel
     {
 
         try {
+            $password = md5($_POST['password']);
 
-            if (!empty($_POST['email']) && !empty($_POST['nickname']) && !empty($_POST['password']) && strlen($_POST['password']) >= 8) {
+            $sql = 'INSERT INTO usuarios ( email, nickname,password) VALUES (:email, :nickname, :password)';
+            $prepare = $this->db->conect()->prepare($sql);
 
-                $password = md5($_POST['password']);
-                $sql = 'INSERT INTO usuarios ( email, nickname,password) VALUES (:email, :nickname, :password)';
-                $prepare = $this->db->conect()->prepare($sql);
+            $query = $prepare->execute([
+                'email'    => $datos['email'],
+                'nickname' => $datos['nickname'],
+                'password' => $password,
+            ]);
 
-                $query = $prepare->execute([
-                    'email'    => $datos['email'],
-                    'nickname' => $datos['nickname'],
-                    'password' => $password,
-                ]);
+            if ($query) {
                 return true;
             }
         } catch (PDOException $e) {
             die($e->getMessage());
         }
     }
+
     public function getUser($datos)
     {
 

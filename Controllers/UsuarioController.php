@@ -53,6 +53,8 @@ class UsuarioController
     ];
 
     $result =  $this->usuarioModel->Store($datos);
+
+    return $result;
   }
 
   public function InciarSesion()

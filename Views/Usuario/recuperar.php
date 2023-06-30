@@ -53,11 +53,13 @@ text-decoration-color: aqua">
                                         Contraseña
                                     </h3>
                                 </div>
+                                <div class="form-message" id="msg">
 
-                                <script>
+</div>
+                                <script type="text/javascript">
                                 <?php include_once '/olvideContraseña.php'; ?>
-
-                                window.addEventListener('DOMContentLoaded', event => {
+                              
+                               
                                     (async () => {
                                         // const id = document.getElementById("id_reporte").value;
                                         const respuestaRaw = await fetch("olvideContraseña.php");
@@ -82,7 +84,7 @@ text-decoration-color: aqua">
                                         // })
 
                                     })
-                                });
+                              
                                 </script>
                                 <form autocomplete="off" id="olvideContraseña">
 

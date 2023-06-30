@@ -183,7 +183,7 @@ class ReportesController
         // die();
 
         header(
-            "Location: ../Views/Reportes/ReportePdf.php?" . $params
+            "Location: ../Views/Reportes/reportePdf.php?" . $params
         );
         // header(
         //     "Location: ../Views/Reportes/fpdfReporte.php?" . $params
