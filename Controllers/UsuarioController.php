@@ -21,7 +21,7 @@ class UsuarioController
           self::Store();
           break;
         case 2: //Eliminar
-          // self::destroy();
+           self::destroy();
 
           break;
         case 3: //Ver por operacion
@@ -50,6 +50,18 @@ class UsuarioController
 
     $result =  $this->usuarioModel->Store($datos);
   }
+
+
+  public function destroy()
+  {
+      $id = $_REQUEST['id'];
+      $result = $this->usuarioModel->destroy($id);
+      if ($result) {
+          header("Location: ../index.php");
+          exit();
+      }
+  }
+
 
   public function InciarSesion()
   {

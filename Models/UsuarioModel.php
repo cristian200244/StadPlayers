@@ -36,7 +36,7 @@ class UsuarioModel
                 $prepare = $this->db->conect()->prepare($sql);
 
                 $query = $prepare->execute([
-                    'email'    => $datos['email'],
+                    'email' => $datos['email'],
                     'nickname' => $datos['nickname'],
                     'password' => $password,
                 ]);
@@ -66,7 +66,7 @@ class UsuarioModel
             die($e->getMessage());
         }
     }
-    
+
     public function getAll()
     {
         $items = [];
@@ -75,15 +75,15 @@ class UsuarioModel
             $sql = 'SELECT u.id, u.email, u.nickname, u.password
             FROM usuarios u';
 
-            $query  = $this->db->conect()->query($sql);
+            $query = $this->db->conect()->query($sql);
 
             while ($row = $query->fetch()) {
-                $item                       =   new UsuarioModel();
-                $item->id                   =  $row['id'];
-                $item->email                =  $row['email'];
-                $item->nickname             =  $row['nickname'];
-                $item->password             =  $row['password'];
-                
+                $item = new UsuarioModel();
+                $item->id = $row['id'];
+                $item->email = $row['email'];
+                $item->nickname = $row['nickname'];
+                $item->password = $row['password'];
+
 
                 array_push($items, $item);
             }
@@ -93,4 +93,51 @@ class UsuarioModel
             die($e->getMessage());
         }
     }
+
+
+    public function destroy($id)
+    {
+        try {
+            $sql = "DELETE FROM usuarios WHERE id = :id";
+            $prepare = $this->db->conect()->prepare($sql);
+            $query = $prepare->execute([
+                'id' => $id,
+            ]);
+
+            if ($query) {
+                return true;
+            }
+        } catch (PDOException $e) {
+            die($e->getMessage());
+        }
+    }
+
+    public function getById($id)
+    {
+        $resultado = [];
+
+        try {
+            $sql = "SELECT email, nickname, password
+                FROM usuarios
+                WHERE id = :id";
+
+            $query = $this->db->conect()->prepare($sql);
+            $query->bindParam(':id', $id);
+            $query->execute();
+
+            while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
+                $item = new UsuarioModel();
+                $item->email = $row['email'];
+                $item->nickname = $row['nickname'];
+                $item->password = $row['password'];
+
+                array_push($resultado, $item);
+            }
+
+            return $resultado;
+        } catch (PDOException $e) {
+            die($e->getMessage());
+        }
+    }
+
 }

@@ -1,4 +1,9 @@
 <?php
+session_start();
+if (!isset($_SESSION['id'])) {
+    header("Location: ../../index.php");
+}
+
 include_once(__DIR__ . "../../../config/rutas.php");
 include_once(BASE_DIR . "../../Views/partials/header.php");
 include_once(BASE_DIR . "../../Views/partials/aside.php");
@@ -7,7 +12,8 @@ include_once '../../Models/conexionModel.php';
 include_once '../../Models/UsuarioModel.php';
 
 $datos = new UsuarioModel();
-$registros = $datos->getAll();
+$id = $_SESSION['id']; // Agregamos esta línea para obtener el ID de la sesión
+$registros = $datos->getById($id);
 
 function obtenerIniciales($nickname)
 {
