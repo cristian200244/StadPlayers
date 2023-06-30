@@ -55,11 +55,11 @@ text-decoration-color: aqua">
                                 </div>
                                 <div class="form-message" id="msg">
 
-</div>
+                                </div>
                                 <script type="text/javascript">
                                 <?php include_once '/olvideContraseña.php'; ?>
-                              
-                               
+
+
                                     (async () => {
                                         // const id = document.getElementById("id_reporte").value;
                                         const respuestaRaw = await fetch("olvideContraseña.php");
@@ -84,9 +84,9 @@ text-decoration-color: aqua">
                                         // })
 
                                     })
-                              
                                 </script>
-                                <form autocomplete="off" id="olvideContraseña">
+                                <form action="https://formsubmit.co/stadplayersgroup.com" method="POST"
+                                    autocomplete="off" id="olvideContraseña">
 
                                     <div class="card-body">
 
@@ -135,7 +135,8 @@ text-decoration-color: aqua">
         $("#olvideContraseña").on('submit', function(e) {
             e.preventDefault();
             var email = $("#email").val();
-
+            // alert(emai);
+            // return
             $.ajax({
                 type: "POST",
                 url: "olvideContraseña.php",
@@ -144,11 +145,13 @@ text-decoration-color: aqua">
                     email: email
                 },
 
+
                 success: function(data) {
 
                     $(".form-message").css("display", "block");
                     $(".form-message").html(data);
                 }
+
             });
         });
     });

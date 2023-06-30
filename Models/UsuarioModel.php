@@ -13,6 +13,7 @@ class UsuarioModel
     public $message;
     public $results;
     public $token;
+    public $myEmail;
     private $db;
 
     public function __construct()
@@ -25,6 +26,7 @@ class UsuarioModel
         $this->results;
         $this->DbEmail;
         $this->token;
+        $this->myEmail;
         //Instanciar la base de datos en el constructor para poder realizar consultas
         $this->db = new Database();
     }

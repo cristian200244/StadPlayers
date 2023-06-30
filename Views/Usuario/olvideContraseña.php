@@ -14,63 +14,54 @@ session_start();
 if (isset($_POST['email'])) {
 
     $email = $_POST['email'];
-    $myemail = '';
 
-    $sql = "SELECT email FROM usuarios WHERE Email ='$email'";
+    $sql = "SELECT * FROM usuarios WHERE Email ='$email'";
     $query = $db->conect()->query($sql);
     if (empty($email)) {
         echo "Campo vacio";
     } else {
         if ($query) {
-            $items = [];
-            while ($row = $query->fetchObject()) {
-                $item               = new UsuarioModel();
-                $item->DbEmail   = $row->email;
+            try {
+                $dato = '';
+                while ($row = $query->fetch()) {
+                    $item = new UsuarioModel();
 
-                foreach ($row as $key => $value) {
-                    $myemail = $value;
+                    $item->myEmail = $row['Email'];
+
+                    $dato = $item->myEmail = $row['Email'];
                 }
-            }
 
-            if ($myemail == $email) {
+                if ($dato == $email) {
+                    $token = uniqid(md5(time()));
+                    $insert_query = "INSERT INTO olvido_password(email,token) VALUES('$email','$token')";
+                    $res  = $db->conect()->query($insert_query);
 
-                $token = uniqid(md5(time()));
-                $insert_query = "INSERT INTO olvido_password(email,token) VALUES('$email','$token')";
-                $res  = $db->conect()->query($insert_query);
+                    $para = $email;
+                    $asunto = "Link de restauración de contyraseña";
+                    $mensaje = 'Has Click <a href="http://localhost/StadPlayers/Views/Usuario/nuevacontraseña.php?token=' . $token . '">Aquí<a/>para restaurar tu contraseña ';
+                    // $message = "Email: " . $email . "\n\n" . " " . $msg;
+                    // $message = $msg;
+                    $headers = "MIME-Version: 1.0" . "\r\n";
+                    $headers .= 'Content-type: text/html; charset=UTF-8' . "\r\n";
+                    $headers .= "From: " . "StadplayersGroup@gmail.com";
 
-                $to = $email;
-                $subject = "Link de Recuperación de contraseña";
-                $msg = 'Has Click <a href="http://localhost/StadPlayers/Views/Usuario/nuevacontraseña.php?token=' . $token . '">Aquí<a/>para restaurar tu contraseña ';
-                $message = "Email: " . $email . "\n\n" . " " . $msg;
-                // $message = $msg;
-                $headers = "MIME-Version: 1.0" . "\r\n";
-                $headers .= 'Content-type: text/html; charset=UTF-8' . "\r\n";
-                $headers .= "From: " . $email;
+                    if (mail($para, $asunto, $mensaje, $headers)) {
 
-                if (mail($to, $subject, $message, $headers)) {
 
-               $msj =  array ( 
-                 "se ha enviado un Link de restablecer contraseña a tu correo");
-                 $cadena = implode(" ",   $msj);
-                 echo  json_decode($cadena);
-                   
-                  
-                
+                        echo  "se ha enviado un Link de restablecer contraseña a tu correo";
+                    } else {
+
+                        echo "¡Ups! Algo salió mal al enviar, Intenta de Nuevo";
+                    }
+
+
+                    // echo "Has Click <a href='../../Views/Usuario/nuevacontraseña.php?token=$token'>Aquí<a/>para restaurar tu contraseña ";
                 } else {
-                    echo "¡Ups! Algo salió mal al enviar, Intenta de Nuevo";
+                    echo "Usuario No Existe";
                 }
-
-                 echo "Has Click <a href='../../Views/Usuario/nuevacontraseña.php?token=$token'>Aquí<a/>para restaurar tu contraseña ";
-            } else {
-
-
-
-
-
-                echo "Usuario No Existe";
+            } catch (PDOException $e) {
+                die($e->getMessage());
             }
         }
     }
 }
-
-   
