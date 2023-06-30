@@ -13,8 +13,21 @@ include_once '../../Models/conexionModel.php';
 include_once '../../Models/UsuarioModel.php';
 
 $datos = new UsuarioModel();
-$id = $_SESSION['id']; // Agregamos esta línea para obtener el ID de la sesión
-$registros = $datos->getById($id);
+
+if (isset($_REQUEST['id'])) {
+    $registros = $datos->editar($_REQUEST['id']);
+
+    foreach ($registros as $resultado) {
+        $id = $resultado->getId();
+        $email = $resultado->email;
+        $nickname = $resultado->nickname;
+        $password = $resultado->password;
+    }
+} else {
+    // Mostrar error o redireccionar si no se proporciona un ID válido
+    header("Location: ../../index.php");
+    exit();
+}
 
 function obtenerIniciales($nickname)
 {
@@ -57,9 +70,7 @@ function obtenerIniciales($nickname)
                                                 <div class="row">
                                                     <div class="col-md-2 mt-3">
                                                         <div class="avatar-circle">
-                                                            <h1>
-                                                                <?= $initials ?>
-                                                            </h1>
+                                                            <h1><?= $initials ?></h1>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-4 mt-3 text-black">
@@ -76,30 +87,24 @@ function obtenerIniciales($nickname)
                                                             <?= $row->nickname ?>
                                                         </div>
                                                     </div>
-                                                    
                                                 </div>
                                             </div>
-                                            <div class="text-center">
-                                                <a class="btn btn-sm btn-outline-primary" href="../jugadores/index.php">Regresar
-                                                </a>
-                                                <a class="btn btn-danger"
-                                                    href="../../Controllers/UsuarioController.php?c=2&id=<?= $row->getId() ?>">Eliminar
-                                                </a>
-                                                <a class="btn btn-warning"
-                                                    href="../../Controllers/UsuarioController.php?c=4&id=<?= $row->getId() ?>">Deshabilitar
-                                                </a>
-                                                <a class="btn btn-warning"
-                                                    href="../../Controllers/UsuarioController.php?c=3&id=<?= $row->getId() ?>">Actualizar
-                                                </a>
-                                            </div>
+                                            <form action="../../Controllers/UsuarioController.php" method="post">
+                                                <input type="hidden" name="id" value="<?= $row->getId() ?>">
+                                                <div class="mt-4 mb-0">
+                                                    <div class="d-grid">
+                                                        <button class="btn btn-dark btn-block" id="submitBtn" name="action" value="update">Actualizar Usuario</button>
+                                                    </div>
+                                                </div>
+                                            </form>
                                             <?php
                                         }
                                     } else {
                                         ?>
-                                    <div class="mb-3 bg-color1 text-primary text-center">
-                                        Sin datos
-                                    </div>
-                                    <?php
+                                        <div class="mb-3 bg-color1 text-primary text-center">
+                                            Sin datos
+                                        </div>
+                                        <?php
                                     }
                                     ?>
 

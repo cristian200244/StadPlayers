@@ -21,14 +21,14 @@ class UsuarioController
           self::Store();
           break;
         case 2: //Eliminar
-           self::destroy();
+          self::destroy();
 
           break;
         case 3: //Ver por operacion
-          // self::show();
+          self::show();
           break;
         case 4:
-          // self::update();
+          self::update();
           break;
         case 5:
           self::InciarSesion();
@@ -39,6 +39,13 @@ class UsuarioController
       }
     }
   }
+
+  public function show()
+  {
+    $id = $_REQUEST['id'];
+    header("Location:  ../views/usuarios/editar.php?id=$id");
+  }
+
   public function Store()
   {
 
@@ -48,7 +55,7 @@ class UsuarioController
       'password' => $_REQUEST['password'],
     ];
 
-    $result =  $this->usuarioModel->Store($datos);
+    $result = $this->usuarioModel->Store($datos);
   }
 
 
@@ -63,12 +70,32 @@ class UsuarioController
   }
 
 
+
+  public function update()
+  {
+    $datos = [
+      'id' => $_POST['id'],
+      'email' => $_POST['email'],
+      'nickname' => $_POST['nickname'],
+    ];
+
+    $result = $this->usuarioModel->update($datos);
+    // var_dump($datos);
+    // die();
+    if ($result) {
+      header("Location: ../index.php");
+      exit();
+    }
+    return $result;
+  }
+
+
   public function InciarSesion()
   {
 
     $datos = [
-      'email'     => $_REQUEST['email'],
-      'password'  => $_REQUEST['password'],
+      'email' => $_REQUEST['email'],
+      'password' => $_REQUEST['password'],
     ];
 
 
@@ -87,8 +114,8 @@ class UsuarioController
       if ($results) {
         session_start();
 
-        $_SESSION['id']       = $results->id;
-        $_SESSION['email']    = $results->Email;
+        $_SESSION['id'] = $results->id;
+        $_SESSION['email'] = $results->Email;
 
         header('Location: ../Views/main/MenuPrincipal.php');
       } else {

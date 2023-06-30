@@ -23,7 +23,10 @@ class UsuarioModel
         $this->db = new Database();
     }
 
-
+    public function getId()
+    {
+        return $this->id;
+    }
     public function Store($datos)
     {
 
@@ -46,6 +49,57 @@ class UsuarioModel
             die($e->getMessage());
         }
     }
+
+
+    public function update($datos)
+    {
+        try {
+
+
+            $sql = 'UPDATE usuarios SET email = :email, nickname = :nickname, password = :password WHERE id = :id';
+
+            $prepare = $this->db->conect()->prepare($sql);
+            $query = $prepare->execute([
+                'id' => $datos['id'],
+                'email' => $datos['email'],
+                'nickname' => $datos['nickname'],
+                'password' => $datos['password'],
+
+            ]);
+
+            if ($query) {
+                return true;
+            }
+        } catch (PDOException $e) {
+            die($e->getMessage());
+        }
+    }
+
+    public function editar($id)
+    {
+        $operacion = [];
+
+        try {
+            $sql = "SELECT * FROM usuarios WHERE id = $id";
+            $query = $this->db->conect()->query($sql);
+
+
+            while ($row = $query->fetch()) {
+                $item = new UsuarioModel();
+                $item->id = $row['id'];
+                $item->email = $row['email'];
+                $item->nickname = $row['nickname'];
+                $item->password = $row['password'];
+
+                array_push($operacion, $item);
+            }
+
+            return $operacion;
+        } catch (PDOException $e) {
+            die($e->getMessage());
+        }
+    }
+
     public function getUser($datos)
     {
 
