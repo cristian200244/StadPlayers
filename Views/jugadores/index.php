@@ -175,6 +175,8 @@ include_once(BASE_DIR . "../../Views/partials/footer.php");
         if (equipo === "" || liga === "" || continente === "" || pais === "" || posicion === "" || perfil === "") {
             event.preventDefault();
             alert("Por favor, seleccione una opción en todos los campos obligatorios.");
+        } else {
+            alert("¡El jugador se ha creado exitosamente!");
         }
     });
 </script>
