@@ -40,11 +40,13 @@ class UsuarioController
     }
   }
 
+
   public function show()
   {
     $id = $_REQUEST['id'];
-    header("Location:  ../views/usuarios/editar.php?id=$id");
+    header("Location: ../Views/botonExtra/editar.php?id=" . $id);
   }
+
 
   public function Store()
   {
@@ -61,12 +63,12 @@ class UsuarioController
 
   public function destroy()
   {
-      $id = $_REQUEST['id'];
-      $result = $this->usuarioModel->destroy($id);
-      if ($result) {
-          header("Location: ../index.php");
-          exit();
-      }
+    $id = $_REQUEST['id'];
+    $result = $this->usuarioModel->destroy($id);
+    if ($result) {
+      header("Location: ../index.php");
+      exit();
+    }
   }
 
 
@@ -77,13 +79,15 @@ class UsuarioController
       'id' => $_POST['id'],
       'email' => $_POST['email'],
       'nickname' => $_POST['nickname'],
+      'password' => $_POST['password'],
+
     ];
 
     $result = $this->usuarioModel->update($datos);
     // var_dump($datos);
     // die();
     if ($result) {
-      header("Location: ../index.php");
+      header("Location: ../views/botonExtra/index.php");
       exit();
     }
     return $result;

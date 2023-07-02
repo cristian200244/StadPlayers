@@ -80,9 +80,10 @@ class UsuarioModel
         $operacion = [];
 
         try {
-            $sql = "SELECT * FROM usuarios WHERE id = $id";
-            $query = $this->db->conect()->query($sql);
-
+            $sql = "SELECT * FROM usuarios WHERE id = :id";
+            $query = $this->db->conect()->prepare($sql);
+            $query->bindParam(':id', $id, PDO::PARAM_INT);
+            $query->execute();
 
             while ($row = $query->fetch()) {
                 $item = new UsuarioModel();
@@ -99,7 +100,7 @@ class UsuarioModel
             die($e->getMessage());
         }
     }
-
+    
     public function getUser($datos)
     {
 
@@ -193,5 +194,4 @@ class UsuarioModel
             die($e->getMessage());
         }
     }
-
 }
