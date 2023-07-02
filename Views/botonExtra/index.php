@@ -52,7 +52,7 @@ function obtenerIniciales($nickname)
                                             $nickname = $row->nickname;
                                             $initials = obtenerIniciales($nickname);
                                             $avatarUrl = "https://place-hold.it/50?text=$initials";
-                                            ?>
+                                    ?>
                                             <div class="mb-3 bg-color1 text-primary">
                                                 <div class="row">
                                                     <div class="col-md-2 mt-3">
@@ -76,29 +76,25 @@ function obtenerIniciales($nickname)
                                                             <?= $row->nickname ?>
                                                         </div>
                                                     </div>
-                                                    
+
                                                 </div>
                                             </div>
                                             <div class="text-center">
                                                 <a class="btn btn-sm btn-outline-primary" href="../jugadores/index.php">Regresar
                                                 </a>
-                                                <a class="btn btn-danger"
-                                                    href="../../Controllers/UsuarioController.php?c=2&id=<?= $row->getId() ?>">Eliminar
+                                                <!-- <a class="btn btn-danger" href="../../Controllers/UsuarioController.php?c=2&id=<?= $row->getId() ?>">Eliminar
                                                 </a>
-                                                <a class="btn btn-warning"
-                                                    href="../../Controllers/UsuarioController.php?c=4&id=<?= $row->getId() ?>">Deshabilitar
-                                                </a>
-                                                <a class="btn btn-warning"
-                                                    href="../../Controllers/UsuarioController.php?c=3&id=<?= $row->getId() ?>">Actualizar
-                                                </a>
+
+                                                <a class="btn btn-warning" href="../../Controllers/UsuarioController.php?c=3&id=<?= $row->getId() ?>">Actualizar
+                                                </a> -->
                                             </div>
-                                            <?php
+                                        <?php
                                         }
                                     } else {
                                         ?>
-                                    <div class="mb-3 bg-color1 text-primary text-center">
-                                        Sin datos
-                                    </div>
+                                        <div class="mb-3 bg-color1 text-primary text-center">
+                                            Sin datos
+                                        </div>
                                     <?php
                                     }
                                     ?>
