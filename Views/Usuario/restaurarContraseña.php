@@ -28,10 +28,10 @@ if (isset($_POST['email']) || ($_POST['password']) || ($_POST['confirmPassword']
             $queryDelete = "DELETE FROM olvido_password  WHERE email  = '$email'";
             $query = $db->conect()->query($queryDelete);
 
-            echo "¡Su Contraseña Ha Sido actualizada Correctamente! 
-            Haga Click <a href='../../index.php?'> Aquí <a />para ir a Iniciar Sesión ";
+            echo "<div style='color:#00FFFA; margin-left:2%;margin-top:2%'> <strong><h5>¡Su Contraseña Ha Sido actualizada Correctamente! 
+            Haga Click <a href='../../index.php?'> Aquí  <a />para Iniciar Sesión</h5></strong></div>";
         } else {
-            echo "Las Contraseñas no Concuerdan";
+            echo "<div style='color:#00FFFA; margin-left:2%;margin-top:2%'> <strong><h3>Las Contraseñas no Concuerdan.<h3></strong></div>";
         }
     }
 }

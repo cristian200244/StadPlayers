@@ -16,6 +16,7 @@ include_once(__DIR__ . "../../../config/rutas.php");
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Russo One&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="icon" type="image/png" href="../../public/assets/img/IconStadplayers.ico" />
 </head>
 
 <body class="sb-nav-fixed">
@@ -144,7 +145,7 @@ text-decoration-color: aqua">
                 $.ajax({
                     type: "POST",
                     url: "restaurarContraseña.php",
-                    // url: "../../Controllers/UsuarioController.php?c=3&id=",
+
                     data: {
                         email: email,
                         password: password,

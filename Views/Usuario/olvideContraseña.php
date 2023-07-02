@@ -14,7 +14,8 @@ session_start();
 if (isset($_POST['email'])) {
 
     $email = $_POST['email'];
-
+    // var_dump($email);
+    // die();
     $sql = "SELECT * FROM usuarios WHERE Email ='$email'";
     $query = $db->conect()->query($sql);
     if (empty($email)) {
@@ -32,30 +33,30 @@ if (isset($_POST['email'])) {
                 }
 
                 if ($dato == $email) {
+
                     $token = uniqid(md5(time()));
                     $insert_query = "INSERT INTO olvido_password(email,token) VALUES('$email','$token')";
                     $res  = $db->conect()->query($insert_query);
 
-                    $para = $email;
-                    $asunto = "Link de restauración de contyraseña";
-                    $mensaje = 'Has Click <a href="http://localhost/StadPlayers/Views/Usuario/nuevacontraseña.php?token=' . $token . '">Aquí<a/>para restaurar tu contraseña ';
-                    // $message = "Email: " . $email . "\n\n" . " " . $msg;
-                    // $message = $msg;
+                    $to = $email;
+                    $subject = "Link de restauración de contraseña";
+                    $msg = 'Has Click <a href="http://localhost/StadPlayers/Views/Usuario/nuevacontraseña.php?token=' . $token . '">Aquí<a/>para restaurar tu contraseña ';
+                    $message = "Email: " . $email . "\n\n" . " " .  $msg;
+                    // $message =  $msg;
                     $headers = "MIME-Version: 1.0" . "\r\n";
                     $headers .= 'Content-type: text/html; charset=UTF-8' . "\r\n";
-                    $headers .= "From: " . "StadplayersGroup@gmail.com";
+                    $headers .= "From: " . $email;
 
-                    if (mail($para, $asunto, $mensaje, $headers)) {
+                    if (mail($to, $subject, $message, $headers)) {
 
-
-                        echo  "se ha enviado un Link de restablecer contraseña a tu correo";
+                        echo  "<div style='color:#00FFFA; margin-left:2%;margin-top:2%'> <strong><h3>se ha enviado un Link de restablecer contraseña a tu correo.<h3></strong></div>";
                     } else {
 
                         echo "¡Ups! Algo salió mal al enviar, Intenta de Nuevo";
                     }
 
 
-                    // echo "Has Click <a href='../../Views/Usuario/nuevacontraseña.php?token=$token'>Aquí<a/>para restaurar tu contraseña ";
+                    echo "<div style='color:#00FFFA; margin-left:2%;margin-top:2%'> <strong><h3>Has Click <a href='../../Views/Usuario/nuevacontraseña.php?token=$token'>Aquí<a/>para restaurar tu contraseña <h3></strong></div>";
                 } else {
                     echo "Usuario No Existe";
                 }

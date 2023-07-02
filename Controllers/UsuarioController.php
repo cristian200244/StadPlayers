@@ -87,7 +87,9 @@ class UsuarioController
         header('Location: ../Views/main/MenuPrincipal.php');
       } else {
 
-        echo "¡Ups! Algo salió mal.";
+        echo " <div style='color:red'> <strong><h1>¡Ups! Algo salió mal.<h1></strong></div>" . '<br>' . '<br>';
+        echo "<div style='color:green'> <strong><h1>¡El correo o Contraseña son Incorrectos<h1></strong></div>." . '<br>' . '<br>';
+        echo "<div style='color:blue'> <strong><h1>¡Quizas el Usuario no existe, Haz Click en crear Usuario.<h1></strong></div>" . '<br>' . '<br>';
       }
     }
   }
