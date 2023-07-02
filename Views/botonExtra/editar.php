@@ -2,7 +2,7 @@
 session_start();
 if (!isset($_SESSION['id'])) {
     header("Location: ../../index.php");
-    exit();
+    exit(); // Agregamos exit() para detener la ejecución del código después de redireccionar
 }
 
 include_once(__DIR__ . "../../../config/rutas.php");
@@ -12,16 +12,21 @@ include_once(BASE_DIR . "../../Views/partials/aside.php");
 include_once '../../Models/conexionModel.php';
 include_once '../../Models/UsuarioModel.php';
 
-$id = $_GET['id'];
-
 $datos = new UsuarioModel();
-$registros = $datos->editar($id);
 
-foreach ($registros as $resultado) {
-    $id = $resultado->getId();
-    $email = $resultado->email;
-    $nickname = $resultado->nickname;
-    $password = $resultado->password;
+if (isset($_REQUEST['id'])) {
+    $registros = $datos->editar($_REQUEST['id']);
+
+    foreach ($registros as $resultado) {
+        $id = $resultado->getId();
+        $email = $resultado->email;
+        $nickname = $resultado->nickname;
+        $password = $resultado->password;
+    }
+} else {
+    // Mostrar error o redireccionar si no se proporciona un ID válido
+    header("Location: ../../index.php");
+    exit();
 }
 
 function obtenerIniciales($nickname)
@@ -41,52 +46,68 @@ function obtenerIniciales($nickname)
     <div class="container text-center">
         <div class="row">
             <div class="col">
-                <h1>¡Bienvenido! Ahora Podrá ingresar sus Jugadores</h1>
+                <h1>¡Bienvenido! Ahora podrá ingresar sus jugadores</h1>
             </div>
         </div>
         <div id="layoutAuthentication">
             <div id="layoutAuthentication_content">
-                <div class="container">
+                <div class="container mt-5">
                     <div class="row justify-content-center">
                         <div class="col-lg-12">
                             <div class="card shadow-lg border-0 rounded-lg mt-5">
                                 <div class="card-header bg-colorr">
-                                    <h3 class="text-center text-light my-4 fs-4">Ingresar Su Actualizacion de Usuario</h3>
+                                    <h3 class="text-center text-light my-4 fs-4">Ver Usuario</h3>
                                 </div>
-                                <div class="card-body bg-colorbody ">
-                                    <form action="../../Controllers/UsuarioController.php" method="post">
-                                        <input type="hidden" name="c" value="3">
-                                        <input type="hidden" name="id" value="<?= $id ?>">
-                                        <div class="mb-3 ">
-                                            <div class="row bg-color1 text-primary">
-
-                                                <div class="form-floating col-md-6 mt-3">
-                                                    <div class="form-floating mb-3 mb-md-0">
-                                                        <input type="email" class="form-control" id="email" type="email" placeholder="email" name="email" value="<?= $email ?>" required />
-                                                        <label for="email">Email</label>
+                                <div class="card-body bg-colorbody">
+                                    <?php
+                                    if ($registros) {
+                                        foreach ($registros as $row) {
+                                            $nickname = $row->nickname;
+                                            $initials = obtenerIniciales($nickname);
+                                            $avatarUrl = "https://place-hold.it/50?text=$initials";
+                                            ?>
+                                            <div class="mb-3 bg-color1 text-primary">
+                                                <div class="row">
+                                                    <div class="col-md-2 mt-3">
+                                                        <div class="avatar-circle">
+                                                            <h1><?= $initials ?></h1>
+                                                        </div>
                                                     </div>
-                                                </div>
-
-                                                <div class="form-floating col-md-6 mt-3">
-                                                    <div class="form-floating mb-3 mb-md-0">
-                                                        <input type="text" class="form-control" id="nickname" placeholder="nickname" name="nickname" value="<?= $nickname ?>" />
-                                                        <label for="nickname">nickname</label>
+                                                    <div class="col-md-4 mt-3 text-black">
+                                                        <div class="card bg-dark text-light mt-2 pt-2 pb-2">
+                                                            <strong>Email:</strong>
+                                                            <br>
+                                                            <?= $row->email ?>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <div class="form-floating col-md-6 mt-3">
-                                                    <div class="form-floating mb-3 mb-md-0">
-                                                        <input type="password" class="form-control" id="password" placeholder="password" name="password" value="<?= $password ?>" />
-                                                        <label for="password"> password</label>
+                                                    <div class="col-md-4 mt-3 text-black">
+                                                        <div class="card bg-dark text-light mt-2 pt-2 pb-2">
+                                                            <strong>Nickname:</strong>
+                                                            <br>
+                                                            <?= $row->nickname ?>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="mt-4 mb-0">
-                                                <div class="d-grid">
-                                                    <button class="btn btn-dark  btn-block" id="submitBtn">Guardar Usuario</button>
+                                            <form action="../../Controllers/UsuarioController.php" method="post">
+                                                <input type="hidden" name="id" value="<?= $row->getId() ?>">
+                                                <div class="mt-4 mb-0">
+                                                    <div class="d-grid">
+                                                        <button class="btn btn-dark btn-block" id="submitBtn" name="action" value="update">Actualizar Usuario</button>
+                                                    </div>
                                                 </div>
-                                            </div>
+                                            </form>
+                                            <?php
+                                        }
+                                    } else {
+                                        ?>
+                                        <div class="mb-3 bg-color1 text-primary text-center">
+                                            Sin datos
                                         </div>
-                                    </form>
+                                        <?php
+                                    }
+                                    ?>
+
                                 </div>
                             </div>
                         </div>
@@ -95,9 +116,7 @@ function obtenerIniciales($nickname)
             </div>
         </div>
     </div>
-
 </div>
-
 
 <style>
     .avatar-circle {
